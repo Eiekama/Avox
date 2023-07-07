@@ -8,5 +8,6 @@ public class GameLoader : MonoBehaviour
     {
         IServiceLocator serviceLocator = ServiceLocator.Instance;
         serviceLocator.Register<IStatusService>(new StatusService());
+        serviceLocator.Register<IMovementService>(new MovementService());
     }
 }

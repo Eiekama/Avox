@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class StatusService : IStatusService
 {
-    private readonly PlayerData _data = PlayerData.Instance;
+    private readonly PlayerData _data = (PlayerData)AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/PlayerData.asset", typeof(PlayerData));
 
     public void ChangeMaxHP(int amount) { _data.maxHP += amount; }
     public void ChangeCurrentHP(int amount) { _data.currentHP += amount; }
@@ -14,7 +15,7 @@ public class StatusService : IStatusService
     private bool CanRecoverMP()
     {
         // ADD IMPLEMENTATION HERE
-        return false; //replace
+        return true; //replace
     }
 
     public IEnumerator RecoverMP()
