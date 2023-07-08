@@ -20,4 +20,6 @@ public interface ICombatService
     /// </summary>
     /// <param name="amount"></param>
     void TakeDamage(int amount);
+
+    // when we add combat skills those would go in here too
 }

@@ -2,7 +2,7 @@
 
 public interface IPlayerData
 {
-    //////////////////////////////////// Status ////////////////////////////////////
+//////////////////////////////////// Status ////////////////////////////////////
     #region Status
     int maxHP { get; set; }
     int currentHP { get; set; }
@@ -12,8 +12,10 @@ public interface IPlayerData
     /// Amount of MP that player recovers per second when conditions are met.
     /// </summary>
     float MPRecoveryRate { get; }
+
+    int atk { get; }
     #endregion
-    /////////////////////////////////// Movement ///////////////////////////////////
+/////////////////////////////////// Movement ///////////////////////////////////
     #region Movement
     // Gravity //
     #region Gravity

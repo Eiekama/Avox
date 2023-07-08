@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public abstract class Interactable : MonoBehaviour, IInteractable
+public abstract class Interactable : MonoBehaviour
 {
     [SerializeField] bool _isAuto;
+    /// <summary>
+    /// Determines whether interaction should occur automatically or by pressing
+    /// a button.
+    /// </summary>
     public bool isAuto { get { return _isAuto; } }
 
     public abstract void Interact(Collider2D other);
