@@ -7,6 +7,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Player Data")]
 public class PlayerData : ScriptableObject, IPlayerData
 {
+    #region Status
+
     [Header("Status")] /////////////////////////////////////////////////////////
     [Space(5)]
 
@@ -43,29 +45,29 @@ public class PlayerData : ScriptableObject, IPlayerData
     [SerializeField] float _MPRecovaryRate;
     public float MPRecoveryRate { get { return _MPRecovaryRate; } }
 
-    [Space(40)]
+    #endregion
 
-    [Header("Movement")] ///////////////////////////////////////////////////////
-    [Space(10)]
+    #region Movement
 
-    [Header("Gravity")]
     private float _gravityStrength;
     public float gravityStrength { get { return _gravityStrength; } }
     private float _gravityScale;
     public float gravityScale { get { return _gravityScale; } }
+    [Space(30)]
+    [Header("Movement")] ///////////////////////////////////////////////////////
+    [Header("Gravity")]
     [Space(5)]
     [SerializeField] float _fallGravityMult;
     public float fallGravityMult { get { return _fallGravityMult; } }
     [SerializeField] float _maxFallSpeed;
     public float maxFallSpeed { get { return _maxFallSpeed; } }
-    [Space(5)]
+    [Space(20)]
 
     //below are stuff i havent organised yet
 
 
 
 
-    [Space(20)]
 
     [Header("Run")]
     public float runMaxSpeed; //Target speed we want the player to reach.
@@ -98,6 +100,7 @@ public class PlayerData : ScriptableObject, IPlayerData
     [Range(0.01f, 0.5f)] public float coyoteTime; //Grace period after falling off a platform, where you can still jump
     [Range(0.01f, 0.5f)] public float jumpInputBufferTime; //Grace period after pressing jump where a jump will be automatically performed once the requirements (eg. being grounded) are met.
 
+    #endregion
 
     //Unity Callback, called when the inspector updates
     private void OnValidate()

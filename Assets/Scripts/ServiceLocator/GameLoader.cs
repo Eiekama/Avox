@@ -7,7 +7,5 @@ public class GameLoader : MonoBehaviour
     private void Awake()
     {
         IServiceLocator serviceLocator = ServiceLocator.Instance;
-        serviceLocator.Register<IStatusService>(new StatusService());
-        serviceLocator.Register<IMovementService>(new MovementService());
     }
 }

@@ -1,7 +1,8 @@
 using System.Collections;
 
-public interface IStatusService
+public interface IStatus
 {
+    PlayerInstance player { get; set; }
     void ChangeMaxHP(int amount);
     void ChangeCurrentHP(int amount);
     void ChangeMaxMP(int amount);

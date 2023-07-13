@@ -4,12 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IMovementService
+public interface IMovement
 {
-    /// <summary>
-    /// Rigidbody of the player character. Set in <c>MovementController</c>.
-    /// </summary>
-    Rigidbody2D RB { get; set; }
+    PlayerInstance player { get; set; }
 
     /// <summary>
     /// Determines when player can/cannot control the character.
@@ -25,5 +22,7 @@ public interface IMovementService
     void Run(Vector2 moveInput, float lerpAmount);
     void Turn();
     void Jump();
-    // void Dash();
+
+    void Dash();
+    void DoubleJump();
 }

@@ -1,6 +1,8 @@
+//credit: https://gamedevbeginner.com/interfaces-in-unity/#interface_state_machine
+
 public interface IState
 {
-    void OnEntry(StateController controller);
-    void OnUpdate(StateController controller);
-    void OnExit(StateController controller);
+    void OnEntry(AStateManager manager);
+    void OnUpdate(AStateManager manager);
+    void OnExit(AStateManager manager);
 }

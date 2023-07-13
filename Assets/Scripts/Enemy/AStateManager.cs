@@ -4,11 +4,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class StateController : MonoBehaviour
+public abstract class AStateManager : MonoBehaviour
 {
-    protected IState currentState;
+    public IState currentState { get; protected set; }
 
-    protected void ChangeState(IState newState)
+    public IState defaultState { get; protected set; }
+
+    // remember to add public readonly variables for all relevant states when
+    // implementing inherited classes
+
+    public void ChangeState(IState newState)
     {
         if (currentState != null)
         {
@@ -16,10 +21,5 @@ public abstract class StateController : MonoBehaviour
         }
         currentState = newState;
         currentState.OnEntry(this);
-    }
-
-    protected virtual void Update()
-    {
-        currentState.OnUpdate(this);
     }
 }

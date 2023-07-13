@@ -13,7 +13,7 @@ public interface IPlayerData
     /// </summary>
     float MPRecoveryRate { get; }
 
-    int atk { get; }
+    //int atk { get; }
     #endregion
 /////////////////////////////////// Movement ///////////////////////////////////
     #region Movement
