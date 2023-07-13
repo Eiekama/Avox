@@ -8,9 +8,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(_player.data.maxHP);
-        _player.status.ChangeMaxHP(2);
-        Debug.Log(_player.data.maxHP);
     }
 
     private void Update()
