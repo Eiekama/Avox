@@ -9,7 +9,7 @@ namespace Player
 {
     public class Movement : ASystem, IMovement
     {
-        public bool CanBeControlled()
+        public bool Controllable()
         {
             // ADD IMPLEMENTATION HERE
             return true; //replace

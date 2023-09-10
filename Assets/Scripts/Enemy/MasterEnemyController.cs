@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MasterEnemyController : MonoBehaviour
 {
-    AStateManager[] managers;
+    private AStateManager[] managers;
 
     private void Awake()
     {
@@ -15,7 +15,7 @@ public class MasterEnemyController : MonoBehaviour
     {
         foreach (var manager in managers)
         {
-            manager.ChangeState(manager.defaultState);
+            manager.ChangeState(manager.startState);
         }
     }
 

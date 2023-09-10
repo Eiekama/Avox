@@ -14,7 +14,7 @@ public interface IMovement
     /// E.g. during dialogue, taking damage, after hard fall.
     /// </summary>
     /// <returns></returns>
-    bool CanBeControlled();
+    bool Controllable();
 
     /// <summary>
     /// Controls the horizontal movement of the player character.

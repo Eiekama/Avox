@@ -8,7 +8,7 @@ public abstract class AStateManager : MonoBehaviour
 {
     public IState currentState { get; protected set; }
 
-    public IState defaultState { get; protected set; }
+    public IState startState { get; protected set; }
 
     // remember to add public readonly variables for all relevant states when
     // implementing inherited classes

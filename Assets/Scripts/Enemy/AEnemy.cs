@@ -1,28 +1,29 @@
+//credit: https://gamedevbeginner.com/interfaces-in-unity/#interface_state_machine
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
-public abstract class AEnemy : MonoBehaviour, IDamageable, IContactDamage
+namespace Enemy
 {
-    [SerializeField] protected int hp;
-    [SerializeField] protected int atk;
-
-    protected virtual bool SeesPlayer() { return false; }
-
-    protected virtual void Attack() { }
-
-    public void DealContactDamage(PlayerInstance player)
+    [RequireComponent(typeof(Collider2D))]
+    public abstract class AEnemy : MonoBehaviour, IDamageable, IContactDamage
     {
-        player.combat.Damage(atk);
-    }
+        [SerializeField] protected int hp;
+        [SerializeField] protected int atk;
 
-    public virtual void Damage(int dmg)
-    {
-        hp -= dmg;
-        if (hp <= 0)
+        public virtual void DealContactDamage(PlayerInstance player)
         {
-            Destroy(gameObject);
+            player.combat.Damage(atk);
+        }
+
+        public virtual void Damage(int dmg)
+        {
+            hp -= dmg;
+            if (hp <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

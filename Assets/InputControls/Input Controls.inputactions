@@ -132,6 +132,62 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Menu",
+            "id": "d11e9f1d-2f8f-4d80-87a9-eb94f483acaa",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "f028cf2d-b092-4b48-a7dd-88ffbc58cbd0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3966dcf2-1c31-4e04-b661-c3ce60dcadf3",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "CutScene",
+            "id": "9b0e0d6f-dd51-434c-99c8-a77de99c25af",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "c62b4a72-f813-4ca9-b859-92a7a5390afa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "dffcce19-f17b-4206-825e-4e7c8b78f449",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
