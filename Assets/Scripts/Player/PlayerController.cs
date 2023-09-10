@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,5 +21,13 @@ public class PlayerController : MonoBehaviour
                 _player.currentInteractable.Interact(_player);
             }
         }
+    }
+
+    public void onRun(InputAction.CallbackContext context)
+    {
+        float movementInput = context.ReadValue<float>();
+        Vector2 movementParsed = new Vector2(movementInput, 0);
+        _player.movement.Run(movementParsed);
+        return;
     }
 }
