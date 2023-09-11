@@ -7,9 +7,10 @@ using UnityEngine.SceneManagement;
 public class SceneTransition : AInteractable
 {
     public int sceneBuildIndex;
-    private void OnCollisionEnter2D(Collision2D other)
+
+    public override void Interact(PlayerInstance player)
     {
-        _isAuto = true;
-        
+        SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
     }
+    
 }
