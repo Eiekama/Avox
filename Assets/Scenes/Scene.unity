@@ -319,13 +319,33 @@ MonoBehaviour:
     m_ActionId: 78c91a66-d9c5-4542-8701-702a0aa2e2f1
     m_ActionName: Player/Interact[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71699021}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: onRun
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
     m_ActionId: 904f607a-254c-41f7-9b70-2a0f7c13fdad
     m_ActionName: Player/Run[/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 53056720-d4ad-4e69-aa6e-9b09bd83b5e8
     m_ActionName: Player/Look[/Keyboard/w,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f028cf2d-b092-4b48-a7dd-88ffbc58cbd0
+    m_ActionName: Menu/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c62b4a72-f813-4ca9-b859-92a7a5390afa
+    m_ActionName: CutScene/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
