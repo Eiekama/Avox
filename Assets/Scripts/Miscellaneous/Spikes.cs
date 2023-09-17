@@ -19,7 +19,7 @@ public class Spikes : MonoBehaviour, IContactDamage
     }
 
     
-    void DealContactDamage(PlayerInstance player)
+    public void DealContactDamage(PlayerInstance player)
     {
         //Lose HP from PlayerData from PlayerInstance
         player.data.currentHP -= damage;
