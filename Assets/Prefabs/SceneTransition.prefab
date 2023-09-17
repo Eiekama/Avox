@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAuto: 0
   sceneBuildIndex: 0
+  startPosition: {x: 0, y: 0, z: 0}
   transition: {fileID: 4204032780978740506}
   _transitionTime: 1.5
 --- !u!61 &8177658417975172837
