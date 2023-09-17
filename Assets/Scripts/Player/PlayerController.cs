@@ -49,4 +49,9 @@ public class PlayerController : MonoBehaviour
             _player.RB.AddForce(new Vector2(runInput, 0) * 5.0f, ForceMode2D.Force);  // apply opposing brake force
         }
     }
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+        _player.RB.AddForce(Vector2.up * 3.0f, ForceMode2D.Impulse);
+    }
 }
