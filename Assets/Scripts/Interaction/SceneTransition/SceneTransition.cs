@@ -8,11 +8,12 @@ public class SceneTransition : AInteractable
 {
     [SerializeField] int sceneBuildIndex;
     public Animator transition;
-    public float _transitionTime = 1f;
+    public float _transitionTime = 1.5f;
     
     
     public override void Interact(PlayerInstance player)
     {
+        Debug.Log("Interacted");
         LoadNextScene();
     }
     private void LoadNextScene()
