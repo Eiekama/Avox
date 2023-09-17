@@ -639,7 +639,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 806120851}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ed95477d7105a441bf59853f430952f, type: 3}
+  m_Script: {fileID: 11500000, guid: 988f0fc593596f2469a16039d7131d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &806120855
@@ -805,7 +805,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1167040905
+--- !u!1001 &1367648990
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -822,11 +822,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3295665342245192160, guid: e1c0463ae6c2b0c418e28dc7ddfd4f38, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3295665342245192160, guid: e1c0463ae6c2b0c418e28dc7ddfd4f38, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.35
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3295665342245192160, guid: e1c0463ae6c2b0c418e28dc7ddfd4f38, type: 3}
       propertyPath: m_LocalPosition.z
@@ -858,6 +858,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3295665342245192160, guid: e1c0463ae6c2b0c418e28dc7ddfd4f38, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095687112825611855, guid: e1c0463ae6c2b0c418e28dc7ddfd4f38, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806604981999973278, guid: e1c0463ae6c2b0c418e28dc7ddfd4f38, type: 3}
+      propertyPath: m_Size.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806604981999973278, guid: e1c0463ae6c2b0c418e28dc7ddfd4f38, type: 3}
+      propertyPath: m_Size.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806604981999973278, guid: e1c0463ae6c2b0c418e28dc7ddfd4f38, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806604981999973278, guid: e1c0463ae6c2b0c418e28dc7ddfd4f38, type: 3}
+      propertyPath: m_EdgeRadius
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

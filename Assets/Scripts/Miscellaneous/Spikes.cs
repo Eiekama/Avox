@@ -24,6 +24,6 @@ public class Spikes : MonoBehaviour, IContactDamage
         //Lose HP from PlayerData from PlayerInstance
         player.data.currentHP -= damage;
         //Teleport to most recent checkpoint (can store in player?)
-        player.GetComponent<Transform>();
+        // player.GetComponent<Transform>().position = 
     }
 }

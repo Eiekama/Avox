@@ -18,6 +18,8 @@ public class PlayerInstance : MonoBehaviour
 
     public Rigidbody2D RB { get; private set; }
 
+    public Vector3 currentPCheckpoint;
+
 
     public AInteractable currentInteractable { get; private set; }
 
