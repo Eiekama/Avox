@@ -23,6 +23,7 @@ public class Spikes : MonoBehaviour, IContactDamage
     {
         //Lose HP from PlayerData from PlayerInstance
         player.data.currentHP -= damage;
+        player.transform.position = player.currentPCheckpoint;
         //Teleport to most recent checkpoint (can store in player?)
         // player.GetComponent<Transform>().position = 
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlatformingCheckpoint : AInteractable
 {
     public bool triggered;
-    new bool _isAuto = true; //?
+    // new bool _isAuto = true; //?
 
 
     private void Start() {
@@ -15,8 +15,8 @@ public class PlatformingCheckpoint : AInteractable
     public override void Interact(PlayerInstance player)
     {
         Debug.Log(this);
-        Debug.Log(getComponent<Transform>());
-        // player.currentPCheckpoint = getParentComponent<Transform>();
+        // Debug.Log(GetComponent<Transform>());
+        player.currentPCheckpoint = transform.position;
         triggered = true;
     }
 
