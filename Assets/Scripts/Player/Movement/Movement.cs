@@ -15,9 +15,10 @@ namespace Player
             return true; //replace
         }
 
-        public void Run(Vector2 moveInput, float lerpAmount)
+        // TODO: Math to get this feeling correct lol
+        public void Run(Vector2 moveInput)
         {
-            // ADD IMPLEMENTATION HERE
+            player.RB.AddForce(100 * moveInput.normalized, ForceMode2D.Force);
         }
         public void Turn()
         {
