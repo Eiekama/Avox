@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IContactDamage
 {
-    void DealContactDamage(PlayerInstance player);
+    public void DealContactDamage(PlayerInstance player);
 }
