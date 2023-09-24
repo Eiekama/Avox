@@ -601,6 +601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textLabel: {fileID: 64611970}
+  testDialogue: {fileID: 11400000, guid: 9bb55ca8ff309b346a384c60040435c7, type: 2}
 --- !u!1 &2128456040
 GameObject:
   m_ObjectHideFlags: 0

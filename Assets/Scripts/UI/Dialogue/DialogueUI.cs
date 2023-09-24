@@ -1,6 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using DialogueObject
 using TMPro;
 
 public class DialogueUI : MonoBehaviour
@@ -9,11 +9,11 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private DialogueObject testDialogue;
 
     private void Start() {
-        //textLabel.text = dialogueObject;
-        ShowDialogue(testDialogue);
+        textLabel.text = testDialogue.Dialogue.ToString();
+        //ShowDialogue(testDialogue);
     }
 
-    public void ShowDialogue(DialogueObject
+    /**public void ShowDialogue(DialogueObject
     dialogueObject)
     {
         StartCoroutine(Dialoguerun(dialogueObject));
@@ -23,7 +23,7 @@ public class DialogueUI : MonoBehaviour
     {
         foreach(string dialogue in dialogueObject.Dialogue);
         {
-            return textLabel.text = dialogueObject;
+            yield return textLabel.text = dialogueObject.Dialogue.ToString();
         }
-    }
+    }**/
 }
