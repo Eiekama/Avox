@@ -8,9 +8,14 @@ public class VideoPlayerController : MonoBehaviour
 {
     private VideoPlayer videoPlayer;
     private bool videoStarted = false;
+
     private Text hintText;
     private float hintDuration = 3.0f;
     private float hintTimer = 0.0f;
+
+    public GameObject menuPanel;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +29,8 @@ public class VideoPlayerController : MonoBehaviour
         // 自动播放视频
         videoPlayer.Play();
         videoStarted = true;
+
+        menuPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -34,7 +41,7 @@ public class VideoPlayerController : MonoBehaviour
         {
             videoPlayer.Stop();
             videoStarted = false;
-            //EndReached(videoPlayer); // 触发视频结束事件
+            EndReached(videoPlayer); // 触发视频结束事件
         }
         // 检测除空格键以外的按键
         if (videoStarted && Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Space))
@@ -72,5 +79,8 @@ public class VideoPlayerController : MonoBehaviour
         videoPlayer.enabled = false;
         HideHint();
         hintText.gameObject.SetActive(false);
+
+        menuPanel.SetActive(true);
     }
+    void 
 }
