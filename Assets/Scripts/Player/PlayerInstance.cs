@@ -31,7 +31,7 @@ public class PlayerInstance : MonoBehaviour
 
         RB = GetComponent<Rigidbody2D>();
 
-        data.currentHP = data.maxHP;
+        status.ChangeCurrentHP(data.maxHP);
     }
 
 
