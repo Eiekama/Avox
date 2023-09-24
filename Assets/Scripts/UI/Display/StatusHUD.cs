@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class StatusHUD : MonoBehaviour
 {
+    public static StatusHUD instance;
+
     public StatusIcon healthIconBase;
 
     public RectTransform manaTransform;
@@ -20,6 +22,8 @@ public class StatusHUD : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
+
         // clone default objects to create HP/MP "bars"
         _playerInstance = FindObjectOfType<PlayerInstance>();
 

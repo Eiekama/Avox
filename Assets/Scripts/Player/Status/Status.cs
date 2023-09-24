@@ -7,7 +7,13 @@ namespace Player
 {
     public class Status : ASystem, IStatus
     {
-        public void ChangeMaxHP(int amount) { _player.data.maxHP += amount; }
+
+
+        public void ChangeMaxHP(int amount) {
+            _player.data.maxHP += amount;
+
+        }
+
         public void ChangeCurrentHP(int amount) { _player.data.currentHP += amount; }
         public void ChangeMaxMP(int amount) { _player.data.maxMP += amount; }
         public void ChangeCurrentMP(int amount) { _player.data.currentMP += amount; }
