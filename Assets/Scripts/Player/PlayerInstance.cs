@@ -30,6 +30,8 @@ public class PlayerInstance : MonoBehaviour
         combat.player = this;
 
         RB = GetComponent<Rigidbody2D>();
+
+        data.currentHP = data.maxHP;
     }
 
 

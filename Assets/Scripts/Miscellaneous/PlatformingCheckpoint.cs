@@ -14,9 +14,9 @@ public class PlatformingCheckpoint : AInteractable
 
     public override void Interact(PlayerInstance player)
     {
-        Debug.Log(this);
-        // Debug.Log(GetComponent<Transform>());
-        player.currentPCheckpoint = transform.position;
+        if(!triggered){
+            player.currentPCheckpoint = transform.position;
+        }
         triggered = true;
     }
 

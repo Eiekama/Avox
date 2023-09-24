@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   _maxHP: 2
-  _currentHP: 1
+  _currentHP: 12
   _maxMP: 3
   _currentMP: 1
   _MPRecovaryRate: 1
