@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 71699022}
+  playerInput: {fileID: 0}
 --- !u!114 &71699022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +286,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: ec8ccaec5c919488bac0b9fbc1d38bfa, type: 2}
-  playerInput: {fileID: 0}
 --- !u!114 &71699023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +315,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 71699021}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: Jump
+        m_MethodName: JumpCallback
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
