@@ -20,7 +20,7 @@ public interface IMovement
     /// Controls the horizontal movement of the player character.
     /// </summary>
     /// TODO: Add lerpAmount back to do funny things with math and linear interpolation
-    void Run(Vector2 moveInput);
+    void Run(float moveInput);
     void Turn();
     void Jump();
 

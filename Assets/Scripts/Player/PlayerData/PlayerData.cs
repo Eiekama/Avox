@@ -49,6 +49,12 @@ public class PlayerData : ScriptableObject, IPlayerData
 
     #region Movement
 
+    private float _maxSpeed = 10.0f;
+    public float maxSpeed { get { return _maxSpeed; } }
+
+    private float _runSpeed = 2.0f;
+    public float runSpeed { get { return _runSpeed; }}
+
     private float _gravityStrength;
     public float gravityStrength { get { return _gravityStrength; } }
     private float _gravityScale;
