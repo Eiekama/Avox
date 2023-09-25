@@ -4,22 +4,22 @@ using UnityEngine;
 using TMPro;
 public class TypewriterEffect : MonoBehaviour
 {
-    [[SerializeField] private float typewriterSpeed = 50f;
-    public void Run(string textToType, TMP_Text textLabel)
+    [SerializeField] private float typewriterSpeed = 50f;
+    public Coroutine Run(string textToType, TMP_Text textLabel)
     {
-        StartCoroutine(TypeText(textToType, textLabel));
+        return StartCoroutine(TypeText(textToType, textLabel));
     }
-s
-    private IEnumerator TypeText()
+    private IEnumerator TypeText(string textToType, TMP_Text textLabel)
     {
-        float t = 0;
+        textLabel.text = string.Empty;
+        float T = 0;
         int charIndex = 0;
 
         while(charIndex < textToType.Length)
         {
             T+= Time.deltaTime*typewriterSpeed;
-            charIndex = Mathf.FloorToInt(t);
-            charIndex = Mathf.Clamp(charIndex textToType.Length);
+            charIndex = Mathf.FloorToInt(T);
+            charIndex = Mathf.Clamp(charIndex,0 ,textToType.Length);
 
             textLabel.text = textToType.Substring(0,charIndex);
 

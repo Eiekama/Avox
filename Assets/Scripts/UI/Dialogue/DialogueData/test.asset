@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: test
   m_EditorClassIdentifier: 
   dialogue:
-  - test 1
-  - test 2
+  - this is the first line
+  - 'THis is the second line
+
+    on the second line of the line'

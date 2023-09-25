@@ -1,29 +1,43 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class DialogueUI : MonoBehaviour
 {
+    [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TMP_Text textLabel;
-    [SerializeField] private DialogueObject testDialogue;
+    [SerializeField] private DialogueObject textDialogue;
+
+    private TypewriterEffect typewriterEffect;
 
     private void Start() {
-        textLabel.text = testDialogue.Dialogue.ToString();
-        //ShowDialogue(testDialogue);
+        typewriterEffect = GetComponent<TypewriterEffect>();
+        CloseDialogueBox();
+        ShowDialogue(textDialogue);
     }
 
-    /**public void ShowDialogue(DialogueObject
-    dialogueObject)
+    public void ShowDialogue(DialogueObject dialogueObject)
     {
-        StartCoroutine(Dialoguerun(dialogueObject));
+        dialogueBox.SetActive(true);
+        StartCoroutine(Stepthrough(dialogueObject));
     }
-    private IEnumerator Dialoguerun(DialogueObject
-    dialogueObject)
+    private IEnumerator Stepthrough(DialogueObject dialogueObject)
     {
-        foreach(string dialogue in dialogueObject.Dialogue);
+        textLabel.text = string.Empty;
+        yield return new WaitForSeconds(1);
+        foreach (string dialogue in dialogueObject.Dialogue)
         {
-            yield return textLabel.text = dialogueObject.Dialogue.ToString();
+            yield return typewriterEffect.Run(dialogue, textLabel);
+            //yield return textLabel.text = dialogue; //if you dont want the typewriter effect use this line
+            yield return new WaitUntil(()=> Input.GetKeyDown(KeyCode.Space));
         }
-    }**/
+        CloseDialogueBox();
+    }
+
+    private void CloseDialogueBox()
+    {
+        dialogueBox.SetActive(false);
+        textLabel.text = string.Empty;
+    }
+
 }
