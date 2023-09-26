@@ -8,16 +8,18 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text textLabel;
     [SerializeField] private DialogueObject textDialogue;
 
+    public bool IsOpen {get; private set; }
     private TypewriterEffect typewriterEffect;
 
     private void Start() {
         typewriterEffect = GetComponent<TypewriterEffect>();
         CloseDialogueBox();
-        ShowDialogue(textDialogue);
+        //ShowDialogue(textDialogue);
     }
 
     public void ShowDialogue(DialogueObject dialogueObject)
     {
+        IsOpen = true;
         dialogueBox.SetActive(true);
         StartCoroutine(Stepthrough(dialogueObject));
     }
@@ -36,6 +38,7 @@ public class DialogueUI : MonoBehaviour
 
     private void CloseDialogueBox()
     {
+        IsOpen = false;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
     }
