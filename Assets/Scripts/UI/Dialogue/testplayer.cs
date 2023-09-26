@@ -17,11 +17,11 @@ public class testplayer : MonoBehaviour
 
     private void Update()
     {   
-        if (dialogueUI.IsOpen) return;
+        if (dialogueUI.IsOpen && dialogueUI.stopPlayer) return;
 
         float horizontalInput = Input.GetAxis("Horizontal");
         transform.position = transform.position + new Vector3 (horizontalInput, 0, 0)*speed*Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.E))
+        if (!dialogueUI.IsOpen || Input.GetKeyDown(KeyCode.E))
         {
             Interactable?.Interact(this);
         }
