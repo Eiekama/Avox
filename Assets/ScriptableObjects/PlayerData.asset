@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9faf267e64e6453f862e141af7dd3ac, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  _maxHP: 2
-  _currentHP: 1
+  _maxHP: 3
+  _currentHP: 3
   _maxMP: 3
   _currentMP: 1
   _MPRecovaryRate: 1

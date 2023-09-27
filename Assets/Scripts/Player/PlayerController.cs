@@ -25,6 +25,15 @@ public class PlayerController : MonoBehaviour
         }
 
         runWithMaxSpeed();
+
+        // DEBUG - Test UI
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            _player.status.ChangeCurrentHP(1);
+        } else if(Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            _player.status.ChangeCurrentHP(-1);
+        }
     }
 
     private void runWithMaxSpeed()

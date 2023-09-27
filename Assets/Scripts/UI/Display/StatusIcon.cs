@@ -12,13 +12,15 @@ public class StatusIcon : MonoBehaviour
     RectTransform _rt;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _image = GetComponent<Image>();
         _rt = GetComponent<RectTransform>();
+
+        state = true;
     }
 
-    public void UpdateLook(bool active)
+    public void UpdateLook(bool active, bool playAnimation = true)
     {
         if (state == active)
             return;
@@ -34,8 +36,8 @@ public class StatusIcon : MonoBehaviour
         }
         else
         {
-            _image.color = new Color(0.8f, 0.8f, 0.8f, 0.8f);
-            _rt.localScale = Vector3.one * 0.6f;
+            _image.color = new Color(0.7f, 0.5f, 0.5f, 0.7f);
+            _rt.localScale = Vector3.one * 0.8f;
         }
     }
 }
