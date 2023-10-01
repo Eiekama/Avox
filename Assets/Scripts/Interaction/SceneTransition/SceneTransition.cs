@@ -1,31 +1,54 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneTransition : AInteractable
 {
-    [SerializeField] int sceneBuildIndex;
-    [SerializeField] private Vector3 startPosition;
-    private int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+    public static List<SceneTransition> all = new List<SceneTransition>();
+    public static List<int> sceneHistory = new List<int>();
+
+    public enum SpawnLocation
+    {
+        Left,
+        Right
+    };    
+    
+    [SerializeField] private int toScene;
+    [SerializeField] private int myScene;
+    [SerializeField] public int fromScene;
+    [SerializeField] public SpawnLocation spawnLocation = new SpawnLocation();
+    
+    
     public Animator transition;
     public float _transitionTime = 1.5f;
-
-    private Dictionary<int, int[]> transitionDictionary = new Dictionary<int, int[]>()
-    {
-        {0, new int[] {1, 2}}
-    };
     
-    public override void Interact(PlayerInstance player)
-    { 
-;        LoadNextScene();
-        startPosition = player.transform.position;
+    
+
+    private void Awake()
+    {
+        myScene = SceneManager.GetActiveScene().buildIndex;
+        all.Add(this);
         
     }
+
+    private void OnDisable()
+    {
+        all.Remove(this);
+    }
+
+    public override void Interact(PlayerInstance player)
+    {
+        sceneHistory.Add(myScene);
+        LoadNextScene();
+
+    } 
+    
     private void LoadNextScene()
     {
-        StartCoroutine(LoadLevel(sceneBuildIndex));
+        StartCoroutine(LoadLevel(toScene));
     }
     IEnumerator LoadLevel(int sceneIndex)
     {
@@ -34,7 +57,6 @@ public class SceneTransition : AInteractable
         yield return new WaitForSeconds(_transitionTime);
 
         SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
-        
         
     }
     
