@@ -10,6 +10,7 @@ public class MainController : MonoBehaviour
     private Button menuButton;
     private Button quitButton;
     public GameObject settingPanel;
+    public GameObject cutScene;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class MainController : MonoBehaviour
         startButton = transform.Find("StartButton").GetComponent<Button>();
         menuButton = transform.Find("SettingButton").GetComponent<Button>();
         quitButton = transform.Find("QuitButton").GetComponent<Button>();
+        settingPanel.SetActive(false);
         Debug.Log("Initial success");
 
         startButton.onClick.AddListener(StartGame);
@@ -32,9 +34,8 @@ public class MainController : MonoBehaviour
     }
     void StartGame()
     {
-        Debug.Log("JUMP");
-        // 跳转到指定的场景
-        SceneManager.LoadScene("Scene");
+        Debug.Log("Start");
+        cutScene.GetComponent<VideoPlayerController>().startVideo();
     }
 
     void OpenMenu()
