@@ -2,34 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileScript : Enemy.AEnemy
+public class ProjectileScript : MonoBehaviour, IDamageable, IContactDamage
 {
-    bool isCollected = false;
+    // still using IDamageable, IContactDamage classes to have interactions with the player
+    public int atk = 1;
+    public Vector2 velocity = new Vector2(5, 5); // just an intial start direction
     int despawnTime = 5;
-    float timer = 0;
 
-    // Start is called before the first frame update
+
     void Start()
     {
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(5, 5); // just an intial start direction
+        gameObject.GetComponent<Rigidbody2D>().velocity = velocity;
+        StartCoroutine(Despawn());
+        
     }
 
-    // Update is called once per frame
-    // this could be removed and we can have the enemy who spawns the projectile remove the projectile
-    void Update()
+    void AfterEffects()
     {
-        timer += Time.deltaTime;
-        if ( (isCollected) || ((int)timer > despawnTime) )
-        {
-            Destroy(gameObject);
-        }
-
+        //for special projectiles, can do something once it hits the ground or player
+        Destroy(gameObject);
     }
 
-    new void DealContactDamage(PlayerInstance player)
+    IEnumerator Despawn()
     {
-        base.DealContactDamage(player);
-        isCollected = true;
+        yield return new WaitForSeconds(despawnTime);
+        AfterEffects();
+    }
+
+    public void DealContactDamage(PlayerInstance player)
+    {
+        player.combat.Damage(atk); // I think damage isn't implemented yet, so I don't think we will be able to see the results right now
+        AfterEffects(); //could also just disappear? 
 
     }
+
+    public void Damage(int damage)
+    {
+        // So the player can just block/hit the projectile
+        Destroy(gameObject);
+    }
+
 }
