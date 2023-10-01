@@ -15,7 +15,8 @@ namespace Player
 
         public void ChangeCurrentHP(int amount) {
             _player.data.currentHP += amount;
-            StatusHUD.instance.UpdateHud();
+            //TODO: Fix HUD, uncomment this line
+            // StatusHUD.instance.UpdateHud();
         }
 
         public void ChangeMaxMP(int amount) {

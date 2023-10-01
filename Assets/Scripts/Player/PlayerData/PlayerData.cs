@@ -48,21 +48,22 @@ public class PlayerData : ScriptableObject, IPlayerData
     #endregion
 
     #region Movement
-
-    private float _maxSpeed = 10.0f;
+    
+    [Header("Movement")]
+    [Space(5)]
+    [SerializeField] private float _maxSpeed = 10.0f;
     public float maxSpeed { get { return _maxSpeed; } }
-
-    private float _runSpeed = 2.0f;
+    [SerializeField] private float _runSpeed = 25.0f;
     public float runSpeed { get { return _runSpeed; }}
-
+    [SerializeField] private float _jumpStrength = 3.0f;
+    public float jumpStrength { get { return _jumpStrength; } }
+    [Space(30)]
+    [Header("Gravity")]
+    [Space(5)]
     private float _gravityStrength;
     public float gravityStrength { get { return _gravityStrength; } }
     private float _gravityScale;
     public float gravityScale { get { return _gravityScale; } }
-    [Space(30)]
-    [Header("Movement")] ///////////////////////////////////////////////////////
-    [Header("Gravity")]
-    [Space(5)]
     [SerializeField] float _fallGravityMult;
     public float fallGravityMult { get { return _fallGravityMult; } }
     [SerializeField] float _maxFallSpeed;
