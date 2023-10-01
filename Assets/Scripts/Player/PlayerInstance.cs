@@ -24,6 +24,8 @@ public class PlayerInstance : MonoBehaviour
 
     public Rigidbody2D RB { get; private set; }
 
+    public Vector3 currentPCheckpoint;
+
 
     public AInteractable currentInteractable { get; private set; }
 
@@ -34,9 +36,8 @@ public class PlayerInstance : MonoBehaviour
         combat.player = this;
 
         RB = GetComponent<Rigidbody2D>();
-        playerInput = GetComponent<PlayerInput>();
-        playerInputActions = new InputActions().Player;
-        playerInputActions.Enable();
+
+        status.ChangeCurrentHP(data.maxHP);
     }
 
 

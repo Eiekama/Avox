@@ -17,6 +17,8 @@ public interface IPlayerData
     #endregion
 /////////////////////////////////// Movement ///////////////////////////////////
     #region Movement
+    float maxSpeed { get; }
+    float runSpeed { get; }
     // Gravity //
     #region Gravity
     /// <summary>
