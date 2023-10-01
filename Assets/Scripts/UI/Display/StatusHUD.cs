@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class StatusHUD : MonoBehaviour
 {
+    public static StatusHUD instance;
+
     public StatusIcon healthIconBase;
 
     public RectTransform manaTransform;
@@ -20,6 +22,8 @@ public class StatusHUD : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
+
         // clone default objects to create HP/MP "bars"
         _playerInstance = FindObjectOfType<PlayerInstance>();
 
@@ -40,25 +44,26 @@ public class StatusHUD : MonoBehaviour
             _manaIcons[i].GetComponent<RectTransform>().anchoredPosition = (
                 manaIconBase.GetComponent<RectTransform>().anchoredPosition + manaIconDelta * i);
         }
+
+        UpdateHud(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // move mana bar to player
         manaTransform.anchoredPosition = RectTransformUtility.WorldToScreenPoint(Camera.main,
             _playerInstance.transform.position);
     }
 
-    public void UpdateHud()
+    public void UpdateHud(bool playAnimation = true)
     {
         for (int i = 0; i < _healthIcons.Count; i++)
         {
-            _healthIcons[i].UpdateLook(_playerInstance.data.currentHP > i);
+            _healthIcons[i].UpdateLook(_playerInstance.data.currentHP > i, playAnimation);
         }
         for (int i = 0; i < _manaIcons.Count; i++)
         {
-            _manaIcons[i].UpdateLook(_playerInstance.data.currentMP > i);
+            _manaIcons[i].UpdateLook(_playerInstance.data.currentMP > i, playAnimation);
         }
     }
 }
