@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : AInteractable
 {
-    public static List<SceneTransition> all = new List<SceneTransition>();
     public static List<int> sceneHistory = new List<int>();
     public enum SpawnLocation
     {
@@ -17,36 +16,23 @@ public class SceneTransition : AInteractable
     [Tooltip("Scene build index of the target scene")]
     [SerializeField] private int toScene;
     
-    [Tooltip("Scene build index of the current scene")]
-    [SerializeField] private int myScene;
-    
-    [Tooltip("Scene build index of the previous scene")]
-    [SerializeField] public int fromScene;
+    [Tooltip("Target scene transition index")]
+    [SerializeField] private int toSceneTransition;
+
+    [Tooltip("Pair with toSceneTransition" +
+             "(-1 if there is no scene that leads to this)")]
+    [SerializeField] public int sceneTransitionIndex;
     
     [Tooltip("Which side the player lands")]
     [SerializeField] public SpawnLocation spawnLocation = new SpawnLocation();
     
     
     public Animator transition;
-    public float _transitionTime = 1.5f;
+    private float _transitionTime = 1.5f;
     
-    
-
-    private void Awake()
-    {
-        myScene = SceneManager.GetActiveScene().buildIndex;
-        all.Add(this);
-        
-    }
-
-    private void OnDisable()
-    {
-        all.Remove(this);
-    }
-
     public override void Interact(PlayerInstance player)
     {
-        sceneHistory.Add(myScene);
+        sceneHistory.Add(toSceneTransition);
         LoadNextScene();
 
     } 
@@ -64,8 +50,4 @@ public class SceneTransition : AInteractable
         SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
         
     }
-    
-
-    
-    
 }

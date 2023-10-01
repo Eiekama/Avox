@@ -6,18 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class TransitionManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     public PlayerInstance player;
-    [Tooltip("The distance the player spawns from this entrence")]
+    [Tooltip("The distance the player spawns from this entrance")]
     [SerializeField] private float spawnDistance = 1.5f;
+
+    private SceneTransition[] all;
+    
     
     void Start()
     {
+        all = GetComponentsInChildren<SceneTransition>();
         if (SceneTransition.sceneHistory.Count > 1)
         {
-            foreach (SceneTransition st in SceneTransition.all)
+            foreach (SceneTransition st in all)
             {
-                if (st.fromScene == SceneTransition.sceneHistory.Last())
+                if (st.sceneTransitionIndex == SceneTransition.sceneHistory.Last())
                 {
                     if (st.spawnLocation == SceneTransition.SpawnLocation.Left)
                     {
@@ -31,9 +34,6 @@ public class TransitionManager : MonoBehaviour
                 }
             }
         }
-            
-        
-        
     }
     
 }
