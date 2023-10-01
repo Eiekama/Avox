@@ -19,13 +19,14 @@ MonoBehaviour:
   _MPRecovaryRate: 5
   _maxSpeed: 7
   _runSpeed: 25
+  _jumpStrength: 4
   _fallGravityMult: 1
   _maxFallSpeed: 0
   runMaxSpeed: 0
-  runAcceleration: 0.01
-  runAccelAmount: NaN
-  runDecceleration: 0.01
-  runDeccelAmount: NaN
+  runAcceleration: 0
+  runAccelAmount: Infinity
+  runDecceleration: 0
+  runDeccelAmount: Infinity
   accelInAir: 0
   deccelInAir: 0
   doConserveMomentum: 1
