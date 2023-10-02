@@ -15,8 +15,8 @@ namespace Player
 
         public void ChangeCurrentHP(int amount) {
             _player.data.currentHP += amount;
-            //TODO: Fix HUD, uncomment this line
-            // StatusHUD.instance.UpdateHud();
+            if (StatusHUD.instance)
+                StatusHUD.instance.UpdateHud();
         }
 
         public void ChangeMaxMP(int amount) {
@@ -25,7 +25,8 @@ namespace Player
 
         public void ChangeCurrentMP(int amount) {
             _player.data.currentMP += amount;
-            StatusHUD.instance.UpdateHud();
+            if (StatusHUD.instance)
+                StatusHUD.instance.UpdateHud();
         }
 
         private bool CanRecoverMP()

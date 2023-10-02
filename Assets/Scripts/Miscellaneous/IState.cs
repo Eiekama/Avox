@@ -2,7 +2,7 @@
 
 public interface IState
 {
-    void OnEntry(AStateManager manager);
-    void OnUpdate(AStateManager manager);
-    void OnExit(AStateManager manager);
+    void OnEntry();
+    void OnUpdate();
+    void OnExit();
 }
