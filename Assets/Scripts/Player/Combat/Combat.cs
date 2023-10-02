@@ -7,44 +7,41 @@ namespace Player
 {
     public class Combat : ASystem, ICombat
     {
-        public Animator _animator;
+        public Animator animator;
+        public LayerMask enemyLayers;
 
-        public Transform _attackPoint;
-        public LayerMask _enemyLayers;
+        public float attackRange = 0.5f;
+        public int attackDamage = 1;
+        // nextAttackTime = Time.time + 1f / _attackRate;
 
-        public float _attackRange = 0.5f;
-        public int _attackDamage = 1;
+        public float attackRate = 2f;
+        //float _nextAttackTime = 0f;
 
-        public float _attackRate = 2f;
-        float nextAttackTime = 0f;
+        public MeleeCollider meleeCollider { get; set; }
 
         public void Damage(int dmg)
         {
-            // ADD IMPLEMENTATION HERE
-        }
-
-        public void Update()
-        {
-            if (Time.time >= nextAttackTime)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    Attack();
-                    nextAttackTime = Time.time + 1f / _attackRate;
-                }
-            }
 
         }
 
-        public void Attack()
+        IEnumerator AttackCoroutine()
         {
-            _animator.SetTrigger("Attack");
+            meleeCollider.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1.0f);
+            meleeCollider.gameObject.SetActive(false);
+        }
 
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRange, _enemyLayers);
-            foreach (Collider2D enemy in hitEnemies)
-            {
-                enemy.GetComponent<TestEnemy>().Damage(_attackDamage);
-            }
+        public void Attack(MonoBehaviour mono)
+        {
+
+            //animator.SetTrigger("Attack");
+            Debug.Log("Attack");
+            mono.StartCoroutine(AttackCoroutine());
+            //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+            //foreach (Collider2D enemy in hitEnemies)
+            //{
+            //    enemy.GetComponent<TestEnemy>().Damage(attackDamage);
+            //}
         }
     }
 }

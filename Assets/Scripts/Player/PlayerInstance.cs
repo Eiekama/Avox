@@ -27,6 +27,8 @@ public class PlayerInstance : MonoBehaviour
         movement.player = this;
         combat.player = this;
 
+        combat.meleeCollider = GetComponentInChildren<MeleeCollider>(true);
+
         RB = GetComponent<Rigidbody2D>();
     }
 

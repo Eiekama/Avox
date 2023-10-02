@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class TestEnemy : MonoBehaviour, IDamageable
 {
-    public Animator animator;
+    //public Animator animator;
 
-    public int _maxHealth = 1;
-    int currentHealth;
+    public int maxHealth = 1;
+    int _currentHealth;
 
     void Start()
     {
-        currentHealth = _maxHealth;
+        _currentHealth = maxHealth;
 
     }
-
 
     void Die()
     {
         Debug.Log("Enemy died!");
 
-        animator.SetBool("IsDead", true);
+        //animator.SetBool("IsDead", true);
 
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
@@ -29,11 +28,11 @@ public class TestEnemy : MonoBehaviour, IDamageable
 
     public void Damage(int dmgTaken)
     {
-        currentHealth -= dmgTaken;
+        _currentHealth -= dmgTaken;
 
-        animator.SetTrigger("Hurt");
+        //animator.SetTrigger("Hurt");
 
-        if (currentHealth <= 0)
+        if (_currentHealth <= 0)
         {
             Die();
         }
