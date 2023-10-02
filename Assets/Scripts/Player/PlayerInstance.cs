@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Player;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -10,6 +11,11 @@ public class PlayerInstance : MonoBehaviour
     [SerializeField] PlayerData _data;
     public PlayerData data { get { return _data; } }
 
+    public PlayerInput playerInput;
+    public InputActions.PlayerActions playerInputActions;
+
+    public readonly float maxSpeed = 10.0f;
+
     public readonly IStatus status = new Status();
     public readonly IMovement movement = new Movement();
     public readonly ICombat combat = new Combat();
@@ -17,6 +23,8 @@ public class PlayerInstance : MonoBehaviour
     public readonly IInteraction interaction = new Interaction();
 
     public Rigidbody2D RB { get; private set; }
+
+    public Vector3 currentPCheckpoint;
 
 
     public AInteractable currentInteractable { get; private set; }
@@ -28,6 +36,8 @@ public class PlayerInstance : MonoBehaviour
         combat.player = this;
 
         RB = GetComponent<Rigidbody2D>();
+
+        status.ChangeCurrentHP(data.maxHP);
     }
 
 
