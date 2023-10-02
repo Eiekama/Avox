@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9faf267e64e6453f862e141af7dd3ac, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  _maxHP: 5
-  _currentHP: 5
-  _maxMP: 3
-  _currentMP: 1
-  _MPRecovaryRate: 1
-  _fallGravityMult: 0
+  _maxHP: 20
+  _currentHP: 20
+  _maxMP: 20
+  _currentMP: 0
+  _MPRecovaryRate: 5
+  _maxSpeed: 7
+  _runSpeed: 25
+  _jumpStrength: 4
+  _fallGravityMult: 1
   _maxFallSpeed: 0
   runMaxSpeed: 0
   runAcceleration: 0.01

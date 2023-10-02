@@ -10,12 +10,7 @@ public class PlayerInstance : MonoBehaviour
 {
     [SerializeField] PlayerData _data;
     public PlayerData data { get { return _data; } }
-
-    public PlayerInput playerInput;
-    public InputActions.PlayerActions playerInputActions;
-
-    public readonly float maxSpeed = 10.0f;
-
+    
     public readonly IStatus status = new Status();
     public readonly IMovement movement = new Movement();
     public readonly ICombat combat = new Combat();
@@ -36,7 +31,9 @@ public class PlayerInstance : MonoBehaviour
         combat.player = this;
 
         RB = GetComponent<Rigidbody2D>();
-
+        
+        Debug.Log(data.runSpeed);
+        
         status.ChangeCurrentHP(data.maxHP);
     }
 

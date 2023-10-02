@@ -28,6 +28,7 @@ namespace Player
             }
             else
             {
+                Debug.Log(new Vector2(moveInput, 0) * player.data.runSpeed);
                 player.RB.AddForce(new Vector2(moveInput, 0) * player.data.runSpeed, ForceMode2D.Force); // apply force normally
             }
         }
@@ -37,7 +38,7 @@ namespace Player
         }
         public void Jump()
         {
-            player.RB.AddForce(Vector2.up * 3.0f, ForceMode2D.Impulse);
+            player.RB.AddForce(Vector2.up * player.data.jumpStrength, ForceMode2D.Impulse);
         }
 
         public void Dash()
