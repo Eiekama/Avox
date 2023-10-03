@@ -51,22 +51,13 @@ public class StatusHUD : MonoBehaviour
         UpdateHud(false);
         instance = this;
     }
-    void Start()
-    {
-        StartCoroutine(UpdateManaIconPosition());
-    }
 
-    /// <summary>
-    /// Allows mana bar to follow player. Current implementation only works if anchor is at bottom left corner.
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator UpdateManaIconPosition()
+
+    private void FixedUpdate()
     {
-        while (true)
-        {
-            manaTransform.anchoredPosition = Vector2.Scale(_cam.WorldToViewportPoint(_playerInstance.transform.position), _uiResolution);
-            yield return null;
-        }
+        // Allows mana bar to follow player.
+        // Only works if anchor is at bottom left corner.
+        manaTransform.anchoredPosition = Vector2.Scale(_cam.WorldToViewportPoint(_playerInstance.transform.position), _uiResolution);
     }
 
     public void UpdateHud(bool playAnimation = true)
