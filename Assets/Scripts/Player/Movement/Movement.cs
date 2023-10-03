@@ -28,7 +28,7 @@ namespace Player
             }
             else
             {
-                Debug.Log(new Vector2(moveInput, 0) * player.data.runSpeed);
+                //Debug.Log(new Vector2(moveInput, 0) * player.data.runSpeed);
                 player.RB.AddForce(new Vector2(moveInput, 0) * player.data.runSpeed, ForceMode2D.Force); // apply force normally
             }
         }

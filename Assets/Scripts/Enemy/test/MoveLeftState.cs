@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveLeftState : IState
 {
-    public TestEnemy manager { get; set; }
+    public TestEnemyManager manager;
 
     [SerializeField] float _speed = 1.0f;
     [SerializeField] float _time = 3.0f;

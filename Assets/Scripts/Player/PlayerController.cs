@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,13 +18,13 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (true) // replace later with key to press for interactions
-        {
-            if (_player.currentInteractable != null)
-            {
-                _player.currentInteractable.Interact(_player);
-            }
-        }
+        //if (true) // replace later with key to press for interactions
+        //{
+        //    if (_player.currentManualInteractable != null)
+        //    {
+        //        _player.currentManualInteractable.Interact(_player);
+        //    }
+        //}
         
         _player.movement.Run(playerInputActions.Run.ReadValue<float>());
     }

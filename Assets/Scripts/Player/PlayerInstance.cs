@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Player;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -19,10 +18,11 @@ public class PlayerInstance : MonoBehaviour
 
     public Rigidbody2D RB { get; private set; }
 
-    public Vector3 currentPCheckpoint;
+    public AInteractable currentManualInteractable { get; private set; }
 
 
-    public AInteractable currentInteractable { get; private set; }
+    public Vector3 currentCheckpoint;
+
 
     private void Awake()
     {
@@ -34,15 +34,9 @@ public class PlayerInstance : MonoBehaviour
 
         RB = GetComponent<Rigidbody2D>();
         
-        Debug.Log(data.runSpeed);
-        
         status.ChangeCurrentHP(data.maxHP);
     }
 
-
-    // remark: i forsee some bugs relating to interaction but since the
-    // specifics haven't been decided yet i'll not take any measures to fix
-    // the potential bugs for now
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -59,19 +53,20 @@ public class PlayerInstance : MonoBehaviour
             else
             {
                 interaction.OpenInteractableIcon(interactable);
-                currentInteractable = interactable;
+                currentManualInteractable = interactable;
             }
         }
     }
+
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.TryGetComponent(out AInteractable interactable))
         {
             interaction.CloseInteractableIcon(interactable);
-            if (currentInteractable = interactable)
+            if (currentManualInteractable = interactable)
             {
-                currentInteractable = null;
+                currentManualInteractable = null;
             }
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestEnemy : AStateManager
+public class TestEnemyManager : AStateManager
 {
     public readonly MoveLeftState moveLeftState = new MoveLeftState();
     public readonly MoveRightState moveRightState = new MoveRightState();
