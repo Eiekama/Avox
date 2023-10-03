@@ -1,5 +1,7 @@
 // credit: https://github.com/Dawnosaur/platformer-movement/blob/main/Scripts/PlayerData.cs
 
+using UnityEngine;
+
 public interface IPlayerData
 {
 //////////////////////////////////// Status ////////////////////////////////////
@@ -17,8 +19,6 @@ public interface IPlayerData
     #endregion
 /////////////////////////////////// Movement ///////////////////////////////////
     #region Movement
-    float maxSpeed { get; }
-    float runSpeed { get; }
     // Gravity //
     #region Gravity
     /// <summary>
@@ -40,6 +40,36 @@ public interface IPlayerData
     /// Maximum fall speed (terminal velocity) of the player when falling.
     /// </summary>
     float maxFallSpeed { get; }
+    #endregion
+    // Run //
+    #region Run
+    /// <summary>
+    /// Target speed we want the player to reach.
+    /// </summary>
+    public float runMaxSpeed { get; }
+    
+    /// <summary>
+    /// The actual force (multiplied with speedDiff) applied to the player.
+    /// </summary>
+    public float runAccelAmount { get; }
+    
+    /// <summary>
+    /// Actual force (multiplied with speedDiff) applied to the player.
+    /// </summary>
+    public float runDeccelAmount { get; }
+
+    /// <summary>
+    /// Multiplier applied to acceleration rate when airborne.
+    /// </summary>
+    public float accelInAir { get; }
+    /// <summary>
+    /// Multiplier applied to acceleration rate when airborne.
+    /// </summary>
+    public float deccelInAir { get; }
+    #endregion
+    // Jump //
+    #region Jump
+    public float jumpStrength { get; }
     #endregion
 
     #endregion

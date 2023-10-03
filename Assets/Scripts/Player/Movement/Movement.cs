@@ -15,27 +15,23 @@ namespace Player
             return true; //replace
         }
 
-        // TODO: Math to get this feeling correct lol
         public void Run(float moveInput)
         {
-            float currSpeed = Mathf.Abs(player.RB.velocity.x);
-            float maxSpeed = player.data.maxSpeed;
-            
-            if (currSpeed > maxSpeed)
-            {
-                float brakeSpeed = Mathf.Abs(maxSpeed - currSpeed);  // calculate the speed decrease
-                player.RB.AddForce((-moveInput * player.data.runSpeed * new Vector2(brakeSpeed, 0)) + (new Vector2(moveInput, 0) * player.data.runSpeed), ForceMode2D.Force);  // apply opposing brake force
-            }
-            else
-            {
-                //Debug.Log(new Vector2(moveInput, 0) * player.data.runSpeed);
-                player.RB.AddForce(new Vector2(moveInput, 0) * player.data.runSpeed, ForceMode2D.Force); // apply force normally
-            }
+            float _targetSpeed = moveInput * player.data.runMaxSpeed;
+
+            float _accelRate;
+            _accelRate = (Mathf.Abs(_targetSpeed) > 0.01f) ? player.data.runAccelAmount : player.data.runDeccelAmount;
+
+            float _speedDif = _targetSpeed - player.RB.velocity.x;
+            float _movement = _speedDif * _accelRate;
+            player.RB.AddForce(_movement * Vector2.right, ForceMode2D.Force);
         }
+
         public void Turn()
         {
             // ADD IMPLEMENTATION HERE
         }
+
         public void Jump()
         {
             player.RB.AddForce(Vector2.up * player.data.jumpStrength, ForceMode2D.Impulse);
