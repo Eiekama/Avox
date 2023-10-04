@@ -47,7 +47,10 @@ public class StatusHUD : MonoBehaviour
             _manaIcons[i].GetComponent<RectTransform>().anchoredPosition = (
                 manaIconBase.GetComponent<RectTransform>().anchoredPosition + manaIconDelta * i);
         }
+    }
 
+    private void Start()
+    {
         UpdateHud(false);
         instance = this;
     }

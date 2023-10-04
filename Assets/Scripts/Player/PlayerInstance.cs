@@ -5,11 +5,14 @@ using Player;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(PlayerController))]
 public class PlayerInstance : MonoBehaviour
 {
     [SerializeField] PlayerData _data;
     public PlayerData data { get { return _data; } }
-    
+
+    public PlayerController controller { get; private set; }
+
     public readonly IStatus status = new Status();
     public readonly IMovement movement = new Movement();
     public readonly ICombat combat = new Combat();
@@ -26,6 +29,8 @@ public class PlayerInstance : MonoBehaviour
 
     private void Awake()
     {
+        controller = GetComponent<PlayerController>();
+
         status.player = this;
         movement.player = this;
         combat.player = this;

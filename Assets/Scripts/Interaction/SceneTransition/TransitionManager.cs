@@ -1,36 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TransitionManager : MonoBehaviour
 {
-    public PlayerInstance player;
-    [Tooltip("The distance the player spawns from this entrance")]
-    [SerializeField] private float spawnDistance = 1.5f;
+    public static int currentTransition = -1;
 
-    private SceneTransition[] all;
+    [Tooltip("The distance the player spawns from this entrance")]
+    [SerializeField] private float _spawnDistance = 1.5f;
+
+    private PlayerInstance _player;
+    private SceneTransition[] _transitions;
     
     
     void Start()
     {
-        all = GetComponentsInChildren<SceneTransition>();
-        if (SceneTransition.sceneHistory.Count > 1)
+        _player = FindObjectOfType<PlayerInstance>();
+        _transitions = GetComponentsInChildren<SceneTransition>();
+
+        Animator _animator = GetComponentInChildren<Animator>(true);
+        _animator.gameObject.SetActive(true);
+
+        foreach (var st in _transitions)
         {
-            foreach (SceneTransition st in all)
+            st.transitionAnim = _animator;
+        }
+        if (currentTransition > -1)
+        {
+            foreach (SceneTransition st in _transitions)
             {
-                if (st.sceneTransitionIndex == SceneTransition.sceneHistory.Last())
+                if (st.index == currentTransition)
                 {
+                    // NOTE: can try to preserve height at which player entered the transition.
                     if (st.spawnLocation == SceneTransition.SpawnLocation.Left)
                     {
-                        player.transform.position = st.transform.position + new Vector3(-spawnDistance, 0, 0);
+                        _player.transform.position = st.transform.position + new Vector3(-_spawnDistance, 0, 0);
                     }
                     else
                     {
-                        player.transform.position = st.transform.position + new Vector3(spawnDistance, 0, 0);
+                        _player.transform.position = st.transform.position + new Vector3(_spawnDistance, 0, 0);
                     }
-                    
+                    currentTransition = -1;
                 }
             }
         }

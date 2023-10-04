@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerInstance))]
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] PlayerInstance _player;
-    public PlayerInput playerInput;
-    public InputActions.PlayerActions playerInputActions;
+    public PlayerInput playerInput { get; private set; }
+    public InputActions.PlayerActions playerInputActions { get; private set; }
 
     private void Start()
     {
