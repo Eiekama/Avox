@@ -19,7 +19,7 @@ MonoBehaviour:
   _MPRecovaryRate: 1
   _fallGravityMult: 1
   _maxFallSpeed: 0
-  _runMaxSpeed: 10
+  _runMaxSpeed: 7
   _runAcceleration: 0.8
   _runDecceleration: 0.8
   _accelInAir: 0.9
