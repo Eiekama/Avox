@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 
 public class SceneTransition : AInteractable
 {
@@ -12,12 +11,17 @@ public class SceneTransition : AInteractable
         Right
     };
 
+    // NOTE: I still think it might be better to collect all these information from
+    // all scenes and store them in a single ScriptableObject instead.
+    // It will be easier to organise this way if the project gets big.
     [Tooltip("Pair with toSceneTransition" +
              "(-1 if there is no scene that leads to this)")]
-    [SerializeField] public int index;
+    [SerializeField] private int _index;
+    public int index { get { return _index; } }
     
     [Tooltip("Which side the player lands")]
-    [SerializeField] public SpawnLocation spawnLocation = new SpawnLocation();
+    [SerializeField] private SpawnLocation _spawnLocation = new SpawnLocation();
+    public SpawnLocation spawnLocation { get { return _spawnLocation; } }
 
 
     [Tooltip("Scene build index of the target scene")]

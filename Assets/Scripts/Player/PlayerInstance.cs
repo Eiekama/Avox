@@ -38,8 +38,6 @@ public class PlayerInstance : MonoBehaviour
         combat.meleeCollider = GetComponentInChildren<MeleeCollider>(true);
 
         RB = GetComponent<Rigidbody2D>();
-        
-        status.ChangeCurrentHP(data.maxHP);
     }
 
 

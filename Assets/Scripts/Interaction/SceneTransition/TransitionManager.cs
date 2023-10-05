@@ -25,6 +25,7 @@ public class TransitionManager : MonoBehaviour
         {
             st.transitionAnim = _animator;
         }
+
         if (currentTransition > -1)
         {
             foreach (SceneTransition st in _transitions)
@@ -41,6 +42,7 @@ public class TransitionManager : MonoBehaviour
                         _player.transform.position = st.transform.position + new Vector3(_spawnDistance, 0, 0);
                     }
                     currentTransition = -1;
+                    break;
                 }
             }
         }
