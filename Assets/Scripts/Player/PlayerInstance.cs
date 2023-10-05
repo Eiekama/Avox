@@ -22,10 +22,11 @@ public class PlayerInstance : MonoBehaviour
     public Rigidbody2D RB { get; private set; }
 
     public Vector3 currentPCheckpoint; //Current platforming checkpoint location
+    public Vector3 currentCheckpoint; //Current death checkpoint location
+
     public AInteractable currentManualInteractable { get; private set; }
 
 
-    public Vector3 currentCheckpoint;
 
 
     private void Awake()
