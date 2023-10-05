@@ -24,9 +24,6 @@ public class PlayerInstance : MonoBehaviour
     public AInteractable currentManualInteractable { get; private set; }
 
 
-    public Vector3 currentCheckpoint;
-
-
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
