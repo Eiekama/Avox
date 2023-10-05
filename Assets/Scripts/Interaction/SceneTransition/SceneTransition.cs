@@ -59,8 +59,6 @@ public class SceneTransition : AInteractable
         playerInputActions.Disable();
         yield return new WaitForSeconds(_transitionTime);
 
-        // NOTE: can consider using Additive scene mode.
-        // I think there's more flexibility for transition animations.
         SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
     }
 }

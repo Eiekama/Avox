@@ -21,7 +21,7 @@ namespace Player
 
         public void Damage(int dmg)
         {
-
+            player.status.ChangeCurrentHP(-dmg);
         }
 
         IEnumerator AttackCoroutine()
