@@ -12,9 +12,9 @@ public class DialogueUI : MonoBehaviour
     public bool IsOpen {get; private set; }
     private TypewriterEffect typewriterEffect;
 
-    private void Start() {
+    private void Awake() {
         typewriterEffect = GetComponent<TypewriterEffect>();
-        CloseDialogueBox();
+        CloseDialogue();
     }
 
     public void ShowDialogue(DialogueObject dialogueObject)
@@ -32,10 +32,10 @@ public class DialogueUI : MonoBehaviour
             //yield return textLabel.text = dialogue; //if you dont want the typewriter effect use this line
             yield return new WaitUntil(()=> Input.GetKeyDown(KeyCode.Space));
         }
-        CloseDialogueBox();
+        CloseDialogue();
     }
 
-    public void CloseDialogueBox()
+    public void CloseDialogue()
     {
         IsOpen = false;
         dialogueBox.SetActive(false);

@@ -21,7 +21,7 @@ public class PlayerInstance : MonoBehaviour
 
     public Rigidbody2D RB { get; private set; }
 
-    public AInteractable currentManualInteractable { get; private set; }
+    public AInteractable currentManualInteractable;
 
 
     private void Awake()
@@ -47,15 +47,7 @@ public class PlayerInstance : MonoBehaviour
         }
         else if (other.TryGetComponent(out AInteractable interactable))
         {
-            if (interactable.isAuto)
-            {
-                interactable.Interact(this);
-            }
-            else
-            {
-                interaction.OpenInteractableIcon(interactable);
-                currentManualInteractable = interactable;
-            }
+            interactable.OnEnter(this);
         }
     }
 
@@ -64,11 +56,7 @@ public class PlayerInstance : MonoBehaviour
     {
         if (other.TryGetComponent(out AInteractable interactable))
         {
-            interaction.CloseInteractableIcon(interactable);
-            if (currentManualInteractable = interactable)
-            {
-                currentManualInteractable = null;
-            }
+            interactable.OnExit(this);
         }
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Avox/Dialogue/DialogueObject")]
+[CreateAssetMenu(menuName = "DialogueObject")]
 public class DialogueObject : ScriptableObject 
 {
     [SerializeField] [TextArea] private string[] dialogue;
