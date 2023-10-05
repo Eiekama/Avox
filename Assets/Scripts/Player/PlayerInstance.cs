@@ -32,7 +32,8 @@ public class PlayerInstance : MonoBehaviour
         movement.player = this;
         combat.player = this;
 
-        combat.meleeCollider = GetComponentInChildren<MeleeCollider>(true);
+        combat.attackHitbox = GetComponentInChildren<AttackHitbox>(true);
+        combat.attackHitbox.data = _data;
 
         RB = GetComponent<Rigidbody2D>();
     }

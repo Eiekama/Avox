@@ -11,6 +11,12 @@ public class PlayerData : ScriptableObject, IPlayerData
 
     [Header("Status")] /////////////////////////////////////////////////////////
     [Space(5)]
+    [SerializeField] int _atk;
+    public int atk
+    {
+        get { return _atk; }
+        set { _atk = Mathf.Max(0, value); }
+    }
 
     [SerializeField] int _maxHP;
     public int maxHP
