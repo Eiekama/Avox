@@ -24,7 +24,7 @@ public class PlayerInstance : MonoBehaviour
 
     public Rigidbody2D RB { get; private set; }
 
-    public Vector3 currentPCheckpoint;
+    public Vector3 currentPCheckpoint; //Current platforming checkpoint location
 
 
     public AInteractable currentInteractable { get; private set; }
