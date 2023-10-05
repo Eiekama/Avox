@@ -12,20 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9faf267e64e6453f862e141af7dd3ac, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  _maxHP: 20
-  _currentHP: 12
+  _maxHP: 5
+  _currentHP: 5
   _maxMP: 3
-  _currentMP: 1
+  _currentMP: 3
   _MPRecovaryRate: 1
-  _fallGravityMult: 0
+  _fallGravityMult: 1
   _maxFallSpeed: 0
-  runMaxSpeed: 0
-  runAcceleration: 0
-  runAccelAmount: Infinity
-  runDecceleration: 0
-  runDeccelAmount: Infinity
-  accelInAir: 0
-  deccelInAir: 0
+  _runMaxSpeed: 7
+  _runAcceleration: 0.8
+  _runDecceleration: 0.8
+  _accelInAir: 0.9
+  _deccelInAir: 0.9
+  _jumpStrength: 4
   doConserveMomentum: 1
   jumpHeight: 0
   jumpTimeToApex: 0

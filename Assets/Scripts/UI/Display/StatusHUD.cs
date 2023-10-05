@@ -15,14 +15,17 @@ public class StatusHUD : MonoBehaviour
     public Vector2 healthIconDelta;
     public Vector2 manaIconDelta;
 
+    Camera _cam;
+    Vector2 _uiResolution;
     List<StatusIcon> _healthIcons;
     List<StatusIcon> _manaIcons;
     PlayerInstance _playerInstance;
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
-        instance = this;
+        _cam = Camera.main;
+        _uiResolution = GetComponent<CanvasScaler>().referenceResolution;
 
         // clone default objects to create HP/MP "bars"
         _playerInstance = FindObjectOfType<PlayerInstance>();
@@ -44,15 +47,20 @@ public class StatusHUD : MonoBehaviour
             _manaIcons[i].GetComponent<RectTransform>().anchoredPosition = (
                 manaIconBase.GetComponent<RectTransform>().anchoredPosition + manaIconDelta * i);
         }
-
-        UpdateHud(false);
     }
 
-    void FixedUpdate()
+    private void Start()
     {
-        // move mana bar to player
-        manaTransform.anchoredPosition = RectTransformUtility.WorldToScreenPoint(Camera.main,
-            _playerInstance.transform.position);
+        UpdateHud(false);
+        instance = this;
+    }
+
+
+    private void FixedUpdate()
+    {
+        // Allows mana bar to follow player.
+        // Only works if anchor is at bottom left corner.
+        manaTransform.anchoredPosition = Vector2.Scale(_cam.WorldToViewportPoint(_playerInstance.transform.position), _uiResolution);
     }
 
     public void UpdateHud(bool playAnimation = true)

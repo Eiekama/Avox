@@ -48,26 +48,59 @@ public class PlayerData : ScriptableObject, IPlayerData
     #endregion
 
     #region Movement
+    
+    [Header("Movement")]
+    [Space(5)]
 
-    private float _maxSpeed = 10.0f;
-    public float maxSpeed { get { return _maxSpeed; } }
-
-    private float _runSpeed = 2.0f;
-    public float runSpeed { get { return _runSpeed; }}
-
-    private float _gravityStrength;
-    public float gravityStrength { get { return _gravityStrength; } }
-    private float _gravityScale;
-    public float gravityScale { get { return _gravityScale; } }
-    [Space(30)]
-    [Header("Movement")] ///////////////////////////////////////////////////////
     [Header("Gravity")]
     [Space(5)]
+
     [SerializeField] float _fallGravityMult;
     public float fallGravityMult { get { return _fallGravityMult; } }
+
     [SerializeField] float _maxFallSpeed;
     public float maxFallSpeed { get { return _maxFallSpeed; } }
+
+    public float gravityStrength { get; private set; }
+    public float gravityScale { get; private set; }
+
     [Space(20)]
+
+
+    [Header("Run")]
+    [Space(5)]
+    [SerializeField] private float _runMaxSpeed = 10.0f;
+    public float runMaxSpeed { get { return _runMaxSpeed; } }
+
+    /// <summary>
+    /// The speed at which our player accelerates to max speed,
+    /// can be set to runMaxSpeed for instant acceleration down to 0 for none at all.
+    /// </summary>
+    [Range(0f, 1)] [SerializeField] private float _runAcceleration = 0.8f;
+    public float runAccelAmount { get; private set; }
+
+    /// <summary>
+    /// The speed at which our player decelerates from their current speed,
+    /// can be set to runMaxSpeed for instant deceleration down to 0 for none at all.
+    /// </summary>
+    [Range(0f, 1)] [SerializeField] private float _runDecceleration = 0.8f;
+    public float runDeccelAmount { get; private set; }
+
+    [Space(5)]
+    [Range(0f, 1)] [SerializeField] private float _accelInAir;
+    public float accelInAir { get { return _accelInAir; } }
+    [Range(0f, 1)] [SerializeField] private float _deccelInAir;
+    public float deccelInAir { get { return _deccelInAir; } }
+
+    [Space(30)]
+
+
+    [Header("Jump")]
+    [SerializeField] private float _jumpStrength = 3.0f;
+    public float jumpStrength { get { return _jumpStrength; } }
+
+
+
 
     //below are stuff i havent organised yet
 
@@ -76,14 +109,9 @@ public class PlayerData : ScriptableObject, IPlayerData
 
 
     [Header("Run")]
-    public float runMaxSpeed; //Target speed we want the player to reach.
-    public float runAcceleration; //The speed at which our player accelerates to max speed, can be set to runMaxSpeed for instant acceleration down to 0 for none at all
-    [HideInInspector] public float runAccelAmount; //The actual force (multiplied with speedDiff) applied to the player.
-    public float runDecceleration; //The speed at which our player decelerates from their current speed, can be set to runMaxSpeed for instant deceleration down to 0 for none at all
-    [HideInInspector] public float runDeccelAmount; //Actual force (multiplied with speedDiff) applied to the player .
+    
     [Space(5)]
-    [Range(0f, 1)] public float accelInAir; //Multipliers applied to acceleration rate when airborne.
-    [Range(0f, 1)] public float deccelInAir;
+    
     [Space(5)]
     public bool doConserveMomentum = true;
 
@@ -112,21 +140,21 @@ public class PlayerData : ScriptableObject, IPlayerData
     private void OnValidate()
     {
         //Calculate gravity strength using the formula (gravity = 2 * jumpHeight / timeToJumpApex^2) 
-        _gravityStrength = -(2 * jumpHeight) / (jumpTimeToApex * jumpTimeToApex);
+        gravityStrength = -(2 * jumpHeight) / (jumpTimeToApex * jumpTimeToApex);
 
         //Calculate the rigidbody's gravity scale (ie: gravity strength relative to unity's gravity value, see project settings/Physics2D)
-        _gravityScale = _gravityStrength / Physics2D.gravity.y;
+        gravityScale = gravityStrength / Physics2D.gravity.y;
 
         //Calculate are run acceleration & deceleration forces using formula: amount = ((1 / Time.fixedDeltaTime) * acceleration) / runMaxSpeed
-        runAccelAmount = (50 * runAcceleration) / runMaxSpeed;
-        runDeccelAmount = (50 * runDecceleration) / runMaxSpeed;
+        runAccelAmount = 50 * _runAcceleration;
+        runDeccelAmount = 50 * _runDecceleration;
 
         //Calculate jumpForce using the formula (initialJumpVelocity = gravity * timeToJumpApex)
-        jumpForce = Mathf.Abs(_gravityStrength) * jumpTimeToApex;
+        jumpForce = Mathf.Abs(gravityStrength) * jumpTimeToApex;
 
         #region Variable Ranges
-        runAcceleration = Mathf.Clamp(runAcceleration, 0.01f, runMaxSpeed);
-        runDecceleration = Mathf.Clamp(runDecceleration, 0.01f, runMaxSpeed);
+        _runAcceleration = Mathf.Clamp(_runAcceleration, 0.01f, runMaxSpeed);
+        _runDecceleration = Mathf.Clamp(_runDecceleration, 0.01f, runMaxSpeed);
         #endregion
     }
 }

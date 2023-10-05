@@ -11,7 +11,6 @@ public class StatusIcon : MonoBehaviour
     Image _image;
     RectTransform _rt;
 
-    // Start is called before the first frame update
     void Awake()
     {
         _image = GetComponent<Image>();

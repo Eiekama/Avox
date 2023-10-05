@@ -8,7 +8,7 @@ public abstract class AInteractable : MonoBehaviour
     /// Determines whether interaction should occur automatically or by pressing
     /// a button.
     /// </summary>
-    [SerializeField] protected bool _isAuto;
+    [SerializeField] protected bool _isAuto = true;
     public bool isAuto { get { return _isAuto; } }
 
     public abstract void Interact(PlayerInstance player);
