@@ -18,6 +18,13 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Enable();
     }
 
+    private void Update()
+    {
+        _player.movement.UpdateTimers();
+        _player.movement.UpdateChecks();
+        _player.movement.UpdateGravity();
+    }
+
     private void FixedUpdate()
     {
         _player.movement.Run(playerInputActions.Run.ReadValue<float>());
@@ -28,6 +35,10 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             _player.movement.Jump();
+        }
+        if (context.canceled)
+        {
+            _player.movement.JumpCut();
         }
     }
 

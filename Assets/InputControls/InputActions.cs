@@ -263,6 +263,34 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Dialogue"",
+            ""id"": ""ceea4cdb-ae32-49e9-976a-70c0778e38ce"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""9bed783b-17d2-4632-88fd-c840b643c308"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""038de4f0-2dae-41f8-a882-0a44c884231d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -280,6 +308,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         // CutScene
         m_CutScene = asset.FindActionMap("CutScene", throwIfNotFound: true);
         m_CutScene_Newaction = m_CutScene.FindAction("New action", throwIfNotFound: true);
+        // Dialogue
+        m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
+        m_Dialogue_Newaction = m_Dialogue.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -466,6 +497,39 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         }
     }
     public CutSceneActions @CutScene => new CutSceneActions(this);
+
+    // Dialogue
+    private readonly InputActionMap m_Dialogue;
+    private IDialogueActions m_DialogueActionsCallbackInterface;
+    private readonly InputAction m_Dialogue_Newaction;
+    public struct DialogueActions
+    {
+        private @InputActions m_Wrapper;
+        public DialogueActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Dialogue_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_Dialogue; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DialogueActions set) { return set.Get(); }
+        public void SetCallbacks(IDialogueActions instance)
+        {
+            if (m_Wrapper.m_DialogueActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnNewaction;
+            }
+            m_Wrapper.m_DialogueActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+        }
+    }
+    public DialogueActions @Dialogue => new DialogueActions(this);
     public interface IPlayerActions
     {
         void OnJump(InputAction.CallbackContext context);
@@ -479,6 +543,10 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnNewaction(InputAction.CallbackContext context);
     }
     public interface ICutSceneActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
+    }
+    public interface IDialogueActions
     {
         void OnNewaction(InputAction.CallbackContext context);
     }

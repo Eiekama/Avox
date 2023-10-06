@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Player;
 
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerController))]
 public class PlayerInstance : MonoBehaviour
 {
     [SerializeField] PlayerData _data;
     public PlayerData data { get { return _data; } }
+
+    [SerializeField] LayerMask _groundLayer;
 
     public PlayerController controller { get; private set; }
 
@@ -31,6 +33,9 @@ public class PlayerInstance : MonoBehaviour
         status.player = this;
         movement.player = this;
         combat.player = this;
+
+        movement.groundCheckSize = GetComponent<BoxCollider2D>().size + new Vector2(-0.02f, 0.0f);
+        movement.groundLayer = _groundLayer;
 
         combat.attackHitbox = GetComponentInChildren<AttackHitbox>(true);
         combat.attackHitbox.data = _data;

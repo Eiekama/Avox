@@ -4,31 +4,34 @@ using TMPro;
 
 public class DialogueUI : MonoBehaviour
 {
-    [SerializeField] private GameObject dialogueBox;
-    [SerializeField] private TMP_Text textLabel;
-    [SerializeField] private DialogueObject textDialogue;
-    [SerializeField] public bool stopPlayer;
+    [SerializeField] private GameObject _dialogueBox;
+    [SerializeField] private TMP_Text _textLabel;
+    [SerializeField] private bool _stopPlayer;
 
-    public bool IsOpen {get; private set; }
-    private TypewriterEffect typewriterEffect;
+    private TypewriterEffect _typewriterEffect;
 
-    private void Awake() {
-        typewriterEffect = GetComponent<TypewriterEffect>();
+    private void Awake()
+    {
+        _typewriterEffect = GetComponent<TypewriterEffect>();
         CloseDialogue();
     }
 
     public void ShowDialogue(DialogueObject dialogueObject)
     {
-        IsOpen = true;
-        dialogueBox.SetActive(true);
-        StartCoroutine(Stepthrough(dialogueObject));
+        if (_stopPlayer)
+        {
+            // add implementation to switch action maps from player to dialogue
+        }
+        _dialogueBox.SetActive(true);
+        _textLabel.text = dialogueObject.Dialogue[0];
+        //StartCoroutine(Stepthrough(dialogueObject));
     }
     private IEnumerator Stepthrough(DialogueObject dialogueObject)
     {
-        textLabel.text = string.Empty;
+        _textLabel.text = string.Empty;
         foreach (string dialogue in dialogueObject.Dialogue)
         {
-            yield return typewriterEffect.Run(dialogue, textLabel);
+            yield return _typewriterEffect.Run(dialogue, _textLabel);
             //yield return textLabel.text = dialogue; //if you dont want the typewriter effect use this line
             yield return new WaitUntil(()=> Input.GetKeyDown(KeyCode.Space));
         }
@@ -37,9 +40,12 @@ public class DialogueUI : MonoBehaviour
 
     public void CloseDialogue()
     {
-        IsOpen = false;
-        dialogueBox.SetActive(false);
-        textLabel.text = string.Empty;
+        if (_stopPlayer)
+        {
+            // add implementation to switch action map back to player
+        }
+        _dialogueBox.SetActive(false);
+        _textLabel.text = string.Empty;
     }
 
 }

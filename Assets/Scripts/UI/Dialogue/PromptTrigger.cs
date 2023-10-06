@@ -17,5 +17,4 @@ public class PromptTrigger : AInteractable
     {
         _dialogueUI.ShowDialogue(_dialogueObject);
     }
-
 }
