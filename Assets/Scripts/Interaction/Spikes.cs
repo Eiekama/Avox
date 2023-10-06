@@ -5,7 +5,11 @@ using UnityEngine;
 public class Spikes : MonoBehaviour, IContactDamage
 {
     [SerializeField] int damage;
-    
+
+    // [SerializeField] private Animator _fade;
+    // [SerializeField] private Animator _fadeIn;
+    // [SerializeField] private Animator _fadeOut;
+
     public void DealContactDamage(PlayerInstance player)
     {
         player.combat.Damage(damage);
@@ -20,6 +24,7 @@ public class Spikes : MonoBehaviour, IContactDamage
     IEnumerator WaitAndRespawn(PlayerInstance player, float time)
     {
         player.controller.playerInputActions.Disable();
+        // _fade.SetTrigger("Start");
         yield return new WaitForSeconds(time);
         
         //Respawning; Resets Player location/velocity
