@@ -4,6 +4,7 @@ using TMPro;
 
 public class DialogueUI : MonoBehaviour
 {
+    //change this so that you only need one canvas per type of text.
     [SerializeField] private GameObject _dialogueBox;
     [SerializeField] private TMP_Text _textLabel;
     [SerializeField] private bool _stopPlayer;
