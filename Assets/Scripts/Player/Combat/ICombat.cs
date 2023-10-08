@@ -5,8 +5,9 @@ using UnityEngine;
 public interface ICombat : IDamageable
 {
     PlayerInstance player { get; set; }
+    AttackHitbox attackHitbox { get; set; }
 
-    void Attack();
+    void Attack(MonoBehaviour mono);
 
     // when we add combat skills those would go in here too
 }

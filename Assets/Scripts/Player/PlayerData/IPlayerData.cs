@@ -1,5 +1,7 @@
 // credit: https://github.com/Dawnosaur/platformer-movement/blob/main/Scripts/PlayerData.cs
 
+using UnityEngine;
+
 public interface IPlayerData
 {
 //////////////////////////////////// Status ////////////////////////////////////
@@ -13,16 +15,12 @@ public interface IPlayerData
     /// </summary>
     float MPRecoveryRate { get; }
 
-    //int atk { get; }
+    int atk { get; set; }
     #endregion
 /////////////////////////////////// Movement ///////////////////////////////////
     #region Movement
     // Gravity //
     #region Gravity
-    /// <summary>
-    /// Downwards force (gravity) needed for the desired jumpHeight and jumpTimeToApex.
-    /// </summary>
-    float gravityStrength { get; }
     /// <summary>
     /// Strength of the player's gravity as a multiplier of gravity (set in ProjectSettings/Physics2D).
     /// <br/>
@@ -38,6 +36,44 @@ public interface IPlayerData
     /// Maximum fall speed (terminal velocity) of the player when falling.
     /// </summary>
     float maxFallSpeed { get; }
+    #endregion
+    // Run //
+    #region Run
+    /// <summary>
+    /// Target speed we want the player to reach.
+    /// </summary>
+    public float runMaxSpeed { get; }
+    
+    /// <summary>
+    /// The actual force (multiplied with speedDiff) applied to the player.
+    /// </summary>
+    public float runAccelAmount { get; }
+    
+    /// <summary>
+    /// Actual force (multiplied with speedDiff) applied to the player.
+    /// </summary>
+    public float runDeccelAmount { get; }
+
+    /// <summary>
+    /// Multiplier applied to acceleration rate when airborne.
+    /// </summary>
+    public float accelInAir { get; }
+    /// <summary>
+    /// Multiplier applied to acceleration rate when airborne.
+    /// </summary>
+    public float deccelInAir { get; }
+    #endregion
+    // Jump //
+    #region Jump
+    /// <summary>
+    /// The actual force applied (upwards) to the player when they jump.
+    /// </summary>
+    public float jumpForce { get; }
+
+    /// <summary>
+    /// Multiplier to increase gravity if the player releases the jump button while still jumping.
+    /// </summary>
+    public float jumpCutGravityMult { get; }
     #endregion
 
     #endregion

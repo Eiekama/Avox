@@ -23,7 +23,7 @@ public class MasterEnemyController : MonoBehaviour
     {
         foreach (var manager in managers)
         {
-            manager.currentState.OnUpdate(manager);
+            if (manager.isActiveAndEnabled) { manager.currentState.OnUpdate(); }
         }
     }
 }
