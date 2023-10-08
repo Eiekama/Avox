@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour
         _player.movement.UpdateTimers();
         _player.movement.UpdateChecks();
         _player.movement.UpdateGravity();
+
+        // DEBUG
+        if (Input.GetKeyDown("1"))
+            _player.status.ChangeCurrentMP(-1);
     }
 
     private void FixedUpdate()

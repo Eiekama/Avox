@@ -40,6 +40,8 @@ public class PlayerInstance : MonoBehaviour
         combat.attackHitbox = GetComponentInChildren<AttackHitbox>(true);
         combat.attackHitbox.data = _data;
 
+        StartCoroutine(status.RecoverMP());
+
         RB = GetComponent<Rigidbody2D>();
     }
 
