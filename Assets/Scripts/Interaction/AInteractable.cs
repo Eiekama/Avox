@@ -12,4 +12,22 @@ public abstract class AInteractable : MonoBehaviour
     public bool isAuto { get { return _isAuto; } }
 
     public abstract void Interact(PlayerInstance player);
+
+    public virtual void OnEnter(PlayerInstance player)
+    {
+        if (_isAuto) { Interact(player); }
+        else
+        {
+            player.interaction.OpenInteractableIcon(this);
+            player.currentManualInteractable = this;
+        }
+    }
+    public virtual void OnExit(PlayerInstance player)
+    {
+        if (!_isAuto)
+        {
+            player.interaction.CloseInteractableIcon(this);
+            player.currentManualInteractable = null;
+        }
+    }
 }

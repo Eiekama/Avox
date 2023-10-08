@@ -18,24 +18,43 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Enable();
     }
 
+    private void Update()
+    {
+        _player.movement.UpdateTimers();
+        _player.movement.UpdateChecks();
+        _player.movement.UpdateGravity();
+    }
+
     private void FixedUpdate()
     {
-        //if (true) // replace later with key to press for interactions
-        //{
-        //    if (_player.currentManualInteractable != null)
-        //    {
-        //        _player.currentManualInteractable.Interact(_player);
-        //    }
-        //}
-        
         _player.movement.Run(playerInputActions.Run.ReadValue<float>());
     }
 
     public void JumpCallback(InputAction.CallbackContext context)
     {
-        if (context.ReadValue<float>() == 1.0f)
+        if (context.performed)
         {
             _player.movement.Jump();
+        }
+        if (context.canceled)
+        {
+            _player.movement.JumpCut();
+        }
+    }
+
+    public void InteractCallback(InputAction.CallbackContext context)
+    {
+        if (_player.currentManualInteractable != null && context.performed)
+        {
+            _player.currentManualInteractable.Interact(_player);
+        }
+    }
+
+    public void AttackCallback(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _player.combat.Attack(this);
         }
     }
 }

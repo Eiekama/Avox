@@ -15,16 +15,12 @@ public interface IPlayerData
     /// </summary>
     float MPRecoveryRate { get; }
 
-    //int atk { get; }
+    int atk { get; set; }
     #endregion
 /////////////////////////////////// Movement ///////////////////////////////////
     #region Movement
     // Gravity //
     #region Gravity
-    /// <summary>
-    /// Downwards force (gravity) needed for the desired jumpHeight and jumpTimeToApex.
-    /// </summary>
-    float gravityStrength { get; }
     /// <summary>
     /// Strength of the player's gravity as a multiplier of gravity (set in ProjectSettings/Physics2D).
     /// <br/>
@@ -69,7 +65,15 @@ public interface IPlayerData
     #endregion
     // Jump //
     #region Jump
-    public float jumpStrength { get; }
+    /// <summary>
+    /// The actual force applied (upwards) to the player when they jump.
+    /// </summary>
+    public float jumpForce { get; }
+
+    /// <summary>
+    /// Multiplier to increase gravity if the player releases the jump button while still jumping.
+    /// </summary>
+    public float jumpCutGravityMult { get; }
     #endregion
 
     #endregion

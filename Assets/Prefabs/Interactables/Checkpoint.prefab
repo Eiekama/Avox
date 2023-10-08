@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7698543517008810765}
   - component: {fileID: -4435976727191821845}
-  - component: {fileID: 309441172685094679}
+  - component: {fileID: 3553412234260193272}
   m_Layer: 0
   m_Name: Checkpoint
   m_TagString: Untagged
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isAuto: 1
---- !u!61 &309441172685094679
+--- !u!61 &3553412234260193272
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

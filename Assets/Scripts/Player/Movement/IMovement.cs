@@ -8,21 +8,21 @@ public interface IMovement
 {
     PlayerInstance player { get; set; }
 
-    /// <summary>
-    /// Determines when player can/cannot control the character.
-    /// <br/>
-    /// E.g. during dialogue, taking damage, after hard fall.
-    /// </summary>
-    /// <returns></returns>
-    bool Controllable();
+    Vector2 groundCheckSize { get; set; }
+    LayerMask groundLayer { get; set; }
+
+    void UpdateTimers();
+    void UpdateGravity();
+    void UpdateChecks();
 
     /// <summary>
     /// Controls the horizontal movement of the player character.
     /// </summary>
-    /// TODO: Add lerpAmount back to do funny things with math and linear interpolation
+    /// TODO: Add lerpAmount back
     void Run(float moveInput);
     void Turn();
     void Jump();
+    void JumpCut();
 
     void Dash();
     void DoubleJump();

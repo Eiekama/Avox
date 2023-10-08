@@ -5,7 +5,7 @@ using UnityEngine;
 public interface ICombat : IDamageable
 {
     PlayerInstance player { get; set; }
-    MeleeCollider meleeCollider { get; set; }
+    AttackHitbox attackHitbox { get; set; }
 
     void Attack(MonoBehaviour mono);
 

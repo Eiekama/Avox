@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Player;
 
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerController))]
 public class PlayerInstance : MonoBehaviour
 {
     [SerializeField] PlayerData _data;
     public PlayerData data { get { return _data; } }
+
+    [SerializeField] LayerMask _groundLayer;
 
     public PlayerController controller { get; private set; }
 
@@ -25,9 +27,7 @@ public class PlayerInstance : MonoBehaviour
     public Vector3 currentPCheckpoint; //Current platforming checkpoint location
     public Vector3 currentCheckpoint; //Current death checkpoint location
 
-    public AInteractable currentManualInteractable { get; private set; }
-
-
+    public AInteractable currentManualInteractable;
 
 
     private void Awake()
@@ -38,7 +38,11 @@ public class PlayerInstance : MonoBehaviour
         movement.player = this;
         combat.player = this;
 
-        combat.meleeCollider = GetComponentInChildren<MeleeCollider>(true);
+        movement.groundCheckSize = GetComponent<BoxCollider2D>().size + new Vector2(-0.02f, 0.0f);
+        movement.groundLayer = _groundLayer;
+
+        combat.attackHitbox = GetComponentInChildren<AttackHitbox>(true);
+        combat.attackHitbox.data = _data;
 
         RB = GetComponent<Rigidbody2D>();
     }
@@ -52,15 +56,7 @@ public class PlayerInstance : MonoBehaviour
         }
         else if (other.TryGetComponent(out AInteractable interactable))
         {
-            if (interactable.isAuto)
-            {
-                interactable.Interact(this);
-            }
-            else
-            {
-                interaction.OpenInteractableIcon(interactable);
-                currentManualInteractable = interactable;
-            }
+            interactable.OnEnter(this);
         }
     }
 
@@ -69,11 +65,7 @@ public class PlayerInstance : MonoBehaviour
     {
         if (other.TryGetComponent(out AInteractable interactable))
         {
-            interaction.CloseInteractableIcon(interactable);
-            if (currentManualInteractable = interactable)
-            {
-                currentManualInteractable = null;
-            }
+            interactable.OnExit(this);
         }
     }
 }
