@@ -76,12 +76,25 @@ namespace Player
             //Gets an acceleration value based on if we are accelerating (includes turning) 
             //or trying to decelerate (stop). As well as applying a multiplier if we're air borne.
             if (lastOnGroundTime > 0)
-                _accelRate = (Mathf.Abs(_targetSpeed) > 0.01f) ? player.data.runAccelAmount : player.data.runDeccelAmount;
+            {
+                _accelRate = (Mathf.Abs(_targetSpeed) > 0.01f)
+                    ? player.data.runAccelAmount
+                    : player.data.runDeccelAmount;
+            }
             else
-                _accelRate = (Mathf.Abs(_targetSpeed) > 0.01f) ? player.data.runAccelAmount * player.data.accelInAir : player.data.runDeccelAmount * player.data.deccelInAir;
-           
+            {
+                _accelRate = (Mathf.Abs(_targetSpeed) > 0.01f)
+                    ? player.data.runAccelAmount * player.data.accelInAir
+                    : player.data.runDeccelAmount * player.data.deccelInAir;
+                if (Mathf.Abs(player.RB.velocity.y) < player.data.jumpHangTimeThreshold)
+                {
+                    _accelRate *= player.data.jumpHangAccelerationMult;
+                }
+            }
+
             float _speedDif = _targetSpeed - player.RB.velocity.x;
             float _movement = _speedDif * _accelRate;
+            
             player.RB.AddForce(_movement * Vector2.right, ForceMode2D.Force);
         }
 
