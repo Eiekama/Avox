@@ -32,6 +32,7 @@ public class PlayerInstance : MonoBehaviour
 
         status.player = this;
         movement.player = this;
+        movement.facing = 1.0f;
         combat.player = this;
 
         movement.groundCheckSize = GetComponent<BoxCollider2D>().size + new Vector2(-0.02f, 0.0f);

@@ -18,15 +18,11 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Enable();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         _player.movement.UpdateTimers();
         _player.movement.UpdateChecks();
         _player.movement.UpdateGravity();
-    }
-
-    private void FixedUpdate()
-    {
         _player.movement.Run(playerInputActions.Run.ReadValue<float>());
     }
 

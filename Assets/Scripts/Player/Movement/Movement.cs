@@ -2,6 +2,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Player
@@ -16,6 +17,13 @@ namespace Player
         {
             get { return _lastOnGroundTime; }
             private set { _lastOnGroundTime = Mathf.Max(-0.1f, value); }
+        }
+
+        private float _facing;
+        public float facing
+        {
+            get { return _facing; }
+            set { _facing = value; }
         }
 
         private bool _isJumpCut;
@@ -70,6 +78,16 @@ namespace Player
 
         public void Run(float moveInput)
         {
+            if (player.RB.velocity.x != 0)
+            {
+                float normalizedVelo = player.RB.velocity.x / Mathf.Abs(player.RB.velocity.x);
+                // check same sign:
+                if ((normalizedVelo < 0) ^ (facing < 0))
+                {
+                    Turn(player.RB.velocity.x / Mathf.Abs(player.RB.velocity.x));
+                }
+            }
+            
             float _targetSpeed = moveInput * player.data.runMaxSpeed;
 
             float _accelRate;
@@ -98,9 +116,11 @@ namespace Player
             player.RB.AddForce(_movement * Vector2.right, ForceMode2D.Force);
         }
 
-        public void Turn()
+        public void Turn(float direction)
         {
-            // ADD IMPLEMENTATION HERE
+            facing = direction;
+            Vector3 scale = player.gameObject.transform.localScale;
+            scale.x = facing;
         }
 
         public void Jump()
