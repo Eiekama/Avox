@@ -10,7 +10,8 @@ public class PromptTrigger : AInteractable
     public override void OnExit(PlayerInstance player)
     {
         base.OnExit(player);
-        _dialogueUI.CloseDialogue();
+        _dialogueUI.CloseDialogue(_dialogueObject);
+        
     }
 
     public override void Interact(PlayerInstance player)

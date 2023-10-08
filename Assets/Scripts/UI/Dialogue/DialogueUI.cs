@@ -7,46 +7,76 @@ public class DialogueUI : MonoBehaviour
     //change this so that you only need one canvas per type of text.
     [SerializeField] private GameObject _dialogueBox;
     [SerializeField] private TMP_Text _textLabel;
-    [SerializeField] private bool _stopPlayer;
 
     private TypewriterEffect _typewriterEffect;
+    private FadeEffect _FadeEffect;
 
     private void Awake()
     {
-        _typewriterEffect = GetComponent<TypewriterEffect>();
-        CloseDialogue();
+        _dialogueBox.SetActive(false);
+        _textLabel.text = string.Empty;
     }
 
     public void ShowDialogue(DialogueObject dialogueObject)
     {
-        if (_stopPlayer)
+        if (dialogueObject._StopPlayer)
         {
             // add implementation to switch action maps from player to dialogue
         }
         _dialogueBox.SetActive(true);
-        _textLabel.text = dialogueObject.Dialogue[0];
-        //StartCoroutine(Stepthrough(dialogueObject));
+        if(dialogueObject.Effect.ToString() == "none")
+        {
+            _textLabel.text = dialogueObject.Dialogue[0];
+        }
+        else
+        {
+            StartCoroutine(Stepthrough(dialogueObject));
+        }
     }
     private IEnumerator Stepthrough(DialogueObject dialogueObject)
     {
         _textLabel.text = string.Empty;
+        if(dialogueObject.Effect.ToString() == "typewriter")
+        {
         foreach (string dialogue in dialogueObject.Dialogue)
         {
+            _typewriterEffect = GetComponent<TypewriterEffect>();
             yield return _typewriterEffect.Run(dialogue, _textLabel);
-            //yield return textLabel.text = dialogue; //if you dont want the typewriter effect use this line
             yield return new WaitUntil(()=> Input.GetKeyDown(KeyCode.Space));
         }
-        CloseDialogue();
+        }
+        else if(dialogueObject.Effect.ToString() == "fade")
+        {
+            foreach (string dialogue in dialogueObject.Dialogue)
+            {
+                _FadeEffect = GetComponent<FadeEffect>();
+                yield return _FadeEffect.Run(dialogue, _textLabel);
+                yield return new WaitUntil(()=> Input.GetKeyDown(KeyCode.Space));
+            }
+
+        }
+
+        CloseDialogue(dialogueObject);
     }
 
-    public void CloseDialogue()
+    public void CloseDialogue(DialogueObject dialogueObject)
     {
-        if (_stopPlayer)
+        if (dialogueObject._StopPlayer)
         {
-            // add implementation to switch action map back to player
+            // add implementation to switch action maps from player to dialogue
         }
+        if(dialogueObject.Effect.ToString() == "fade")
+        {
+            foreach (string dialogue in dialogueObject.Dialogue)
+            {
+            _FadeEffect = GetComponent<FadeEffect>();
+            _FadeEffect.Run2(dialogue, _textLabel);
+            }
+        }else{
         _dialogueBox.SetActive(false);
         _textLabel.text = string.Empty;
+        }
+
     }
 
 }
