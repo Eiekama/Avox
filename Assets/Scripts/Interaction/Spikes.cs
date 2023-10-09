@@ -6,10 +6,6 @@ public class Spikes : MonoBehaviour, IContactDamage
 {
     [SerializeField] int damage;
 
-    // [SerializeField] private Animator _fade;
-    // [SerializeField] private Animator _fadeIn;
-    // [SerializeField] private Animator _fadeOut;
-
     public void DealContactDamage(PlayerInstance player)
     {
         player.combat.Damage(damage);
@@ -18,20 +14,6 @@ public class Spikes : MonoBehaviour, IContactDamage
         Debug.Log("Respawning @ Most Recent Platforming Checkpoint");
 
         //Temporarily disable player actions
-        StartCoroutine(WaitAndRespawn(player, player.pRespawnTime));
-    }
-
-    IEnumerator WaitAndRespawn(PlayerInstance player, float time)
-    {
-        player.controller.playerInputActions.Disable();
-        // _fade.SetTrigger("Start");
-        yield return new WaitForSeconds(time);
-        
-        //Respawning; Resets Player location/velocity
-        player.transform.position = player.currentCheckpoint;
-        player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        //Can reset angular velocity, too, and then call RigidBody2D.Sleep();, if need be
-        
-        player.controller.playerInputActions.Enable();
+        StartCoroutine(player.combat.WaitAndRespawn(player, Checkpoint.respawnTime));
     }
 }

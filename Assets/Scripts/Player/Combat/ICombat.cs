@@ -8,6 +8,8 @@ public interface ICombat : IDamageable
     AttackHitbox attackHitbox { get; set; }
 
     void Attack(MonoBehaviour mono);
+    
+    void Die();
 
     // when we add combat skills those would go in here too
 }

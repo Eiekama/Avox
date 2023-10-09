@@ -23,10 +23,6 @@ public class PlayerInstance : MonoBehaviour
 
     public Rigidbody2D RB { get; private set; }
 
-    public float pRespawnTime = 0.5f; //Respawn time for platforming checkpoints
-    public Vector3 currentPCheckpoint; //Current platforming checkpoint location
-    public Vector3 currentCheckpoint; //Current death checkpoint location
-
     public AInteractable currentManualInteractable;
 
 

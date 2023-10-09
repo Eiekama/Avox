@@ -17,6 +17,10 @@ namespace Player
             _player.data.currentHP += amount;
             if (StatusHUD.instance)
                 StatusHUD.instance.UpdateHud();
+            
+            if(_player.data.currentHP == 0){
+                _player.combat.Die();
+            }
         }
 
         public void ChangeMaxMP(int amount) {
