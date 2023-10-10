@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - this is the first line
-  - This is the second line
   effect: 2
   _stopPlayer: 1
