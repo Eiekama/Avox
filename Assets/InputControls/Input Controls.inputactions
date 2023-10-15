@@ -138,18 +138,9 @@
             "id": "d11e9f1d-2f8f-4d80-87a9-eb94f483acaa",
             "actions": [
                 {
-                    "name": "Pause",
+                    "name": "MenuOpenClose",
                     "type": "Button",
                     "id": "f028cf2d-b092-4b48-a7dd-88ffbc58cbd0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Continue",
-                    "type": "Button",
-                    "id": "8cf51567-00a1-46e6-afe5-2ed1c2a9c6af",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -164,18 +155,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0d78cf0e-4edb-4b98-ae04-f6a7465ad0e1",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Continue",
+                    "action": "MenuOpenClose",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
