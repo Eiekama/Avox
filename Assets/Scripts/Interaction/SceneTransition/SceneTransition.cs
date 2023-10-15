@@ -8,7 +8,8 @@ public class SceneTransition : AInteractable
     public enum SpawnLocation
     {
         Left,
-        Right
+        Right,
+        Vertical
     };
 
     // NOTE: I still think it might be better to collect all these information from
@@ -30,7 +31,8 @@ public class SceneTransition : AInteractable
     [Tooltip("Target scene transition index")]
     [SerializeField] private int toTransition;
 
- 
+    public bool _playerDirection;
+    
     private Animator _transitionAnim;
     public Animator transitionAnim
     {
@@ -43,6 +45,14 @@ public class SceneTransition : AInteractable
 
     public override void Interact(PlayerInstance player)
     {
+        if (player.RB.velocity.x >= 0)
+        {
+            _playerDirection = true;
+        }
+        else
+        {
+            _playerDirection = false;
+        }
         TransitionManager.currentTransition = toTransition;
         LoadNextScene(player.controller.playerInputActions);
     } 

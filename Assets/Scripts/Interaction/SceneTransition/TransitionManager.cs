@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class TransitionManager : MonoBehaviour
 {
@@ -8,7 +11,9 @@ public class TransitionManager : MonoBehaviour
 
     [Tooltip("The distance the player spawns from this entrance")]
     [SerializeField] private float _spawnDistance = 1.5f;
-
+    [SerializeField] private float _verticalSpawnForce = 10f;
+    private Vector2 _rightVerticalPush = new Vector2(30, 1);
+    private Vector2 _leftVerticalPush = new Vector2(30, 1);
     private PlayerInstance _player;
     private SceneTransition[] _transitions;
     
@@ -37,9 +42,21 @@ public class TransitionManager : MonoBehaviour
                     {
                         _player.transform.position = st.transform.position + new Vector3(-_spawnDistance, 0, 0);
                     }
-                    else
+                    else if (st.spawnLocation == SceneTransition.SpawnLocation.Right)
                     {
                         _player.transform.position = st.transform.position + new Vector3(_spawnDistance, 0, 0);
+                    }
+                    else
+                    {
+                        _player.transform.position = st.transform.position + new Vector3(0, _spawnDistance, 0);
+                        if (st._playerDirection)
+                        {
+                            _player.RB.AddForce(_rightVerticalPush * _verticalSpawnForce, ForceMode2D.Impulse);
+                        }
+                        else
+                        {
+                            _player.RB.AddForce(_leftVerticalPush * _verticalSpawnForce, ForceMode2D.Impulse);  
+                        }
                     }
                     currentTransition = -1;
                     break;
