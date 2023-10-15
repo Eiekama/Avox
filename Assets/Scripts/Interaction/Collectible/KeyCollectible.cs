@@ -2,21 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PromptTrigger : AInteractable
+public class KeyCollectible : Collectible
 {
     [SerializeField] DialogueObject _dialogueObject;
     [SerializeField] DialogueUI _dialogueUI;
     [SerializeField] private Vector2 offset;
-
-    public override void OnExit(PlayerInstance player)
+    protected override void Collect(PlayerInstance player)
     {
-        base.OnExit(player);
-        _dialogueUI.CloseDialogue(_dialogueObject);
-        
-    }
-
-    public override void Interact(PlayerInstance player)
-    {
+        gameObject.GetComponent<Animator>().SetBool("IsCollected", true);
         _dialogueUI.ShowDialogue(_dialogueObject, transform.position, (Vector3)offset);
+        Destroy(gameObject);
+
     }
 }
