@@ -89,3 +89,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645a25ceaf64abe47af51825e931595b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseSprite: {fileID: 21300000, guid: 0345da226c7d05f49a94fe8c9aeeb9ed, type: 3}
+  state: 0

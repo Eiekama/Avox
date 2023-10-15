@@ -17,9 +17,9 @@ public abstract class AStateManager : MonoBehaviour
     {
         if (currentState != null)
         {
-            currentState.OnExit(this);
+            currentState.OnExit();
         }
         currentState = newState;
-        currentState.OnEntry(this);
+        currentState.OnEntry();
     }
 }

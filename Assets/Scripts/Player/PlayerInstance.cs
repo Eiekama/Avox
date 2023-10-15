@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Player;
 
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(PlayerController))]
 public class PlayerInstance : MonoBehaviour
 {
     [SerializeField] PlayerData _data;
     public PlayerData data { get { return _data; } }
+
+    [SerializeField] LayerMask _groundLayer;
+
+    public PlayerController controller { get; private set; }
 
     public readonly IStatus status = new Status();
     public readonly IMovement movement = new Movement();
@@ -18,22 +23,26 @@ public class PlayerInstance : MonoBehaviour
 
     public Rigidbody2D RB { get; private set; }
 
+    public AInteractable currentManualInteractable;
 
-    public AInteractable currentInteractable { get; private set; }
 
     private void Awake()
     {
+        controller = GetComponent<PlayerController>();
+
         status.player = this;
         movement.player = this;
         combat.player = this;
 
+        movement.groundCheckSize = GetComponent<BoxCollider2D>().size + new Vector2(-0.02f, 0.0f);
+        movement.groundLayer = _groundLayer;
+
+        combat.attackHitbox = GetComponentInChildren<AttackHitbox>(true);
+        combat.attackHitbox.data = _data;
+
         RB = GetComponent<Rigidbody2D>();
     }
 
-
-    // remark: i forsee some bugs relating to interaction but since the
-    // specifics haven't been decided yet i'll not take any measures to fix
-    // the potential bugs for now
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -43,27 +52,16 @@ public class PlayerInstance : MonoBehaviour
         }
         else if (other.TryGetComponent(out AInteractable interactable))
         {
-            if (interactable.isAuto)
-            {
-                interactable.Interact(this);
-            }
-            else
-            {
-                interaction.OpenInteractableIcon(interactable);
-                currentInteractable = interactable;
-            }
+            interactable.OnEnter(this);
         }
     }
+
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.TryGetComponent(out AInteractable interactable))
         {
-            interaction.CloseInteractableIcon(interactable);
-            if (currentInteractable = interactable)
-            {
-                currentInteractable = null;
-            }
+            interactable.OnExit(this);
         }
     }
 }

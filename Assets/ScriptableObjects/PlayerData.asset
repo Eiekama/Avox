@@ -12,25 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9faf267e64e6453f862e141af7dd3ac, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  _maxHP: 2
-  _currentHP: 1
+  _atk: 1
+  _maxHP: 5
+  _currentHP: 3
   _maxMP: 3
-  _currentMP: 1
+  _currentMP: 3
   _MPRecovaryRate: 1
-  _fallGravityMult: 0
-  _maxFallSpeed: 0
-  runMaxSpeed: 0
-  runAcceleration: 0.01
-  runAccelAmount: NaN
-  runDecceleration: 0.01
-  runDeccelAmount: NaN
-  accelInAir: 0
-  deccelInAir: 0
+  _fallGravityMult: 1.3
+  _maxFallSpeed: 12
+  _runMaxSpeed: 7
+  _runAcceleration: 0.8
+  _runDecceleration: 0.8
+  _accelInAir: 0.8
+  _deccelInAir: 0.8
+  _jumpHeight: 4
+  _jumpTimeToApex: 0.5
+  _jumpCutGravityMult: 5
   doConserveMomentum: 1
-  jumpHeight: 0
-  jumpTimeToApex: 0
-  jumpForce: NaN
-  jumpCutGravityMult: 0
   jumpHangGravityMult: 0
   jumpHangTimeThreshold: 0
   jumpHangAccelerationMult: 0
