@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InitialiseData : MonoBehaviour
 {
-    public static bool initialised = false;
+    private static bool initialised = false;
 
     [SerializeField] PlayerData playerData;
     [SerializeField] CollectibleData collectibleData;

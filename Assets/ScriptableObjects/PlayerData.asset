@@ -14,20 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _atk: 1
   _maxHP: 5
-  _currentHP: 3
+  _currentHP: 5
   _maxMP: 3
   _currentMP: 3
   _MPRecovaryRate: 1
   _fallGravityMult: 1.3
-  _maxFallSpeed: 12
+  _maxFallSpeed: 15
   _runMaxSpeed: 7
   _runAcceleration: 0.8
   _runDecceleration: 0.8
   _accelInAir: 0.8
   _deccelInAir: 0.8
-  _jumpHeight: 4
-  _jumpTimeToApex: 0.5
-  _jumpCutGravityMult: 5
+  _jumpHeight: 5
+  _jumpTimeToApex: 0.6
+  _jumpCutGravityMult: 6
   doConserveMomentum: 1
   jumpHangGravityMult: 0
   jumpHangTimeThreshold: 0
