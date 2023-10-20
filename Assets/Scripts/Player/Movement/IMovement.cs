@@ -11,6 +11,8 @@ public interface IMovement
     Vector2 groundCheckSize { get; set; }
     LayerMask groundLayer { get; set; }
 
+    float lastOnGroundTime { get; }
+
     void UpdateTimers();
     void UpdateGravity();
     void UpdateChecks();
