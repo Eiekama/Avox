@@ -127,10 +127,15 @@ namespace Player
         public void Jump()
         {
             // reset gravity, jump cut, and velocity
-            SetGravityScale(player.data.gravityScale);
-            _isJumpCut = false;
-            player.RB.velocity = new Vector2(player.RB.velocity.x, 0);
-            player.RB.AddForce(Vector2.up * player.data.jumpForce, ForceMode2D.Impulse);
+            if (lastOnGroundTime > 0)
+            {
+                Debug.Log("jump");
+                player.RB.AddForce(Vector2.up * player.data.jumpForce, ForceMode2D.Impulse);
+            }
+            else
+            {
+                DoubleJump();
+            }
         }
         public void JumpCut()
         {
@@ -143,7 +148,11 @@ namespace Player
         }
         public void DoubleJump()
         {
-            // ADD IMPLEMENTATION HERE
+            Debug.Log("double jump");
+            SetGravityScale(player.data.gravityScale);
+            _isJumpCut = false;
+            player.RB.velocity = new Vector2(player.RB.velocity.x, 0);
+            player.RB.AddForce(Vector2.up * player.data.jumpForce, ForceMode2D.Impulse);
         }
     }
 }
