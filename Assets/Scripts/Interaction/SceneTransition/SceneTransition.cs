@@ -12,6 +12,8 @@ public class SceneTransition : AInteractable
         Vertical
     };
 
+
+    
     // NOTE: I still think it might be better to collect all these information from
     // all scenes and store them in a single ScriptableObject instead.
     // It will be easier to organise this way if the project gets big.
@@ -31,7 +33,7 @@ public class SceneTransition : AInteractable
     [Tooltip("Target scene transition index")]
     [SerializeField] private int toTransition;
 
-    public bool _playerDirection;
+
     
     private Animator _transitionAnim;
     public Animator transitionAnim
@@ -47,12 +49,17 @@ public class SceneTransition : AInteractable
     {
         if (player.RB.velocity.x >= 0)
         {
-            _playerDirection = true;
+            TransitionManager._playerDirection = true;
         }
         else
         {
-            _playerDirection = false;
+            TransitionManager._playerDirection = false;
         }
+        
+        TransitionManager._playerVertical = (player.transform.position.y - this.transform.position.y) / this.transform.localScale.y;
+        
+        Debug.Log(TransitionManager._playerVertical);
+        
         TransitionManager.currentTransition = toTransition;
         LoadNextScene(player.controller.playerInputActions);
     } 
