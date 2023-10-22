@@ -17,7 +17,7 @@ namespace Player
         public float lastOnGroundTime
         {
             get { return _lastOnGroundTime; }
-            private set { _lastOnGroundTime = Mathf.Max(-0.1f, value); }
+            set { _lastOnGroundTime = Mathf.Max(-0.1f, value); }
         }
         
         private float _facing;
@@ -150,9 +150,25 @@ namespace Player
         {
             Debug.Log("double jump");
             SetGravityScale(player.data.gravityScale);
-            _isJumpCut = false;
             player.RB.velocity = new Vector2(player.RB.velocity.x, 0);
-            player.RB.AddForce(Vector2.up * player.data.jumpForce, ForceMode2D.Impulse);
+            _isJumpCut = false;
+        }
+
+        public IEnumerator DoubleJumpCoroutine()
+        {
+            Debug.Log("test");
+            for (int i = 0; i < 6; i++)
+            {
+                if (lastOnGroundTime > 0)
+                {
+                    yield break;
+                }
+                if (i > 1)
+                {
+                    player.RB.AddForce(Vector2.up * player.data.jumpForce * 15.0f, ForceMode2D.Force);
+                }
+                yield return new WaitForFixedUpdate();
+            }
         }
     }
 }
