@@ -7,9 +7,13 @@ using UnityEngine;
 public interface IMovement
 {
     PlayerInstance player { get; set; }
+    BoxCollider2D playerBoxCollider { get; set; }
+    float lastOnGroundTime { get; set; }
 
     Vector2 groundCheckSize { get; set; }
     LayerMask groundLayer { get; set; }
+    
+    float facing { get; set; }
 
     float lastOnGroundTime { get; }
 
@@ -22,10 +26,11 @@ public interface IMovement
     /// </summary>
     /// TODO: Add lerpAmount back
     void Run(float moveInput);
-    void Turn();
+    void Turn(float direction);
     void Jump();
     void JumpCut();
 
     void Dash();
     void DoubleJump();
+    IEnumerator DoubleJumpCoroutine();
 }
