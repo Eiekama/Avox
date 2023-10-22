@@ -7,6 +7,7 @@ using UnityEngine;
 public interface IMovement
 {
     PlayerInstance player { get; set; }
+    BoxCollider2D playerBoxCollider { get; set; }
 
     Vector2 groundCheckSize { get; set; }
     LayerMask groundLayer { get; set; }

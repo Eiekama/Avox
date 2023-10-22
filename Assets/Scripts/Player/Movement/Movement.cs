@@ -9,6 +9,7 @@ namespace Player
 {
     public class Movement : ASystem, IMovement
     {
+        public BoxCollider2D playerBoxCollider { get; set; }
         public Vector2 groundCheckSize { get; set; }
         public LayerMask groundLayer { get; set; }
 
@@ -18,7 +19,7 @@ namespace Player
             get { return _lastOnGroundTime; }
             private set { _lastOnGroundTime = Mathf.Max(-0.1f, value); }
         }
-
+        
         private float _facing;
         public float facing
         {
@@ -60,7 +61,7 @@ namespace Player
         public void UpdateChecks()
         {
             #region COLLISION CHECKS    
-            Vector2 terrainCheckPoint = (Vector2)player.transform.position + player.GetComponent<BoxCollider2D>().offset - new Vector2(0.0f, 0.01f);
+            Vector2 terrainCheckPoint = (Vector2)player.transform.position + playerBoxCollider.offset - new Vector2(0.0f, 0.01f);
             if (Physics2D.OverlapBox(terrainCheckPoint, groundCheckSize, 0, groundLayer))
             {
                 lastOnGroundTime = 0.01f;
@@ -125,6 +126,10 @@ namespace Player
 
         public void Jump()
         {
+            // reset gravity, jump cut, and velocity
+            SetGravityScale(player.data.gravityScale);
+            _isJumpCut = false;
+            player.RB.velocity = new Vector2(player.RB.velocity.x, 0);
             player.RB.AddForce(Vector2.up * player.data.jumpForce, ForceMode2D.Impulse);
         }
         public void JumpCut()
