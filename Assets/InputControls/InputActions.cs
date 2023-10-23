@@ -213,7 +213,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
             ""id"": ""d11e9f1d-2f8f-4d80-87a9-eb94f483acaa"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""MenuOpenClose"",
                     ""type"": ""Button"",
                     ""id"": ""f028cf2d-b092-4b48-a7dd-88ffbc58cbd0"",
                     ""expectedControlType"": ""Button"",
@@ -226,11 +226,11 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3966dcf2-1c31-4e04-b661-c3ce60dcadf3"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""MenuOpenClose"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -241,9 +241,18 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
             ""id"": ""9b0e0d6f-dd51-434c-99c8-a77de99c25af"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Skip"",
                     ""type"": ""Button"",
                     ""id"": ""c62b4a72-f813-4ca9-b859-92a7a5390afa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=3)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowHint"",
+                    ""type"": ""Button"",
+                    ""id"": ""2ca1a8fa-0bec-4eb7-b98b-42076ae4e073"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -254,11 +263,22 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""dffcce19-f17b-4206-825e-4e7c8b78f449"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9485eda5-5e03-4143-b9cf-d59d83cf70bb"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowHint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -304,10 +324,11 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
-        m_Menu_Newaction = m_Menu.FindAction("New action", throwIfNotFound: true);
+        m_Menu_MenuOpenClose = m_Menu.FindAction("MenuOpenClose", throwIfNotFound: true);
         // CutScene
         m_CutScene = asset.FindActionMap("CutScene", throwIfNotFound: true);
-        m_CutScene_Newaction = m_CutScene.FindAction("New action", throwIfNotFound: true);
+        m_CutScene_Skip = m_CutScene.FindAction("Skip", throwIfNotFound: true);
+        m_CutScene_ShowHint = m_CutScene.FindAction("ShowHint", throwIfNotFound: true);
         // Dialogue
         m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
         m_Dialogue_Newaction = m_Dialogue.FindAction("New action", throwIfNotFound: true);
@@ -435,12 +456,12 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     // Menu
     private readonly InputActionMap m_Menu;
     private IMenuActions m_MenuActionsCallbackInterface;
-    private readonly InputAction m_Menu_Newaction;
+    private readonly InputAction m_Menu_MenuOpenClose;
     public struct MenuActions
     {
         private @InputActions m_Wrapper;
         public MenuActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Menu_Newaction;
+        public InputAction @MenuOpenClose => m_Wrapper.m_Menu_MenuOpenClose;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -450,16 +471,16 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_MenuActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnNewaction;
+                @MenuOpenClose.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuOpenClose;
+                @MenuOpenClose.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuOpenClose;
+                @MenuOpenClose.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMenuOpenClose;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @MenuOpenClose.started += instance.OnMenuOpenClose;
+                @MenuOpenClose.performed += instance.OnMenuOpenClose;
+                @MenuOpenClose.canceled += instance.OnMenuOpenClose;
             }
         }
     }
@@ -468,12 +489,14 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     // CutScene
     private readonly InputActionMap m_CutScene;
     private ICutSceneActions m_CutSceneActionsCallbackInterface;
-    private readonly InputAction m_CutScene_Newaction;
+    private readonly InputAction m_CutScene_Skip;
+    private readonly InputAction m_CutScene_ShowHint;
     public struct CutSceneActions
     {
         private @InputActions m_Wrapper;
         public CutSceneActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_CutScene_Newaction;
+        public InputAction @Skip => m_Wrapper.m_CutScene_Skip;
+        public InputAction @ShowHint => m_Wrapper.m_CutScene_ShowHint;
         public InputActionMap Get() { return m_Wrapper.m_CutScene; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -483,16 +506,22 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_CutSceneActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_CutSceneActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_CutSceneActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_CutSceneActionsCallbackInterface.OnNewaction;
+                @Skip.started -= m_Wrapper.m_CutSceneActionsCallbackInterface.OnSkip;
+                @Skip.performed -= m_Wrapper.m_CutSceneActionsCallbackInterface.OnSkip;
+                @Skip.canceled -= m_Wrapper.m_CutSceneActionsCallbackInterface.OnSkip;
+                @ShowHint.started -= m_Wrapper.m_CutSceneActionsCallbackInterface.OnShowHint;
+                @ShowHint.performed -= m_Wrapper.m_CutSceneActionsCallbackInterface.OnShowHint;
+                @ShowHint.canceled -= m_Wrapper.m_CutSceneActionsCallbackInterface.OnShowHint;
             }
             m_Wrapper.m_CutSceneActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @Skip.started += instance.OnSkip;
+                @Skip.performed += instance.OnSkip;
+                @Skip.canceled += instance.OnSkip;
+                @ShowHint.started += instance.OnShowHint;
+                @ShowHint.performed += instance.OnShowHint;
+                @ShowHint.canceled += instance.OnShowHint;
             }
         }
     }
@@ -540,11 +569,12 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     }
     public interface IMenuActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnMenuOpenClose(InputAction.CallbackContext context);
     }
     public interface ICutSceneActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnSkip(InputAction.CallbackContext context);
+        void OnShowHint(InputAction.CallbackContext context);
     }
     public interface IDialogueActions
     {

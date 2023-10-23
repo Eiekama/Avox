@@ -191,7 +191,7 @@
             "id": "d11e9f1d-2f8f-4d80-87a9-eb94f483acaa",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "MenuOpenClose",
                     "type": "Button",
                     "id": "f028cf2d-b092-4b48-a7dd-88ffbc58cbd0",
                     "expectedControlType": "Button",
@@ -204,11 +204,11 @@
                 {
                     "name": "",
                     "id": "3966dcf2-1c31-4e04-b661-c3ce60dcadf3",
-                    "path": "",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "MenuOpenClose",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -219,9 +219,18 @@
             "id": "9b0e0d6f-dd51-434c-99c8-a77de99c25af",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Skip",
                     "type": "Button",
                     "id": "c62b4a72-f813-4ca9-b859-92a7a5390afa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=3)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShowHint",
+                    "type": "Button",
+                    "id": "2ca1a8fa-0bec-4eb7-b98b-42076ae4e073",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -232,11 +241,22 @@
                 {
                     "name": "",
                     "id": "dffcce19-f17b-4206-825e-4e7c8b78f449",
-                    "path": "",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9485eda5-5e03-4143-b9cf-d59d83cf70bb",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowHint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
