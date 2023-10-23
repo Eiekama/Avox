@@ -8,7 +8,6 @@ public interface IMovement
 {
     PlayerInstance player { get; set; }
     BoxCollider2D playerBoxCollider { get; set; }
-    float lastOnGroundTime { get; set; }
 
     Vector2 groundCheckSize { get; set; }
     LayerMask groundLayer { get; set; }
