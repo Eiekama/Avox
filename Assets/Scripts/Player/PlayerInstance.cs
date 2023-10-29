@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Player;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -32,6 +33,8 @@ public class PlayerInstance : MonoBehaviour
 
         status.player = this;
         movement.player = this;
+        movement.playerBoxCollider = GetComponent<BoxCollider2D>();
+        movement.facing = 1.0f;
         combat.player = this;
 
         movement.groundCheckSize = GetComponent<BoxCollider2D>().size + new Vector2(-0.02f, 0.0f);

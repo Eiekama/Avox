@@ -42,38 +42,52 @@ public interface IPlayerData
     /// <summary>
     /// Target speed we want the player to reach.
     /// </summary>
-    public float runMaxSpeed { get; }
+    float runMaxSpeed { get; }
     
     /// <summary>
     /// The actual force (multiplied with speedDiff) applied to the player.
     /// </summary>
-    public float runAccelAmount { get; }
+    float runAccelAmount { get; }
     
     /// <summary>
     /// Actual force (multiplied with speedDiff) applied to the player.
     /// </summary>
-    public float runDeccelAmount { get; }
+    float runDeccelAmount { get; }
 
     /// <summary>
     /// Multiplier applied to acceleration rate when airborne.
     /// </summary>
-    public float accelInAir { get; }
+    float accelInAir { get; }
     /// <summary>
     /// Multiplier applied to acceleration rate when airborne.
     /// </summary>
-    public float deccelInAir { get; }
+    float deccelInAir { get; }
     #endregion
     // Jump //
     #region Jump
     /// <summary>
     /// The actual force applied (upwards) to the player when they jump.
     /// </summary>
-    public float jumpForce { get; }
+    float jumpForce { get; }
 
     /// <summary>
     /// Multiplier to increase gravity if the player releases the jump button while still jumping.
     /// </summary>
-    public float jumpCutGravityMult { get; }
+    float jumpCutGravityMult { get; }
+
+    /// <summary>
+    /// Reduces gravity while close to the apex (desired max height) of the jump
+    /// </summary>
+    float jumpHangGravityMult { get; }
+
+    /// <summary>
+    /// Speeds (close to 0) where the player will experience extra "jump hang".
+    /// The player's velocity.y is closest to 0 at the jump's apex
+    /// </summary>
+    float jumpHangTimeThreshold { get; }
+
+    float jumpHangAccelerationMult { get; }
+    float jumpHangMaxSpeedMult { get; }
     #endregion
 
     #endregion
