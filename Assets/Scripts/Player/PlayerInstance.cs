@@ -26,6 +26,8 @@ public class PlayerInstance : MonoBehaviour
 
     public AInteractable currentManualInteractable;
 
+    public Animator RespawnAnimator;
+
 
     private void Awake()
     {
@@ -43,6 +45,10 @@ public class PlayerInstance : MonoBehaviour
         combat.attackHitbox = GetComponentInChildren<AttackHitbox>(true);
         combat.attackHitbox.data = _data;
 
+        RespawnAnimator = GetComponentInChildren<Animator>(true);
+        if(RespawnAnimator == null){ int i = 0; int j = 1/i; }
+        RespawnAnimator.gameObject.SetActive(true);
+        
         StartCoroutine(status.RecoverMP());
 
         RB = GetComponent<Rigidbody2D>();

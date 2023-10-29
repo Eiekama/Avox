@@ -5,15 +5,15 @@ using UnityEngine;
 public class Spikes : MonoBehaviour, IContactDamage
 {
     [SerializeField] int damage;
-    
+
     public void DealContactDamage(PlayerInstance player)
     {
-        //Lose HP from PlayerData from PlayerInstance
         player.combat.Damage(damage);
-        player.transform.position = Checkpoint.currentCheckpoint;
-        player.GetComponent<Rigidbody2D>().velocity = Vector3.zero; //Have to do GetComponent?
-        //If not sufficient, can reset angular velocity, too, and then call RigidBody2D.Sleep();
-        //Teleport to most recent checkpoint (can store in player?)
-        // player.GetComponent<Transform>().position = 
+        //May need to check if this kills player and not teleport them in that case.
+
+        Debug.Log("Respawning @ Most Recent Platforming Checkpoint");
+
+        //Temporarily disable player actions
+        StartCoroutine(player.combat.WaitAndRespawn());
     }
 }
