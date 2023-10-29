@@ -9,7 +9,7 @@ public class TypewriterEffect : MonoBehaviour
     {
         return StartCoroutine(TypeText(textToType, textLabel));
     }
-    private IEnumerator TypeText(string textToType, TMP_Text textLabel)
+private IEnumerator TypeText(string textToType, TMP_Text textLabel)
     {
         textLabel.text = string.Empty;
         float T = 0;
