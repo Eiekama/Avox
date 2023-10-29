@@ -39,10 +39,15 @@ namespace Player
         {
             if (_isJumpCut)
             {
+                Debug.Log("jump cut");
                 //Higher gravity if jump button released
                 SetGravityScale(player.data.gravityScale * player.data.jumpCutGravityMult);
                 //Caps maximum fall speed
                 player.RB.velocity = new Vector2(player.RB.velocity.x, Mathf.Max(player.RB.velocity.y, -player.data.maxFallSpeed));
+            } else if (System.Math.Abs(player.RB.velocity.y) < player.data.jumpHangTimeThreshold 
+                       && lastOnGroundTime <= 0)
+            {
+                SetGravityScale(player.data.gravityScale * player.data.jumpHangGravityMult);
             }
             else if (player.RB.velocity.y < 0)
             {
@@ -79,16 +84,11 @@ namespace Player
 
         public void Run(float moveInput)
         {
-            if (player.RB.velocity.x != 0)
+            if (moveInput < 0.0f || moveInput > 0.0f)
             {
-                float normalizedVelo = player.RB.velocity.x / Mathf.Abs(player.RB.velocity.x);
-                // check same sign:
-                if ((normalizedVelo < 0) ^ (facing < 0))
-                {
-                    Turn(player.RB.velocity.x / Mathf.Abs(player.RB.velocity.x));
-                }
+                Turn(moveInput);
             }
-            
+
             float _targetSpeed = moveInput * player.data.runMaxSpeed;
 
             float _accelRate;
@@ -108,6 +108,7 @@ namespace Player
                 if (Mathf.Abs(player.RB.velocity.y) < player.data.jumpHangTimeThreshold)
                 {
                     _accelRate *= player.data.jumpHangAccelerationMult;
+                    _targetSpeed *= player.data.jumpHangMaxSpeedMult;
                 }
             }
 
@@ -119,9 +120,11 @@ namespace Player
 
         public void Turn(float direction)
         {
+            Debug.Log(direction);
             facing = direction;
             Vector3 scale = player.gameObject.transform.localScale;
-            scale.x = facing;
+            scale.x = direction;
+            player.gameObject.transform.localScale = scale;
         }
 
         public void Jump()
@@ -151,7 +154,6 @@ namespace Player
             Debug.Log("double jump");
             SetGravityScale(player.data.gravityScale);
             player.RB.velocity = new Vector2(player.RB.velocity.x, 0);
-            _isJumpCut = false;
         }
 
         public IEnumerator DoubleJumpCoroutine()
