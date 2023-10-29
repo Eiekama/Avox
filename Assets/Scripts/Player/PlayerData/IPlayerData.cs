@@ -71,6 +71,15 @@ public interface IPlayerData
     float jumpForce { get; }
 
     /// <summary>
+    /// Number of frames to wait before applying force during double jump.
+    /// </summary>
+    int doubleJumpDelay { get; }
+    /// <summary>
+    /// Number of frames over which to apply force during double jump.
+    /// </summary>
+    int doubleJumpDuration { get; }
+
+    /// <summary>
     /// Multiplier to increase gravity if the player releases the jump button while still jumping.
     /// </summary>
     float jumpCutGravityMult { get; }

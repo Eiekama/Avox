@@ -11,8 +11,6 @@ public interface IMovement
 
     Vector2 groundCheckSize { get; set; }
     LayerMask groundLayer { get; set; }
-    
-    float facing { get; set; }
 
     float lastOnGroundTime { get; }
 
@@ -25,11 +23,13 @@ public interface IMovement
     /// </summary>
     /// TODO: Add lerpAmount back
     void Run(float moveInput);
-    void Turn(float direction);
     void Jump();
     void JumpCut();
 
     void Dash();
-    void DoubleJump();
+    void DoubleJump(MonoBehaviour mono);
     IEnumerator DoubleJumpCoroutine();
+
+    bool CanJump();
+    bool CanDoubleJump();
 }
