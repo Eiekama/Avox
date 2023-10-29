@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +10,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerInstance _player;
     public PlayerInput playerInput { get; private set; }
     public InputActions.PlayerActions playerInputActions { get; private set; }
-    private bool doubleJumpFlag = false;
 
     private void Start()
     {
@@ -20,28 +18,24 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Enable();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         _player.movement.UpdateTimers();
         _player.movement.UpdateChecks();
         _player.movement.UpdateGravity();
+    }
+
+    private void FixedUpdate()
+    {
         _player.movement.Run(playerInputActions.Run.ReadValue<float>());
-        if (doubleJumpFlag)
-        {
-            StartCoroutine(_player.movement.DoubleJumpCoroutine());
-            doubleJumpFlag = false;
-        }
     }
 
     public void JumpCallback(InputAction.CallbackContext context)
     {
-        if (context.performed && _player.movement.lastOnGroundTime > 0)
+        if (context.performed)
         {
-            _player.movement.Jump();
-        } else if (context.performed)
-        {
-            _player.movement.DoubleJump();
-            doubleJumpFlag = true;
+            if (_player.movement.CanJump()) { _player.movement.Jump(); }
+            else if (_player.movement.CanDoubleJump()) { _player.movement.DoubleJump(this); }
         }
         if (context.canceled)
         {

@@ -112,6 +112,12 @@ public class PlayerData : ScriptableObject, IPlayerData
     [SerializeField] private float _jumpTimeToApex;
     [HideInInspector] public float jumpForce { get; private set; }
 
+    [Space(10)]
+    [Header("Double Jump")]
+    [SerializeField] private int _doubleJumpDelay;
+    public int doubleJumpDelay => _doubleJumpDelay;
+    [SerializeField] private int _doubleJumpDuration;
+    public int doubleJumpDuration => _doubleJumpDuration;
 
     [Space(10)]
     [Header("All Jumps")]

@@ -34,13 +34,13 @@ public class PlayerInstance : MonoBehaviour
         controller = GetComponent<PlayerController>();
 
         status.player = this;
+
         movement.player = this;
         movement.playerBoxCollider = GetComponent<BoxCollider2D>();
-        movement.facing = 1.0f;
-        combat.player = this;
-
         movement.groundCheckSize = GetComponent<BoxCollider2D>().size + new Vector2(-0.02f, 0.0f);
         movement.groundLayer = _groundLayer;
+
+        combat.player = this;
 
         combat.attackHitbox = GetComponentInChildren<AttackHitbox>(true);
         combat.attackHitbox.data = _data;
@@ -48,6 +48,8 @@ public class PlayerInstance : MonoBehaviour
         RespawnAnimator = GetComponentInChildren<Animator>(true);
         if(RespawnAnimator == null){ int i = 0; int j = 1/i; }
         RespawnAnimator.gameObject.SetActive(true);
+        
+        StartCoroutine(status.RecoverMP());
 
         RB = GetComponent<Rigidbody2D>();
     }

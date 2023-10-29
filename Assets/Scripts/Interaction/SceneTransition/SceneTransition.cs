@@ -8,9 +8,13 @@ public class SceneTransition : AInteractable
     public enum SpawnLocation
     {
         Left,
-        Right
+        Right,
+        VerticalUp,
+        VerticalDown
     };
 
+
+    
     // NOTE: I still think it might be better to collect all these information from
     // all scenes and store them in a single ScriptableObject instead.
     // It will be easier to organise this way if the project gets big.
@@ -30,7 +34,8 @@ public class SceneTransition : AInteractable
     [Tooltip("Target scene transition index")]
     [SerializeField] private int toTransition;
 
- 
+
+    
     private Animator _transitionAnim;
     public Animator transitionAnim
     {
@@ -43,6 +48,19 @@ public class SceneTransition : AInteractable
 
     public override void Interact(PlayerInstance player)
     {
+        if (player.RB.velocity.x >= 0)
+        {
+            TransitionManager._playerDirection = true;
+        }
+        else
+        {
+            TransitionManager._playerDirection = false;
+        }
+        
+        TransitionManager._playerVertical = (player.transform.position.y - this.transform.position.y) / this.transform.localScale.y;
+        
+        Debug.Log(TransitionManager._playerVertical);
+        
         TransitionManager.currentTransition = toTransition;
         LoadNextScene(player.controller.playerInputActions);
     } 
