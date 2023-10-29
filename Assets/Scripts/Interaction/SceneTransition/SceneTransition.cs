@@ -9,7 +9,8 @@ public class SceneTransition : AInteractable
     {
         Left,
         Right,
-        Vertical
+        VerticalUp,
+        VerticalDown
     };
 
 
