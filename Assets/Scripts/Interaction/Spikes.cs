@@ -14,6 +14,6 @@ public class Spikes : MonoBehaviour, IContactDamage
         Debug.Log("Respawning @ Most Recent Platforming Checkpoint");
 
         //Temporarily disable player actions
-        StartCoroutine(player.combat.WaitAndRespawn(player, Checkpoint.respawnTime));
+        StartCoroutine(player.combat.WaitAndRespawn());
     }
 }

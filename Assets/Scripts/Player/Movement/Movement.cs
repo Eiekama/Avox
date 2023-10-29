@@ -120,7 +120,7 @@ namespace Player
 
         public void Turn(float direction)
         {
-            Debug.Log(direction);
+            // Debug.Log(direction);
             facing = direction;
             Vector3 scale = player.gameObject.transform.localScale;
             scale.x = direction;

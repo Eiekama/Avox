@@ -11,5 +11,7 @@ public interface ICombat : IDamageable
     
     void Die();
 
+    IEnumerator WaitAndRespawn();
+
     // when we add combat skills those would go in here too
 }

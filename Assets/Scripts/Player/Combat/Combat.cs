@@ -14,6 +14,8 @@ namespace Player
         // float _attackRate = 2f;
         // float _nextAttackTime = 0f;
 
+        public static float respawnTime = 2f; //Respawn time for death checkpoints
+
         public AttackHitbox attackHitbox { get; set; }
 
         public void Damage(int dmg)
@@ -23,6 +25,7 @@ namespace Player
 
         public void Die(){
             Debug.Log("Player Died :(");
+            player.status.ChangeCurrentHP(player.data.maxHP);
         }
 
         IEnumerator AttackCoroutine()
@@ -39,21 +42,14 @@ namespace Player
         }
 
         
-        //TODO - Zach: Fix w/e is going on here (I just copied the stuff from TransitionManager;)
-        // how to get the animator reference in here (basically just copying the animator from 
-        // TransitionManager (in the scene) for now.)
-        private Animator _animator;
-        private void Start() {
-            _animator = GetComponentInChildren<Animator>(true);
-            _animator.gameObject.SetActive(true);
-        }
-
-        IEnumerator WaitAndRespawn(PlayerInstance player, float time)
+        public IEnumerator WaitAndRespawn()
         {
+            Animator anim = player.RespawnAnimator;
             player.controller.playerInputActions.Disable(); //TODO: Also disable jumps
-            // _fade.SetTrigger("Start");
+
             Debug.Log("Before timer");
-            yield return new WaitForSeconds(time);
+            anim.SetTrigger("Start");
+            yield return new WaitForSeconds(respawnTime);
             Debug.Log("After timer");
             
             //Respawning; Resets Player location/velocity
@@ -64,5 +60,11 @@ namespace Player
             
             player.controller.playerInputActions.Enable();
         }
+        //Death respawn: Mostly a scene transition, heal to full, 
+        //Anim manager w/ animator(s) in it which the function references; basically just can copy what SceneTransition did
+        //Try and like post progress on discord if I can't come to the meeting.
+        //Post any questions/progress in the discord
+        //TODO: Stop other things from happening in the scene here, too?
+        //-> Same q for SceneTransitions.
     }
 }
