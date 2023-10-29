@@ -66,5 +66,6 @@ namespace Player
         //Post any questions/progress in the discord
         //TODO: Stop other things from happening in the scene here, too?
         //-> Same q for SceneTransitions.
+        //If we reload the scene, that would fix the moving problem & black screen but yeah
     }
 }
