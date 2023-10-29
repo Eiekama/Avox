@@ -34,38 +34,34 @@ public class DialogueUI : MonoBehaviour
         }
         _dialogueBox.SetActive(true);
         _textLabel.GetComponent<RectTransform>().anchoredPosition = Vector2.Scale(_cam.WorldToViewportPoint(pos + offset), _uiResolution);
-        if(dialogueObject.Effect.ToString() == "none")
-        {
-            _textLabel.text = dialogueObject.Dialogue[0];
-        }
-        else
-        {
-            StartCoroutine(Stepthrough(dialogueObject));
-        }
+        StartCoroutine(Stepthrough(dialogueObject));
     }
     private IEnumerator Stepthrough(DialogueObject dialogueObject)
     {
         _textLabel.text = string.Empty;
-        if(dialogueObject.Effect.ToString() == "fade")
+
+        foreach (string dialogue in dialogueObject.Dialogue)
         {
-            foreach (string dialogue in dialogueObject.Dialogue)
+
+            if (dialogueObject.Effect.ToString() == "fade")
             {
                 _FadeEffect = GetComponent<FadeEffect>();
                 yield return _FadeEffect.Run(dialogue, _textLabel);
-                yield return new WaitUntil(()=> Input.GetKeyDown(KeyCode.Space));
+
+            }
+            else if (dialogueObject.Effect.ToString() == "typewriter")
+            {
+                _typewriterEffect = GetComponent<TypewriterEffect>();
+                yield return _typewriterEffect.Run(dialogue, _textLabel);
+            }
+            else // none case
+            {
+                _textLabel.text = dialogue;
+                yield return new WaitForEndOfFrame();
             }
 
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         }
-        else if(dialogueObject.Effect.ToString() == "typewriter")
-        {
-        foreach (string dialogue in dialogueObject.Dialogue)
-        {
-            _typewriterEffect = GetComponent<TypewriterEffect>();
-            yield return _typewriterEffect.Run(dialogue, _textLabel);
-            yield return new WaitUntil(()=> Input.GetKeyDown(KeyCode.Space));
-        }
-        }
-         
 
         CloseDialogue(dialogueObject);
     }
