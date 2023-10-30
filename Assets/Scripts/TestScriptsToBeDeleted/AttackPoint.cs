@@ -12,7 +12,7 @@ public class AttackPoint : MonoBehaviour
         if(other.TryGetComponent(out IDamageable damageable))
         {
             Debug.Log("Enemy takes 1 damage");
-            damageable.Damage(1);
+            damageable.Damage(transform, 1);
         }
     }
     
