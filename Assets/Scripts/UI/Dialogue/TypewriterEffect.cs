@@ -17,7 +17,7 @@ private IEnumerator TypeText(string textToType, TMP_Text textLabel)
 
         while(charIndex < textToType.Length)
         {
-            T+= Time.deltaTime*typewriterSpeed;
+            T += Time.deltaTime*typewriterSpeed;
             charIndex = Mathf.FloorToInt(T);
             charIndex = Mathf.Clamp(charIndex,0 ,textToType.Length);
 
