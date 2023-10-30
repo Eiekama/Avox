@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Player
 {
@@ -26,6 +27,7 @@ namespace Player
         public void Die(){
             Debug.Log("Player Died :(");
             player.status.ChangeCurrentHP(player.data.maxHP);
+            // SceneTransition.
         }
 
         IEnumerator AttackCoroutine()
@@ -48,6 +50,7 @@ namespace Player
             player.controller.playerInputActions.Disable(); //TODO: Also disable jumps
 
             Debug.Log("Before timer");
+            Debug.Log(anim.);
             anim.SetTrigger("Start");
             yield return new WaitForSeconds(respawnTime);
             Debug.Log("After timer");
@@ -58,6 +61,7 @@ namespace Player
 
             //Can reset angular velocity, too, and then call RigidBody2D.Sleep();, if need be
             
+
             player.controller.playerInputActions.Enable();
         }
         //Death respawn: Mostly a scene transition, heal to full, 
@@ -67,5 +71,6 @@ namespace Player
         //TODO: Stop other things from happening in the scene here, too?
         //-> Same q for SceneTransitions.
         //If we reload the scene, that would fix the moving problem & black screen but yeah
+        //Direction player is facing?
     }
 }
