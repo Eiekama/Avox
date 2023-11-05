@@ -15,7 +15,7 @@ namespace Player
         // float _attackRate = 2f;
         // float _nextAttackTime = 0f;
 
-        public static float respawnTime = 1f; //Respawn time for death checkpoints
+        public static float respawnTime = 1f; //Respawn time for platforming checkpoints
 
         public AttackHitbox attackHitbox { get; set; }
 
