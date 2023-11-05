@@ -18,7 +18,7 @@ namespace Player
 
         public AttackHitbox attackHitbox { get; set; }
 
-        public void Damage(int dmg)
+        public void Damage(Transform _, int dmg)
         {
             player.status.ChangeCurrentHP(-dmg);
         }
