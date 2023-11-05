@@ -10,6 +10,11 @@ public class Spikes : MonoBehaviour, IContactDamage
     {
         player.combat.Damage(transform, damage);
         //May need to check if this kills player and not teleport them in that case.
+        //TEMPORARY:
+        if (player.data.currentHP <= 0)
+        {
+            player.combat.Die(this);
+        }
 
         Debug.Log("Respawning @ Most Recent Platforming Checkpoint");
 

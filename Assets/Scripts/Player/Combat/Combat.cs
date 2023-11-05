@@ -24,10 +24,22 @@ namespace Player
             player.status.ChangeCurrentHP(-dmg);
         }
 
-        public void Die(){
+        public void Die(MonoBehaviour mono){
             Debug.Log("Player Died :(");
             player.status.ChangeCurrentHP(player.data.maxHP);
-            // SceneTransition.
+            mono.StartCoroutine(DieCoroutine());
+        }
+        IEnumerator DieCoroutine()
+        {
+            //Not finished:
+            // int respawnScene = 16;
+            // Animator anim = player.RespawnAnimator;
+            // anim.SetTrigger("Start");
+
+            // player.controller.playerInputActions.Disable();
+            yield return new WaitForSeconds(respawnTime);
+
+            // SceneManager.LoadScene(respawnScene, LoadSceneMode.Single);
         }
 
         IEnumerator AttackCoroutine()
@@ -64,11 +76,5 @@ namespace Player
 
             player.controller.playerInputActions.Enable();
         }
-        //Death respawn: Mostly a scene transition, heal to full, 
-        //Anim manager w/ animator(s) in it which the function references; basically just can copy what SceneTransition did
-        //TODO: Stop other things from happening in the scene here, too?
-        //-> Same q for SceneTransitions.
-        //If we reload the scene, that would fix the moving problem & black screen but yeah
-        //Direction player is facing?
     }
 }

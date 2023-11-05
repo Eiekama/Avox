@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 172830108645602378}
   - component: {fileID: 8108653820328932490}
   m_Layer: 0
-  m_Name: Crossfade
+  m_Name: ISCrossfade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,7 +226,6 @@ GameObject:
   - component: {fileID: 3053949301346508818}
   - component: {fileID: 3053949301346508819}
   - component: {fileID: 3053949301346508816}
-  - component: {fileID: 6023793203072185722}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -483,26 +482,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!95 &6023793203072185722
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3053949301346508817}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3feb71fdc4255db4ea862b2e4ab89f57, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3053949301367829944
 GameObject:
   m_ObjectHideFlags: 0
