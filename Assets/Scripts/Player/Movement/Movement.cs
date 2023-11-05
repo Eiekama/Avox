@@ -149,11 +149,13 @@ namespace Player
 
         public bool CanDoubleJump()
         {
-            return !_isDoubleJumping;
+            return !_isDoubleJumping && player.data.currentMP > 0;
         }
+
         public void DoubleJump(MonoBehaviour mono)
         {
             _isJumpCut = false;
+            player.status.ChangeCurrentMP(-1);
             mono.StartCoroutine(DoubleJumpCoroutine());
         }
 

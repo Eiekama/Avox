@@ -27,6 +27,8 @@ MonoBehaviour:
   _deccelInAir: 0.8
   _jumpHeight: 4.5
   _jumpTimeToApex: 0.5
+  _doubleJumpDelay: 2
+  _doubleJumpDuration: 4
   _jumpCutGravityMult: 6
   _jumpHangGravityMult: 0
   _jumpHangTimeThreshold: 0
