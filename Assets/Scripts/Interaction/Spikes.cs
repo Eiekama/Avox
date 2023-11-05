@@ -8,7 +8,7 @@ public class Spikes : MonoBehaviour, IContactDamage
 
     public void DealContactDamage(PlayerInstance player)
     {
-        player.combat.Damage(damage);
+        player.combat.Damage(transform, damage);
         //May need to check if this kills player and not teleport them in that case.
 
         Debug.Log("Respawning @ Most Recent Platforming Checkpoint");

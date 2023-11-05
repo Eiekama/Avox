@@ -14,7 +14,7 @@ namespace Enemy
 
         public virtual void DealContactDamage(PlayerInstance player)
         {
-            player.combat.Damage(atk);
+            player.combat.Damage(transform, atk);
         }
 
         protected virtual void Die()
@@ -22,7 +22,7 @@ namespace Enemy
             gameObject.SetActive(false);
         }
 
-        public virtual void Damage(int dmg)
+        public virtual void Damage(Transform source, int dmg)
         {
             hp -= dmg;
             if (hp <= 0) { Die(); }
