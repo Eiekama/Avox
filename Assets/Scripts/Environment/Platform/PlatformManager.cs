@@ -21,8 +21,8 @@ public class PlatformManager : MonoBehaviour
             {
                 if (_data.info[i].scene == _currentScene && _data.info[i].index == Platform.index)
                 {
-                    //if (_data.info[i].collapsed) { Platform.gameObject.SetActive(false); }
-                    { Platform.dataAndIndex = (_data, i); }
+                    if (_data.info[i].collapsed) { Platform.gameObject.SetActive(false); }
+                    else { Platform.dataAndIndex = (_data, i); }
                     break;
                 }
             }
