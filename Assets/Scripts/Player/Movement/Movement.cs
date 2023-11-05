@@ -2,7 +2,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Player
@@ -19,14 +18,9 @@ namespace Player
             get { return _lastOnGroundTime; }
             set { _lastOnGroundTime = Mathf.Max(-0.1f, value); }
         }
-        
-        private float _facing;
-        public float facing
-        {
-            get { return _facing; }
-            set { _facing = value; }
-        }
 
+        private bool _isFacingRight = true;
+        private bool _isDoubleJumping;
         private bool _isJumpCut;
 
         public void UpdateTimers()
@@ -39,7 +33,6 @@ namespace Player
         {
             if (_isJumpCut)
             {
-                Debug.Log("jump cut");
                 //Higher gravity if jump button released
                 SetGravityScale(player.data.gravityScale * player.data.jumpCutGravityMult);
                 //Caps maximum fall speed
@@ -84,9 +77,9 @@ namespace Player
 
         public void Run(float moveInput)
         {
-            if (moveInput < 0.0f || moveInput > 0.0f)
+            if (moveInput != 0)
             {
-                Turn(moveInput);
+                UpdateDirectionToFace(moveInput > 0);
             }
 
             float _targetSpeed = moveInput * player.data.runMaxSpeed;
@@ -118,28 +111,32 @@ namespace Player
             player.RB.AddForce(_movement * Vector2.right, ForceMode2D.Force);
         }
 
-        public void Turn(float direction)
+        public void UpdateDirectionToFace(bool isMovingRight)
         {
-            Debug.Log(direction);
-            facing = direction;
-            Vector3 scale = player.gameObject.transform.localScale;
-            scale.x = direction;
-            player.gameObject.transform.localScale = scale;
+            if (isMovingRight != _isFacingRight) { Turn(); }
+        }
+
+        public void Turn()
+        {
+            Vector3 scale = player.transform.localScale;
+            scale.x *= -1;
+            player.transform.localScale = scale;
+
+            _isFacingRight = !_isFacingRight;
+        }
+
+        public bool CanJump()
+        {
+            return lastOnGroundTime > 0;
         }
 
         public void Jump()
         {
-            // reset gravity, jump cut, and velocity
-            if (lastOnGroundTime > 0)
-            {
-                Debug.Log("jump");
-                player.RB.AddForce(Vector2.up * player.data.jumpForce, ForceMode2D.Impulse);
-            }
-            else
-            {
-                DoubleJump();
-            }
+            _isJumpCut = false;
+            lastOnGroundTime = 0;
+            player.RB.AddForce(Vector2.up * player.data.jumpForce, ForceMode2D.Impulse);
         }
+
         public void JumpCut()
         {
             _isJumpCut = true;
@@ -149,28 +146,35 @@ namespace Player
         {
             // ADD IMPLEMENTATION HERE
         }
-        public void DoubleJump()
+
+        public bool CanDoubleJump()
         {
-            Debug.Log("double jump");
-            SetGravityScale(player.data.gravityScale);
-            player.RB.velocity = new Vector2(player.RB.velocity.x, 0);
+            return !_isDoubleJumping;
+        }
+        public void DoubleJump(MonoBehaviour mono)
+        {
+            _isJumpCut = false;
+            mono.StartCoroutine(DoubleJumpCoroutine());
         }
 
         public IEnumerator DoubleJumpCoroutine()
         {
-            Debug.Log("test");
-            for (int i = 0; i < 6; i++)
+            _isDoubleJumping = true;
+
+            float force = player.data.jumpForce;
+            if (player.RB.velocity.y < 0)
+                force -= player.RB.velocity.y;
+
+            for (int i = 0; i < player.data.doubleJumpDelay; i++)
             {
-                if (lastOnGroundTime > 0)
-                {
-                    yield break;
-                }
-                if (i > 1)
-                {
-                    player.RB.AddForce(Vector2.up * player.data.jumpForce * 15.0f, ForceMode2D.Force);
-                }
+                yield return null;
+            }
+            for (int i = 0; i < player.data.doubleJumpDuration; i++)
+            {
+                player.RB.AddForce(Vector2.up * (force / player.data.doubleJumpDuration), ForceMode2D.Impulse);
                 yield return new WaitForFixedUpdate();
             }
+            _isDoubleJumping = false;
         }
     }
 }

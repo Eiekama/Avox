@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Checkpoint : AInteractable
 {
-    public static Vector3 currentCheckpoint { get; private set; }
+    public static Vector3 currentCheckpoint { get; private set; } //Most recent death checkpoint
+
     public override void Interact(PlayerInstance player)
     {
         currentCheckpoint = transform.position;
