@@ -15,9 +15,9 @@ public class MainController : MonoBehaviour
 
     private Image _overlayImage;
 
-    private bool fadein = false;
-    private bool fadeout = false;
-    private float overlay_alaph;
+    //private bool fadein = false;
+    //private bool fadeout = false;
+    //private float overlay_alaph;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,36 +73,36 @@ public class MainController : MonoBehaviour
 
     private void Update()
     {
-        if (fadein)
-        {
-            Overlay.SetActive(true);
-            if (overlay_alaph < 1)
-            {
-                overlay_alaph += Time.deltaTime;
-                _overlayImage.color = new Color(1, 1, 1, overlay_alaph);
-            }
-            else
-            {
-                fadein = false;
-                fadeout = true;
-                cutScene.GetComponent<VideoPlayerController>().startVideo();
-                //gameObject.SetActive(false);
-            }
-        }
-        else if (fadeout)
-        {
-            if (overlay_alaph > 0)
-            {
-                overlay_alaph -= Time.deltaTime;
-                _overlayImage.color = new Color(1, 1, 1, overlay_alaph);
-            }
-            else
-            {
-                fadeout = false;
-                Overlay.SetActive(false);
-                gameObject.SetActive(false);
-            }
-        }
+        //if (fadein)
+        //{
+        //    Overlay.SetActive(true);
+        //    if (overlay_alaph < 1)
+        //    {
+        //        overlay_alaph += Time.deltaTime;
+        //        _overlayImage.color = new Color(1, 1, 1, overlay_alaph);
+        //    }
+        //    else
+        //    {
+        //        fadein = false;
+        //        fadeout = true;
+        //        cutScene.GetComponent<VideoPlayerController>().startVideo();
+        //        //gameObject.SetActive(false);
+        //    }
+        //}
+        //else if (fadeout)
+        //{
+        //    if (overlay_alaph > 0)
+        //    {
+        //        overlay_alaph -= Time.deltaTime;
+        //        _overlayImage.color = new Color(1, 1, 1, overlay_alaph);
+        //    }
+        //    else
+        //    {
+        //        fadeout = false;
+        //        Overlay.SetActive(false);
+        //        gameObject.SetActive(false);
+        //    }
+        //}
 
     }
     void StartGame()
