@@ -367,8 +367,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111469562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.18, y: -1.583, z: 0.35098872}
-  m_LocalScale: {x: 3.1374552, y: 2.6933103, z: 1}
+  m_LocalPosition: {x: 0.938, y: -2.3656, z: 0.35098872}
+  m_LocalScale: {x: 5.3735194, y: 1.1282277, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -505,6 +505,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2980844059133373496, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 3053949301346508817, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
       propertyPath: m_Name
       value: Player
@@ -571,6 +575,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3053949301346508822, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511377686429006251, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
+      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

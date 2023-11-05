@@ -9,8 +9,7 @@ public class background : MonoBehaviour , IDamageable
     private void Start() {
         anim = GetComponent<Animator>();
     }
-
-    private void OnCollisionEnter2D(Collision2D other) 
+    private void OnTriggerEnter2D(Collider2D other) 
     {
 
         if(other.gameObject.CompareTag("Player"))
@@ -19,7 +18,7 @@ public class background : MonoBehaviour , IDamageable
         }
     }
 
-    private void OnCollisionExit2D(Collision2D other) 
+    private void OnTriggerExit2D(Collider2D other) 
     {
 
         if(other.gameObject.CompareTag("Player"))
@@ -28,7 +27,7 @@ public class background : MonoBehaviour , IDamageable
         }
     }
 
-    private void Damage(Transform source, int dmgTaken){
-        
+    public void Damage(Transform source, int dmgTaken){
+        anim.SetTrigger("Attacked");
     }
 }
