@@ -463,7 +463,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isAuto: 1
-  _dialogueObject: {fileID: 11400000, guid: a644ff58012494bc2a5b996e1ba4de40, type: 2}
+  _dialogueObject:
+    dialogue: []
+    effect: 0
+    _stopPlayer: 0
   _dialogueUI: {fileID: 361329748}
   offset: {x: 0, y: 0}
 --- !u!61 &361329750
@@ -514,7 +517,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &361329752
 Canvas:
   m_ObjectHideFlags: 0
@@ -1614,10 +1617,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1714357354025925931, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
+      propertyPath: m_Name
+      value: ISCrossfade
+      objectReference: {fileID: 0}
     - target: {fileID: 3053949301346508817, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3053949301346508818, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
+      propertyPath: RespawnAnimator
+      value: 
+      objectReference: {fileID: 1833412390}
     - target: {fileID: 3053949301346508818, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
       propertyPath: _groundLayer.m_Bits
       value: 64
@@ -1666,8 +1677,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5421146318515576008, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8108653820328932490, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3feb71fdc4255db4ea862b2e4ab89f57, type: 2}
+    m_RemovedComponents:
+    - {fileID: 6023793203072185722, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
+--- !u!95 &1833412390 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8108653820328932490, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
+  m_PrefabInstance: {fileID: 1784274486}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1904784251
 PrefabInstance:
   m_ObjectHideFlags: 0

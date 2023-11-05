@@ -47,7 +47,6 @@ public class PlayerInstance : MonoBehaviour
 
         RespawnAnimator = GetComponentInChildren<Animator>(true);
         if(RespawnAnimator == null){ int i = 0; int j = 1/i; }
-        RespawnAnimator.gameObject.SetActive(true);
         
         StartCoroutine(status.RecoverMP());
 

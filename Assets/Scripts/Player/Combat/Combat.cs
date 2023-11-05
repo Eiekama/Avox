@@ -15,7 +15,7 @@ namespace Player
         // float _attackRate = 2f;
         // float _nextAttackTime = 0f;
 
-        public static float respawnTime = 2f; //Respawn time for death checkpoints
+        public static float respawnTime = 1f; //Respawn time for death checkpoints
 
         public AttackHitbox attackHitbox { get; set; }
 
@@ -49,25 +49,23 @@ namespace Player
             Animator anim = player.RespawnAnimator;
             player.controller.playerInputActions.Disable(); //TODO: Also disable jumps
 
-            Debug.Log("Before timer");
-            Debug.Log(anim.);
+            anim.gameObject.SetActive(true);
             anim.SetTrigger("Start");
-            yield return new WaitForSeconds(respawnTime);
-            Debug.Log("After timer");
-            
+            yield return new WaitForSeconds(respawnTime/2);
+
             //Respawning; Resets Player location/velocity
             player.transform.position = Checkpoint.currentCheckpoint;
             player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            yield return new WaitForSeconds(respawnTime/2);
 
-            //Can reset angular velocity, too, and then call RigidBody2D.Sleep();, if need be
+            anim.SetTrigger("FadeIn");
             
+            //Can reset angular velocity, too, and then call RigidBody2D.Sleep();, if need be
 
             player.controller.playerInputActions.Enable();
         }
         //Death respawn: Mostly a scene transition, heal to full, 
         //Anim manager w/ animator(s) in it which the function references; basically just can copy what SceneTransition did
-        //Try and like post progress on discord if I can't come to the meeting.
-        //Post any questions/progress in the discord
         //TODO: Stop other things from happening in the scene here, too?
         //-> Same q for SceneTransitions.
         //If we reload the scene, that would fix the moving problem & black screen but yeah
