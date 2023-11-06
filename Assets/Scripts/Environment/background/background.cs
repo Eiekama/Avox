@@ -3,28 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class background : MonoBehaviour , IDamageable
+public class background : AInteractable , IDamageable
 {    
     public Animator anim;
     private void Start() {
         anim = GetComponent<Animator>();
     }
-    private void OnTriggerEnter2D(Collider2D other) 
-    {
-
-        if(other.gameObject.CompareTag("Player"))
-        {
+    public override void Interact(PlayerInstance player){
             anim.SetTrigger("walking through");
-        }
     }
-
-    private void OnTriggerExit2D(Collider2D other) 
-    {
-
-        if(other.gameObject.CompareTag("Player"))
-        {
-            anim.SetTrigger("Exit");
-        }
+    public override void OnExit(PlayerInstance player){
+        anim.SetTrigger("Exit");
     }
 
     public void Damage(Transform source, int dmgTaken){
