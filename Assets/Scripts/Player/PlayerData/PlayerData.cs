@@ -63,10 +63,10 @@ public class PlayerData : ScriptableObject, IPlayerData
     [Space(5)]
 
     [SerializeField] float _fallGravityMult;
-    public float fallGravityMult { get { return _fallGravityMult; } }
+    public float fallGravityMult => _fallGravityMult;
 
     [SerializeField] float _maxFallSpeed;
-    public float maxFallSpeed { get { return _maxFallSpeed; } }
+    public float maxFallSpeed => _maxFallSpeed;
 
     /// <summary>
     /// Downwards force (gravity) needed for the desired jumpHeight and jumpTimeToApex.
@@ -80,7 +80,7 @@ public class PlayerData : ScriptableObject, IPlayerData
     [Header("Run")]
     [Space(5)]
     [SerializeField] private float _runMaxSpeed = 10.0f;
-    public float runMaxSpeed { get { return _runMaxSpeed; } }
+    public float runMaxSpeed => _runMaxSpeed;
 
     [Tooltip("The speed at which our player accelerates to max speed," +
              "can be set to 1 for instant acceleration down to 0 for none at all.")]
@@ -94,9 +94,9 @@ public class PlayerData : ScriptableObject, IPlayerData
 
     [Space(5)]
     [Range(0f, 1)] [SerializeField] private float _accelInAir;
-    public float accelInAir { get { return _accelInAir; } }
+    public float accelInAir => _accelInAir;
     [Range(0f, 1)] [SerializeField] private float _deccelInAir;
-    public float deccelInAir { get { return _deccelInAir; } }
+    public float deccelInAir => _deccelInAir;
 
     [Space(20)]
 
@@ -112,11 +112,29 @@ public class PlayerData : ScriptableObject, IPlayerData
     [SerializeField] private float _jumpTimeToApex;
     [HideInInspector] public float jumpForce { get; private set; }
 
+    [Space(10)]
+    [Header("Double Jump")]
+    [SerializeField] private int _doubleJumpDelay;
+    public int doubleJumpDelay => _doubleJumpDelay;
+    [SerializeField] private int _doubleJumpDuration;
+    public int doubleJumpDuration => _doubleJumpDuration;
 
     [Space(10)]
     [Header("All Jumps")]
     [SerializeField] private float _jumpCutGravityMult;
-    public float jumpCutGravityMult { get { return _jumpCutGravityMult; } }
+    public float jumpCutGravityMult => _jumpCutGravityMult;
+
+    [Range(0f, 1)] [SerializeField] float _jumpHangGravityMult;
+    public float jumpHangGravityMult => _jumpHangGravityMult;
+
+    [SerializeField] float _jumpHangTimeThreshold;
+    public float jumpHangTimeThreshold => _jumpHangTimeThreshold;
+
+    [Space(0.5f)]
+    [SerializeField] float _jumpHangAccelerationMult;
+    public float jumpHangAccelerationMult => _jumpHangAccelerationMult;
+    [SerializeField] float _jumpHangMaxSpeedMult;
+    public float jumpHangMaxSpeedMult => _jumpHangMaxSpeedMult;
 
     //below are stuff i havent organised yet
 
@@ -130,14 +148,7 @@ public class PlayerData : ScriptableObject, IPlayerData
     public bool doConserveMomentum = true;
 
     [Space(20)]
-
-    [Header("Both Jumps")]
     
-    [Range(0f, 1)] public float jumpHangGravityMult; //Reduces gravity while close to the apex (desired max height) of the jump
-    public float jumpHangTimeThreshold; //Speeds (close to 0) where the player will experience extra "jump hang". The player's velocity.y is closest to 0 at the jump's apex (think of the gradient of a parabola or quadratic function)
-    [Space(0.5f)]
-    public float jumpHangAccelerationMult;
-    public float jumpHangMaxSpeedMult;
 
     [Header("Assists")]
     [Range(0.01f, 0.5f)] public float coyoteTime; //Grace period after falling off a platform, where you can still jump

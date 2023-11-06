@@ -17,6 +17,11 @@ namespace Player
             _player.data.currentHP += amount;
             if (StatusHUD.instance)
                 StatusHUD.instance.UpdateHud();
+            
+            if(_player.data.currentHP == 0){
+                //TODO: Reinstate once ASystem updated:
+                // _player.combat.Die();
+            }
         }
 
         public void ChangeMaxMP(int amount) {
@@ -31,8 +36,13 @@ namespace Player
 
         private bool CanRecoverMP()
         {
-            // ADD IMPLEMENTATION HERE
-            return true; //replace
+            if (player.movement.lastOnGroundTime > 0
+                && player.data.currentMP < player.data.maxMP)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public IEnumerator RecoverMP()
@@ -40,15 +50,18 @@ namespace Player
             float rechargeAmount = 0.0f;
             while (true)
             {
-                yield return new WaitForSeconds(1.0f);
+                yield return new WaitForFixedUpdate();
                 if (CanRecoverMP())
                 {
-                    rechargeAmount += _player.data.MPRecoveryRate;
-                    if (rechargeAmount > 1.0f)
+                    rechargeAmount += Time.deltaTime;
+                    if (rechargeAmount > player.data.MPRecoveryRate)
                     {
-                        ChangeCurrentMP(Mathf.FloorToInt(rechargeAmount));
-                        rechargeAmount %= 1.0f;
+                        ChangeCurrentMP(1);
+                        rechargeAmount = 0;
                     }
+                } else
+                {
+                    rechargeAmount = 0;
                 }
             }
         }

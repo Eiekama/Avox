@@ -6,21 +6,57 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Main/Menu.unity
+    guid: fb7544b7967b44f198a7cf1c9ded1f6d
+  - enabled: 1
+    path: Assets/Scenes/Main/Room 1.unity
+    guid: 3957f718aa3be4808aeb3fac24a4d78b
+  - enabled: 1
+    path: Assets/Scenes/Main/Room 2.unity
+    guid: 619e696b9c53c45329f50bb4fada36ab
+  - enabled: 1
+    path: Assets/Scenes/Main/Room 3.unity
+    guid: e1bb577a435924e37b576d60d31ae2f0
+  - enabled: 1
+    path: Assets/Scenes/Main/Room 4.unity
+    guid: 1a38d93c038404c8f85ea468eeaeb5c3
+  - enabled: 1
+    path: Assets/Scenes/Main/Room 5.unity
+    guid: 54f8196ab29904770ba3e74fe87449d5
+  - enabled: 1
+    path: Assets/Scenes/Main/Room 6.unity
+    guid: 1e2a6a0c587bf4a1eb61490b742d8b0f
+  - enabled: 1
+    path: Assets/Scenes/Main/Room 7.unity
+    guid: 1835979b7186f439d9dcb93789ab4543
+  - enabled: 1
+    path: Assets/Scenes/Main/Room 8.unity
+    guid: 1d59e6530a9634025b0a235efbde496d
+  - enabled: 1
+    path: Assets/Scenes/Main/Room 9.unity
+    guid: 87ab5ca7c8db340b2a1d6c07fe8187cf
+  - enabled: 1
+    path: Assets/Scenes/Main/Room 10.unity
+    guid: 9093304b4aeec426f874a9b9bb3d284f
+  - enabled: 1
     path: Assets/Scenes/Showcases/Alpha_1.unity
     guid: 389cde5c937344641b519a260902019a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Showcases/Alpha_2.unity
     guid: 209b326508db44c00a13dc1dc6937978
   - enabled: 0
     path: Assets/Scenes/TestScenes/MovementScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TestScenes/Scene 1.unity
     guid: 0d7754cfb40664ed7a9462c24180f40e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TestScenes/Scene 2.unity
     guid: dfb433d90b8db0f4e8c739c99a23b51b
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/Dialogue test.unity
+    guid: 867c3d42b4b19b744b2ac01ecc79a4ac
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/falling platform test.unity
+    guid: da1954f91c2c6e14e836560290dcbdfb
   m_configObjects: {}

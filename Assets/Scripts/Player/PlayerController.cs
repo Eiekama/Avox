@@ -34,7 +34,8 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            _player.movement.Jump();
+            if (_player.movement.CanJump()) { _player.movement.Jump(); }
+            else if (_player.movement.CanDoubleJump()) { _player.movement.DoubleJump(this); }
         }
         if (context.canceled)
         {

@@ -9,7 +9,7 @@ public class TypewriterEffect : MonoBehaviour
     {
         return StartCoroutine(TypeText(textToType, textLabel));
     }
-    private IEnumerator TypeText(string textToType, TMP_Text textLabel)
+private IEnumerator TypeText(string textToType, TMP_Text textLabel)
     {
         textLabel.text = string.Empty;
         float T = 0;
@@ -17,7 +17,7 @@ public class TypewriterEffect : MonoBehaviour
 
         while(charIndex < textToType.Length)
         {
-            T+= Time.deltaTime*typewriterSpeed;
+            T += Time.deltaTime*typewriterSpeed;
             charIndex = Mathf.FloorToInt(T);
             charIndex = Mathf.Clamp(charIndex,0 ,textToType.Length);
 
