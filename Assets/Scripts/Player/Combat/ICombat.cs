@@ -9,7 +9,7 @@ public interface ICombat : IDamageable
 
     void Attack(MonoBehaviour mono);
     
-    void Die();
+    void Die(MonoBehaviour mono);
 
     IEnumerator WaitAndRespawn();
 

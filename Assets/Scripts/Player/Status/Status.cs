@@ -19,7 +19,8 @@ namespace Player
                 StatusHUD.instance.UpdateHud();
             
             if(_player.data.currentHP == 0){
-                _player.combat.Die();
+                //TODO: Reinstate once ASystem updated:
+                // _player.combat.Die();
             }
         }
 
