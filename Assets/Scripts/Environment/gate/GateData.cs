@@ -16,4 +16,5 @@ public class GateData : ScriptableObject
 
     [SerializeField] GateInfo[] _info;
     public GateInfo[] info { get { return _info; } }
+    
 }
