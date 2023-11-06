@@ -19,6 +19,7 @@ public class VideoPlayerController : MonoBehaviour
     private float currentProgress = 0.0f;
 
 
+
     public GameObject menuPanel;
 
 
@@ -26,19 +27,20 @@ public class VideoPlayerController : MonoBehaviour
 
     void Start()
     {
-        // 获取现有的VideoPlayer组件
+        // Get current videoplayer
         videoPlayer = GetComponent<VideoPlayer>();
         hintText = GameObject.Find("HintText").GetComponent<Text>();
         if (hintText == null)
         {
-            Debug.LogError("找不到提示文本对象，请确保对象名称正确");
+            Debug.LogError("check object name");
         }
         skipSlider = GameObject.Find("skipSlider").GetComponent<Slider>();
         if (skipSlider == null)
         {
-            Debug.LogError("找不到提示文本对象，请确保对象名称正确");
+            Debug.LogError("Check object name");
         }
         skipSlider.gameObject.SetActive(false);
+
 
     }
 
@@ -46,20 +48,6 @@ public class VideoPlayerController : MonoBehaviour
 
     void Update()
     {
-        //// 检测空格键并提前结束视频
-        //if (videoStarted && Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    videoPlayer.Stop();
-        //    videoStarted = false;
-        //    EndReached(videoPlayer); // 触发视频结束事件
-        //}
-        // 检测除空格键以外的按键
-
-        //if (videoStarted && Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    ShowHint();
-        //}
-        // 更新提示计时器
 
         if (hintTimer > 0)
         {
@@ -71,7 +59,6 @@ public class VideoPlayerController : MonoBehaviour
         }
 
         // 在Update函数中更新进度条的值
-        //清空
         if (!isSkiping)
         {
             currentProgress = 0;
@@ -79,10 +66,10 @@ public class VideoPlayerController : MonoBehaviour
         if (isSkiping&&currentProgress < 1.0f)
         {
             currentProgress += Time.deltaTime/ skipTime;
-            // 限制进度在0到1之间
+            // limit to 0 - 1
         }
         currentProgress = Mathf.Clamp01(currentProgress);
-        // 更新进度条的值
+        // update value of Slider
         skipSlider.value = currentProgress;
     }
 
@@ -123,7 +110,6 @@ public class VideoPlayerController : MonoBehaviour
     {
         // 自动播放视频
         videoPlayer.Play();
-
         menuPanel.SetActive(false);
     }
     void endReached(VideoPlayer vp)
