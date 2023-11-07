@@ -9,7 +9,6 @@ namespace Player
     public class Movement : ASystem, IMovement
     {
         public BoxCollider2D playerBoxCollider { get; set; }
-        public Vector2 groundCheckSize { get; set; }
         public LayerMask groundLayer { get; set; }
 
         private float _lastOnGroundTime;
@@ -19,7 +18,6 @@ namespace Player
             set { _lastOnGroundTime = Mathf.Max(-0.1f, value); }
         }
 
-        private bool _isFacingRight = true;
         private bool _isDoubleJumping;
         private bool _isJumpCut;
 
@@ -59,7 +57,8 @@ namespace Player
         public void UpdateChecks()
         {
             #region COLLISION CHECKS    
-            Vector2 terrainCheckPoint = (Vector2)player.transform.position + playerBoxCollider.offset - new Vector2(0.0f, 0.01f);
+            Vector2 terrainCheckPoint = (Vector2)player.transform.position + playerBoxCollider.offset - new Vector2(0.0f, 0.1f);
+            Vector2 groundCheckSize = playerBoxCollider.size + new Vector2(-0.1f, 0.0f);
             if (Physics2D.OverlapBox(terrainCheckPoint, groundCheckSize, 0, groundLayer))
             {
                 lastOnGroundTime = 0.01f;
@@ -113,7 +112,7 @@ namespace Player
 
         public void UpdateDirectionToFace(bool isMovingRight)
         {
-            if (isMovingRight != _isFacingRight) { Turn(); }
+            if (isMovingRight != player.data.isFacingRight) { Turn(); }
         }
 
         public void Turn()
@@ -122,7 +121,7 @@ namespace Player
             scale.x *= -1;
             player.transform.localScale = scale;
 
-            _isFacingRight = !_isFacingRight;
+            player.data.isFacingRight = !player.data.isFacingRight;
         }
 
         public bool CanJump()

@@ -15,10 +15,10 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @InputActions : IInputActionCollection2, IDisposable
+public partial class PlayerInputActions : IInputActionCollection2, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @InputActions()
+    public PlayerInputActions()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""Input Controls"",
@@ -946,8 +946,8 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Attack;
     public struct PlayerActions
     {
-        private @InputActions m_Wrapper;
-        public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        private PlayerInputActions m_Wrapper;
+        public PlayerActions(PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Run => m_Wrapper.m_Player_Run;
@@ -1008,8 +1008,8 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Menu_Navigate;
     public struct MenuActions
     {
-        private @InputActions m_Wrapper;
-        public MenuActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        private PlayerInputActions m_Wrapper;
+        public MenuActions(PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @MenuOpenClose => m_Wrapper.m_Menu_MenuOpenClose;
         public InputAction @Navigate => m_Wrapper.m_Menu_Navigate;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
@@ -1050,8 +1050,8 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_CutScene_Navigate;
     public struct CutSceneActions
     {
-        private @InputActions m_Wrapper;
-        public CutSceneActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        private PlayerInputActions m_Wrapper;
+        public CutSceneActions(PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Skip => m_Wrapper.m_CutScene_Skip;
         public InputAction @ShowHint => m_Wrapper.m_CutScene_ShowHint;
         public InputAction @Navigate => m_Wrapper.m_CutScene_Navigate;
@@ -1097,8 +1097,8 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Dialogue_Newaction;
     public struct DialogueActions
     {
-        private @InputActions m_Wrapper;
-        public DialogueActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        private PlayerInputActions m_Wrapper;
+        public DialogueActions(PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Newaction => m_Wrapper.m_Dialogue_Newaction;
         public InputActionMap Get() { return m_Wrapper.m_Dialogue; }
         public void Enable() { Get().Enable(); }

@@ -8,14 +8,11 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] PlayerInstance _player;
-    public PlayerInput playerInput { get; private set; }
-    public InputActions.PlayerActions playerInputActions { get; private set; }
+    public PlayerInputActions inputActions { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
-        playerInputActions = new InputActions().Player;
-        playerInputActions.Enable();
+        inputActions = new PlayerInputActions();
     }
 
     private void Update()
@@ -27,7 +24,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _player.movement.Run(playerInputActions.Run.ReadValue<float>());
+        if (inputActions.Player.enabled)
+        {
+            _player.movement.Run(inputActions.Player.Run.ReadValue<float>());
+        }
     }
 
     public void JumpCallback(InputAction.CallbackContext context)
@@ -57,5 +57,18 @@ public class PlayerController : MonoBehaviour
         {
             _player.combat.Attack(this);
         }
+    }
+
+    public void ToggleActionMap(InputActionMap actionMap)
+    {
+        if (actionMap.enabled) { return; }
+        inputActions.Disable();
+        actionMap.Enable();
+    }
+
+    public void DisableActionMap(InputActionMap actionMap)
+    {
+        if (!actionMap.enabled) { return; }
+        actionMap.Disable();
     }
 }

@@ -311,7 +311,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 3053949301346508817}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 5ed72f2d83381954f8f06e74e1013c02, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -477,6 +477,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2ca1a8fa-0bec-4eb7-b98b-42076ae4e073
     m_ActionName: CutScene/ShowHint[/Keyboard/anyKey]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 25037b28-3de5-48fe-8178-fd3029826504
+    m_ActionName: Menu/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f6dffbe3-2b91-4ac9-8807-5e115b2eff6b
+    m_ActionName: CutScene/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

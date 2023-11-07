@@ -17,7 +17,7 @@ MonoBehaviour:
   _currentHP: 5
   _maxMP: 3
   _currentMP: 3
-  _MPRecovaryRate: 0.2
+  _MPRecovaryRate: 0.5
   _fallGravityMult: 1.3
   _maxFallSpeed: 15
   _runMaxSpeed: 7
@@ -30,10 +30,10 @@ MonoBehaviour:
   _doubleJumpDelay: 2
   _doubleJumpDuration: 4
   _jumpCutGravityMult: 6
-  _jumpHangGravityMult: 0
-  _jumpHangTimeThreshold: 0
-  _jumpHangAccelerationMult: 0
-  _jumpHangMaxSpeedMult: 0
+  _jumpHangGravityMult: 0.5
+  _jumpHangTimeThreshold: 0.2
+  _jumpHangAccelerationMult: 1.2
+  _jumpHangMaxSpeedMult: 1.3
   doConserveMomentum: 1
   coyoteTime: 0
   jumpInputBufferTime: 0

@@ -9,8 +9,10 @@ public class SceneTransition : AInteractable
     {
         Left,
         Right,
-        VerticalUp,
-        VerticalDown
+        Up,
+        UpRightOnly,
+        UpLeftOnly,
+        Down
     };
 
 
@@ -48,33 +50,19 @@ public class SceneTransition : AInteractable
 
     public override void Interact(PlayerInstance player)
     {
-        if (player.RB.velocity.x >= 0)
-        {
-            TransitionManager._playerDirection = true;
-        }
-        else
-        {
-            TransitionManager._playerDirection = false;
-        }
+        TransitionManager._playerVertical = (player.transform.position.y - transform.position.y) / transform.localScale.y;
         
-        TransitionManager._playerVertical = (player.transform.position.y - this.transform.position.y) / this.transform.localScale.y;
-        
-        Debug.Log(TransitionManager._playerVertical);
+        //Debug.Log(TransitionManager._playerVertical);
         
         TransitionManager.currentTransition = toTransition;
-        LoadNextScene(player.controller.playerInputActions);
+        StartCoroutine(LoadScene(player, toScene));
     } 
     
-    private void LoadNextScene(InputActions.PlayerActions playerInputActions)
-    {
-        StartCoroutine(LoadLevel(playerInputActions, toScene));
-    }
-
-    IEnumerator LoadLevel(InputActions.PlayerActions playerInputActions, int sceneIndex)
+    IEnumerator LoadScene(PlayerInstance player, int sceneIndex)
     {
         _transitionAnim.SetTrigger("Start");
 
-        playerInputActions.Disable();
+        player.controller.DisableActionMap(player.controller.inputActions.Player);
         yield return new WaitForSeconds(_transitionTime);
 
         SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);

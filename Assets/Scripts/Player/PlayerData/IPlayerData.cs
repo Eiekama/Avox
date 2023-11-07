@@ -19,6 +19,7 @@ public interface IPlayerData
     #endregion
 /////////////////////////////////// Movement ///////////////////////////////////
     #region Movement
+    bool isFacingRight { get; set; }
     // Gravity //
     #region Gravity
     /// <summary>

@@ -55,7 +55,7 @@ public class PlayerData : ScriptableObject, IPlayerData
     #endregion
 
     #region Movement
-    
+
     [Header("Movement")]
     [Space(5)]
 
@@ -97,6 +97,8 @@ public class PlayerData : ScriptableObject, IPlayerData
     public float accelInAir => _accelInAir;
     [Range(0f, 1)] [SerializeField] private float _deccelInAir;
     public float deccelInAir => _deccelInAir;
+
+    [HideInInspector] public bool isFacingRight { get; set; }
 
     [Space(20)]
 
