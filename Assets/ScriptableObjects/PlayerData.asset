@@ -25,6 +25,7 @@ MonoBehaviour:
   _runDecceleration: 0.8
   _accelInAir: 0.8
   _deccelInAir: 0.8
+  _conservedMomentum: 0.5
   _jumpHeight: 4.5
   _jumpTimeToApex: 0.5
   _doubleJumpDelay: 2
@@ -34,6 +35,5 @@ MonoBehaviour:
   _jumpHangTimeThreshold: 0.2
   _jumpHangAccelerationMult: 1.2
   _jumpHangMaxSpeedMult: 1.3
-  doConserveMomentum: 1
   coyoteTime: 0
   jumpInputBufferTime: 0
