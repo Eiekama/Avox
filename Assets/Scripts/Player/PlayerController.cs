@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
         _player.movement.UpdateTimers();
         _player.movement.UpdateChecks();
         _player.movement.UpdateGravity();
+        _player.movement.UpdateAnimationParameters();
     }
 
     private void FixedUpdate()
@@ -35,7 +36,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             if (_player.movement.CanJump()) { _player.movement.Jump(); }
-            else if (_player.movement.CanDoubleJump()) { _player.movement.DoubleJump(this); }
+            else if (_player.movement.CanDoubleJump()) { _player.movement.DoubleJump(); }
         }
         if (context.canceled)
         {
@@ -55,10 +56,14 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            _player.combat.Attack(this);
+            _player.combat.Attack();
         }
     }
 
+    /// <summary>
+    /// Disables all current active action maps before enabling <c>actionMap</c>.
+    /// </summary>
+    /// <param name="actionMap">Action map to enable.</param>
     public void ToggleActionMap(InputActionMap actionMap)
     {
         if (actionMap.enabled) { return; }

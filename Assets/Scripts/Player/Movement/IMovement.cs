@@ -16,18 +16,17 @@ public interface IMovement
     void UpdateTimers();
     void UpdateGravity();
     void UpdateChecks();
+    void UpdateAnimationParameters();
 
     /// <summary>
     /// Controls the horizontal movement of the player character.
     /// </summary>
-    /// TODO: Add lerpAmount back
     void Run(float moveInput);
     void Jump();
     void JumpCut();
 
     void Dash();
-    void DoubleJump(MonoBehaviour mono);
-    IEnumerator DoubleJumpCoroutine();
+    void DoubleJump();
 
     bool CanJump();
     bool CanDoubleJump();

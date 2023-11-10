@@ -63,6 +63,12 @@ public interface IPlayerData
     /// Multiplier applied to acceleration rate when airborne.
     /// </summary>
     float deccelInAir { get; }
+
+    /// <summary>
+    /// Proportion of decceleration to ignore when player is going faster than intended.
+    /// Set to 0 to deccelerate as normal, and 1 to conserve all momentum.
+    /// </summary>
+    float conservedMomentum { get; }
     #endregion
     // Jump //
     #region Jump
@@ -71,7 +77,7 @@ public interface IPlayerData
     /// </summary>
     float jumpForce { get; }
 
-    /// <summary>
+     /// <summary>
     /// Number of frames to wait before applying force during double jump.
     /// </summary>
     int doubleJumpDelay { get; }

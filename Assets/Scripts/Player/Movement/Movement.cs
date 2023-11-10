@@ -21,6 +21,7 @@ namespace Player
         private bool _isDoubleJumping;
         private bool _isJumpCut;
 
+
         public void UpdateTimers()
         {
             lastOnGroundTime -= Time.deltaTime;
@@ -74,8 +75,16 @@ namespace Player
             #endregion
         }
 
+        public void UpdateAnimationParameters()
+        {
+            player.animator.SetFloat("yVelocity", player.RB.velocity.y);
+            player.animator.SetBool("onGround", lastOnGroundTime > 0);
+        }
+
         public void Run(float moveInput)
         {
+            player.animator.SetInteger("xInput", Mathf.RoundToInt(moveInput));
+
             if (moveInput != 0)
             {
                 UpdateDirectionToFace(moveInput > 0);
@@ -102,6 +111,12 @@ namespace Player
                     _accelRate *= player.data.jumpHangAccelerationMult;
                     _targetSpeed *= player.data.jumpHangMaxSpeedMult;
                 }
+                if (Mathf.Abs(_targetSpeed) > 0.01f
+                 && Mathf.Sign(player.RB.velocity.x) == Mathf.Sign(_targetSpeed)
+                 && Mathf.Abs(player.RB.velocity.x) > Mathf.Abs(_targetSpeed))
+                {
+                    _accelRate *= (1 - player.data.conservedMomentum);
+                }
             }
 
             float _speedDif = _targetSpeed - player.RB.velocity.x;
@@ -124,6 +139,7 @@ namespace Player
             player.data.isFacingRight = !player.data.isFacingRight;
         }
 
+
         public bool CanJump()
         {
             return lastOnGroundTime > 0;
@@ -131,6 +147,8 @@ namespace Player
 
         public void Jump()
         {
+            player.animator.SetTrigger("jump");
+
             _isJumpCut = false;
             lastOnGroundTime = 0;
             player.RB.AddForce(Vector2.up * player.data.jumpForce, ForceMode2D.Impulse);
@@ -141,34 +159,32 @@ namespace Player
             _isJumpCut = true;
         }
 
-        public void Dash()
-        {
-            // ADD IMPLEMENTATION HERE
-        }
-
         public bool CanDoubleJump()
         {
             return !_isDoubleJumping && player.data.currentMP > 0;
         }
 
-        public void DoubleJump(MonoBehaviour mono)
+        public void DoubleJump()
         {
+            player.animator.SetTrigger("jump");
+
             _isJumpCut = false;
             player.status.ChangeCurrentMP(-1);
-            mono.StartCoroutine(DoubleJumpCoroutine());
+            player.StartCoroutine(DoubleJumpCoroutine());
         }
-
         public IEnumerator DoubleJumpCoroutine()
         {
             _isDoubleJumping = true;
 
-            float force = player.data.jumpForce;
+            float force = player.data.jumpForce - Physics2D.gravity.y * player.data.gravityScale * player.data.doubleJumpDuration * Time.fixedDeltaTime;
             if (player.RB.velocity.y < 0)
                 force -= player.RB.velocity.y;
+            else
+                force -= player.data.conservedMomentum * player.RB.velocity.y;
 
             for (int i = 0; i < player.data.doubleJumpDelay; i++)
             {
-                yield return null;
+                yield return new WaitForFixedUpdate();
             }
             for (int i = 0; i < player.data.doubleJumpDuration; i++)
             {
@@ -176,6 +192,12 @@ namespace Player
                 yield return new WaitForFixedUpdate();
             }
             _isDoubleJumping = false;
+        }
+
+
+        public void Dash()
+        {
+            // ADD IMPLEMENTATION HERE
         }
     }
 }

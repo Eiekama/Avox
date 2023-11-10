@@ -6,6 +6,7 @@ using Player;
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(Animator))]
 public class PlayerInstance : MonoBehaviour
 {
     [SerializeField] PlayerData _data;
@@ -14,6 +15,7 @@ public class PlayerInstance : MonoBehaviour
     [SerializeField] LayerMask _groundLayer;
 
     public PlayerController controller { get; private set; }
+    public Animator animator { get; private set; }
 
     public readonly IStatus status = new Status();
     public readonly IMovement movement = new Movement();
@@ -23,7 +25,7 @@ public class PlayerInstance : MonoBehaviour
 
     public Rigidbody2D RB { get; private set; }
 
-    public AInteractable currentManualInteractable;
+    [HideInInspector] public AInteractable currentManualInteractable;
 
     public Animator RespawnAnimator;
 
@@ -31,19 +33,13 @@ public class PlayerInstance : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
+        animator = GetComponent<Animator>();
 
         status.player = this;
 
         movement.player = this;
         movement.playerBoxCollider = GetComponent<BoxCollider2D>();
         movement.groundLayer = _groundLayer;
-        if (_data.isFacingRight && transform.localScale.x < 0
-         || !_data.isFacingRight && transform.localScale.x > 0)
-        {
-            Vector3 scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
-        }
 
         combat.player = this;
 
@@ -58,6 +54,16 @@ public class PlayerInstance : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        if (_data.isFacingRight && transform.localScale.x < 0
+         || !_data.isFacingRight && transform.localScale.x > 0)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

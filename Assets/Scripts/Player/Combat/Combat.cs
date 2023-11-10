@@ -23,10 +23,10 @@ namespace Player
             player.status.ChangeCurrentHP(-dmg);
         }
 
-        public void Die(MonoBehaviour mono){
+        public void Die(){
             Debug.Log("Player Died :(");
             player.status.ChangeCurrentHP(player.data.maxHP);
-            mono.StartCoroutine(DieCoroutine());
+            player.StartCoroutine(DieCoroutine());
         }
         IEnumerator DieCoroutine()
         {
@@ -48,10 +48,10 @@ namespace Player
             attackHitbox.gameObject.SetActive(false);
         }
 
-        public void Attack(MonoBehaviour mono)
+        public void Attack()
         {
             //animator.SetTrigger("Attack");
-            mono.StartCoroutine(AttackCoroutine());
+            player.StartCoroutine(AttackCoroutine());
         }
 
         
