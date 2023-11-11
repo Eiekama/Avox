@@ -1,18 +1,7 @@
 fileFormatVersion: 2
-guid: 4a0b83cf83727de4a9e2b965f6ff9df4
-labels:
-- 2d
-- Code
-- Sprite
-- Editor
-- EasySpriteSheetCopy
-- Menu
-- Multiple
-- Copy
-- Sheet
-- SpriteSheet
-- Easy
+guid: 483078270d97bb3469e671e9514821cb
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
   executionOrder: 0
