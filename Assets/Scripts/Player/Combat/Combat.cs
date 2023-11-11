@@ -76,14 +76,5 @@ namespace Player
 
             player.controller.playerInputActions.Enable();
         }
-        //Death respawn: Mostly a scene transition, heal to full, 
-        //Anim manager w/ animator(s) in it which the function references; basically just can copy what SceneTransition did
-        //TODO: Stop other things from happening in the scene here, too?
-        //-> Same q for SceneTransitions.
-        //If we reload the scene, that would fix the moving problem & black screen but yeah
-        //Direction player is facing?
-        //Death: RN need to -Go to the right scene
-        //                  -Play the animation
-        //                  -Make the coroutine work well w/ MonoBehaviour (check if things have been updated in ASystem to incl. the MB)
     }
 }
