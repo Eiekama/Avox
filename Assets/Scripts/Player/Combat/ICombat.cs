@@ -9,5 +9,8 @@ public interface ICombat : IDamageable
 
     void Attack(MonoBehaviour mono);
 
+    void DownAttack(MonoBehaviour mono);
+
+    void UpAttack(MonoBehaviour mono);
     // when we add combat skills those would go in here too
 }

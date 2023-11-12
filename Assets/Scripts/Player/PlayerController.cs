@@ -42,10 +42,11 @@ public class PlayerController : MonoBehaviour
         {
             _player.movement.DoubleJump();
             doubleJumpFlag = true;
-        }
-        if (context.canceled)
-        {
-            _player.movement.JumpCut();
+
+            if (context.canceled)
+            {
+                _player.movement.JumpCut();
+            }
         }
     }
 
@@ -62,6 +63,22 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             _player.combat.Attack(this);
+        }
+    }
+
+    public void DownAttackCallback(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _player.combat.DownAttack(this);
+        }
+    }
+
+    public void UpAttackCallback(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _player.combat.UpAttack(this);
         }
     }
 }
