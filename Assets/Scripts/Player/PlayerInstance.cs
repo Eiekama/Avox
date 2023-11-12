@@ -46,7 +46,11 @@ public class PlayerInstance : MonoBehaviour
         combat.attackHitbox = GetComponentInChildren<AttackHitbox>(true);
         combat.attackHitbox.data = _data;
 
-        RespawnAnimator = GetComponentInChildren<Animator>(true);
+        Animator[] Anims = GetComponentsInChildren<Animator>(true);
+        foreach (Animator anim in Anims)
+        {
+            if (anim.name == "WSCrossfade"){ RespawnAnimator = anim; Debug.Log(anim); }
+        }
         if(RespawnAnimator == null){ int i = 0; int j = 1/i; }
         
         StartCoroutine(status.RecoverMP());
