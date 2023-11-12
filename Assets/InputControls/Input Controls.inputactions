@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenMenu",
+                    "type": "Button",
+                    "id": "8147dedc-a029-4667-9260-3f3c913cb28b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -183,6 +192,17 @@
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7f796333-3275-4f9f-895d-7a20900d317d",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -190,15 +210,6 @@
             "name": "Menu",
             "id": "d11e9f1d-2f8f-4d80-87a9-eb94f483acaa",
             "actions": [
-                {
-                    "name": "MenuOpenClose",
-                    "type": "Button",
-                    "id": "f028cf2d-b092-4b48-a7dd-88ffbc58cbd0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
                 {
                     "name": "Navigate",
                     "type": "PassThrough",
@@ -210,17 +221,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "3966dcf2-1c31-4e04-b661-c3ce60dcadf3",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MenuOpenClose",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "Gamepad",
                     "id": "09413b88-6cc6-42ee-ae30-fe920afed760",
