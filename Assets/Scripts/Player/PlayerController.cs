@@ -73,6 +73,11 @@ public class PlayerController : MonoBehaviour
         _player.combat.Attack();
     }
 
+    public void OpenPauseMenu(InputAction.CallbackContext context)
+    {
+
+    }
+
     /// <summary>
     /// Disables all current active action maps before enabling <c>actionMap</c>.
     /// </summary>
