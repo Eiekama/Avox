@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo>
+	<Project Name="Avox_WwiseProject" GUID="{842F12AE-A835-4159-8656-EB7CC8A1B2DB}" Generator="2022.1.8.8316"/>
+	<CacheRoot>../../../../Avox_WwiseProject/.cache</CacheRoot>
+	<Platforms>
+		<Platform Name="Mac" GUID="{DD6F318E-18C9-42A6-A323-2DDA6A9F6648}" BasePlatform="Mac" BasePlatformGUID="{9C6217D5-DD11-4795-87C1-6CE02853C540}" Path="Mac"/>
+		<Platform Name="Windows" GUID="{C7CF18B6-97E8-43A0-81A4-E2CA8B177626}" BasePlatform="Windows" BasePlatformGUID="{6E0CB257-C6C8-4C5C-8366-2740DFC441EB}" Path="Windows"/>
+	</Platforms>
+	<Languages>
+		<Language Name="English(US)" Id="684519430" GUID="{2E45FDC0-F40D-423E-A01D-DD50E40C561F}" Default="true" UseAsStandIn="true"/>
+	</Languages>
+	<FileHash>{B57713C1-75B4-0501-CE55-1EE8256F8E72}</FileHash>
+</ProjectInfo>

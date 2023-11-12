@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{62EF1E54-8526-422A-BB12-C0EA88F1A252}" SchemaVersion="110">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{62EF1E54-8526-422A-BB12-C0EA88F1A252}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Play_avox_single_jump" ID="{09789269-75B6-4E20-B445-EA9A0AD2404F}">
+					<ChildrenList>
+						<Action Name="" ID="{A8D8756A-093C-4363-92D9-3260496CF59C}" ShortID="269688000">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="avox_single_jump" ID="{0E7E9502-C214-4F94-A794-BFE2C3B6D617}" WorkUnitID="{AAF905A0-A37D-41E9-9282-F4E805C7D82B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_avox_double_jump" ID="{0815BBA3-55C0-4B78-BAA0-BEA55F844F38}">
+					<ChildrenList>
+						<Action Name="" ID="{9108C21E-4C5A-4066-9151-D5B910498A58}" ShortID="245046872">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="avox_double_jump" ID="{4FD83845-913B-4C32-8D1B-C5E603F49CD6}" WorkUnitID="{AAF905A0-A37D-41E9-9282-F4E805C7D82B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>
