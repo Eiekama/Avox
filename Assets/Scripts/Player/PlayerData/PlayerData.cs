@@ -55,7 +55,7 @@ public class PlayerData : ScriptableObject, IPlayerData
     #endregion
 
     #region Movement
-    
+
     [Header("Movement")]
     [Space(5)]
 
@@ -97,6 +97,12 @@ public class PlayerData : ScriptableObject, IPlayerData
     public float accelInAir => _accelInAir;
     [Range(0f, 1)] [SerializeField] private float _deccelInAir;
     public float deccelInAir => _deccelInAir;
+
+    [Space(5)]
+    [Range(0f, 1)][SerializeField] float _conservedMomentum;
+    public float conservedMomentum => _conservedMomentum;
+
+    [HideInInspector] public bool isFacingRight { get; set; }
 
     [Space(20)]
 
@@ -141,14 +147,6 @@ public class PlayerData : ScriptableObject, IPlayerData
 
 
     [Space(50)]
-
-    [Header("Run")]
-    
-    [Space(5)]
-    public bool doConserveMomentum = true;
-
-    [Space(20)]
-    
 
     [Header("Assists")]
     [Range(0.01f, 0.5f)] public float coyoteTime; //Grace period after falling off a platform, where you can still jump

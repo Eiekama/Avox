@@ -9,7 +9,6 @@ namespace Player
     public class Movement : ASystem, IMovement
     {
         public BoxCollider2D playerBoxCollider { get; set; }
-        public Vector2 groundCheckSize { get; set; }
         public LayerMask groundLayer { get; set; }
 
         private float _lastOnGroundTime;
@@ -19,9 +18,9 @@ namespace Player
             set { _lastOnGroundTime = Mathf.Max(-0.1f, value); }
         }
 
-        private bool _isFacingRight = true;
         private bool _isDoubleJumping;
         private bool _isJumpCut;
+
 
         public void UpdateTimers()
         {
@@ -59,7 +58,8 @@ namespace Player
         public void UpdateChecks()
         {
             #region COLLISION CHECKS    
-            Vector2 terrainCheckPoint = (Vector2)player.transform.position + playerBoxCollider.offset - new Vector2(0.0f, 0.01f);
+            Vector2 terrainCheckPoint = (Vector2)player.transform.position + playerBoxCollider.offset - new Vector2(0.0f, 0.1f);
+            Vector2 groundCheckSize = playerBoxCollider.size + new Vector2(-0.1f, 0.0f);
             if (Physics2D.OverlapBox(terrainCheckPoint, groundCheckSize, 0, groundLayer))
             {
                 lastOnGroundTime = 0.01f;
@@ -75,8 +75,16 @@ namespace Player
             #endregion
         }
 
+        public void UpdateAnimationParameters()
+        {
+            player.animator.SetFloat("yVelocity", player.RB.velocity.y);
+            player.animator.SetBool("onGround", lastOnGroundTime > 0);
+        }
+
         public void Run(float moveInput)
         {
+            player.animator.SetInteger("xInput", Mathf.RoundToInt(moveInput));
+
             if (moveInput != 0)
             {
                 UpdateDirectionToFace(moveInput > 0);
@@ -103,6 +111,12 @@ namespace Player
                     _accelRate *= player.data.jumpHangAccelerationMult;
                     _targetSpeed *= player.data.jumpHangMaxSpeedMult;
                 }
+                if (Mathf.Abs(_targetSpeed) > 0.01f
+                 && Mathf.Sign(player.RB.velocity.x) == Mathf.Sign(_targetSpeed)
+                 && Mathf.Abs(player.RB.velocity.x) > Mathf.Abs(_targetSpeed))
+                {
+                    _accelRate *= (1 - player.data.conservedMomentum);
+                }
             }
 
             float _speedDif = _targetSpeed - player.RB.velocity.x;
@@ -113,7 +127,7 @@ namespace Player
 
         public void UpdateDirectionToFace(bool isMovingRight)
         {
-            if (isMovingRight != _isFacingRight) { Turn(); }
+            if (isMovingRight != player.data.isFacingRight) { Turn(); }
         }
 
         public void Turn()
@@ -122,8 +136,9 @@ namespace Player
             scale.x *= -1;
             player.transform.localScale = scale;
 
-            _isFacingRight = !_isFacingRight;
+            player.data.isFacingRight = !player.data.isFacingRight;
         }
+
 
         public bool CanJump()
         {
@@ -132,6 +147,8 @@ namespace Player
 
         public void Jump()
         {
+            player.animator.SetTrigger("jump");
+
             _isJumpCut = false;
             lastOnGroundTime = 0;
             player.RB.AddForce(Vector2.up * player.data.jumpForce, ForceMode2D.Impulse);
@@ -142,32 +159,32 @@ namespace Player
             _isJumpCut = true;
         }
 
-        public void Dash()
-        {
-            // ADD IMPLEMENTATION HERE
-        }
-
         public bool CanDoubleJump()
         {
-            return !_isDoubleJumping;
-        }
-        public void DoubleJump(MonoBehaviour mono)
-        {
-            _isJumpCut = false;
-            mono.StartCoroutine(DoubleJumpCoroutine());
+            return !_isDoubleJumping && player.data.currentMP > 0;
         }
 
+        public void DoubleJump()
+        {
+            player.animator.SetTrigger("jump");
+
+            _isJumpCut = false;
+            player.status.ChangeCurrentMP(-1);
+            player.StartCoroutine(DoubleJumpCoroutine());
+        }
         public IEnumerator DoubleJumpCoroutine()
         {
             _isDoubleJumping = true;
 
-            float force = player.data.jumpForce;
+            float force = player.data.jumpForce - Physics2D.gravity.y * player.data.gravityScale * player.data.doubleJumpDuration * Time.fixedDeltaTime;
             if (player.RB.velocity.y < 0)
                 force -= player.RB.velocity.y;
+            else
+                force -= player.data.conservedMomentum * player.RB.velocity.y;
 
             for (int i = 0; i < player.data.doubleJumpDelay; i++)
             {
-                yield return null;
+                yield return new WaitForFixedUpdate();
             }
             for (int i = 0; i < player.data.doubleJumpDuration; i++)
             {
@@ -175,6 +192,12 @@ namespace Player
                 yield return new WaitForFixedUpdate();
             }
             _isDoubleJumping = false;
+        }
+
+
+        public void Dash()
+        {
+            // ADD IMPLEMENTATION HERE
         }
     }
 }

@@ -13,7 +13,7 @@ public class Spikes : MonoBehaviour, IContactDamage
         //TEMPORARY:
         if (player.data.currentHP <= 0)
         {
-            player.combat.Die(this);
+            player.combat.Die();
         }
 
         Debug.Log("Respawning @ Most Recent Platforming Checkpoint");

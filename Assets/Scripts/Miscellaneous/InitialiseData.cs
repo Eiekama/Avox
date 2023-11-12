@@ -9,7 +9,9 @@ public class InitialiseData : MonoBehaviour
     [SerializeField] PlayerData playerData;
     [SerializeField] CollectibleData collectibleData;
 
-    void Awake()
+    private PlayerController _controller;
+
+    private void Awake()
     {
         if (!initialised)
         {
@@ -19,6 +21,16 @@ public class InitialiseData : MonoBehaviour
             }
 
             playerData.currentHP = playerData.maxHP;
+            playerData.isFacingRight = true;
+        }
+    }
+
+    private void Start()
+    {
+        if (!initialised)
+        {
+            _controller = FindObjectOfType<PlayerController>();
+            _controller.ToggleActionMap(_controller.inputActions.Player);
 
             initialised = true;
         }

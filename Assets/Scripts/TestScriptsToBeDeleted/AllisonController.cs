@@ -13,7 +13,7 @@ public class AllisonController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            player.combat.Attack(this);
+            player.combat.Attack();
         }
     }
 }

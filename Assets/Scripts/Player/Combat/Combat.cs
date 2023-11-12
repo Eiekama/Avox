@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,10 +23,10 @@ namespace Player
             player.status.ChangeCurrentHP(-dmg);
         }
 
-        public void Die(MonoBehaviour mono){
+        public void Die(){
             Debug.Log("Player Died :(");
             player.status.ChangeCurrentHP(player.data.maxHP);
-            mono.StartCoroutine(DieCoroutine());
+            player.StartCoroutine(DieCoroutine());
         }
         IEnumerator DieCoroutine()
         {
@@ -49,17 +48,17 @@ namespace Player
             attackHitbox.gameObject.SetActive(false);
         }
 
-        public void Attack(MonoBehaviour mono)
+        public void Attack()
         {
             //animator.SetTrigger("Attack");
-            mono.StartCoroutine(AttackCoroutine());
+            player.StartCoroutine(AttackCoroutine());
         }
 
         
         public IEnumerator WaitAndRespawn()
         {
             Animator anim = player.RespawnAnimator;
-            player.controller.playerInputActions.Disable(); //TODO: Also disable jumps
+            player.controller.DisableActionMap(player.controller.inputActions.Player);
 
             anim.gameObject.SetActive(true);
             anim.SetTrigger("Start");
@@ -71,10 +70,10 @@ namespace Player
             yield return new WaitForSeconds(respawnTime/2);
 
             anim.SetTrigger("FadeIn");
-            
+
             //Can reset angular velocity, too, and then call RigidBody2D.Sleep();, if need be
 
-            player.controller.playerInputActions.Enable();
+            player.controller.ToggleActionMap(player.controller.inputActions.Player);
         }
         //Death respawn: Mostly a scene transition, heal to full, 
         //Anim manager w/ animator(s) in it which the function references; basically just can copy what SceneTransition did
