@@ -9,12 +9,12 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AK.Wwise.Event doubleJump;
     
 
-    public void playSingleJump()
+    void playSingleJump()
     {
         singleJump.Post(gameObject);
     }
 
-    public void playBuildingCollapse()
+    void playDoubleJump()
     {
         doubleJump.Post(gameObject);
     }
