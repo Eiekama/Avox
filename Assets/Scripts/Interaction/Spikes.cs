@@ -5,20 +5,20 @@ using UnityEngine;
 public class Spikes : MonoBehaviour, IContactDamage
 {
     [SerializeField] int damage;
+    [SerializeField] bool respawns;
+    
 
     public void DealContactDamage(PlayerInstance player)
     {
+        bool isKilled = player.data.currentHP <= damage;
         player.combat.Damage(transform, damage);
         //May need to check if this kills player and not teleport them in that case.
-        //TEMPORARY:
-        if (player.data.currentHP <= 0)
-        {
-            player.combat.Die();
-        }
 
         Debug.Log("Respawning @ Most Recent Platforming Checkpoint");
 
-        //Temporarily disable player actions
-        StartCoroutine(player.combat.WaitAndRespawn());
+        //Animation, Temporarily disable player actions
+        if(respawns && !isKilled){
+            StartCoroutine(player.combat.WaitAndRespawn());
+        }
     }
 }

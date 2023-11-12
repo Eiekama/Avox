@@ -15,6 +15,7 @@ namespace Player
         // float _nextAttackTime = 0f;
 
         public static float respawnTime = 1f; //Respawn time for platforming checkpoints
+        public static int deathRespawnScene = 1;
 
         public AttackHitbox attackHitbox { get; set; }
 
@@ -25,20 +26,19 @@ namespace Player
 
         public void Die(){
             Debug.Log("Player Died :(");
-            player.status.ChangeCurrentHP(player.data.maxHP);
             player.StartCoroutine(DieCoroutine());
         }
         IEnumerator DieCoroutine()
         {
             //Not finished:
-            // int respawnScene = 16;
-            // Animator anim = player.RespawnAnimator;
-            // anim.SetTrigger("Start");
+            Animator anim = player.RespawnAnimator;
+            anim.SetTrigger("Start");
+
 
             // player.controller.playerInputActions.Disable();
-            yield return new WaitForSeconds(respawnTime);
-
-            // SceneManager.LoadScene(respawnScene, LoadSceneMode.Single);
+            yield return new WaitForSeconds(respawnTime/2);
+            player.status.ChangeCurrentHP(player.data.maxHP);
+            SceneManager.LoadScene(deathRespawnScene, LoadSceneMode.Single); 
         }
 
         IEnumerator AttackCoroutine()
@@ -75,14 +75,5 @@ namespace Player
 
             player.controller.ToggleActionMap(player.controller.inputActions.Player);
         }
-        //Death respawn: Mostly a scene transition, heal to full, 
-        //Anim manager w/ animator(s) in it which the function references; basically just can copy what SceneTransition did
-        //TODO: Stop other things from happening in the scene here, too?
-        //-> Same q for SceneTransitions.
-        //If we reload the scene, that would fix the moving problem & black screen but yeah
-        //Direction player is facing?
-        //Death: RN need to -Go to the right scene
-        //                  -Play the animation
-        //                  -Make the coroutine work well w/ MonoBehaviour (check if things have been updated in ASystem to incl. the MB)
     }
 }
