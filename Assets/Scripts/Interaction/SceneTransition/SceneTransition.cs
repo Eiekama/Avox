@@ -63,6 +63,7 @@ public class SceneTransition : AInteractable
         _transitionAnim.SetTrigger("Start");
 
         player.controller.DisableActionMap(player.controller.inputActions.Player);
+        player.RB.isKinematic = true;
         yield return new WaitForSeconds(_transitionTime);
 
         SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
