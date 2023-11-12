@@ -18,7 +18,11 @@ namespace Player
 
         public AttackHitbox attackHitbox { get; set; }
 
-        private new Vector3 position;
+        private Vector3 front = new Vector3(2.0f, 0.0f, 0.0f);
+
+        private Vector3 up = new Vector3(0.0f, 2.0f, 0.0f);
+
+        private Vector3 down = new Vector3(0.0f, -2.0f, 0.0f);
 
         public void Damage(Transform _, int dmg)
         {
@@ -52,22 +56,23 @@ namespace Player
         }
 
         public void Attack()
-        { 
+        {
+            Debug.Log(player.controller.inputActions.Player.Look.ReadValue<int>());
 
             if (player.controller.inputActions.Player.Look.ReadValue<int>() == 0)
             {
-                position = new Vector3 (2.0f, 0.0f, 0.0f);
-                player.StartCoroutine(AttackCoroutine(position));
+                //position = new Vector3 (2.0f, 0.0f, 0.0f);
+                player.StartCoroutine(AttackCoroutine(front));
             }
             else if (player.controller.inputActions.Player.Look.ReadValue<int>() == 1)
             {
-                position = new Vector3 (0.0f, 2.0f, 0.0f);
-                player.StartCoroutine(AttackCoroutine(position));
+                //position = new Vector3 (0.0f, 2.0f, 0.0f);
+                player.StartCoroutine(AttackCoroutine(up));
             }
             else if (player.controller.inputActions.Player.Look.ReadValue<int>() == -1)
             {
-                position = new Vector3(0.0f, -2.0f, 0.0f);
-                player.StartCoroutine(AttackCoroutine(position));
+                //position = new Vector3(0.0f, -2.0f, 0.0f);
+                player.StartCoroutine(AttackCoroutine(down));
             }
         }
         
