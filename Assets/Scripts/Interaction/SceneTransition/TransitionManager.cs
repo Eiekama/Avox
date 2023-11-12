@@ -105,8 +105,8 @@ public class TransitionManager : MonoBehaviour
             {
                 _player.movement.Run(input);
                 yield return new WaitForFixedUpdate();
-                if (_player.RB.velocity.y < 0.01f) { _player.controller.ToggleActionMap(_player.controller.inputActions.Player); }
             }
+            _player.controller.ToggleActionMap(_player.controller.inputActions.Player);
         }
 
         IEnumerator PlayHorizontalTransition(bool isFacingRight)
