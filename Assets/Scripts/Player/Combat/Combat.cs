@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Player
 {
@@ -9,82 +9,80 @@ namespace Player
     {
         // public Animator animator;
 
+        // nextAttackTime = Time.time + 1f / _attackRate;
+
+        // float _attackRate = 2f;
+        // float _nextAttackTime = 0f;
+
+        public static float respawnTime = 1f; //Respawn time for platforming checkpoints
+
         public AttackHitbox attackHitbox { get; set; }
 
-        public void Damage(int dmg)
+        public void Damage(Transform _, int dmg)
         {
             player.status.ChangeCurrentHP(-dmg);
         }
 
-        IEnumerator AttackCoroutine(Vector3 position) // Vector3 position
+        public void Die(){
+            Debug.Log("Player Died :(");
+            player.status.ChangeCurrentHP(player.data.maxHP);
+            player.StartCoroutine(DieCoroutine());
+        }
+        IEnumerator DieCoroutine()
         {
-            //Debug.Log(attackHitbox.gameObject.transform.localPosition);
+            //Not finished:
+            // int respawnScene = 16;
+            // Animator anim = player.RespawnAnimator;
+            // anim.SetTrigger("Start");
 
-            attackHitbox.gameObject.transform.localPosition = position;
+            // player.controller.playerInputActions.Disable();
+            yield return new WaitForSeconds(respawnTime);
 
-            //Debug.Log(attackHitbox.gameObject.transform.localPosition);
+            // SceneManager.LoadScene(respawnScene, LoadSceneMode.Single);
+        }
 
+        IEnumerator AttackCoroutine()
+        {
             attackHitbox.gameObject.SetActive(true);
-            yield return new WaitForSeconds(1.0f); //should be length of animation
+            yield return new WaitForSeconds(0.5f);
             attackHitbox.gameObject.SetActive(false);
         }
 
-        public void Attack(MonoBehaviour mono)
+        public void Attack()
         {
-            Debug.Log(" attack");
-            //attackHitbox.gameObject.transform.localPosition = new Vector3(2.0f, 0.0f, 0.0f);
-
-            //if (player.controller.inputActions.Player.Look.ReadValue<int>() == 1)
-            Vector3 leftright_position = new Vector3(2.0f, 0.0f, 0.0f);
-
-            if (attackHitbox.gameObject.activeInHierarchy == false)
-            {
-                //animator.SetTrigger("Attack");
-
-                //mono.StartCoroutine(AttackCoroutine());
-                mono.StartCoroutine(AttackCoroutine(leftright_position));
-            }
-
-        }
-        public void DownAttack(MonoBehaviour mono)
-        {
-            Debug.Log("down attack");
-            //attackHitbox.gameObject.transform.localPosition = new Vector3(0.0f, -2.0f, 0.0f);
-
-
-            if (attackHitbox.gameObject.activeInHierarchy == false)
-            {
-                //animator.SetTrigger("Attack");
-
-                Debug.Log("down attack");
-
-                Vector3 down_position = new Vector3(0.0f, -2.0f, 0.0f);
-
-                //ono.StartCoroutine(AttackCoroutine());
-                mono.StartCoroutine(AttackCoroutine(down_position));
-            }
+            //animator.SetTrigger("Attack");
+            player.StartCoroutine(AttackCoroutine());
         }
 
-        public void UpAttack(MonoBehaviour mono)
+        
+        public IEnumerator WaitAndRespawn()
         {
-            Debug.Log("up attack");
-            //attackHitbox.gameObject.transform.localPosition = new Vector3(0.0f, 2.0f, 0.0f);
+            Animator anim = player.RespawnAnimator;
+            player.controller.DisableActionMap(player.controller.inputActions.Player);
 
+            anim.gameObject.SetActive(true);
+            anim.SetTrigger("Start");
+            yield return new WaitForSeconds(respawnTime/2);
 
-            if (attackHitbox.gameObject.activeInHierarchy == false)
-            {
-                //animator.SetTrigger("Attack");
+            //Respawning; Resets Player location/velocity
+            player.transform.position = Checkpoint.currentCheckpoint;
+            player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            yield return new WaitForSeconds(respawnTime/2);
 
-                Debug.Log("up attack 2");
+            anim.SetTrigger("FadeIn");
 
-                Vector3 up_position = new Vector3(0.0f, 2.0f, 0.0f);
+            //Can reset angular velocity, too, and then call RigidBody2D.Sleep();, if need be
 
-                //mono.StartCoroutine(AttackCoroutine());
-                mono.StartCoroutine(AttackCoroutine(up_position));
-            }
-            
+            player.controller.ToggleActionMap(player.controller.inputActions.Player);
         }
+        //Death respawn: Mostly a scene transition, heal to full, 
+        //Anim manager w/ animator(s) in it which the function references; basically just can copy what SceneTransition did
+        //TODO: Stop other things from happening in the scene here, too?
+        //-> Same q for SceneTransitions.
+        //If we reload the scene, that would fix the moving problem & black screen but yeah
+        //Direction player is facing?
+        //Death: RN need to -Go to the right scene
+        //                  -Play the animation
+        //                  -Make the coroutine work well w/ MonoBehaviour (check if things have been updated in ASystem to incl. the MB)
     }
 }
-
-  

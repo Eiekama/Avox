@@ -4,9 +4,6 @@ public abstract class ASystem
     public PlayerInstance player
     {
         get { return _player; }
-        set
-        {
-            if (_player == null) _player = value;
-        }
+        set { if (_player == null) _player = value; }
     }
 }

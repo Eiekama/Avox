@@ -19,6 +19,7 @@ public interface IPlayerData
     #endregion
 /////////////////////////////////// Movement ///////////////////////////////////
     #region Movement
+    bool isFacingRight { get; set; }
     // Gravity //
     #region Gravity
     /// <summary>
@@ -62,6 +63,12 @@ public interface IPlayerData
     /// Multiplier applied to acceleration rate when airborne.
     /// </summary>
     float deccelInAir { get; }
+
+    /// <summary>
+    /// Proportion of decceleration to ignore when player is going faster than intended.
+    /// Set to 0 to deccelerate as normal, and 1 to conserve all momentum.
+    /// </summary>
+    float conservedMomentum { get; }
     #endregion
     // Jump //
     #region Jump
@@ -69,6 +76,15 @@ public interface IPlayerData
     /// The actual force applied (upwards) to the player when they jump.
     /// </summary>
     float jumpForce { get; }
+
+     /// <summary>
+    /// Number of frames to wait before applying force during double jump.
+    /// </summary>
+    int doubleJumpDelay { get; }
+    /// <summary>
+    /// Number of frames over which to apply force during double jump.
+    /// </summary>
+    int doubleJumpDuration { get; }
 
     /// <summary>
     /// Multiplier to increase gravity if the player releases the jump button while still jumping.

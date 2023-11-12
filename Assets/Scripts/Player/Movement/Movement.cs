@@ -2,7 +2,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Player
@@ -10,7 +9,6 @@ namespace Player
     public class Movement : ASystem, IMovement
     {
         public BoxCollider2D playerBoxCollider { get; set; }
-        public Vector2 groundCheckSize { get; set; }
         public LayerMask groundLayer { get; set; }
 
         private float _lastOnGroundTime;
@@ -19,15 +17,10 @@ namespace Player
             get { return _lastOnGroundTime; }
             set { _lastOnGroundTime = Mathf.Max(-0.1f, value); }
         }
-        
-        private float _facing;
-        public float facing
-        {
-            get { return _facing; }
-            set { _facing = value; }
-        }
 
+        private bool _isDoubleJumping;
         private bool _isJumpCut;
+
 
         public void UpdateTimers()
         {
@@ -39,7 +32,6 @@ namespace Player
         {
             if (_isJumpCut)
             {
-                Debug.Log("jump cut");
                 //Higher gravity if jump button released
                 SetGravityScale(player.data.gravityScale * player.data.jumpCutGravityMult);
                 //Caps maximum fall speed
@@ -66,7 +58,8 @@ namespace Player
         public void UpdateChecks()
         {
             #region COLLISION CHECKS    
-            Vector2 terrainCheckPoint = (Vector2)player.transform.position + playerBoxCollider.offset - new Vector2(0.0f, 0.01f);
+            Vector2 terrainCheckPoint = (Vector2)player.transform.position + playerBoxCollider.offset - new Vector2(0.0f, 0.1f);
+            Vector2 groundCheckSize = playerBoxCollider.size + new Vector2(-0.1f, 0.0f);
             if (Physics2D.OverlapBox(terrainCheckPoint, groundCheckSize, 0, groundLayer))
             {
                 lastOnGroundTime = 0.01f;
@@ -82,11 +75,19 @@ namespace Player
             #endregion
         }
 
+        public void UpdateAnimationParameters()
+        {
+            player.animator.SetFloat("yVelocity", player.RB.velocity.y);
+            player.animator.SetBool("onGround", lastOnGroundTime > 0);
+        }
+
         public void Run(float moveInput)
         {
-            if (moveInput < 0.0f || moveInput > 0.0f)
+            player.animator.SetInteger("xInput", Mathf.RoundToInt(moveInput));
+
+            if (moveInput != 0)
             {
-                Turn(moveInput);
+                UpdateDirectionToFace(moveInput > 0);
             }
 
             float _targetSpeed = moveInput * player.data.runMaxSpeed;
@@ -110,6 +111,12 @@ namespace Player
                     _accelRate *= player.data.jumpHangAccelerationMult;
                     _targetSpeed *= player.data.jumpHangMaxSpeedMult;
                 }
+                if (Mathf.Abs(_targetSpeed) > 0.01f
+                 && Mathf.Sign(player.RB.velocity.x) == Mathf.Sign(_targetSpeed)
+                 && Mathf.Abs(player.RB.velocity.x) > Mathf.Abs(_targetSpeed))
+                {
+                    _accelRate *= (1 - player.data.conservedMomentum);
+                }
             }
 
             float _speedDif = _targetSpeed - player.RB.velocity.x;
@@ -118,59 +125,79 @@ namespace Player
             player.RB.AddForce(_movement * Vector2.right, ForceMode2D.Force);
         }
 
-        public void Turn(float direction)
+        public void UpdateDirectionToFace(bool isMovingRight)
         {
-            Debug.Log(direction);
-            facing = direction;
-            Vector3 scale = player.gameObject.transform.localScale;
-            scale.x = direction;
-            player.gameObject.transform.localScale = scale;
+            if (isMovingRight != player.data.isFacingRight) { Turn(); }
+        }
+
+        public void Turn()
+        {
+            Vector3 scale = player.transform.localScale;
+            scale.x *= -1;
+            player.transform.localScale = scale;
+
+            player.data.isFacingRight = !player.data.isFacingRight;
+        }
+
+
+        public bool CanJump()
+        {
+            return lastOnGroundTime > 0;
         }
 
         public void Jump()
         {
-            // reset gravity, jump cut, and velocity
-            if (lastOnGroundTime > 0)
-            {
-                Debug.Log("jump");
-                player.RB.AddForce(Vector2.up * player.data.jumpForce, ForceMode2D.Impulse);
-            }
-            else
-            {
-                DoubleJump();
-            }
+            player.animator.SetTrigger("jump");
+
+            _isJumpCut = false;
+            lastOnGroundTime = 0;
+            player.RB.AddForce(Vector2.up * player.data.jumpForce, ForceMode2D.Impulse);
         }
+
         public void JumpCut()
         {
             _isJumpCut = true;
         }
 
+        public bool CanDoubleJump()
+        {
+            return !_isDoubleJumping && player.data.currentMP > 0;
+        }
+
+        public void DoubleJump()
+        {
+            player.animator.SetTrigger("jump");
+
+            _isJumpCut = false;
+            player.status.ChangeCurrentMP(-1);
+            player.StartCoroutine(DoubleJumpCoroutine());
+        }
+        public IEnumerator DoubleJumpCoroutine()
+        {
+            _isDoubleJumping = true;
+
+            float force = player.data.jumpForce - Physics2D.gravity.y * player.data.gravityScale * player.data.doubleJumpDuration * Time.fixedDeltaTime;
+            if (player.RB.velocity.y < 0)
+                force -= player.RB.velocity.y;
+            else
+                force -= player.data.conservedMomentum * player.RB.velocity.y;
+
+            for (int i = 0; i < player.data.doubleJumpDelay; i++)
+            {
+                yield return new WaitForFixedUpdate();
+            }
+            for (int i = 0; i < player.data.doubleJumpDuration; i++)
+            {
+                player.RB.AddForce(Vector2.up * (force / player.data.doubleJumpDuration), ForceMode2D.Impulse);
+                yield return new WaitForFixedUpdate();
+            }
+            _isDoubleJumping = false;
+        }
+
+
         public void Dash()
         {
             // ADD IMPLEMENTATION HERE
-        }
-        public void DoubleJump()
-        {
-            Debug.Log("double jump");
-            SetGravityScale(player.data.gravityScale);
-            player.RB.velocity = new Vector2(player.RB.velocity.x, 0);
-        }
-
-        public IEnumerator DoubleJumpCoroutine()
-        {
-            Debug.Log("test");
-            for (int i = 0; i < 6; i++)
-            {
-                if (lastOnGroundTime > 0)
-                {
-                    yield break;
-                }
-                if (i > 1)
-                {
-                    player.RB.AddForce(Vector2.up * player.data.jumpForce * 15.0f, ForceMode2D.Force);
-                }
-                yield return new WaitForFixedUpdate();
-            }
         }
     }
 }

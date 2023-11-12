@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 namespace Player
 {
     public class Status : ASystem, IStatus
     {
-
-
         public void ChangeMaxHP(int amount) {
             _player.data.maxHP += amount;
         }
@@ -17,6 +14,11 @@ namespace Player
             _player.data.currentHP += amount;
             if (StatusHUD.instance)
                 StatusHUD.instance.UpdateHud();
+            
+            if(_player.data.currentHP == 0){
+                //TODO: Reinstate once ASystem updated:
+                // _player.combat.Die();
+            }
         }
 
         public void ChangeMaxMP(int amount) {
@@ -31,23 +33,24 @@ namespace Player
 
         private bool CanRecoverMP()
         {
-            // ADD IMPLEMENTATION HERE
-            return true; //replace
+            return player.movement.lastOnGroundTime > 0
+                && player.data.currentMP < player.data.maxMP;
         }
 
+        private WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
         public IEnumerator RecoverMP()
         {
             float rechargeAmount = 0.0f;
             while (true)
             {
-                yield return new WaitForSeconds(1.0f);
+                yield return waitForFixedUpdate;
                 if (CanRecoverMP())
                 {
-                    rechargeAmount += _player.data.MPRecoveryRate;
-                    if (rechargeAmount > 1.0f)
+                    rechargeAmount += Time.fixedDeltaTime;
+                    if (rechargeAmount > player.data.MPRecoveryRate)
                     {
-                        ChangeCurrentMP(Mathf.FloorToInt(rechargeAmount));
-                        rechargeAmount %= 1.0f;
+                        ChangeCurrentMP(1);
+                        rechargeAmount -= player.data.MPRecoveryRate;
                     }
                 }
             }

@@ -7,88 +7,97 @@ using UnityEngine.EventSystems;
 
 public class PauseMenuController : MonoBehaviour
 {
-    private GameObject _pauseMenuCanvasGO;
-    private GameObject _normalCanvasGO;
+    public static PauseMenuController instance;
 
-    private GameObject _selectedFirst;
+    public GameObject[] Buttons;
 
-    private GameObject _resumeButton;
-    private GameObject _backToMainButton;
+    public GameObject _pauseMenuCanvasGO;
+    public GameObject _normalCanvasGO;
+
+    public GameObject LastSelected { get; set; }
+    public int LastSelectedIndex { get; set; }
+
 
     private bool isPaused;
 
-    private void Start()
+    private void Awake()
     {
-        _pauseMenuCanvasGO = GameObject.Find("pauseMenuCanvas") ;
-        _normalCanvasGO = GameObject.Find("normalCanvas");
-
-        _resumeButton = GameObject.Find("ResumeButton");
-        _selectedFirst = _resumeButton;
-        _backToMainButton = GameObject.Find("BackToMainButton");
-
-
-
-        _pauseMenuCanvasGO.SetActive(false);
-        _normalCanvasGO.SetActive(true);
-    }
-
-    public void OpenCloseMenu(InputAction.CallbackContext context)
-    {
-        if (context.performed)
+        if (instance == null)
         {
-            if (!isPaused)
-            {
-                Pause();
-            }
-            else
-            {
-                Unpause();
-            }
+            instance = this;
         }
     }
 
-    public void Pause(){
-        isPaused=true;
-        Time.timeScale=0f;
+    private void Start()
+    {
+        _pauseMenuCanvasGO.SetActive(false);
+        _normalCanvasGO.SetActive(true);
+
+
+        LastSelectedIndex = 0;
+    }
+
+    private void Update()
+    {
+        if (InputManager.instance.NavigationInput.y!=0&&EventSystem.current.currentSelectedGameObject==null)
+        {
+            EventSystem.current.SetSelectedGameObject(Buttons[LastSelectedIndex]);
+        }
+
+    }
+
+    public void OpenOrCloseMenu() {
+        if (isPaused)
+        {
+            Unpause();
+        }
+        else
+        {
+            Pause();
+        }
+    }
+
+    public void Pause()
+    {
+        isPaused = true;
+        Time.timeScale = 0f;
         OpenPauseMenu();
 
     }
 
-    public void Unpause(){
-        isPaused=false;
-        Time.timeScale=1f;
+    public void Unpause()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
         ClosePauseMenu();
     }
-    public void OpenPauseMenu(){
+    public void OpenPauseMenu()
+    {
         _pauseMenuCanvasGO.SetActive(true);
         _normalCanvasGO.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(_selectedFirst);
+        //EventSystem.current.SetSelectedGameObject(Buttons[0]);
 
     }
-    public void ClosePauseMenu(){
+    public void ClosePauseMenu()
+    {
         _pauseMenuCanvasGO.SetActive(false);
         _normalCanvasGO.SetActive(true);
 
         EventSystem.current.SetSelectedGameObject(null);
     }
 
-    public void OnResumePress(){
+    public void OnResumePress()
+    {
         Unpause();
     }
-    public void OnEscPress(){
+    public void OnEscPress()
+    {
         Pause();
     }
-    public void OnBackToMainPress() {
+    public void OnBackToMainPress()
+    {
         SceneManager.LoadScene(sceneName: "mainMenu");
     }
-    public void onResumeOver()
-    {
-        EventSystem.current.SetSelectedGameObject(_resumeButton);
-    }
-    public void onBackToMainOver()
-    {
-        EventSystem.current.SetSelectedGameObject(_backToMainButton);
-    }
-    
+
 
 }

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,44 +8,39 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] PlayerInstance _player;
-    public PlayerInput playerInput { get; private set; }
-    public InputActions.PlayerActions playerInputActions { get; private set; }
-    private bool doubleJumpFlag = false;
+    public PlayerInputActions inputActions { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
-        playerInputActions = new InputActions().Player;
-        playerInputActions.Enable();
+        inputActions = new PlayerInputActions();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         _player.movement.UpdateTimers();
         _player.movement.UpdateChecks();
         _player.movement.UpdateGravity();
-        _player.movement.Run(playerInputActions.Run.ReadValue<float>());
-        if (doubleJumpFlag)
+        _player.movement.UpdateAnimationParameters();
+    }
+
+    private void FixedUpdate()
+    {
+        if (inputActions.Player.enabled)
         {
-            StartCoroutine(_player.movement.DoubleJumpCoroutine());
-            doubleJumpFlag = false;
+            _player.movement.Run(inputActions.Player.Run.ReadValue<float>());
         }
     }
 
     public void JumpCallback(InputAction.CallbackContext context)
     {
-        if (context.performed && _player.movement.lastOnGroundTime > 0)
+        if (context.performed)
         {
-            _player.movement.Jump();
-        } else if (context.performed)
+            if (_player.movement.CanJump()) { _player.movement.Jump(); }
+            else if (_player.movement.CanDoubleJump()) { _player.movement.DoubleJump(); }
+        }
+        if (context.canceled)
         {
-            _player.movement.DoubleJump();
-            doubleJumpFlag = true;
-
-            if (context.canceled)
-            {
-                _player.movement.JumpCut();
-            }
+            _player.movement.JumpCut();
         }
     }
 
@@ -62,23 +56,24 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            _player.combat.Attack(this);
+            _player.combat.Attack();
         }
     }
 
-    public void DownAttackCallback(InputAction.CallbackContext context)
+    /// <summary>
+    /// Disables all current active action maps before enabling <c>actionMap</c>.
+    /// </summary>
+    /// <param name="actionMap">Action map to enable.</param>
+    public void ToggleActionMap(InputActionMap actionMap)
     {
-        if (context.performed)
-        {
-            _player.combat.DownAttack(this);
-        }
+        if (actionMap.enabled) { return; }
+        inputActions.Disable();
+        actionMap.Enable();
     }
 
-    public void UpAttackCallback(InputAction.CallbackContext context)
+    public void DisableActionMap(InputActionMap actionMap)
     {
-        if (context.performed)
-        {
-            _player.combat.UpAttack(this);
-        }
+        if (!actionMap.enabled) { return; }
+        actionMap.Disable();
     }
 }

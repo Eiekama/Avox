@@ -7,7 +7,11 @@ public interface ICombat : IDamageable
     PlayerInstance player { get; set; }
     AttackHitbox attackHitbox { get; set; }
 
-    void Attack(MonoBehaviour mono);
+    void Attack();
+    
+    void Die();
+
+    IEnumerator WaitAndRespawn();
 
     void DownAttack(MonoBehaviour mono);
 

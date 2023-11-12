@@ -17,7 +17,7 @@ public class AttackHitbox : MonoBehaviour
     {
         if (other.TryGetComponent(out IDamageable damageable))
         {
-            damageable.Damage(_data.atk);
+            damageable.Damage(transform, _data.atk);
         }
     }
 

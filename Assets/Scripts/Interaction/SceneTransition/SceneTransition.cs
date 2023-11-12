@@ -8,9 +8,15 @@ public class SceneTransition : AInteractable
     public enum SpawnLocation
     {
         Left,
-        Right
+        Right,
+        Up,
+        UpRightOnly,
+        UpLeftOnly,
+        Down
     };
 
+
+    
     // NOTE: I still think it might be better to collect all these information from
     // all scenes and store them in a single ScriptableObject instead.
     // It will be easier to organise this way if the project gets big.
@@ -30,7 +36,8 @@ public class SceneTransition : AInteractable
     [Tooltip("Target scene transition index")]
     [SerializeField] private int toTransition;
 
- 
+
+    
     private Animator _transitionAnim;
     public Animator transitionAnim
     {
@@ -43,20 +50,19 @@ public class SceneTransition : AInteractable
 
     public override void Interact(PlayerInstance player)
     {
+        TransitionManager._playerVertical = (player.transform.position.y - transform.position.y) / transform.localScale.y;
+        
+        //Debug.Log(TransitionManager._playerVertical);
+        
         TransitionManager.currentTransition = toTransition;
-        LoadNextScene(player.controller.playerInputActions);
+        StartCoroutine(LoadScene(player, toScene));
     } 
     
-    private void LoadNextScene(InputActions.PlayerActions playerInputActions)
-    {
-        StartCoroutine(LoadLevel(playerInputActions, toScene));
-    }
-
-    IEnumerator LoadLevel(InputActions.PlayerActions playerInputActions, int sceneIndex)
+    IEnumerator LoadScene(PlayerInstance player, int sceneIndex)
     {
         _transitionAnim.SetTrigger("Start");
 
-        playerInputActions.Disable();
+        player.controller.DisableActionMap(player.controller.inputActions.Player);
         yield return new WaitForSeconds(_transitionTime);
 
         SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
