@@ -41,6 +41,5 @@ public class MainMenuController : MonoBehaviour
         {
             EventSystem.current.SetSelectedGameObject(Buttons[LastSelectedIndex]);
         }
-
     }
 }

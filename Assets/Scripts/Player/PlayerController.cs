@@ -13,6 +13,27 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         inputActions = new PlayerInputActions();
+
+        inputActions.Player.Jump.performed += JumpPerformed;
+        inputActions.Player.Jump.canceled += JumpCanceled;
+        inputActions.Player.Interact.performed += InteractPerformed;
+        inputActions.Player.Attack.performed += AttackPerformed;
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Disable();
+    }
+
+    private void Start()
+    {
+        if (_player.data.isFacingRight && transform.localScale.x < 0
+         || !_player.data.isFacingRight && transform.localScale.x > 0)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+        }
     }
 
     private void Update()
@@ -25,39 +46,36 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (inputActions.Player.enabled)
-        {
-            _player.movement.Run(inputActions.Player.Run.ReadValue<float>());
-        }
+        _player.movement.Run(inputActions.Player.Run.ReadValue<float>());
     }
 
-    public void JumpCallback(InputAction.CallbackContext context)
+    public void JumpPerformed(InputAction.CallbackContext _)
     {
-        if (context.performed)
-        {
-            if (_player.movement.CanJump()) { _player.movement.Jump(); }
-            else if (_player.movement.CanDoubleJump()) { _player.movement.DoubleJump(); }
-        }
-        if (context.canceled)
-        {
-            _player.movement.JumpCut();
-        }
+        if (_player.movement.CanJump()) { _player.movement.Jump(); }
+        else if (_player.movement.CanDoubleJump()) { _player.movement.DoubleJump(); }
     }
 
-    public void InteractCallback(InputAction.CallbackContext context)
+    public void JumpCanceled(InputAction.CallbackContext _)
     {
-        if (_player.currentManualInteractable != null && context.performed)
+        _player.movement.JumpCut();
+    }
+
+    public void InteractPerformed(InputAction.CallbackContext context)
+    {
+        if (_player.currentManualInteractable != null)
         {
             _player.currentManualInteractable.Interact(_player);
         }
     }
 
-    public void AttackCallback(InputAction.CallbackContext context)
+    public void AttackPerformed(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            _player.combat.Attack();
-        }
+        _player.combat.Attack();
+    }
+
+    public void OpenPauseMenu(InputAction.CallbackContext context)
+    {
+
     }
 
     /// <summary>
