@@ -29,9 +29,17 @@ namespace Player
 
         private bool _isJumpCut;
 
+        private float _lastDashTime;
+        public float lastDashTime
+        {
+            get { return _lastDashTime; }
+            set { _lastDashTime = Mathf.Max(-0.1f, value); }
+        }
+
         public void UpdateTimers()
         {
             lastOnGroundTime -= Time.deltaTime;
+            lastDashTime -= Time.deltaTime;
         }
 
         private void SetGravityScale(float scale) { player.RB.gravityScale = scale; }
@@ -39,7 +47,6 @@ namespace Player
         {
             if (_isJumpCut)
             {
-                Debug.Log("jump cut");
                 //Higher gravity if jump button released
                 SetGravityScale(player.data.gravityScale * player.data.jumpCutGravityMult);
                 //Caps maximum fall speed
@@ -84,12 +91,17 @@ namespace Player
 
         public void Run(float moveInput)
         {
+            float currMaxSpeed = player.data.runMaxSpeed;
+            if (lastDashTime > 0)
+            {
+                currMaxSpeed = player.data.dashMaxSpeed;
+            }
             if (moveInput < 0.0f || moveInput > 0.0f)
             {
                 Turn(moveInput);
             }
 
-            float _targetSpeed = moveInput * player.data.runMaxSpeed;
+            float _targetSpeed = moveInput * currMaxSpeed;
 
             float _accelRate;
             //Gets an acceleration value based on if we are accelerating (includes turning) 
@@ -131,7 +143,6 @@ namespace Player
             // reset gravity, jump cut, and velocity
             if (lastOnGroundTime > 0)
             {
-                Debug.Log("jump");
                 player.RB.AddForce(Vector2.up * player.data.jumpForce, ForceMode2D.Impulse);
             }
             else
@@ -146,7 +157,9 @@ namespace Player
 
         public void Dash()
         {
-            // ADD IMPLEMENTATION HERE
+            Debug.Log("dash " + facing);
+            player.RB.AddForce(facing * new Vector2(player.data.dashForce, 0), ForceMode2D.Impulse);
+            lastDashTime = player.data.dashMaxSpeedDuration;
         }
         public void DoubleJump()
         {

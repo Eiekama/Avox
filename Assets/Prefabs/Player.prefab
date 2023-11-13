@@ -260,6 +260,26 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9bed783b-17d2-4632-88fd-c840b643c308
     m_ActionName: Dialogue/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3053949301346508819}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: DashCallback
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b705f03c-ccc4-44cb-8dd4-0135e953d857
+    m_ActionName: Player/Dash[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2ca1a8fa-0bec-4eb7-b98b-42076ae4e073
+    m_ActionName: CutScene/ShowHint[/Keyboard/anyKey]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

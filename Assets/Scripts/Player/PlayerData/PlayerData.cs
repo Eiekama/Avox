@@ -98,9 +98,23 @@ public class PlayerData : ScriptableObject, IPlayerData
     [Range(0f, 1)] [SerializeField] private float _deccelInAir;
     public float deccelInAir => _deccelInAir;
 
+    [Space(20)] 
+    
+    [Header("Dash")] 
+    [SerializeField] [Tooltip("Scales with the amount of force added to the player when they dash")]
+    private float _dashForce = 10.0f;
+    public float dashForce => _dashForce;
+
+    [SerializeField] [Tooltip("Maximum speed while dashing")]
+    private float _dashMaxSpeed = 20.0f;
+    public float dashMaxSpeed => _dashMaxSpeed;
+
+    [SerializeField] [Tooltip("Number of cycles where dashMaxSpeed overrides normal max speed")]
+    private float _dashMaxSpeedDuration = 0.5f;
+    public float dashMaxSpeedDuration => _dashMaxSpeedDuration;
+
     [Space(20)]
-
-
+    
     [Header("Jump")]
     [Space(5)]
 

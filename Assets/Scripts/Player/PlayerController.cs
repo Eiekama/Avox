@@ -64,4 +64,12 @@ public class PlayerController : MonoBehaviour
             _player.combat.Attack(this);
         }
     }
+
+    public void DashCallback(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _player.movement.Dash();
+        }
+    }
 }
