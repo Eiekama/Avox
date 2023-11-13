@@ -120,7 +120,6 @@ namespace Player
 
         public void Turn(float direction)
         {
-            Debug.Log(direction);
             facing = direction;
             Vector3 scale = player.gameObject.transform.localScale;
             scale.x = direction;
@@ -151,14 +150,12 @@ namespace Player
         }
         public void DoubleJump()
         {
-            Debug.Log("double jump");
             SetGravityScale(player.data.gravityScale);
             player.RB.velocity = new Vector2(player.RB.velocity.x, 0);
         }
 
         public IEnumerator DoubleJumpCoroutine()
         {
-            Debug.Log("test");
             for (int i = 0; i < 6; i++)
             {
                 if (lastOnGroundTime > 0)
