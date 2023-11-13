@@ -45,7 +45,12 @@ namespace Player
         private void SetGravityScale(float scale) { player.RB.gravityScale = scale; }
         public void UpdateGravity()
         {
-            if (_isJumpCut)
+            if (lastDashTime > 0)
+            {
+                // Near-zero gravity if dashing
+                SetGravityScale(player.data.gravityScale * player.data.dashGravityMultiplier);
+            }
+            else if (_isJumpCut)
             {
                 //Higher gravity if jump button released
                 SetGravityScale(player.data.gravityScale * player.data.jumpCutGravityMult);

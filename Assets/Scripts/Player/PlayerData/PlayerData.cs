@@ -109,9 +109,13 @@ public class PlayerData : ScriptableObject, IPlayerData
     private float _dashMaxSpeed = 20.0f;
     public float dashMaxSpeed => _dashMaxSpeed;
 
-    [SerializeField] [Tooltip("Number of cycles where dashMaxSpeed overrides normal max speed")]
-    private float _dashMaxSpeedDuration = 0.5f;
+    [SerializeField] [Tooltip("Number of seconds where dashMaxSpeed overrides normal max speed")]
+    private float _dashMaxSpeedDuration = 0.01f;
     public float dashMaxSpeedDuration => _dashMaxSpeedDuration;
+
+    [SerializeField] [Tooltip("Dash gravity multiplier")]
+    private float _dashGravMult = 0.1f;
+    public float dashGravityMultiplier => _dashGravMult;
 
     [Space(20)]
     
