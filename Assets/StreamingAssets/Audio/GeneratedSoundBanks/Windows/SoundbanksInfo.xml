@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="145">
+	<RootPaths>
+		<ProjectRoot>../../../../../Avox_WwiseProject</ProjectRoot>
+		<SourceFilesRoot>../../../../../Avox_WwiseProject/.cache/Windows</SourceFilesRoot>
+		<SoundBanksRoot>.</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>../../../../../Avox_WwiseProject/GeneratedSoundBanks/Windows</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{986487A9-2683-E47A-8688-3D0FE6FDB954}">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+			<Plugins>
+				<AudioDevices>
+					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
+					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
+				</AudioDevices>
+			</Plugins>
+			<Busses>
+				<Bus Id="3803692087" Name="Master Audio Bus"/>
+			</Busses>
+		</SoundBank>
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{DF4D5356-7CBC-EE86-01DE-FED92212FEBD}">
+			<ShortName>Main</ShortName>
+			<Path>Main.bnk</Path>
+			<Media>
+				<File Id="345644811" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>avox_single_jump.wav</ShortName>
+					<CachePath>SFX/avox_single_jump_D63A370F.wem</CachePath>
+				</File>
+				<File Id="800548019" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>avox_double_jump.wav</ShortName>
+					<CachePath>SFX/avox_double_jump_A9C6DFC5.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3196776101" Name="Play_avox_double_jump" DurationType="OneShot" DurationMin="0.93868923" DurationMax="0.93868923">
+					<MediaRefs>
+						<MediaRef Id="800548019"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2530412616" Name="Play_avox_single_jump" DurationType="OneShot" DurationMin="0.7230444" DurationMax="0.7230444">
+					<MediaRefs>
+						<MediaRef Id="345644811"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{5119ACD2-D3BC-6D0E-CF7B-6ABEB5BC2BAD}</FileHash>
+</SoundBanksInfo>

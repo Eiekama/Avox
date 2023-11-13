@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{AAF905A0-A37D-41E9-9282-F4E805C7D82B}" SchemaVersion="110">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{AAF905A0-A37D-41E9-9282-F4E805C7D82B}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="avox_single_jump" ID="{0E7E9502-C214-4F94-A794-BFE2C3B6D617}" ShortID="1031958844">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{66BC3C4E-513A-40D8-9885-2FAC5E0C36A2}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5DD95D86-1ECB-4E9F-BC79-A173452CDFF1}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="avox_single_jump" ID="{EF6D0CF2-A637-4C48-BC78-E240C007BF1A}">
+							<PropertyList>
+								<Property Name="FadeOutDuration" Type="Real64" Value="0.0591966173361522"/>
+								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+								<Property Name="TrimEnd" Type="Real64" Value="0.723044397463"/>
+							</PropertyList>
+							<Language>SFX</Language>
+							<AudioFile>avox_single_jump.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="345644811"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="avox_single_jump" ID="{EF6D0CF2-A637-4C48-BC78-E240C007BF1A}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="avox_double_jump" ID="{4FD83845-913B-4C32-8D1B-C5E603F49CD6}" ShortID="589517443">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{66BC3C4E-513A-40D8-9885-2FAC5E0C36A2}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5DD95D86-1ECB-4E9F-BC79-A173452CDFF1}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="avox_double_jump" ID="{A5AADBE0-436B-49AE-8E19-EF2B42A1DC6C}">
+							<PropertyList>
+								<Property Name="FadeOutDuration" Type="Real64" Value="0.105708245243129"/>
+								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+								<Property Name="TrimEnd" Type="Real64" Value="0.938689217758982"/>
+							</PropertyList>
+							<Language>SFX</Language>
+							<AudioFile>avox_double_jump.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="800548019"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="avox_double_jump" ID="{A5AADBE0-436B-49AE-8E19-EF2B42A1DC6C}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>
