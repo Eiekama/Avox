@@ -19,6 +19,12 @@ namespace Player
 
         public AttackHitbox attackHitbox { get; set; }
 
+        private Vector3 front = new Vector3(2.0f, 0.0f, 0.0f);
+
+        private Vector3 up = new Vector3(0.0f, 2.0f, 0.0f);
+
+        private Vector3 down = new Vector3(0.0f, -2.0f, 0.0f);
+
         public void Damage(Transform _, int dmg)
         {
             player.status.ChangeCurrentHP(-dmg);
@@ -41,8 +47,9 @@ namespace Player
             SceneManager.LoadScene(deathRespawnScene, LoadSceneMode.Single); 
         }
 
-        IEnumerator AttackCoroutine()
+        IEnumerator AttackCoroutine(Vector3 position)
         {
+            attackHitbox.gameObject.transform.localPosition = position;
             attackHitbox.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.5f);
             attackHitbox.gameObject.SetActive(false);
@@ -50,9 +57,25 @@ namespace Player
 
         public void Attack()
         {
-            //animator.SetTrigger("Attack");
-            player.StartCoroutine(AttackCoroutine());
+            Debug.Log(player.controller.inputActions.Player.Look.ReadValue<int>());
+
+            if (player.controller.inputActions.Player.Look.ReadValue<int>() == 0)
+            {
+                //position = new Vector3 (2.0f, 0.0f, 0.0f);
+                player.StartCoroutine(AttackCoroutine(front));
+            }
+            else if (player.controller.inputActions.Player.Look.ReadValue<int>() == 1)
+            {
+                //position = new Vector3 (0.0f, 2.0f, 0.0f);
+                player.StartCoroutine(AttackCoroutine(up));
+            }
+            else if (player.controller.inputActions.Player.Look.ReadValue<int>() == -1)
+            {
+                //position = new Vector3(0.0f, -2.0f, 0.0f);
+                player.StartCoroutine(AttackCoroutine(down));
+            }
         }
+        
 
         
         public IEnumerator WaitAndRespawn()

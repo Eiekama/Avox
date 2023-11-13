@@ -13,5 +13,8 @@ public interface ICombat : IDamageable
 
     IEnumerator WaitAndRespawn();
 
+    //void DownAttack(MonoBehaviour mono);
+
+    //void UpAttack(MonoBehaviour mono);
     // when we add combat skills those would go in here too
 }
