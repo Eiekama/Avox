@@ -25,6 +25,10 @@ MonoBehaviour:
   _runDecceleration: 0.8
   _accelInAir: 0.8
   _deccelInAir: 0.8
+  _dashForce: 10
+  _dashMaxSpeed: 20
+  _dashMaxSpeedDuration: 0.3
+  _dashGravMult: 0
   _jumpHeight: 4.5
   _jumpTimeToApex: 0.5
   _jumpCutGravityMult: 6
