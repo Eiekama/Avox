@@ -11,7 +11,7 @@ using PrimeTween;
 
 public class MenuController : MonoBehaviour
 {
-    public int lastSelectedIndex;
+    [HideInInspector] public int lastSelectedIndex;
 
     public ButtonInstance[] buttons { get; private set; }
 
@@ -29,6 +29,8 @@ public class MenuController : MonoBehaviour
     private TMP_Text _quitTMP;
     private RectTransform _quitTransform;
     private float _quitYPos;
+
+    [SerializeField] Image _crossFade;
 
 
     private void Awake()
@@ -51,26 +53,37 @@ public class MenuController : MonoBehaviour
         _quitTMP = _quitButton.GetComponentInChildren<TMP_Text>();
         _quitTransform = _quitButton.GetComponent<RectTransform>();
         _quitYPos = _quitTransform.anchoredPosition.y;
-
-        _title.SetActive(false);
-        _startButton.SetActive(false);
-        _quitButton.SetActive(false);
     }
 
     private void Start()
     {
-        _title.SetActive(true);
-        _startButton.SetActive(true);
-        _quitButton.SetActive(true);
+        SetAlpha(_titleTMP, 0);
+        SetAlpha(_startTMP, 0);
+        SetAlpha(_quitTMP, 0);
+        _crossFade.gameObject.SetActive(true);
         Sequence.Create()
-            .Group(Tween.Custom(0f, 1f, duration: 1.0f, onValueChange: newVal => _titleTMP.color = new Vector4(_titleTMP.color.r, _titleTMP.color.g, _titleTMP.color.b, newVal)))
-            .Group(Tween.UIAnchoredPositionY(_titleTransform, startValue: _titleYPos - 50, endValue: _titleYPos, duration: 1.0f))
-            .Group(Tween.Custom(0f, 1f, duration: 0.7f, onValueChange: newVal => _startTMP.color = new Vector4(_startTMP.color.r, _startTMP.color.g, _startTMP.color.b, newVal)))
-            .Group(Tween.UIAnchoredPositionY(_startTransform, startValue: _startYPos - 20, endValue: _startYPos, duration: 0.7f, startDelay: 0.5f))
-            .Group(Tween.Custom(0f, 1f, duration: 0.7f, onValueChange: newVal => _quitTMP.color = new Vector4(_quitTMP.color.r, _quitTMP.color.g, _quitTMP.color.b, newVal)))
-            .Group(Tween.UIAnchoredPositionY(_quitTransform, startValue: _quitYPos - 20, endValue: _quitYPos, duration: 0.7f, startDelay: 0.5f))
-            .ChainCallback(() => { lastSelectedIndex = 0; StartCoroutine(SetSelectedAfterOneFrame(0)); });
+            .Group(Tween.Alpha(_crossFade, startValue: 1, endValue: 0, duration: 0.5f))
+            .ChainCallback(target: this, target => StartCoroutine(target.ShowMenu()));
+
+        
     }
+
+    IEnumerator ShowMenu()
+    {
+        yield return Sequence.Create()
+            .Group(Tween.Custom(this, 0f, 1f, duration: 1.0f, onValueChange: (target, newVal) => SetAlpha(target._titleTMP, newVal)))
+            .Group(Tween.UIAnchoredPositionY(_titleTransform, startValue: _titleYPos - 50, endValue: _titleYPos, duration: 1.0f))
+
+            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, startDelay: 0.9f, onValueChange: (target, newVal) => SetAlpha(target._startTMP, newVal)))
+            .Group(Tween.UIAnchoredPositionY(_startTransform, startValue: _startYPos - 20, endValue: _startYPos, duration: 0.7f, startDelay: 0.9f))
+
+            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, startDelay: 0.9f, onValueChange: (target, newVal) => SetAlpha(target._quitTMP, newVal)))
+            .Group(Tween.UIAnchoredPositionY(_quitTransform, startValue: _quitYPos - 20, endValue: _quitYPos, duration: 0.7f, startDelay: 0.9f))
+            .ToYieldInstruction();
+        lastSelectedIndex = 0;
+        StartCoroutine(SetSelectedAfterOneFrame(0));
+    }
+
     IEnumerator SetSelectedAfterOneFrame(int i)
     {
         yield return null;
@@ -95,26 +108,18 @@ public class MenuController : MonoBehaviour
 
     public void StartGame()
     {
+        HideMenu();
         Sequence.Create()
-            .Group(Tween.Custom(1f, 0f, duration: 0.7f, onValueChange: newVal => _startTMP.color = new Vector4(_startTMP.color.r, _startTMP.color.g, _startTMP.color.b, newVal)))
-            .Group(Tween.UIAnchoredPositionY(_startTransform, startValue: _startYPos, endValue: _startYPos - 20, duration: 0.7f))
-            .Group(Tween.Custom(1f, 0f, duration: 0.7f, onValueChange: newVal => _quitTMP.color = new Vector4(_quitTMP.color.r, _quitTMP.color.g, _quitTMP.color.b, newVal)))
-            .Group(Tween.UIAnchoredPositionY(_quitTransform, startValue: _quitYPos, endValue: _quitYPos - 20, duration: 0.7f))
-            .Group(Tween.Custom(1f, 0f, duration: 1.0f, onValueChange: newVal => _titleTMP.color = new Vector4(_titleTMP.color.r, _titleTMP.color.g, _titleTMP.color.b, newVal)))
-            .Group(Tween.UIAnchoredPositionY(_titleTransform, startValue: _titleYPos, endValue: _titleYPos - 50, duration: 1.0f))
-            .ChainCallback(() => SceneManager.LoadScene(sceneName: "IntroCutScene"));
+            .Group(Tween.Alpha(_crossFade, startValue: 0, endValue: 1, duration: 0.5f, startDelay: 1.3f))
+            .ChainCallback(target: this, target => SceneManager.LoadScene(sceneName: "IntroCutScene"));
     }
 
     public void QuitGame()
     {
+        HideMenu();
         Sequence.Create()
-            .Group(Tween.Custom(1f, 0f, duration: 0.7f, onValueChange: newVal => _startTMP.color = new Vector4(_startTMP.color.r, _startTMP.color.g, _startTMP.color.b, newVal)))
-            .Group(Tween.UIAnchoredPositionY(_startTransform, startValue: _startYPos, endValue: _startYPos - 20, duration: 0.7f))
-            .Group(Tween.Custom(1f, 0f, duration: 0.7f, onValueChange: newVal => _quitTMP.color = new Vector4(_quitTMP.color.r, _quitTMP.color.g, _quitTMP.color.b, newVal)))
-            .Group(Tween.UIAnchoredPositionY(_quitTransform, startValue: _quitYPos, endValue: _quitYPos - 20, duration: 0.7f))
-            .Group(Tween.Custom(1f, 0f, duration: 1.0f, onValueChange: newVal => _titleTMP.color = new Vector4(_titleTMP.color.r, _titleTMP.color.g, _titleTMP.color.b, newVal)))
-            .Group(Tween.UIAnchoredPositionY(_titleTransform, startValue: _titleYPos, endValue: _titleYPos - 50, duration: 1.0f))
-            .ChainCallback(() =>
+            .Group(Tween.Alpha(_crossFade, startValue: 0, endValue: 1, duration: 0.5f, startDelay: 1.3f))
+            .ChainCallback(target: this, target =>
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode()
 #else
@@ -122,5 +127,24 @@ public class MenuController : MonoBehaviour
 #endif
         );
 
+    }
+
+    private void HideMenu()
+    {
+            Sequence.Create()
+            .Group(Tween.Custom(this, 1f, 0f, duration: 0.7f, onValueChange: (target, newVal) => SetAlpha(target._startTMP, newVal)))
+            .Group(Tween.UIAnchoredPositionY(_startTransform, startValue: _startYPos, endValue: _startYPos - 20, duration: 0.7f))
+
+            .Group(Tween.Custom(this, 1f, 0f, duration: 0.7f, onValueChange: (target, newVal) => SetAlpha(target._quitTMP, newVal)))
+            .Group(Tween.UIAnchoredPositionY(_quitTransform, startValue: _quitYPos, endValue: _quitYPos - 20, duration: 0.7f))
+
+            .Group(Tween.Custom(this, 1f, 0f, duration: 1.0f, startDelay: 0.5f, onValueChange: (target, newVal) => SetAlpha(target._titleTMP, newVal)))
+            .Group(Tween.UIAnchoredPositionY(_titleTransform, startValue: _titleYPos, endValue: _titleYPos - 50, duration: 1.0f, startDelay: 0.5f))
+            .ToYieldInstruction();
+    }
+
+    private void SetAlpha(TMP_Text text, float a)
+    {
+        text.color = new Vector4(text.color.r, text.color.g, text.color.b, a);
     }
 }
