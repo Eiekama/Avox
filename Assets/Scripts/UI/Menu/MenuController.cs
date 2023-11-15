@@ -63,7 +63,7 @@ public class MenuController : MonoBehaviour
         _crossFade.gameObject.SetActive(true);
         Sequence.Create()
             .Group(Tween.Alpha(_crossFade, startValue: 1, endValue: 0, duration: 0.5f))
-            .ChainCallback(target: this, target => StartCoroutine(target.ShowMenu()));
+            .ChainCallback(target: this, target => { target._crossFade.gameObject.SetActive(false); StartCoroutine(target.ShowMenu()); });
 
         
     }
@@ -108,39 +108,48 @@ public class MenuController : MonoBehaviour
 
     public void StartGame()
     {
+        StartCoroutine(StartGameCoroutine());
+    }
+    IEnumerator StartGameCoroutine()
+    {
         HideMenu();
-        Sequence.Create()
-            .Group(Tween.Alpha(_crossFade, startValue: 0, endValue: 1, duration: 0.5f, startDelay: 1.3f))
-            .ChainCallback(target: this, target => SceneManager.LoadScene(sceneName: "IntroCutScene"));
+        yield return FadeOut(1.3f);
+        SceneManager.LoadScene(sceneName: "IntroCutScene");
     }
 
     public void QuitGame()
     {
+        StartCoroutine(QuitGameCoroutine());
+    }
+    IEnumerator QuitGameCoroutine()
+    {
         HideMenu();
-        Sequence.Create()
-            .Group(Tween.Alpha(_crossFade, startValue: 0, endValue: 1, duration: 0.5f, startDelay: 1.3f))
-            .ChainCallback(target: this, target =>
+        yield return FadeOut(1.3f);
 #if UNITY_EDITOR
-        EditorApplication.ExitPlaymode()
+        EditorApplication.ExitPlaymode();
 #else
-        Application.Quit()
+        Application.Quit();
 #endif
-        );
+    }
 
+    IEnumerator FadeOut(float delay)
+    {
+        yield return Tween.Delay(delay).ToYieldInstruction();
+        _crossFade.gameObject.SetActive(true);
+        yield return Tween.Alpha(_crossFade, startValue: 0, endValue: 1, duration: 0.5f).ToYieldInstruction();
     }
 
     private void HideMenu()
     {
-            Sequence.Create()
-            .Group(Tween.Custom(this, 1f, 0f, duration: 0.7f, onValueChange: (target, newVal) => SetAlpha(target._startTMP, newVal)))
-            .Group(Tween.UIAnchoredPositionY(_startTransform, startValue: _startYPos, endValue: _startYPos - 20, duration: 0.7f))
+        Sequence.Create()
+            .Group(Tween.Custom(this, 1f, 0f, duration: 0.7f, startDelay: 0.1f,onValueChange: (target, newVal) => SetAlpha(target._startTMP, newVal)))
+            .Group(Tween.UIAnchoredPositionY(_startTransform, startValue: _startYPos, endValue: _startYPos - 20, duration: 0.7f, startDelay: 0.1f))
 
-            .Group(Tween.Custom(this, 1f, 0f, duration: 0.7f, onValueChange: (target, newVal) => SetAlpha(target._quitTMP, newVal)))
-            .Group(Tween.UIAnchoredPositionY(_quitTransform, startValue: _quitYPos, endValue: _quitYPos - 20, duration: 0.7f))
+            .Group(Tween.Custom(this, 1f, 0f, duration: 0.7f, startDelay: 0.1f, onValueChange: (target, newVal) => SetAlpha(target._quitTMP, newVal)))
+            .Group(Tween.UIAnchoredPositionY(_quitTransform, startValue: _quitYPos, endValue: _quitYPos - 20, duration: 0.7f, startDelay: 0.1f))
 
-            .Group(Tween.Custom(this, 1f, 0f, duration: 1.0f, startDelay: 0.5f, onValueChange: (target, newVal) => SetAlpha(target._titleTMP, newVal)))
-            .Group(Tween.UIAnchoredPositionY(_titleTransform, startValue: _titleYPos, endValue: _titleYPos - 50, duration: 1.0f, startDelay: 0.5f))
-            .ToYieldInstruction();
+            .Group(Tween.Custom(this, 1f, 0f, duration: 1.0f, startDelay: 0.6f, onValueChange: (target, newVal) => SetAlpha(target._titleTMP, newVal)))
+            .Group(Tween.UIAnchoredPositionY(_titleTransform, startValue: _titleYPos, endValue: _titleYPos - 50, duration: 1.0f, startDelay: 0.6f));
     }
 
     private void SetAlpha(TMP_Text text, float a)
