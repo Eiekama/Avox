@@ -63,7 +63,7 @@ public class MenuController : MonoBehaviour
         _crossFade.gameObject.SetActive(true);
         Sequence.Create()
             .Group(Tween.Alpha(_crossFade, startValue: 1, endValue: 0, duration: 0.5f))
-            .ChainCallback(target: this, target => { target._crossFade.gameObject.SetActive(false); StartCoroutine(target.ShowMenu()); });
+            .ChainCallback(target: this, target => { target._crossFade.gameObject.SetActive(false); target.StartCoroutine(target.ShowMenu()); });
 
         
     }
@@ -71,13 +71,13 @@ public class MenuController : MonoBehaviour
     IEnumerator ShowMenu()
     {
         yield return Sequence.Create()
-            .Group(Tween.Custom(this, 0f, 1f, duration: 1.0f, onValueChange: (target, newVal) => SetAlpha(target._titleTMP, newVal)))
+            .Group(Tween.Custom(this, 0f, 1f, duration: 1.0f, onValueChange: (target, newVal) => target.SetAlpha(target._titleTMP, newVal)))
             .Group(Tween.UIAnchoredPositionY(_titleTransform, startValue: _titleYPos - 50, endValue: _titleYPos, duration: 1.0f))
 
-            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, startDelay: 0.9f, onValueChange: (target, newVal) => SetAlpha(target._startTMP, newVal)))
+            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, startDelay: 0.9f, onValueChange: (target, newVal) => target.SetAlpha(target._startTMP, newVal)))
             .Group(Tween.UIAnchoredPositionY(_startTransform, startValue: _startYPos - 20, endValue: _startYPos, duration: 0.7f, startDelay: 0.9f))
 
-            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, startDelay: 0.9f, onValueChange: (target, newVal) => SetAlpha(target._quitTMP, newVal)))
+            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, startDelay: 0.9f, onValueChange: (target, newVal) => target.SetAlpha(target._quitTMP, newVal)))
             .Group(Tween.UIAnchoredPositionY(_quitTransform, startValue: _quitYPos - 20, endValue: _quitYPos, duration: 0.7f, startDelay: 0.9f))
             .ToYieldInstruction();
         lastSelectedIndex = 0;
@@ -142,13 +142,13 @@ public class MenuController : MonoBehaviour
     private void HideMenu()
     {
         Sequence.Create()
-            .Group(Tween.Custom(this, 1f, 0f, duration: 0.7f, startDelay: 0.1f,onValueChange: (target, newVal) => SetAlpha(target._startTMP, newVal)))
+            .Group(Tween.Custom(this, 1f, 0f, duration: 0.7f, startDelay: 0.1f, onValueChange: (target, newVal) => target.SetAlpha(target._startTMP, newVal)))
             .Group(Tween.UIAnchoredPositionY(_startTransform, startValue: _startYPos, endValue: _startYPos - 20, duration: 0.7f, startDelay: 0.1f))
 
-            .Group(Tween.Custom(this, 1f, 0f, duration: 0.7f, startDelay: 0.1f, onValueChange: (target, newVal) => SetAlpha(target._quitTMP, newVal)))
+            .Group(Tween.Custom(this, 1f, 0f, duration: 0.7f, startDelay: 0.1f, onValueChange: (target, newVal) => target.SetAlpha(target._quitTMP, newVal)))
             .Group(Tween.UIAnchoredPositionY(_quitTransform, startValue: _quitYPos, endValue: _quitYPos - 20, duration: 0.7f, startDelay: 0.1f))
 
-            .Group(Tween.Custom(this, 1f, 0f, duration: 1.0f, startDelay: 0.6f, onValueChange: (target, newVal) => SetAlpha(target._titleTMP, newVal)))
+            .Group(Tween.Custom(this, 1f, 0f, duration: 1.0f, startDelay: 0.6f, onValueChange: (target, newVal) => target.SetAlpha(target._titleTMP, newVal)))
             .Group(Tween.UIAnchoredPositionY(_titleTransform, startValue: _titleYPos, endValue: _titleYPos - 50, duration: 1.0f, startDelay: 0.6f));
     }
 

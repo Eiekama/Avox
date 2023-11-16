@@ -40,7 +40,7 @@ public class ButtonInstance : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         Sequence.Create()
             .Group(Tween.Alpha(_backgroundRenderer, startValue: 0, endValue: 0.5f, duration: 0.25f * _duration))
             .Group(Tween.ScaleX(_backgroundTransform, startValue: 0.2f, endValue: 1.0f, duration: 0.25f * _duration))
-            .ChainCallback(() => function())
+            .ChainCallback(target: this, target => target.function())
             .Group(Tween.Alpha(_backgroundRenderer, startValue: 0.5f, endValue: 0, duration: 0.25f * _duration, startDelay: 0.25f * _duration))
             .Group(Tween.ScaleX(_backgroundTransform, startValue: 1.0f, endValue: 0.2f, duration: 0.25f * _duration, startDelay: 0.25f * _duration))
             .Group(Tween.Alpha(_selectRenderer, startValue: 1, endValue: 0, duration: _duration, startDelay: 0.25f * _duration))
@@ -81,6 +81,6 @@ public class ButtonInstance : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         Sequence.Create()
             .Group(Tween.Alpha(_selectRenderer, startValue: 1, endValue: 0, duration: _duration))
             .Group(Tween.ScaleX(_selectTransform, startValue: 1.0f, endValue: 0.8f, duration: _duration))
-            .ChainCallback(() => _selectIcon.SetActive(false));
+            .ChainCallback(target: this, target => target._selectIcon.SetActive(false));
     }
 }

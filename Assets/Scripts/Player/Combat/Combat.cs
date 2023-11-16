@@ -57,22 +57,19 @@ namespace Player
 
         public void Attack()
         {
-            Debug.Log(player.controller.inputActions.Player.Look.ReadValue<int>());
+            var _lookInput = player.controller.inputActions.Player.Look.ReadValue<float>();
 
-            if (player.controller.inputActions.Player.Look.ReadValue<int>() == 0)
+            if (_lookInput > 0.1f)
             {
-                //position = new Vector3 (2.0f, 0.0f, 0.0f);
-                player.StartCoroutine(AttackCoroutine(front));
-            }
-            else if (player.controller.inputActions.Player.Look.ReadValue<int>() == 1)
-            {
-                //position = new Vector3 (0.0f, 2.0f, 0.0f);
                 player.StartCoroutine(AttackCoroutine(up));
             }
-            else if (player.controller.inputActions.Player.Look.ReadValue<int>() == -1)
+            else if (_lookInput < -0.1f && player.movement.lastOnGroundTime < -0.2f)
             {
-                //position = new Vector3(0.0f, -2.0f, 0.0f);
                 player.StartCoroutine(AttackCoroutine(down));
+            }
+            else
+            {
+                player.StartCoroutine(AttackCoroutine(front));
             }
         }
         

@@ -15,7 +15,7 @@ namespace Player
         public float lastOnGroundTime
         {
             get { return _lastOnGroundTime; }
-            set { _lastOnGroundTime = Mathf.Max(-0.1f, value); }
+            set { _lastOnGroundTime = Mathf.Max(-1.0f, value); }
         }
 
         private bool _isDoubleJumping;

@@ -20,10 +20,4 @@ public class AttackHitbox : MonoBehaviour
             damageable.Damage(transform, _data.atk);
         }
     }
-
-
-    private void OnDrawGizmos()
-    {
-         Gizmos.DrawWireCube(GetComponent<BoxCollider2D>().offset + (Vector2)transform.position, GetComponent<BoxCollider2D>().size);
-    }
 }
