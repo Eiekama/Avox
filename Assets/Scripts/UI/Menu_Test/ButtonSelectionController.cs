@@ -81,10 +81,10 @@ public class ButtonSelectionController : MonoBehaviour,IPointerEnterHandler,IPoi
         }
         else if (scene.name == "mainMenu")
         {
-            MainMenuController.instance.LastSelected = gameObject;
-            for (int i = 0; i < MainMenuController.instance.Buttons.Length; i++)
+            MainMenuControllerOld.instance.LastSelected = gameObject;
+            for (int i = 0; i < MainMenuControllerOld.instance.Buttons.Length; i++)
             {
-                MainMenuController.instance.LastSelectedIndex = i;
+                MainMenuControllerOld.instance.LastSelectedIndex = i;
             }
             return;
         }

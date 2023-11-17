@@ -10,7 +10,7 @@ public class ButtonInstance : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public delegate void Function();
     [HideInInspector] public Function function;
 
-    [SerializeField] float _duration = 0.15f;
+    [SerializeField] float _duration = 0.1f;
 
     [SerializeField] GameObject _selectIcon;
     private Image _selectRenderer;
@@ -20,7 +20,7 @@ public class ButtonInstance : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private Image _backgroundRenderer;
     private RectTransform _backgroundTransform;
 
-    private MenuController _controller;
+    private MainMenuController _controller;
 
 
     private void Awake()
@@ -31,7 +31,7 @@ public class ButtonInstance : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         _backgroundRenderer = _backgroundIcon.GetComponent<Image>();
         _backgroundTransform = _backgroundIcon.GetComponent<RectTransform>();
 
-        _controller = GetComponentInParent<MenuController>();
+        _controller = GetComponentInParent<MainMenuController>();
     }
 
     public void OnClick()

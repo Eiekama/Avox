@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using PrimeTween;
 
-public class MenuController : MonoBehaviour
+public class MainMenuController : MonoBehaviour
 {
     [HideInInspector] public int lastSelectedIndex;
 
@@ -106,7 +106,7 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    private void StartGame()
     {
         StartCoroutine(StartGameCoroutine());
     }
@@ -117,7 +117,7 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene(sceneName: "IntroCutScene");
     }
 
-    public void QuitGame()
+    private void QuitGame()
     {
         StartCoroutine(QuitGameCoroutine());
     }

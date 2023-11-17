@@ -6,7 +6,6 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using PrimeTween;
-using System;
 
 public class CutSceneController : MonoBehaviour
 {

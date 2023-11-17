@@ -69,6 +69,7 @@ namespace Player
             }
             else
             {
+                player.animator.SetTrigger("attack");
                 player.StartCoroutine(AttackCoroutine(front));
             }
         }

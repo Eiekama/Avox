@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MainMenuController : MonoBehaviour
+public class MainMenuControllerOld : MonoBehaviour
 {
-    public static MainMenuController instance;
+    public static MainMenuControllerOld instance;
 
     public GameObject[] Buttons;
 
