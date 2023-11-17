@@ -11,6 +11,9 @@ public interface IMovement
 
     LayerMask groundLayer { get; set; }
 
+    /// <summary>
+    /// If positive, then player is grounded.
+    /// </summary>
     float lastOnGroundTime { get; }
 
     void UpdateTimers();

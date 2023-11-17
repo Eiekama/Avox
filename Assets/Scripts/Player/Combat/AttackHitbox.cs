@@ -15,6 +15,7 @@ public class AttackHitbox : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other);
         if (other.TryGetComponent(out IDamageable damageable))
         {
             damageable.Damage(transform, _data.atk);

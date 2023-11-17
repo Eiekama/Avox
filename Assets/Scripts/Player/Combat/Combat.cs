@@ -2,28 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using PrimeTween;
 
 namespace Player
 {
     public class Combat : ASystem, ICombat
     {
-        // public Animator animator;
+        public AttackHitbox attackHitbox { get; set; }
 
-        // nextAttackTime = Time.time + 1f / _attackRate;
+        private float _lastAttackTime;
+        public float lastAttackTime
+        {
+            get { return _lastAttackTime; }
+            set { _lastAttackTime = Mathf.Min(1.0f, value); }
+        }
+        private float _lastPressedAttackTime;
+        public float lastPressedAttackTime
+        {
+            get { return _lastPressedAttackTime; }
+            set { _lastPressedAttackTime = Mathf.Min(1.0f, value); }
+        }
 
-        // float _attackRate = 2f;
-        // float _nextAttackTime = 0f;
+        private float _attackCooldown = 0.25f;
+        public float attackCooldown => _attackCooldown;
+        private float _bufferTime = 0.2f;
 
         public static float respawnTime = 1f; //Respawn time for platforming checkpoints
         public static int deathRespawnScene = 1;
 
-        public AttackHitbox attackHitbox { get; set; }
 
-        private Vector3 front = new Vector3(2.0f, 0.0f, 0.0f);
-
-        private Vector3 up = new Vector3(0.0f, 2.0f, 0.0f);
-
-        private Vector3 down = new Vector3(0.0f, -2.0f, 0.0f);
+        public void UpdateTimers()
+        {
+            lastAttackTime += Time.deltaTime;
+            lastPressedAttackTime += Time.deltaTime;
+        }
 
         public void Damage(Transform _, int dmg)
         {
@@ -47,35 +59,24 @@ namespace Player
             SceneManager.LoadScene(deathRespawnScene, LoadSceneMode.Single); 
         }
 
-        IEnumerator AttackCoroutine(Vector3 position)
+        public bool CanAttack()
         {
-            attackHitbox.gameObject.transform.localPosition = position;
-            attackHitbox.gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
-            attackHitbox.gameObject.SetActive(false);
+            return lastAttackTime > -0.2f;
         }
 
         public void Attack()
         {
             var _lookInput = player.controller.inputActions.Player.Look.ReadValue<float>();
-
-            if (_lookInput > 0.1f)
-            {
-                player.StartCoroutine(AttackCoroutine(up));
-            }
-            else if (_lookInput < -0.1f && player.movement.lastOnGroundTime < -0.2f)
-            {
-                player.StartCoroutine(AttackCoroutine(down));
-            }
-            else
-            {
-                player.animator.SetTrigger("attack");
-                player.StartCoroutine(AttackCoroutine(front));
-            }
+            player.animator.SetInteger("yInput", Mathf.RoundToInt(_lookInput));
+            if (lastPressedAttackTime < _bufferTime || lastAttackTime < 0) { player.animator.SetBool("buffered", true); }
+            else { player.animator.SetBool("buffered", false); }
+            player.animator.SetTrigger("attack");
+            // for more reliable behaviour lastAttackTime is set using an animation event
+            // this line is just to make sure we can't glitch a second attack in before the animation event calls
+            player.combat.lastAttackTime = -2 * _attackCooldown;
         }
-        
 
-        
+
         public IEnumerator WaitAndRespawn()
         {
             Animator anim = player.RespawnAnimator;

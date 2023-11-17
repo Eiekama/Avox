@@ -78,7 +78,7 @@ namespace Player
         public void UpdateAnimationParameters()
         {
             player.animator.SetFloat("yVelocity", player.RB.velocity.y);
-            player.animator.SetBool("onGround", lastOnGroundTime > 0);
+            player.animator.SetFloat("lastOnGroundTime", lastOnGroundTime);
         }
 
         public void Run(float moveInput)

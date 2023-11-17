@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         _player.movement.UpdateTimers();
+        _player.combat.UpdateTimers();
         _player.movement.UpdateChecks();
         _player.movement.UpdateGravity();
         _player.movement.UpdateAnimationParameters();
@@ -70,13 +71,24 @@ public class PlayerController : MonoBehaviour
 
     public void AttackPerformed(InputAction.CallbackContext context)
     {
-        _player.combat.Attack();
+        if (_player.combat.CanAttack()) { _player.combat.Attack(); }
+        _player.combat.lastPressedAttackTime = 0;
     }
 
     public void OpenPauseMenu(InputAction.CallbackContext context)
     {
 
     }
+
+    #region Animation Events
+
+    public void SetLastAttackTime()
+    {
+        _player.combat.lastAttackTime = -_player.combat.attackCooldown;
+    }
+
+    #endregion
+
 
     /// <summary>
     /// Disables all current active action maps before enabling <c>actionMap</c>.
