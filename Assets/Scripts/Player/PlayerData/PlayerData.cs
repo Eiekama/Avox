@@ -12,6 +12,11 @@ public class PlayerData : ScriptableObject, IPlayerData
     [Header("Status")] /////////////////////////////////////////////////////////
     [Space(5)]
     [SerializeField] int _atk;
+    
+    public bool weapon;
+
+    public bool dash;
+
     public int atk
     {
         get { return _atk; }

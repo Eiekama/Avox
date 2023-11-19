@@ -13,9 +13,18 @@ MonoBehaviour:
   m_Name: CollectibleData
   m_EditorClassIdentifier: 
   _info:
-  - scene: 0
+  - scene: 1
     index: 0
     collected: 0
-  - scene: 13
+  - scene: 2
+    index: 0
+    collected: 0
+  - scene: 5
+    index: 0
+    collected: 0
+  - scene: 8
+    index: 0
+    collected: 0
+  - scene: 9
     index: 0
     collected: 1

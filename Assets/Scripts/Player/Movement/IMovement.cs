@@ -31,6 +31,8 @@ public interface IMovement
     void Dash();
     void DoubleJump();
 
+    void Knockback(Vector2 direction);
+
     bool CanJump();
     bool CanDoubleJump();
 }
