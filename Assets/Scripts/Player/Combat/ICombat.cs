@@ -13,14 +13,11 @@ public interface ICombat : IDamageable
     float lastAttackTime { get; set; }
     float attackCooldown { get; }
     float lastPressedAttackTime { get; set; }
-    float invFrames { get; set; }
 
     void UpdateTimers();
 
     bool CanAttack();
     void Attack();
-
-    void setIFrames(float newIFrames);
     
     void Die();
 

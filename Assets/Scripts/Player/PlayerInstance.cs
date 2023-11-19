@@ -77,10 +77,4 @@ public class PlayerInstance : MonoBehaviour
             interactable.OnExit(this);
         }
     }
-
-    private void Update() {
-        if(combat.invFrames > 0){
-            combat.invFrames -= Time.deltaTime;
-        }
-    }
 }

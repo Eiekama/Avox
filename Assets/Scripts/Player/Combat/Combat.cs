@@ -27,16 +27,11 @@ namespace Player
         public float attackCooldown => _attackCooldown;
         private float _bufferTime = 0.2f;
         
-        private float _invFrames = 0;
-        public float invFrames
-        {
-            get { return _invFrames; }
-            set { _invFrames = Mathf.Max(0, value); }
-        }
+        public bool isInvincible = false;
 
         public static float respawnTime = 1f; //Respawn time for platforming checkpoints
         public static int deathRespawnScene = 1;
-        public static float invincibilityTime = 20f;
+        public static float invincibilityTime = 10f;
 
 
         public void UpdateTimers()
@@ -47,17 +42,16 @@ namespace Player
 
         public void Damage(Transform _, int dmg)
         {
-            if(invFrames == 0){
+            if(!isInvincible){
                 player.status.ChangeCurrentHP(-dmg);
             }
-            invFrames += invincibilityTime;
+            player.StartCoroutine(RunIFrames());
         }
 
-        public void setIFrames(float newIFrames)
-        {
-            if(newIFrames > invFrames){
-                invFrames = newIFrames;
-            }
+        IEnumerator RunIFrames(){
+            isInvincible = true;
+            yield return new WaitForSeconds(invincibilityTime);
+            isInvincible = false;
         }
 
         public void Die(){

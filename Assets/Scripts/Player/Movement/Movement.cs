@@ -203,7 +203,8 @@ namespace Player
         public void Knockback(Vector2 direction)
         {
             Debug.Log("Knockbacking");
-            player.RB.velocity += direction;
+            player.RB.velocity = direction;
+            player.controller.DisableActionMap(player.controller.inputActions.Player);
         }
     }
 }
