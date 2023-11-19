@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9309a918d23225b408eaddd61b730597, type: 3}
-  m_Name: PlatformData
+  m_Script: {fileID: 11500000, guid: e26f84a905efe0d4bbbe3e02208a5380, type: 3}
+  m_Name: GateData
   m_EditorClassIdentifier: 
   _info:
-  - scene: 7
+  - scene: 10
     index: 0
-    collapsed: 0
+    lowered: 0
