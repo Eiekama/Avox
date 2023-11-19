@@ -506,6 +506,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1203300179}
+  - {fileID: 1074217515}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -665,7 +666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7871654458558152457, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.4444444
+      value: 3.4360292
       objectReference: {fileID: 0}
     - target: {fileID: 7871654458558152457, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -802,6 +803,79 @@ Transform:
   m_Father: {fileID: 658323040}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1074217514
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 273434547}
+    m_Modifications:
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.18514943
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1465344
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.082498826
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974732, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_Name
+      value: CollectUI
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+--- !u!4 &1074217515 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+  m_PrefabInstance: {fileID: 1074217514}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1074217516 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5473030615853974706, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+  m_PrefabInstance: {fileID: 1074217514}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15945d251290e5d4ca9913cde5e1b41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1203300175
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,6 +934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isAuto: 0
+  interactUI: {fileID: 1074217516}
   _index: 0
 --- !u!212 &1203300178
 SpriteRenderer:

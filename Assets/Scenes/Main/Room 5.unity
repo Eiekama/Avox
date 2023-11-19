@@ -14572,6 +14572,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 969727844}
+  - {fileID: 659514794}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14745,7 +14746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7871654458558152457, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5555553
+      value: -2.563961
       objectReference: {fileID: 0}
     - target: {fileID: 7871654458558152457, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14832,6 +14833,79 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
+--- !u!1001 &659514793
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 435501898}
+    m_Modifications:
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473030615853974732, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+      propertyPath: m_Name
+      value: CollectUI
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+--- !u!4 &659514794 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+  m_PrefabInstance: {fileID: 659514793}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &659514795 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5473030615853974706, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
+  m_PrefabInstance: {fileID: 659514793}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15945d251290e5d4ca9913cde5e1b41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &773099475
 GameObject:
   m_ObjectHideFlags: 0
@@ -14968,6 +15042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isAuto: 0
+  interactUI: {fileID: 659514795}
   _index: 0
 --- !u!61 &969727846
 BoxCollider2D:
