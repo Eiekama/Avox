@@ -30,6 +30,8 @@ namespace Player
         public static float respawnTime = 1f; //Respawn time for platforming checkpoints
         public static int deathRespawnScene = 1;
 
+        
+        public Vector3 moveDirection = new Vector3(-500, 3f, 0); //Used for knockback, hardcoded for now
 
         public void UpdateTimers()
         {
@@ -40,6 +42,7 @@ namespace Player
         public void Damage(Transform _, int dmg)
         {
             player.status.ChangeCurrentHP(-dmg);
+            player.RB.AddForce(moveDirection, ForceMode2D.Impulse); //Knockaback
         }
 
         public void Die(){
