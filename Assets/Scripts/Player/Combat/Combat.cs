@@ -26,9 +26,17 @@ namespace Player
         private float _attackCooldown = 0.25f;
         public float attackCooldown => _attackCooldown;
         private float _bufferTime = 0.2f;
+        
+        private float _invFrames = 0;
+        public float invFrames
+        {
+            get { return _invFrames; }
+            set { _invFrames = Mathf.Max(0, value); }
+        }
 
         public static float respawnTime = 1f; //Respawn time for platforming checkpoints
         public static int deathRespawnScene = 1;
+        public static float invincibilityTime = 20f;
 
 
         public void UpdateTimers()
@@ -39,7 +47,17 @@ namespace Player
 
         public void Damage(Transform _, int dmg)
         {
-            player.status.ChangeCurrentHP(-dmg);
+            if(invFrames == 0){
+                player.status.ChangeCurrentHP(-dmg);
+            }
+            invFrames += invincibilityTime;
+        }
+
+        public void setIFrames(float newIFrames)
+        {
+            if(newIFrames > invFrames){
+                invFrames = newIFrames;
+            }
         }
 
         public void Die(){
@@ -88,7 +106,7 @@ namespace Player
 
             //Respawning; Resets Player location/velocity
             player.transform.position = Checkpoint.currentCheckpoint;
-            player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            // player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             yield return new WaitForSeconds(respawnTime/2);
 
             anim.SetTrigger("FadeIn");

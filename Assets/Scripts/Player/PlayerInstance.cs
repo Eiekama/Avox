@@ -50,9 +50,9 @@ public class PlayerInstance : MonoBehaviour
         Animator[] Anims = GetComponentsInChildren<Animator>(true);
         foreach (Animator anim in Anims)
         {
-            if (anim.name == "WSCrossfade"){ RespawnAnimator = anim; Debug.Log(anim); }
+            if (anim.name == "WSCrossfade"){ RespawnAnimator = anim; }
         }
-        if(RespawnAnimator == null){ int i = 0; int j = 1/i; }
+        if(RespawnAnimator == null){ Debug.Log("RespawnAnimator Not Found"); }
         
         StartCoroutine(status.RecoverMP());
     }
@@ -75,6 +75,12 @@ public class PlayerInstance : MonoBehaviour
         if (other.TryGetComponent(out AInteractable interactable))
         {
             interactable.OnExit(this);
+        }
+    }
+
+    private void Update() {
+        if(combat.invFrames > 0){
+            combat.invFrames -= Time.deltaTime;
         }
     }
 }

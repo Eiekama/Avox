@@ -199,5 +199,11 @@ namespace Player
         {
             // ADD IMPLEMENTATION HERE
         }
+
+        public void Knockback(Vector2 direction)
+        {
+            Debug.Log("Knockbacking");
+            player.RB.velocity += direction;
+        }
     }
 }
