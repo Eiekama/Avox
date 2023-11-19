@@ -29,6 +29,7 @@ public class PlayerInstance : MonoBehaviour
 
     public Animator RespawnAnimator;
 
+    public PauseMenuController pauseMenu;
 
     private void Awake()
     {
@@ -55,6 +56,7 @@ public class PlayerInstance : MonoBehaviour
         if(RespawnAnimator == null){ int i = 0; int j = 1/i; }
         
         StartCoroutine(status.RecoverMP());
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
