@@ -62,7 +62,7 @@ namespace Player
             Vector2 groundCheckSize = playerBoxCollider.size + new Vector2(-0.1f, 0.0f);
             if (Physics2D.OverlapBox(terrainCheckPoint, groundCheckSize, 0, groundLayer))
             {
-                lastOnGroundTime = 0.01f;
+                lastOnGroundTime = 0.1f;
                 _isJumpCut = false;
             }
             #endregion
@@ -84,6 +84,8 @@ namespace Player
         public void Run(float moveInput)
         {
             player.animator.SetInteger("xInput", Mathf.RoundToInt(moveInput));
+
+            if (!player.controller.inputActions.Player.enabled) { return; }
 
             if (moveInput != 0)
             {
@@ -151,7 +153,7 @@ namespace Player
 
             _isJumpCut = false;
             lastOnGroundTime = 0;
-            player.RB.AddForce(Vector2.up * player.data.jumpForce, ForceMode2D.Impulse);
+            player.RB.AddForce(Vector2.up * (player.data.jumpForce - player.RB.velocity.y), ForceMode2D.Impulse);
         }
 
         public void JumpCut()
@@ -161,7 +163,7 @@ namespace Player
 
         public bool CanDoubleJump()
         {
-            return !_isDoubleJumping && player.data.currentMP > 0;
+            return lastOnGroundTime < 0 && !_isDoubleJumping && player.data.currentMP > 0;
         }
 
         public void DoubleJump()
@@ -188,6 +190,12 @@ namespace Player
             }
             for (int i = 0; i < player.data.doubleJumpDuration; i++)
             {
+                if (lastOnGroundTime > 0)
+                {
+                    player.status.ChangeCurrentMP(1);
+                    Jump();
+                    break;
+                }
                 player.RB.AddForce(Vector2.up * (force / player.data.doubleJumpDuration), ForceMode2D.Impulse);
                 yield return new WaitForFixedUpdate();
             }
@@ -198,13 +206,6 @@ namespace Player
         public void Dash()
         {
             // ADD IMPLEMENTATION HERE
-        }
-
-        public void Knockback(Vector2 direction)
-        {
-            Debug.Log("Knockbacking");
-            player.RB.velocity = direction;
-            player.controller.DisableActionMap(player.controller.inputActions.Player);
         }
     }
 }

@@ -13,12 +13,18 @@ public class AttackHitbox : MonoBehaviour
         set { if (_data == null) _data = value; }
     }
 
+    private BoxCollider2D _collider;
+
+    private void Awake()
+    {
+        _collider = GetComponent<BoxCollider2D>();
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other);
         if (other.TryGetComponent(out IDamageable damageable))
         {
-            damageable.Damage(transform, _data.atk);
+            damageable.Damage(_collider, _data.atk); ;
         }
     }
 }

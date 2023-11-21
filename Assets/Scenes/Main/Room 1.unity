@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 273434547}
   - component: {fileID: 273434546}
   m_Layer: 0
-  m_Name: collectable
+  m_Name: CollectibleManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -506,7 +506,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1203300179}
-  - {fileID: 1074217515}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -666,7 +665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7871654458558152457, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.4360292
+      value: 3.4444444
       objectReference: {fileID: 0}
     - target: {fileID: 7871654458558152457, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -808,23 +807,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 273434547}
+    m_TransformParent: {fileID: 1203300179}
     m_Modifications:
     - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.18514943
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1465344
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.082498826
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5473030615853974707, guid: 38631d5226cff3b489456670d7875e6e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -889,7 +888,7 @@ GameObject:
   - component: {fileID: 1203300177}
   - component: {fileID: 1203300176}
   m_Layer: 0
-  m_Name: weapon collect
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -999,7 +998,8 @@ Transform:
   m_LocalPosition: {x: 0.18514943, y: -2.3534656, z: -0.082498826}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1074217515}
   m_Father: {fileID: 273434547}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
