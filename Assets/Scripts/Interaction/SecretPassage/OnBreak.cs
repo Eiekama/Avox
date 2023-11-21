@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class OnBreak : MonoBehaviour
 {
-    [SerializeField] private BreakableWall breakObject;
+    [SerializeField] private GameObject breakObject;
 
     private void Update()
     {
