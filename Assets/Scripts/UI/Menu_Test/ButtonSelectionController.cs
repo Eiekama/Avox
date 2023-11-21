@@ -69,26 +69,6 @@ public class ButtonSelectionController : MonoBehaviour,IPointerEnterHandler,IPoi
     public void OnSelect(BaseEventData eventData)
     {
         StartCoroutine(MoveButton(true));
-
-        if (scene.name == "EscMenu")
-        {
-            PauseMenuController.instance.LastSelected = gameObject;
-            for (int i = 0; i < PauseMenuController.instance.Buttons.Length; i++)
-            {
-                PauseMenuController.instance.LastSelectedIndex = i;
-            }
-            return;
-        }
-        else if (scene.name == "mainMenu")
-        {
-            MainMenuControllerOld.instance.LastSelected = gameObject;
-            for (int i = 0; i < MainMenuControllerOld.instance.Buttons.Length; i++)
-            {
-                MainMenuControllerOld.instance.LastSelectedIndex = i;
-            }
-            return;
-        }
-        
     }
 
     public void OnDeselect(BaseEventData eventData)

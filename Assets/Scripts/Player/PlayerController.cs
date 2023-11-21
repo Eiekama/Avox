@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] PlayerInstance _player;
+    
     public PlayerInputActions inputActions { get; private set; }
 
     private void Awake()
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Jump.canceled += JumpCanceled;
         inputActions.Player.Interact.performed += InteractPerformed;
         inputActions.Player.Attack.performed += AttackPerformed;
+        inputActions.Player.OpenMenu.performed += OpenPauseMenu;
     }
 
     private void OnDisable()
@@ -77,6 +79,9 @@ public class PlayerController : MonoBehaviour
 
     public void OpenPauseMenu(InputAction.CallbackContext context)
     {
+        Debug.Log("Pause!");
+        ToggleActionMap(_player.controller.inputActions.UI);
+        _player.pauseMenu.PauseGame();
 
     }
 
