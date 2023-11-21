@@ -4614,9 +4614,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6775416825962371316, guid: 55fabe6cfc3a94563ac43cc0cfe65f2e, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8042690769667205765, guid: 55fabe6cfc3a94563ac43cc0cfe65f2e, type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8042690769667205765, guid: 55fabe6cfc3a94563ac43cc0cfe65f2e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8042690769667205768, guid: 55fabe6cfc3a94563ac43cc0cfe65f2e, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8042690769667205769, guid: 55fabe6cfc3a94563ac43cc0cfe65f2e, type: 3}
       propertyPath: m_Pivot.x
@@ -4899,7 +4911,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7871654458558152457, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.44918728
+      value: 0.43959522
       objectReference: {fileID: 0}
     - target: {fileID: 7871654458558152457, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_LocalPosition.y

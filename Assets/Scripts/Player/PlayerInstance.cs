@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Player;
 
 [RequireComponent(typeof(BoxCollider2D))]
@@ -25,9 +26,10 @@ public class PlayerInstance : MonoBehaviour
 
     public Rigidbody2D RB { get; private set; }
 
-    [HideInInspector] public AInteractable currentManualInteractable;
+    [SerializeField] Image _crossfade;
+    public Image crossfade => _crossfade;
 
-    public Animator RespawnAnimator;
+    [HideInInspector] public AInteractable currentManualInteractable;
 
     public PauseMenuController pauseMenu;
 
@@ -48,13 +50,6 @@ public class PlayerInstance : MonoBehaviour
         combat.attackHitbox = GetComponentInChildren<AttackHitbox>(true);
         combat.attackHitbox.data = _data;
 
-        Animator[] Anims = GetComponentsInChildren<Animator>(true);
-        foreach (Animator anim in Anims)
-        {
-            if (anim.name == "WSCrossfade"){ RespawnAnimator = anim; Debug.Log(anim); }
-        }
-        if(RespawnAnimator == null){ int i = 0; int j = 1/i; }
-        
         StartCoroutine(status.RecoverMP());
 
     }

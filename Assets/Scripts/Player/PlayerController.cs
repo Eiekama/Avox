@@ -92,8 +92,28 @@ public class PlayerController : MonoBehaviour
         _player.combat.lastAttackTime = -_player.combat.attackCooldown;
     }
 
-    #endregion
+    public void DisablePlayerActionMap()
+    {
+        DisableActionMap(inputActions.Player);
+    }
 
+    public void EnablePlayerActionMap()
+    {
+        ToggleActionMap(inputActions.Player);
+    }
+
+    public void SetKinematic()
+    {
+        _player.RB.velocity = Vector2.zero;
+        _player.RB.isKinematic = true;
+    }
+
+    public void Respawn()
+    {
+        _player.combat.Respawn();
+    }
+
+    #endregion
 
     /// <summary>
     /// Disables all current active action maps before enabling <c>actionMap</c>.

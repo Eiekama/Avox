@@ -12,9 +12,16 @@ namespace Enemy
         [SerializeField] protected int hp = 1;
         [SerializeField] protected int atk = 1;
 
+        private Collider2D _collider;
+
+        private void Awake()
+        {
+            _collider = GetComponent<Collider2D>();
+        }
+
         public virtual void DealContactDamage(PlayerInstance player)
         {
-            player.combat.Damage(transform, atk);
+            player.combat.Damage(_collider, atk);
         }
 
         protected virtual void Die()
@@ -22,7 +29,7 @@ namespace Enemy
             gameObject.SetActive(false);
         }
 
-        public virtual void Damage(Transform source, int dmg)
+        public virtual void Damage(Collider2D source, int dmg)
         {
             hp -= dmg;
             if (hp <= 0) { Die(); }

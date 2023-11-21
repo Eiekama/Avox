@@ -11,6 +11,8 @@ public abstract class AInteractable : MonoBehaviour
     [SerializeField] protected bool _isAuto = true;
     public bool isAuto { get { return _isAuto; } }
 
+    public CollectIcon interactUI;
+
     public abstract void Interact(PlayerInstance player);
 
     public virtual void OnEnter(PlayerInstance player)
