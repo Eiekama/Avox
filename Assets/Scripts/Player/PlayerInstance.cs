@@ -31,6 +31,7 @@ public class PlayerInstance : MonoBehaviour
 
     [HideInInspector] public AInteractable currentManualInteractable;
 
+    public PauseMenuController pauseMenu;
 
     private void Awake()
     {
@@ -50,6 +51,7 @@ public class PlayerInstance : MonoBehaviour
         combat.attackHitbox.data = _data;
 
         StartCoroutine(status.RecoverMP());
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)

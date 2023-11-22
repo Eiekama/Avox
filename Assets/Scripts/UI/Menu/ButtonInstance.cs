@@ -20,8 +20,8 @@ public class ButtonInstance : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private Image _backgroundRenderer;
     private RectTransform _backgroundTransform;
 
-    private MainMenuController _controller;
 
+    
 
     private void Awake()
     {
@@ -31,20 +31,19 @@ public class ButtonInstance : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         _backgroundRenderer = _backgroundIcon.GetComponent<Image>();
         _backgroundTransform = _backgroundIcon.GetComponent<RectTransform>();
 
-        _controller = GetComponentInParent<MainMenuController>();
     }
 
     public void OnClick()
     {
         _backgroundIcon.SetActive(true);
         Sequence.Create()
-            .Group(Tween.Alpha(_backgroundRenderer, startValue: 0, endValue: 0.5f, duration: 0.25f * _duration))
-            .Group(Tween.ScaleX(_backgroundTransform, startValue: 0.2f, endValue: 1.0f, duration: 0.25f * _duration))
+            .Group(Tween.Alpha(_backgroundRenderer, startValue: 0, endValue: 0.5f, duration: 0.25f * _duration, useUnscaledTime: true))
+            .Group(Tween.ScaleX(_backgroundTransform, startValue: 0.2f, endValue: 1.0f, duration: 0.25f * _duration, useUnscaledTime: true))
             .ChainCallback(target: this, target => target.function())
-            .Group(Tween.Alpha(_backgroundRenderer, startValue: 0.5f, endValue: 0, duration: 0.25f * _duration, startDelay: 0.25f * _duration))
-            .Group(Tween.ScaleX(_backgroundTransform, startValue: 1.0f, endValue: 0.2f, duration: 0.25f * _duration, startDelay: 0.25f * _duration))
-            .Group(Tween.Alpha(_selectRenderer, startValue: 1, endValue: 0, duration: _duration, startDelay: 0.25f * _duration))
-            .Group(Tween.ScaleX(_selectTransform, startValue: 1.0f, endValue: 0.8f, duration: _duration, startDelay: 0.25f * _duration));
+            .Group(Tween.Alpha(_backgroundRenderer, startValue: 0.5f, endValue: 0, duration: 0.25f * _duration, startDelay: 0.25f * _duration, useUnscaledTime: true))
+            .Group(Tween.ScaleX(_backgroundTransform, startValue: 1.0f, endValue: 0.2f, duration: 0.25f * _duration, startDelay: 0.25f * _duration, useUnscaledTime: true))
+            .Group(Tween.Alpha(_selectRenderer, startValue: 1, endValue: 0, duration: _duration, startDelay: 0.25f * _duration, useUnscaledTime: true))
+            .Group(Tween.ScaleX(_selectTransform, startValue: 1.0f, endValue: 0.8f, duration: _duration, startDelay: 0.25f * _duration, useUnscaledTime: true));
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -62,25 +61,17 @@ public class ButtonInstance : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         _selectIcon.SetActive(true);
         Sequence.Create()
-            .Group(Tween.Alpha(_selectRenderer, startValue: 0, endValue: 1, duration: _duration))
-            .Group(Tween.ScaleX(_selectTransform, startValue: 0.8f, endValue: 1.0f, duration: _duration));
+            .Group(Tween.Alpha(_selectRenderer, startValue: 0, endValue: 1, duration: _duration, useUnscaledTime: true))
+            .Group(Tween.ScaleX(_selectTransform, startValue: 0.8f, endValue: 1.0f, duration: _duration, useUnscaledTime: true));
         
-        
-        for (int i = 0; i < _controller.buttons.Length; i++)
-        {
-            if (_controller.buttons[i] == this)
-            {
-                _controller.lastSelectedIndex = i;
-                return;
-            }
-        }
+       
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
         Sequence.Create()
-            .Group(Tween.Alpha(_selectRenderer, startValue: 1, endValue: 0, duration: _duration))
-            .Group(Tween.ScaleX(_selectTransform, startValue: 1.0f, endValue: 0.8f, duration: _duration))
+            .Group(Tween.Alpha(_selectRenderer, startValue: 1, endValue: 0, duration: _duration, useUnscaledTime: true))
+            .Group(Tween.ScaleX(_selectTransform, startValue: 1.0f, endValue: 0.8f, duration: _duration, useUnscaledTime: true))
             .ChainCallback(target: this, target => target._selectIcon.SetActive(false));
     }
 }
