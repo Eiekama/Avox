@@ -40,7 +40,7 @@ public class InitialiseData : MonoBehaviour
         //will probably find time after this semester to write a respawn manager script instead
         _controller = FindObjectOfType<PlayerController>();
         Sequence.Create()
-            .ChainDelay(0.5f)
+            .ChainDelay(1.0f)
             .ChainCallback(target: this, target => target._controller.ToggleActionMap(target._controller.inputActions.Player));
         //not the best but works for now
     }

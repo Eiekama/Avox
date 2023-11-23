@@ -85,7 +85,7 @@ namespace Player
         {
             player.animator.SetInteger("xInput", Mathf.RoundToInt(moveInput));
 
-            if (!player.controller.inputActions.Player.enabled) { return; }
+            if (!player.controller.inputActions.Player.enabled && moveInput == 0) { return; }
 
             if (moveInput != 0)
             {
