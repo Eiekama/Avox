@@ -109,6 +109,22 @@ public class PlayerData : ScriptableObject, IPlayerData
 
     [HideInInspector] public bool isFacingRight { get; set; }
 
+    [Space(20)] 
+    
+    [Header("Dash")] 
+    [Space(5)] 
+    [SerializeField] private int _dashDuration;
+    public int dashDuration => _dashDuration;
+    [SerializeField] private int _dashForceDuration;
+    public int dashForceDuration => _dashForceDuration;
+    [SerializeField] private float _dashForce;
+    public float dashForce => _dashForce;
+    [SerializeField] private float _dashGravityMult;
+    public float dashGravityMult => _dashGravityMult;
+    [SerializeField] private float _dashMaxSpeed;
+    public float dashMaxSpeed => _dashMaxSpeed;
+    
+    
     [Space(20)]
 
 

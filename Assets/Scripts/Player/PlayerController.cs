@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Interact.performed += InteractPerformed;
         inputActions.Player.Attack.performed += AttackPerformed;
         inputActions.Player.OpenMenu.performed += OpenPauseMenu;
+        inputActions.Player.Dash.performed += Dash;
     }
 
     private void OnDisable()
@@ -61,6 +62,11 @@ public class PlayerController : MonoBehaviour
     public void JumpCanceled(InputAction.CallbackContext _)
     {
         _player.movement.JumpCut();
+    }
+
+    public void Dash(InputAction.CallbackContext _)
+    {
+        _player.movement.Dash();
     }
 
     public void InteractPerformed(InputAction.CallbackContext context)
