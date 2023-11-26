@@ -28,6 +28,9 @@ MonoBehaviour:
   _accelInAir: 0.6
   _deccelInAir: 0.6
   _conservedMomentum: 0.3
+  _dashDuration: 4
+  _dashForce: 10
+  _dashGravityMult: 0
   _jumpHeight: 6
   _jumpTimeToApex: 0.7
   _doubleJumpDelay: 3
