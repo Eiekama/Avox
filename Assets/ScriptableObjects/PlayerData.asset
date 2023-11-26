@@ -28,8 +28,11 @@ MonoBehaviour:
   _accelInAir: 0.6
   _deccelInAir: 0.6
   _conservedMomentum: 0.3
-  _dashDuration: 4
-  _dashForce: 10
+  _dashTime: 0.3
+  _dashMaxSpeed: 25
+  _dashAcceleration: 0.8
+  _dashDecceleration: 0.2
+  _dashDeccelPoint: 0.7
   _dashGravityMult: 0
   _jumpHeight: 6
   _jumpTimeToApex: 0.7
@@ -40,5 +43,3 @@ MonoBehaviour:
   _jumpHangTimeThreshold: 0.2
   _jumpHangAccelerationMult: 1.2
   _jumpHangMaxSpeedMult: 1.5
-  coyoteTime: 0
-  jumpInputBufferTime: 0

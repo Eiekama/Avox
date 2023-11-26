@@ -20,7 +20,7 @@ public interface IPlayerData
 /////////////////////////////////// Movement ///////////////////////////////////
     #region Movement
     bool isFacingRight { get; set; }
-    // Gravity //
+
     #region Gravity
     /// <summary>
     /// Strength of the player's gravity as a multiplier of gravity (set in ProjectSettings/Physics2D).
@@ -38,7 +38,7 @@ public interface IPlayerData
     /// </summary>
     float maxFallSpeed { get; }
     #endregion
-    // Run //
+
     #region Run
     /// <summary>
     /// Target speed we want the player to reach.
@@ -70,7 +70,7 @@ public interface IPlayerData
     /// </summary>
     float conservedMomentum { get; }
     #endregion
-    // Jump //
+
     #region Jump
     /// <summary>
     /// The actual force applied (upwards) to the player when they jump.
@@ -104,6 +104,41 @@ public interface IPlayerData
 
     float jumpHangAccelerationMult { get; }
     float jumpHangMaxSpeedMult { get; }
+    #endregion
+
+    #region Dash
+
+    /// <summary>
+    /// Duration (in seconds) of dash.
+    /// </summary>
+    float dashTime { get; }
+
+    /// <summary>
+    /// Target speed of dash.
+    /// </summary>
+    float dashMaxSpeed { get; }
+
+    /// <summary>
+    /// The actual force (multiplied with speedDiff) applied to the player.
+    /// </summary>
+    float dashAccelAmount { get; }
+
+    /// <summary>
+    /// The actual force (multiplied with speedDiff) applied to the player.
+    /// </summary>
+    float dashDeccelAmount { get; }
+
+    /// <summary>
+    /// The fraction of <c>dashTime</c> at which we start deccelerating.
+    /// </summary>
+    float dashDeccelPoint { get; }
+
+    /// <summary>
+    /// Multiplier to the player's gravityScale when dashing.
+    /// Recommend to set close to 0.
+    /// </summary>
+    float dashGravityMult { get; }
+
     #endregion
 
     #endregion

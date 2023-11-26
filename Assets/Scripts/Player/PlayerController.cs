@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Jump.canceled += JumpCanceled;
         inputActions.Player.Interact.performed += InteractPerformed;
         inputActions.Player.Attack.performed += AttackPerformed;
-        inputActions.Player.OpenMenu.performed += OpenPauseMenu;
-        inputActions.Player.Dash.performed += Dash;
+        inputActions.Player.OpenMenu.performed += OpenMenuPerformed;
+        inputActions.Player.Dash.performed += DashPerformed;
     }
 
     private void OnDisable()
@@ -64,9 +64,9 @@ public class PlayerController : MonoBehaviour
         _player.movement.JumpCut();
     }
 
-    public void Dash(InputAction.CallbackContext _)
+    public void DashPerformed(InputAction.CallbackContext _)
     {
-        _player.movement.Dash();
+        if (_player.movement.CanDash()) _player.movement.Dash();
     }
 
     public void InteractPerformed(InputAction.CallbackContext context)
@@ -83,9 +83,8 @@ public class PlayerController : MonoBehaviour
         _player.combat.lastPressedAttackTime = 0;
     }
 
-    public void OpenPauseMenu(InputAction.CallbackContext context)
+    public void OpenMenuPerformed(InputAction.CallbackContext context)
     {
-        Debug.Log("Pause!");
         ToggleActionMap(_player.controller.inputActions.UI);
         _player.pauseMenu.PauseGame();
 
