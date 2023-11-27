@@ -7,6 +7,13 @@ public class PromptTrigger : AInteractable
     [SerializeField] DialogueObject _dialogueObject;
     [SerializeField] DialogueUI _dialogueUI;
     [SerializeField] private Vector2 offset;
+    [SerializeField] bool activeImmediately;
+
+    public void Start()
+    {
+        if (activeImmediately)
+            Interact(FindObjectOfType<PlayerInstance>());
+    }
 
     public override void OnExit(PlayerInstance player)
     {
