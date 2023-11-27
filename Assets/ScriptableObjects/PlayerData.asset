@@ -13,29 +13,33 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   _atk: 1
-  weapon: 0
+  weapon: 1
   dash: 0
   _maxHP: 5
   _currentHP: 5
-  _maxMP: 3
-  _currentMP: 3
+  _maxMP: 4
+  _currentMP: 4
   _MPRecovaryRate: 0.5
   _fallGravityMult: 1.3
-  _maxFallSpeed: 15
-  _runMaxSpeed: 7
-  _runAcceleration: 0.8
-  _runDecceleration: 0.8
-  _accelInAir: 0.8
-  _deccelInAir: 0.8
-  _conservedMomentum: 0.5
-  _jumpHeight: 4.5
-  _jumpTimeToApex: 0.5
-  _doubleJumpDelay: 2
+  _maxFallSpeed: 20
+  _runMaxSpeed: 8
+  _runAcceleration: 0.7
+  _runDecceleration: 0.7
+  _accelInAir: 0.6
+  _deccelInAir: 0.6
+  _conservedMomentum: 0.3
+  _dashTime: 0.3
+  _dashMaxSpeed: 25
+  _dashAcceleration: 0.8
+  _dashDecceleration: 0.2
+  _dashDeccelPoint: 0.7
+  _dashGravityMult: 0
+  _jumpHeight: 6
+  _jumpTimeToApex: 0.7
+  _doubleJumpDelay: 3
   _doubleJumpDuration: 4
   _jumpCutGravityMult: 6
   _jumpHangGravityMult: 0.5
   _jumpHangTimeThreshold: 0.2
   _jumpHangAccelerationMult: 1.2
-  _jumpHangMaxSpeedMult: 1.3
-  coyoteTime: 0
-  jumpInputBufferTime: 0
+  _jumpHangMaxSpeedMult: 1.5

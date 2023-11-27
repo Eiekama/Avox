@@ -19,9 +19,11 @@ namespace Player
         }
 
         private bool _isDoubleJumping;
+        private bool _isDashing = false;
         private bool _isJumpCut;
 
-
+        private WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
+        
         public void UpdateTimers()
         {
             lastOnGroundTime -= Time.deltaTime;
@@ -30,7 +32,11 @@ namespace Player
         private void SetGravityScale(float scale) { player.RB.gravityScale = scale; }
         public void UpdateGravity()
         {
-            if (_isJumpCut)
+            if (_isDashing)
+            {
+                //Very low gravity if dashing
+                SetGravityScale(player.data.gravityScale * player.data.dashGravityMult);
+            } else if (_isJumpCut)
             {
                 //Higher gravity if jump button released
                 SetGravityScale(player.data.gravityScale * player.data.jumpCutGravityMult);
@@ -62,7 +68,7 @@ namespace Player
             Vector2 groundCheckSize = playerBoxCollider.size + new Vector2(-0.1f, 0.0f);
             if (Physics2D.OverlapBox(terrainCheckPoint, groundCheckSize, 0, groundLayer))
             {
-                lastOnGroundTime = 0.01f;
+                lastOnGroundTime = 0.1f;
                 _isJumpCut = false;
             }
             #endregion
@@ -84,6 +90,9 @@ namespace Player
         public void Run(float moveInput)
         {
             player.animator.SetInteger("xInput", Mathf.RoundToInt(moveInput));
+
+            if ((!player.controller.inputActions.Player.enabled && moveInput == 0)
+             || _isDashing) { return; }
 
             if (moveInput != 0)
             {
@@ -125,12 +134,12 @@ namespace Player
             player.RB.AddForce(_movement * Vector2.right, ForceMode2D.Force);
         }
 
-        public void UpdateDirectionToFace(bool isMovingRight)
+        private void UpdateDirectionToFace(bool isMovingRight)
         {
             if (isMovingRight != player.data.isFacingRight) { Turn(); }
         }
 
-        public void Turn()
+        private void Turn()
         {
             Vector3 scale = player.transform.localScale;
             scale.x *= -1;
@@ -142,7 +151,7 @@ namespace Player
 
         public bool CanJump()
         {
-            return lastOnGroundTime > 0;
+            return lastOnGroundTime > 0 && !_isDashing;
         }
 
         public void Jump()
@@ -151,7 +160,7 @@ namespace Player
 
             _isJumpCut = false;
             lastOnGroundTime = 0;
-            player.RB.AddForce(Vector2.up * player.data.jumpForce, ForceMode2D.Impulse);
+            player.RB.AddForce(Vector2.up * (player.data.jumpForce - player.RB.velocity.y), ForceMode2D.Impulse);
         }
 
         public void JumpCut()
@@ -161,7 +170,7 @@ namespace Player
 
         public bool CanDoubleJump()
         {
-            return !_isDoubleJumping && player.data.currentMP > 0;
+            return lastOnGroundTime < 0 && !_isDoubleJumping && !_isDashing && player.data.currentMP > 0;
         }
 
         public void DoubleJump()
@@ -172,11 +181,13 @@ namespace Player
             player.status.ChangeCurrentMP(-1);
             player.StartCoroutine(DoubleJumpCoroutine());
         }
-        public IEnumerator DoubleJumpCoroutine()
+
+        IEnumerator DoubleJumpCoroutine()
         {
             _isDoubleJumping = true;
 
-            float force = player.data.jumpForce - Physics2D.gravity.y * player.data.gravityScale * player.data.doubleJumpDuration * Time.fixedDeltaTime;
+            float force = player.data.jumpForce - Physics2D.gravity.y * player.data.gravityScale *
+                          player.data.doubleJumpDuration * Time.fixedDeltaTime;
             if (player.RB.velocity.y < 0)
                 force -= player.RB.velocity.y;
             else
@@ -184,27 +195,70 @@ namespace Player
 
             for (int i = 0; i < player.data.doubleJumpDelay; i++)
             {
-                yield return new WaitForFixedUpdate();
+                yield return waitForFixedUpdate;
             }
+
             for (int i = 0; i < player.data.doubleJumpDuration; i++)
             {
+                if (lastOnGroundTime > 0)
+                {
+                    player.status.ChangeCurrentMP(1);
+                    Jump();
+                    break;
+                }
+
                 player.RB.AddForce(Vector2.up * (force / player.data.doubleJumpDuration), ForceMode2D.Impulse);
-                yield return new WaitForFixedUpdate();
+                yield return waitForFixedUpdate;
             }
+
             _isDoubleJumping = false;
         }
 
+        public bool CanDash()
+        {
+            return !_isDashing && player.data.currentMP > 1;
+        }
 
         public void Dash()
         {
-            // ADD IMPLEMENTATION HERE
+            player.animator.SetTrigger("dash");
+            player.status.ChangeCurrentMP(-2);
+            player.StartCoroutine(DashCoroutine());
         }
 
-        public void Knockback(Vector2 direction)
+        IEnumerator DashCoroutine()
         {
-            Debug.Log("Knockbacking");
-            player.RB.velocity = direction;
-            player.controller.DisableActionMap(player.controller.inputActions.Player);
+            _isDashing = true;
+
+            float _moveInput = player.controller.inputActions.Player.Run.ReadValue<float>();
+            float _lookInput = player.controller.inputActions.Player.Look.ReadValue<float>();
+            if (_moveInput == 0 && _lookInput == 0) { _moveInput = player.data.isFacingRight ? 1.0f : -1.0f; }
+            Vector2 _direction = new(_moveInput, _lookInput);
+
+            Vector2 _speedDif;
+            Vector2 _movement;
+
+            Vector2 _targetSpeed = player.data.dashMaxSpeed * _direction.normalized;
+            float _accelRate = player.data.dashAccelAmount;
+            for (float i = 0f; i < player.data.dashDeccelPoint * player.data.dashTime; i += Time.fixedDeltaTime)
+            {
+                _speedDif = _targetSpeed - player.RB.velocity;
+                _movement = _speedDif * _accelRate;
+                player.RB.AddForce(_movement, ForceMode2D.Force);
+                yield return waitForFixedUpdate;
+            }
+
+            _targetSpeed = Vector2.zero;
+            _accelRate = player.data.dashDeccelAmount;
+            for (float i = 0; i < (1 - player.data.dashDeccelPoint) * player.data.dashTime; i += Time.fixedDeltaTime)
+            {
+                _speedDif = _targetSpeed - player.RB.velocity;
+                _movement = _speedDif * _accelRate;
+                player.RB.AddForce(_movement, ForceMode2D.Force);
+                yield return waitForFixedUpdate;
+            }
+
+            _isDashing = false;
         }
     }
 }

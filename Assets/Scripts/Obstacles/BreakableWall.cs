@@ -33,10 +33,10 @@ public class BreakableWall : MonoBehaviour, IDamageable
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public virtual void Damage(Transform source, int dmgTaken)
+    public virtual void Damage(Collider2D source, int dmgTaken)
     {
-        if (hitDirections == HitDirections.LeftOnly && source.position.x > transform.position.x
-            || hitDirections == HitDirections.RightOnly && source.position.x < transform.position.x)
+        if (hitDirections == HitDirections.LeftOnly && source.transform.position.x > transform.position.x
+            || hitDirections == HitDirections.RightOnly && source.transform.position.x < transform.position.x)
             return;
 
         _state += dmgTaken;

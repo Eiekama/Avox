@@ -19,12 +19,5 @@ public interface ICombat : IDamageable
     bool CanAttack();
     void Attack();
     
-    void Die();
-
-    IEnumerator WaitAndRespawn();
-
-    //void DownAttack(MonoBehaviour mono);
-
-    //void UpAttack(MonoBehaviour mono);
-    // when we add combat skills those would go in here too
+    void Respawn();
 }

@@ -64,6 +64,7 @@ public class PlayerData : ScriptableObject, IPlayerData
     [Header("Movement")]
     [Space(5)]
 
+    #region Gravity
     [Header("Gravity")]
     [Space(5)]
 
@@ -80,21 +81,22 @@ public class PlayerData : ScriptableObject, IPlayerData
     public float gravityScale { get; private set; }
 
     [Space(20)]
+    #endregion
 
-
+    #region Run
     [Header("Run")]
     [Space(5)]
-    [SerializeField] private float _runMaxSpeed = 10.0f;
+    [SerializeField] private float _runMaxSpeed;
     public float runMaxSpeed => _runMaxSpeed;
 
     [Tooltip("The speed at which our player accelerates to max speed," +
              "can be set to 1 for instant acceleration down to 0 for none at all.")]
-    [Range(0f, 1)] [SerializeField] private float _runAcceleration = 0.8f;
+    [Range(0f, 1)] [SerializeField] private float _runAcceleration;
     public float runAccelAmount { get; private set; }
 
     [Tooltip("The speed at which our player decelerates from their current speed," +
              "can be set to 1 for instant deceleration down to 0 for none at all.")]
-    [Range(0f, 1)] [SerializeField] private float _runDecceleration = 0.8f;
+    [Range(0f, 1)] [SerializeField] private float _runDecceleration;
     public float runDeccelAmount { get; private set; }
 
     [Space(5)]
@@ -110,8 +112,27 @@ public class PlayerData : ScriptableObject, IPlayerData
     [HideInInspector] public bool isFacingRight { get; set; }
 
     [Space(20)]
+    #endregion
 
+    [Header("Dash")]
+    [Space(5)]
+    [SerializeField] private float _dashTime;
+    public float dashTime => _dashTime;
+    [SerializeField] private float _dashMaxSpeed;
+    public float dashMaxSpeed => _dashMaxSpeed;
+    [Range(0f, 1)][SerializeField] private float _dashAcceleration;
+    public float dashAccelAmount { get; private set; }
+    [Range(0f, 1)][SerializeField] private float _dashDecceleration;
+    public float dashDeccelAmount { get; private set; }
+    [Range(0f, 1)][SerializeField] private float _dashDeccelPoint;
+    public float dashDeccelPoint => _dashDeccelPoint;
+    [SerializeField] private float _dashGravityMult;
+    public float dashGravityMult => _dashGravityMult;
+    
+    
+    [Space(20)]
 
+    #region Jump
     [Header("Jump")]
     [Space(5)]
 
@@ -121,7 +142,7 @@ public class PlayerData : ScriptableObject, IPlayerData
     [Tooltip("Time between applying the jump force and reaching the desired jump height." +
              "These values also control the player's gravity and jump force.")]
     [SerializeField] private float _jumpTimeToApex;
-    [HideInInspector] public float jumpForce { get; private set; }
+    public float jumpForce { get; private set; }
 
     [Space(10)]
     [Header("Double Jump")]
@@ -146,16 +167,16 @@ public class PlayerData : ScriptableObject, IPlayerData
     public float jumpHangAccelerationMult => _jumpHangAccelerationMult;
     [SerializeField] float _jumpHangMaxSpeedMult;
     public float jumpHangMaxSpeedMult => _jumpHangMaxSpeedMult;
-
+    #endregion
     //below are stuff i havent organised yet
 
 
 
-    [Space(50)]
+    //[Space(50)]
 
-    [Header("Assists")]
-    [Range(0.01f, 0.5f)] public float coyoteTime; //Grace period after falling off a platform, where you can still jump
-    [Range(0.01f, 0.5f)] public float jumpInputBufferTime; //Grace period after pressing jump where a jump will be automatically performed once the requirements (eg. being grounded) are met.
+    //[Header("Assists")]
+    //[Range(0.01f, 0.5f)] public float coyoteTime; //Grace period after falling off a platform, where you can still jump
+    //[Range(0.01f, 0.5f)] public float jumpInputBufferTime; //Grace period after pressing jump where a jump will be automatically performed once the requirements (eg. being grounded) are met.
 
     #endregion
 
@@ -169,11 +190,14 @@ public class PlayerData : ScriptableObject, IPlayerData
         gravityScale = _gravityStrength / Physics2D.gravity.y;
 
         //Calculate are run acceleration & deceleration forces using formula: amount = ((1 / Time.fixedDeltaTime) * acceleration) / runMaxSpeed
-        runAccelAmount = 50 * _runAcceleration;
-        runDeccelAmount = 50 * _runDecceleration;
+        runAccelAmount = (1 / Time.fixedDeltaTime) * _runAcceleration;
+        runDeccelAmount = (1 / Time.fixedDeltaTime) * _runDecceleration;
 
         //Calculate jumpForce using the formula (initialJumpVelocity = gravity * timeToJumpApex)
         jumpForce = Mathf.Abs(_gravityStrength) * _jumpTimeToApex;
+
+        dashAccelAmount = (1 / Time.fixedDeltaTime) * _dashAcceleration;
+        dashDeccelAmount = (1 / Time.fixedDeltaTime) * _dashDecceleration;
 
         #region Variable Ranges
         _runAcceleration = Mathf.Clamp(_runAcceleration, 0.01f, runMaxSpeed);

@@ -40,35 +40,62 @@ namespace Player
             lastPressedAttackTime += Time.deltaTime;
         }
 
-        public void Damage(Transform _, int dmg)
+        public void Damage(Collider2D source, int dmg)
         {
             if(!isInvincible){
                 player.status.ChangeCurrentHP(-dmg);
             }
-            player.StartCoroutine(RunIFrames());
+            if (_player.data.currentHP == 0)
+            {
+                Die();
+                return;
+            }
+
+            player.StartCoroutine(RunIFrames(invincibilityTime));
+
+            var direction = source.ClosestPoint(player.transform.position) - (Vector2)player.transform.position;
+            Knockback(direction.x);
+            player.animator.SetTrigger("damage");
+            // action map will be toggled as animation event
         }
 
-        IEnumerator RunIFrames(){
+        private void Knockback(float fromDir)
+        {
+            Vector2 force;
+            if (fromDir < 0)
+            {
+                force = Vector2.right * 10 + 0.5f * player.data.jumpForce * Vector2.up;
+            }
+            else
+            {
+                force = Vector2.left * 10 + 0.5f * player.data.jumpForce * Vector2.up;
+            }
+            player.RB.velocity = Vector2.zero;
+            player.RB.AddForce(force, ForceMode2D.Impulse);
+        }
+
+        IEnumerator RunIFrames(float duration){
             isInvincible = true;
-            yield return new WaitForSeconds(invincibilityTime);
+            yield return new WaitForSeconds(duration);
             isInvincible = false;
         }
 
-        public void Die(){
-            Debug.Log("Player Died :(");
-            player.StartCoroutine(DieCoroutine());
+        private void Die(){
+            player.animator.SetTrigger("die");
+            // rest of behaviour defined through animation events
         }
-        IEnumerator DieCoroutine()
+
+        // used in animation event
+        public void Respawn()
         {
-            //Not finished:
-            Animator anim = player.RespawnAnimator;
-            anim.SetTrigger("Start");
-
-
-            // player.controller.playerInputActions.Disable();
-            yield return new WaitForSeconds(respawnTime/2);
-            player.status.ChangeCurrentHP(player.data.maxHP);
-            SceneManager.LoadScene(deathRespawnScene, LoadSceneMode.Single); 
+            Sequence.Create()
+                .Chain(Tween.Alpha(player.crossfade, startValue: 0, endValue: 1, duration: 0.5f))
+                .ChainDelay(1.5f)
+                .ChainCallback(() =>
+                {
+                    player.status.ChangeCurrentHP(player.data.maxHP);
+                    SceneManager.LoadScene(deathRespawnScene, LoadSceneMode.Single);
+                });
         }
 
         public bool CanAttack()
@@ -86,28 +113,6 @@ namespace Player
             // for more reliable behaviour lastAttackTime is set using an animation event
             // this line is just to make sure we can't glitch a second attack in before the animation event calls
             player.combat.lastAttackTime = -2 * _attackCooldown;
-        }
-
-
-        public IEnumerator WaitAndRespawn()
-        {
-            Animator anim = player.RespawnAnimator;
-            player.controller.DisableActionMap(player.controller.inputActions.Player);
-
-            anim.gameObject.SetActive(true);
-            anim.SetTrigger("Start");
-            yield return new WaitForSeconds(respawnTime/2);
-
-            //Respawning; Resets Player location/velocity
-            player.transform.position = Checkpoint.currentCheckpoint;
-            // player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-            yield return new WaitForSeconds(respawnTime/2);
-
-            anim.SetTrigger("FadeIn");
-
-            //Can reset angular velocity, too, and then call RigidBody2D.Sleep();, if need be
-
-            player.controller.ToggleActionMap(player.controller.inputActions.Player);
         }
     }
 }
