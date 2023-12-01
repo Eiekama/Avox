@@ -22,23 +22,46 @@
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{DF4D5356-7CBC-EE86-01DE-FED92212FEBD}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{B4E19930-6F88-2215-E64D-31157A73E461}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
 				<File Id="345644811" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>avox_single_jump.wav</ShortName>
-					<CachePath>SFX/avox_single_jump_D63A370F.wem</CachePath>
+					<CachePath>SFX/avox_single_jump_D1A296AD.wem</CachePath>
+				</File>
+				<File Id="415417346" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>avox_footstep_grass2.wav</ShortName>
+					<CachePath>SFX/avox_footstep_grass2_A752CF67.wem</CachePath>
+				</File>
+				<File Id="501343304" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>avox_attack.wav</ShortName>
+					<CachePath>SFX/avox_attack_467C1AE6.wem</CachePath>
 				</File>
 				<File Id="800548019" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>avox_double_jump.wav</ShortName>
-					<CachePath>SFX/avox_double_jump_A9C6DFC5.wem</CachePath>
+					<CachePath>SFX/avox_double_jump_AEBD293A.wem</CachePath>
+				</File>
+				<File Id="967387110" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>avox_footstep_grass1.wav</ShortName>
+					<CachePath>SFX/avox_footstep_grass1_1AD82633.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
+				<Event Id="1183777945" Name="Play_avox_attack" DurationType="OneShot" DurationMin="0.46629852" DurationMax="0.46629852">
+					<MediaRefs>
+						<MediaRef Id="501343304"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="3196776101" Name="Play_avox_double_jump" DurationType="OneShot" DurationMin="0.93868923" DurationMax="0.93868923">
 					<MediaRefs>
 						<MediaRef Id="800548019"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1982289792" Name="Play_avox_footstep_grass" DurationType="OneShot" DurationMin="0.106682934" DurationMax="0.16406599">
+					<MediaRefs>
+						<MediaRef Id="415417346"/>
+						<MediaRef Id="967387110"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="2530412616" Name="Play_avox_single_jump" DurationType="OneShot" DurationMin="0.7230444" DurationMax="0.7230444">
@@ -49,5 +72,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{B90A4C74-E0B3-4366-B1B3-A494243D37C1}</FileHash>
+	<FileHash>{547CC436-86B6-ED42-9936-17550482F55C}</FileHash>
 </SoundBanksInfo>

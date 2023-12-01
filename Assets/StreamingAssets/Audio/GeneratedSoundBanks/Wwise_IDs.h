@@ -13,7 +13,9 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID PLAY_AVOX_ATTACK = 1183777945U;
         static const AkUniqueID PLAY_AVOX_DOUBLE_JUMP = 3196776101U;
+        static const AkUniqueID PLAY_AVOX_FOOTSTEP_GRASS = 1982289792U;
         static const AkUniqueID PLAY_AVOX_SINGLE_JUMP = 2530412616U;
     } // namespace EVENTS
 
