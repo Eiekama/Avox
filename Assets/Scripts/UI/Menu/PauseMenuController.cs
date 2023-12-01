@@ -134,46 +134,53 @@ public class PauseMenuController : MonoBehaviour
         _player.controller.inputActions.UI.Navigate.performed += NavigatePerformed;
 
 
+        SetImageAlpha(_topBorder_circle_img, 0);
+        _topBorder_left_img.fillAmount = 0;
+        _topBorder_right_img.fillAmount = 0;
+        _bottomBorder_left_img.fillAmount = 0;
+        _bottomBorder_right_img.fillAmount = 0;
+        SetAlpha(_continueTMP, 0);
+        SetAlpha(_quitTMP, 0);
+
+        _topBorder_left_warning_img.fillAmount = 0;
+        SetImageAlpha(_topBorder_circle_warning_img, 0);
+        _topBorder_right_warning_img.fillAmount = 0;
+        _bottomBorder_left_warning_img.fillAmount = 0;
+        _bottomBorder_right_warning_img.fillAmount = 0;
+        SetAlpha(_warningTMP, 0);
+        SetAlpha(_yesTMP, 0);
+        SetAlpha(_noTMP, 0);
     }
-
-
-    //private void Start()
-    //{
-
-
-    //}
 
     public void PauseGame()
     {
         Time.timeScale = 0f;
         gameObject.SetActive(true);
-        //_menu.SetActive(true);
-        //_warning.SetActive(false);
-        //_background.SetActive(true);
-        Tween.Custom(this, 0f, 0.7f, duration: 0.6f, onValueChange: (target, newVal) => target.SetImageAlpha(target._background_img, newVal), useUnscaledTime: true);
-        StartCoroutine(ShowPauseMenu());
+        _menu.SetActive(false);
+        Sequence.Create()
+            .Group(Tween.Custom(this, 0f, 0.7f, duration: 0.6f, onValueChange: (target, newVal) => target.SetImageAlpha(target._background_img, newVal), useUnscaledTime: true))
+            .ChainCallback(target: this, target => StartCoroutine(target.ShowPauseMenu()));
     }
 
 
     IEnumerator ShowPauseMenu()
     {
-
+        _menu.SetActive(true);
+        Tween.Custom(this, 0f, 1f, duration: 0.9f, onValueChange: (target, newVal) => target.SetImageAlpha(target._topBorder_circle_img, newVal), useUnscaledTime: true);
+        yield return Tween.Delay(0.3f, useUnscaledTime: true).ToYieldInstruction();
         yield return Sequence.Create()
+            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, onValueChange: (target, newVal) => target.SetFillAmount(target._topBorder_left_img, newVal), useUnscaledTime: true))
+            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, onValueChange: (target, newVal) => target.SetFillAmount(target._topBorder_right_img, newVal), useUnscaledTime: true))
 
-            .Group(Tween.Custom(this, 0f, 1f, duration: 0.9f, startDelay: 0.6f, onValueChange: (target, newVal) => target.SetImageAlpha(target._topBorder_circle_img, newVal), useUnscaledTime: true))
-
-            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, startDelay: 0.9f, onValueChange: (target, newVal) => target.SetFillAmount(target._topBorder_left_img, newVal), useUnscaledTime: true))
-            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, startDelay: 0.9f, onValueChange: (target, newVal) => target.SetFillAmount(target._topBorder_right_img, newVal), useUnscaledTime: true))
-
-            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, startDelay: 0.9f, onValueChange: (target, newVal) => target.SetFillAmount(target._bottomBorder_left_img, newVal), useUnscaledTime: true))
-            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, startDelay: 0.9f, onValueChange: (target, newVal) => target.SetFillAmount(target._bottomBorder_right_img, newVal), useUnscaledTime: true))
+            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, onValueChange: (target, newVal) => target.SetFillAmount(target._bottomBorder_left_img, newVal), useUnscaledTime: true))
+            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, onValueChange: (target, newVal) => target.SetFillAmount(target._bottomBorder_right_img, newVal), useUnscaledTime: true))
 
 
-            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, startDelay: 0.9f, onValueChange: (target, newVal) => target.SetAlpha(target._continueTMP, newVal), useUnscaledTime: true))
-            .Group(Tween.UIAnchoredPositionY(_continueTransform, startValue: _continueYPos - 20, endValue: _continueYPos, duration: 0.7f, startDelay: 0.9f, useUnscaledTime: true))
+            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, onValueChange: (target, newVal) => target.SetAlpha(target._continueTMP, newVal), useUnscaledTime: true))
+            .Group(Tween.UIAnchoredPositionY(_continueTransform, startValue: _continueYPos - 20, endValue: _continueYPos, duration: 0.7f, useUnscaledTime: true))
 
-            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, startDelay: 0.9f, onValueChange: (target, newVal) => target.SetAlpha(target._quitTMP, newVal), useUnscaledTime: true))
-            .Group(Tween.UIAnchoredPositionY(_quitTransform, startValue: _quitYPos - 20, endValue: _quitYPos, duration: 0.7f, startDelay: 0.9f, useUnscaledTime: true))
+            .Group(Tween.Custom(this, 0f, 1f, duration: 0.7f, onValueChange: (target, newVal) => target.SetAlpha(target._quitTMP, newVal), useUnscaledTime: true))
+            .Group(Tween.UIAnchoredPositionY(_quitTransform, startValue: _quitYPos - 20, endValue: _quitYPos, duration: 0.7f, useUnscaledTime: true))
             .ToYieldInstruction();
         lastSelectedIndex = 0;
         StartCoroutine(SetSelectedAfterOneFrame(0));
@@ -188,13 +195,12 @@ public class PauseMenuController : MonoBehaviour
 
     private void NavigatePerformed(InputAction.CallbackContext context)
     {
-        Debug.Log(context);
         var _input = context.ReadValue<Vector2>();
-        if (_input.y > 0 || _input.x > 0) { HandleNavigation(-1); }
-        else if (_input.y < 0 || _input.x < 0) { HandleNavigation(1); }
+        if (_input.y > 0 || _input.x > 0) { HandleNavigation(); }
+        else if (_input.y < 0 || _input.x < 0) { HandleNavigation(); }
     }
 
-    private void HandleNavigation(int addition)
+    private void HandleNavigation()
     {
         if (EventSystem.current.currentSelectedGameObject == null)
         {
@@ -222,7 +228,7 @@ public class PauseMenuController : MonoBehaviour
 
         Time.timeScale = 1f;
         _player.controller.ToggleActionMap(_player.controller.inputActions.Player);
-        yield return FadeOut(1.5f);
+        yield return Tween.Delay(1.5f).ToYieldInstruction();
         gameObject.SetActive(false);
     }
 
@@ -234,7 +240,7 @@ public class PauseMenuController : MonoBehaviour
     IEnumerator OpenwarningCoroutine()
     {
         StartCoroutine(HidePauseMenu());
-        FadeOut(1.6f);
+        yield return Tween.Delay(0.7f, useUnscaledTime: true).ToYieldInstruction();
         yield return StartCoroutine(ShowWarningMenu());
     }
 
@@ -277,7 +283,7 @@ public class PauseMenuController : MonoBehaviour
     IEnumerator ClosewarningCoroutine()
     {
         StartCoroutine(HideWarningMenu());
-        FadeOut(1.6f);
+        yield return Tween.Delay(0.7f, useUnscaledTime: true).ToYieldInstruction();
         yield return StartCoroutine(ShowPauseMenu());
     }
 
@@ -333,38 +339,17 @@ public class PauseMenuController : MonoBehaviour
 
             .Group(Tween.Custom(this, 1f, 0f, duration: 0.7f, startDelay: 0.1f, onValueChange: (target, newVal) => target.SetAlpha(target._noTMP, newVal), useUnscaledTime: true))
             .Group(Tween.UIAnchoredPositionY(_noTransform, startValue: _noYPos, endValue: _noYPos - 20, duration: 0.7f, startDelay: 0.9f, useUnscaledTime: true))
+            .Group(Tween.Alpha(_background_img, .7f, 1f, duration: 0.6f, startDelay: 1.0f, useUnscaledTime: true))
+            .ChainDelay(0.4f, useUnscaledTime: true)
             .ChainCallback(() => {
                 Time.timeScale = 1f;
                 SceneManager.LoadScene(sceneName: "Menu");
             });
     }
 
-    //private void onlyBackground()
-    //{
-
-    //}
-
-    //IEnumerator QuitToMainCoroutine()
-    //{
-    //    yield return FadeOut(1.3f);
-    //    Debug.Log("1");
-    //    SceneManager.LoadScene(sceneName: "Menu");
-    //}
-
-
-
-    IEnumerator FadeOut(float delay)
-    {
-        yield return Tween.Delay(delay).ToYieldInstruction();
-
-    }
-
-
     IEnumerator HidePauseMenu()
     {
         yield return Sequence.Create()
-
-
             .Group(Tween.Custom(this, 1f, 0f, duration: 0.9f, startDelay: 0.6f, onValueChange: (target, newVal) => target.SetImageAlpha(target._topBorder_circle_img, newVal), useUnscaledTime: true))
 
 
@@ -381,7 +366,6 @@ public class PauseMenuController : MonoBehaviour
             .Group(Tween.UIAnchoredPositionY(_quitTransform, startValue: _quitYPos, endValue: _quitYPos - 20, duration: 0.7f, startDelay: 0.9f, useUnscaledTime: true))
             .ToYieldInstruction();
     }
-
 
 
     private void SetAlpha(TMP_Text text, float a)

@@ -1720,8 +1720,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8042690769844315079, guid: 55fabe6cfc3a94563ac43cc0cfe65f2e, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 2078608520}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55fabe6cfc3a94563ac43cc0cfe65f2e, type: 3}
+--- !u!114 &1320314876 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8042690769844315079, guid: 55fabe6cfc3a94563ac43cc0cfe65f2e, type: 3}
+  m_PrefabInstance: {fileID: 1320314875}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3712352c360b4ef1b476f8778e83556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1390885436
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,18 +2651,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1641666545926159206, guid: e72eab76edd004157929849cce7f218e, type: 3}
-      propertyPath: m_Name
-      value: CrossFadeImage
-      objectReference: {fileID: 0}
-    - target: {fileID: 1641666545926159206, guid: e72eab76edd004157929849cce7f218e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7594281288935109271, guid: e72eab76edd004157929849cce7f218e, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7871654457869160859, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_Name
       value: Camera
@@ -2710,7 +2713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7871654458558152457, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.5555563
+      value: 6.5392656
       objectReference: {fileID: 0}
     - target: {fileID: 7871654458558152457, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2747,10 +2750,6 @@ PrefabInstance:
     - target: {fileID: 7871654459791140880, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
       value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8167195049186658043, guid: e72eab76edd004157929849cce7f218e, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7871654458558152463, guid: e72eab76edd004157929849cce7f218e, type: 3}
@@ -2811,6 +2810,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3053949301346508818, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1320314876}
     - target: {fileID: 3053949301346508818, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
       propertyPath: _crossfade
       value: 
@@ -2878,6 +2881,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3053949301346508822, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
   m_PrefabInstance: {fileID: 2078608518}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2078608520 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3053949301346508818, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
+  m_PrefabInstance: {fileID: 2078608518}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d88f79b34aaf48d48bd738ae5747989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2081386516
 GameObject:
   m_ObjectHideFlags: 0

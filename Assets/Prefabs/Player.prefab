@@ -154,7 +154,9 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  _crossfade: {fileID: 0}
   currentManualInteractable: {fileID: 0}
+  pauseMenu: {fileID: 0}
 --- !u!114 &3053949301346508819
 MonoBehaviour:
   m_ObjectHideFlags: 0

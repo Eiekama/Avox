@@ -51,7 +51,6 @@ public class PlayerInstance : MonoBehaviour
         combat.attackHitbox.data = _data;
 
         StartCoroutine(status.RecoverMP());
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)
