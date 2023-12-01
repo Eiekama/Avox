@@ -20,11 +20,9 @@ public class CrumblingPlatform : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other) 
     {
-
         if(other.gameObject.CompareTag("Player"))
         {
             anim.SetTrigger("OnStep");
-            anim.SetTrigger("Remove");
             _dataAndIndex.data.info[_dataAndIndex.i].collapsed = true;
         }
     }
