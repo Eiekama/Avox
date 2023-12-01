@@ -21,7 +21,12 @@ public class InitialiseData : MonoBehaviour
                 collectibleData.info[i].collected = false;
             }
 
+            playerData.hasWeapon = false;
+            playerData.hasDash = false;
+            playerData.maxHP = 3;
             playerData.currentHP = playerData.maxHP;
+            playerData.maxMP = 0;
+            playerData.currentMP = playerData.maxMP;
             playerData.isFacingRight = true;
         }
     }

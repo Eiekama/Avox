@@ -6,7 +6,7 @@ public class weaponCollectible : Collectible
 {    
     protected override void Collect(PlayerInstance player)
     {
-        player.data.weapon = true;
+        player.data.hasWeapon = true;
         Destroy(gameObject);
     }
 }

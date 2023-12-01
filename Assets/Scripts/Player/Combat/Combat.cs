@@ -100,7 +100,7 @@ namespace Player
 
         public bool CanAttack()
         {
-            return lastAttackTime > -0.2f;
+            return player.data.hasWeapon && lastAttackTime > -0.2f;
         }
 
         public void Attack()

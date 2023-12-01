@@ -6,7 +6,7 @@ public class dashCollectible : Collectible
 {    
     protected override void Collect(PlayerInstance player)
     {
-        player.data.dash = true;
+        player.data.hasDash = true;
         Destroy(gameObject);
     }
 }

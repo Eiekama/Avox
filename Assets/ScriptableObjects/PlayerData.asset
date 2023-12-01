@@ -35,7 +35,7 @@ MonoBehaviour:
   _dashDeccelPoint: 0.7
   _dashGravityMult: 0
   _jumpHeight: 6
-  _jumpTimeToApex: 0.7
+  _jumpTimeToApex: 0.6
   _doubleJumpDelay: 3
   _doubleJumpDuration: 4
   _jumpCutGravityMult: 6
