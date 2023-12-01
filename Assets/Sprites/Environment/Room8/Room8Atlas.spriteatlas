@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Room8Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 862884ec0c0d143028acd9dcab36a804, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 10d5e081dd46641e1af543fe6420db07, type: 3}
+  - {fileID: -1953430810, guid: 51e74c91c2aa0417986e884cd9909d4e, type: 3}
+  - {fileID: -1853765510, guid: 51e74c91c2aa0417986e884cd9909d4e, type: 3}
+  - {fileID: 21300000, guid: 18525022470344854b96a7b1fa7856c4, type: 3}
+  - {fileID: 21300000, guid: 9ae6b0234ce0c43d58da598852737f62, type: 3}
+  - {fileID: 21300000, guid: de30c858343b240c1ac1cd821f0f9f08, type: 3}
+  - {fileID: 21300000, guid: 9ce56988416614b37ba9542ed3d60212, type: 3}
+  - {fileID: -1686148817, guid: c03a7fca292e84433ae53fdc0a4441e8, type: 3}
+  - {fileID: -1072505047, guid: c03a7fca292e84433ae53fdc0a4441e8, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - r8_spring_bmg_3
+  - r8_spring_fg_0
+  - r8_spring_fg_1
+  - r8_spring_bg_2
+  - r8_spring_bg_1
+  - r8_spring_bmg_2
+  - r8_spring_bmg_0
+  - r8_spring_bg_2
+  - r8_spring_bmg_1
+  m_RenderDataMap: {}
+  m_Tag: Room8Atlas
+  m_IsVariant: 0
