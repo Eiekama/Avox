@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: r8_spring_bg_2
+      name: r8_spring_bg_0
       rect:
         serializedVersion: 2
         x: 1245
@@ -156,8 +156,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      r8_spring_bg_2: -1686148817
       IMG_0155 7_5: 720143705
+      r8_spring_bg_0: -1686148817
       IMG_0155 7_2: -1359939187
       IMG_0155 7_3: 909686718
       IMG_0155 7_1: 1350444225
