@@ -53,11 +53,11 @@ SpriteAtlas:
   - r8_spring_bmg_3.2
   - r8_spring_fg_0
   - r8_spring_fg_1
-  - r8_spring_bg_2
   - r8_spring_bg_1
+  - r8_spring_bg_2
   - r8_spring_bmg_2
   - r8_spring_bmg_0
-  - r8_spring_bg_2
+  - r8_spring_bg_0
   - r8_spring_bmg_1
   m_RenderDataMap: {}
   m_Tag: Room8Atlas

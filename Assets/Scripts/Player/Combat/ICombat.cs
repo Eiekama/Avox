@@ -16,6 +16,8 @@ public interface ICombat : IDamageable
 
     void UpdateTimers();
 
+    void Knockback(Collider2D source);
+
     bool CanAttack();
     void Attack();
     

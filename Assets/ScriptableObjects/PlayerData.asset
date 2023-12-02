@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   _atk: 1
-  hasWeapon: 0
-  hasDash: 1
+  hasWeapon: 1
+  hasDash: 0
   _maxHP: 3
   _currentHP: 3
-  _maxMP: 2
+  _maxMP: 0
   _currentMP: 0
   _MPRecovaryRate: 0.5
   _fallGravityMult: 1.3
