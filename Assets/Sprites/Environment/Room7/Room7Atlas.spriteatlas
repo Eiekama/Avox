@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Room7Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: ab9dd776f3239450797e00769b99dcdb, type: 3}
+    - {fileID: 102900000, guid: fb64299a4f1744f8ca2cfa8de37934fc, type: 3}
+    - {fileID: 102900000, guid: c8c46fac548ed4b709967e13a0a46cfc, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 1ac86173fe4374871b2d27bac340c733, type: 3}
+  - {fileID: 21300000, guid: 67467b24baf824fe7b4c6a25ee7ef6a7, type: 3}
+  - {fileID: 21300000, guid: 2c9132c87a596477eb96e707bf481356, type: 3}
+  - {fileID: 21300000, guid: 1215e6798cc7140c49e1d54a9c801000, type: 3}
+  - {fileID: 21300000, guid: 673153890f1134ef69c99143f7f02a59, type: 3}
+  - {fileID: 63484245, guid: 68a173fd71cd34298a2c756e42e266f1, type: 3}
+  - {fileID: 1101633509, guid: 68a173fd71cd34298a2c756e42e266f1, type: 3}
+  - {fileID: 379890262, guid: 68a173fd71cd34298a2c756e42e266f1, type: 3}
+  - {fileID: -927331616, guid: 1c7ed64f86a59456cb263be1cbb0bb60, type: 3}
+  - {fileID: -2046615637, guid: 1c7ed64f86a59456cb263be1cbb0bb60, type: 3}
+  - {fileID: 21300000, guid: 7e07d55fdc1a54b32944c3f879ccb238, type: 3}
+  - {fileID: 21300000, guid: d997c46fb55124cb9877ebe179adeabc, type: 3}
+  - {fileID: 21300000, guid: 1777de9fb33e1407da133c7edce9b49f, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - r7_bmg_2
+  - r7_bg_1
+  - r7_bg_3
+  - r7_bmg_3
+  - r7_bmg_0
+  - r7_l_2
+  - r7_l_0
+  - r7_l_1
+  - r7_fg_1
+  - r7_fg_0
+  - r7_bg_2
+  - r7_bmg_1
+  - r7_bg_0
+  m_RenderDataMap: {}
+  m_Tag: Room7Atlas
+  m_IsVariant: 0

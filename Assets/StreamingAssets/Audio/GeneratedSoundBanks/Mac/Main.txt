@@ -1,8 +1,13 @@
 Event	ID	Name			Wwise Object Path	Notes
+	1183777945	Play_avox_attack			\Default Work Unit\Play_avox_attack	
+	1982289792	Play_avox_footstep_grass			\Default Work Unit\Play_avox_footstep_grass	
 	2530412616	Play_avox_single_jump			\Default Work Unit\Play_avox_single_jump	
 	3196776101	Play_avox_double_jump			\Default Work Unit\Play_avox_double_jump	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	345644811	avox_single_jump	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\avox_single_jump_D63A370F.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_single_jump		127640
-	800548019	avox_double_jump	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\avox_double_jump_A9C6DFC5.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_double_jump		165680
+	345644811	avox_single_jump	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\avox_single_jump_D1A296AD.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_single_jump		127640
+	415417346	avox_footstep_grass2	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\avox_footstep_grass2_A752CF67.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_footstep_grass\avox_footstep_grass2		10336
+	501343304	avox_attack	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\avox_attack_467C1AE6.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_attack		82352
+	800548019	avox_double_jump	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\avox_double_jump_AEBD293A.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_double_jump		165680
+	967387110	avox_footstep_grass1	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\avox_footstep_grass1_1AD82633.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_footstep_grass\avox_footstep_grass1		15846
 

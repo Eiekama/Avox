@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlatformData
   m_EditorClassIdentifier: 
   _info:
-  - scene: 14
+  - scene: 7
     index: 0
     collapsed: 0

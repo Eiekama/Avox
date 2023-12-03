@@ -33,4 +33,5 @@ public interface IMovement
 
     bool CanJump();
     bool CanDoubleJump();
+    bool CanDash();
 }

@@ -31,12 +31,12 @@ public class ProjectileScript : MonoBehaviour, IDamageable, IContactDamage
 
     public void DealContactDamage(PlayerInstance player)
     {
-        player.combat.Damage(transform, atk); // I think damage isn't implemented yet, so I don't think we will be able to see the results right now
+        player.combat.Damage(GetComponent<Collider2D>(), atk); // I think damage isn't implemented yet, so I don't think we will be able to see the results right now
         AfterEffects(); //could also just disappear? 
 
     }
 
-    public void Damage(Transform _, int damage)
+    public void Damage(Collider2D _, int damage)
     {
         // So the player can just block/hit the projectile
         Destroy(gameObject);

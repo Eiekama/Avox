@@ -16,15 +16,10 @@ public interface ICombat : IDamageable
 
     void UpdateTimers();
 
+    void Knockback(Collider2D source);
+
     bool CanAttack();
     void Attack();
     
-    void Die();
-
-    IEnumerator WaitAndRespawn();
-
-    //void DownAttack(MonoBehaviour mono);
-
-    //void UpAttack(MonoBehaviour mono);
-    // when we add combat skills those would go in here too
+    void Respawn();
 }

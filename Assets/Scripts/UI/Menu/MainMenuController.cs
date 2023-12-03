@@ -11,7 +11,7 @@ using PrimeTween;
 
 public class MainMenuController : MonoBehaviour
 {
-    [HideInInspector] public int lastSelectedIndex;
+    [HideInInspector] public int lastSelectedIndex=0;
 
     public ButtonInstance[] buttons { get; private set; }
 

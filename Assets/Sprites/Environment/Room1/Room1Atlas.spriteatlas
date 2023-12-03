@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Room1Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 8f679472f34104d96940a6af870a5a73, type: 3}
+    - {fileID: 102900000, guid: 25e9e46232d8946a98dd4818a47fb664, type: 3}
+    - {fileID: 102900000, guid: 2d32b14c037d24f68b237c303072456f, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 4dce6b209e0bf41ba99d8af3444eaa5f, type: 3}
+  - {fileID: 21300000, guid: b7f93f222d8864b97ade66c259f65883, type: 3}
+  - {fileID: 21300000, guid: 66379f22d5b5946d6b18ed73219ecfc3, type: 3}
+  - {fileID: 21300000, guid: 21a38ad2a85ef4c49b717a7c08c0175c, type: 3}
+  - {fileID: 21300000, guid: a31fbef28b854469bb12f2b0d51f4dd5, type: 3}
+  - {fileID: 21300000, guid: 06889593de0bf489e91bfff0483c329d, type: 3}
+  - {fileID: 21300000, guid: 8c2eaab4d5ff245228556de714bbdcae, type: 3}
+  - {fileID: 21300000, guid: 1f136b162c04b4fda8b6f225d12e36aa, type: 3}
+  - {fileID: 21300000, guid: de86c4c683d9941de9d4bc4a8dbcbcc0, type: 3}
+  - {fileID: 21300000, guid: 8ed8d3f698a174f9bbf4ad282b1b5ac6, type: 3}
+  - {fileID: 21300000, guid: 37e14d0be95cc4a40a04c69ed2cb9573, type: 3}
+  - {fileID: 21300000, guid: 6973093b061264ae3b34822db69716f7, type: 3}
+  - {fileID: 21300000, guid: dc67639b8021e41c4b5e46d2d952b2b3, type: 3}
+  - {fileID: 21300000, guid: 230711ab891c1470abcc44d5cbefe25c, type: 3}
+  - {fileID: 21300000, guid: fa83531c55c3d424ea2d7b47bd5c4243, type: 3}
+  - {fileID: 21300000, guid: 6c8f5dfd1eb95464da576767f88e8502, type: 3}
+  - {fileID: 21300000, guid: c5e3740e3777b461aafa2555ad679a9e, type: 3}
+  - {fileID: 21300000, guid: 2aad114f0c3f346079bf12141bf54868, type: 3}
+  - {fileID: 21300000, guid: 92a3d5bf744c1435ab3c2c6bc425fc0d, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - r1_bmg_1
+  - r1_fg_2
+  - r1_bg_2
+  - r1_l_1
+  - r1_l_0
+  - r1_bg_0
+  - o_bw_0
+  - r1_fg_4
+  - r1_l_2
+  - r1_bmg_3
+  - r1_bmg_4
+  - r1_bmg_0
+  - r1_bmg_2
+  - r1_bg_1
+  - r1_bmg_5
+  - r1_l_3
+  - r1_fg_3
+  - r1_fg_0
+  - r1_fg_1
+  m_RenderDataMap: {}
+  m_Tag: Room1Atlas
+  m_IsVariant: 0

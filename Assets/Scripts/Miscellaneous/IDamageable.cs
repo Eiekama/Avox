@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void Damage(Transform source, int dmgTaken);
+    void Damage(Collider2D source, int dmgTaken);
 }

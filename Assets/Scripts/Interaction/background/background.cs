@@ -16,7 +16,7 @@ public class background : AInteractable , IDamageable
         anim.SetTrigger("Exit");
     }
 
-    public void Damage(Transform source, int dmgTaken){
+    public void Damage(Collider2D source, int dmgTaken){
         anim.SetTrigger("Attacked");
     }
 }
