@@ -18,6 +18,10 @@ public interface ICombat : IDamageable
 
     void Knockback(Collider2D source);
 
+    void HealInTime(float time);
+
+    void CancelHeal();
+
     bool CanAttack();
     void Attack();
     

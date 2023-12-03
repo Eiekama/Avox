@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _atk: 1
   hasWeapon: 1
-  hasDash: 0
+  hasDash: 1
   _maxHP: 3
-  _currentHP: 3
-  _maxMP: 0
-  _currentMP: 0
+  _currentHP: 2
+  _maxMP: 4
+  _currentMP: 4
   _MPRecovaryRate: 0.5
+  _HPRecoveryTime: 2
   _fallGravityMult: 1.3
   _maxFallSpeed: 20
   _runMaxSpeed: 8
