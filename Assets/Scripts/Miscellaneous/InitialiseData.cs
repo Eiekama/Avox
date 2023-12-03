@@ -35,12 +35,11 @@ public class InitialiseData : MonoBehaviour
     {
         if (!initialised)
         {
-            /*
-            _controller = FindObjectOfType<PlayerController>();
-            _controller.ToggleActionMap(_controller.inputActions.Player);
-            */
-
             initialised = true;
+
+            _controller = FindObjectOfType<PlayerController>();
+            if (!_controller.inputActions.Dialogue.enabled)
+                _controller.ToggleActionMap(_controller.inputActions.Player);
         }
         else
         {

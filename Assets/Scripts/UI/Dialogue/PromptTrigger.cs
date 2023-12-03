@@ -9,9 +9,9 @@ public class PromptTrigger : AInteractable
     [SerializeField] private Vector2 offset;
     [SerializeField] bool startupDialogue;
 
-    public void Start()
+    public void Awake()
     {
-        if (startupDialogue || InitialiseData.initialised)
+        if (startupDialogue && !InitialiseData.initialised)
             StartCoroutine(Activate());
     }
 
