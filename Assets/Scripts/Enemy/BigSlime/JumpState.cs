@@ -19,6 +19,8 @@ public class JumpState : IState
 
     Seeker seeker;
 
+    float direction = 1;
+
     public void OnEntry()
     {
         Debug.Log("Jump State");
@@ -28,6 +30,20 @@ public class JumpState : IState
         manager.RB.velocity = Vector2.zero;
         seeker = manager.seeker;
         seeker.StartPath(manager.RB.position, manager.target.position, OnPathComplete);
+
+        float dist = manager.RB.position.x - manager.target.position.x;
+
+        if (dist > 0)
+        {
+            direction = -1;
+        }
+        else
+        {
+            direction = 1;
+        }
+
+        manager.RB.AddForce(Vector2.up * Mathf.Abs(dist) * speed * 20);
+        _time = _time * dist;
     }
 
     public void OnExit()
@@ -79,16 +95,16 @@ public class JumpState : IState
             reachedEndOfPath = false;
         }
 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)manager.transform.position).normalized;
+        // Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)manager.transform.position).normalized;
 
-        Vector2 force = direction * speed;
+        Vector2 force = Vector2.right * direction * speed;
 
         manager.RB.AddForce(force);
 
-        if (Mathf.Abs(manager.RB.position.y - manager.target.position.y) < 0.1f)
+        /*if (Mathf.Abs(manager.RB.position.y - manager.target.position.y) < 0.1f)
         {
             manager.RB.AddForce(Vector2.up * speed * 30);
-        }
+        }*/
         
 
         float distance = Vector2.Distance(manager.RB.position, path.vectorPath[currentWaypoint]);
