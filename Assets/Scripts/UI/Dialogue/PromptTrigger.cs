@@ -33,6 +33,7 @@ public class PromptTrigger : AInteractable
         _dialogueUI.ShowDialogue(_dialogueObject, transform.position, (Vector3)offset);
         if (_dialogueObject._StopPlayer)
         {
+            player.RB.velocity = Vector2.zero;
             player.controller.ToggleActionMap(player.controller.inputActions.Dialogue);
         }
     }
