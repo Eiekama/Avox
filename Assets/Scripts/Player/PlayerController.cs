@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Attack.performed += AttackPerformed;
         inputActions.Player.OpenMenu.performed += OpenMenuPerformed;
         inputActions.Player.Dash.performed += DashPerformed;
+        inputActions.Player.Heal.performed += HealPerformed;
+        inputActions.Player.Heal.canceled += HealCanceled;
     }
 
     private void OnDisable()
@@ -88,6 +90,15 @@ public class PlayerController : MonoBehaviour
         ToggleActionMap(_player.controller.inputActions.UI);
         _player.pauseMenu.PauseGame();
 
+    }
+
+    public void HealPerformed(InputAction.CallbackContext context)
+    {
+        _player.combat.HealInTime(_player.data.HPRecoveryTime);
+    }
+    public void HealCanceled(InputAction.CallbackContext context)
+    {
+        _player.combat.CancelHeal();
     }
 
     #region Animation Events

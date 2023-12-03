@@ -56,6 +56,9 @@ public class PlayerData : ScriptableObject, IPlayerData
     [SerializeField] float _MPRecovaryRate;
     public float MPRecoveryRate { get { return _MPRecovaryRate; } }
 
+    [SerializeField] float _HPRecoveryTime;
+    public float HPRecoveryTime { get { return _HPRecoveryTime; } }
+
     [Space(30)]
     #endregion
 

@@ -33,6 +33,8 @@ namespace Player
         public static int deathRespawnScene = 1;
         public static float invincibilityTime = 10f;
 
+        private IEnumerator coroutine;
+
 
         public void UpdateTimers()
         {
@@ -74,13 +76,15 @@ namespace Player
             player.RB.AddForce(force, ForceMode2D.Impulse);
         }
 
-        IEnumerator RunIFrames(float duration){
+        IEnumerator RunIFrames(float duration)
+        {
             isInvincible = true;
             yield return new WaitForSeconds(duration);
             isInvincible = false;
         }
 
-        private void Die(){
+        private void Die()
+        {
             player.animator.SetTrigger("die");
             // rest of behaviour defined through animation events
         }
@@ -96,6 +100,37 @@ namespace Player
                     player.status.ChangeCurrentHP(player.data.maxHP);
                     SceneManager.LoadScene(deathRespawnScene, LoadSceneMode.Single);
                 });
+        }
+
+        public void HealInTime(float time)
+        {
+            coroutine = HealCoroutine(time);
+            player.StartCoroutine(coroutine);
+        }
+
+        IEnumerator HealCoroutine(float time)
+        {
+            while(true)
+            {
+                yield return new WaitForSeconds(time/2);
+                if(player.data.currentMP <= 0) {
+                    yield break;
+                }
+                player.status.ChangeCurrentMP(-1);
+
+                yield return new WaitForSeconds(time/2);
+                if(player.data.currentMP <= 0) {
+                    yield break;
+                }
+                player.status.ChangeCurrentMP(-1);
+
+                player.status.ChangeCurrentHP(1);
+            }
+        }
+
+        public void CancelHeal()
+        {
+            player.StopCoroutine(coroutine);
         }
 
         public bool CanAttack()
