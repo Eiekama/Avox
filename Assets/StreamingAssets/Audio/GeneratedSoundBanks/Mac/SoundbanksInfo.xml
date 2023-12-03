@@ -22,7 +22,7 @@
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{B4E19930-6F88-2215-E64D-31157A73E461}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{03BFE3EA-7593-94BF-1207-A47B72117D8F}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -30,21 +30,33 @@
 					<ShortName>avox_single_jump.wav</ShortName>
 					<CachePath>SFX/avox_single_jump_D1A296AD.wem</CachePath>
 				</File>
+				<File Id="414730103" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>axox_button_press.wav</ShortName>
+					<CachePath>SFX/axox_button_press_10C4C929.wem</CachePath>
+				</File>
 				<File Id="415417346" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>avox_footstep_grass2.wav</ShortName>
-					<CachePath>SFX/avox_footstep_grass2_A752CF67.wem</CachePath>
+					<CachePath>SFX/avox_footstep_grass2_4D6EB624.wem</CachePath>
 				</File>
 				<File Id="501343304" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>avox_attack.wav</ShortName>
-					<CachePath>SFX/avox_attack_467C1AE6.wem</CachePath>
+					<CachePath>SFX/avox_attack_1AA7B700.wem</CachePath>
+				</File>
+				<File Id="720187916" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>axov_click.wav</ShortName>
+					<CachePath>SFX/axov_click_10C4C929.wem</CachePath>
 				</File>
 				<File Id="800548019" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>avox_double_jump.wav</ShortName>
 					<CachePath>SFX/avox_double_jump_AEBD293A.wem</CachePath>
 				</File>
+				<File Id="958427426" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>avox_player_death.wav</ShortName>
+					<CachePath>SFX/avox_player_death_10C4C929.wem</CachePath>
+				</File>
 				<File Id="967387110" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>avox_footstep_grass1.wav</ShortName>
-					<CachePath>SFX/avox_footstep_grass1_1AD82633.wem</CachePath>
+					<CachePath>SFX/avox_footstep_grass1_CBC6D2E1.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
@@ -64,13 +76,28 @@
 						<MediaRef Id="967387110"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="3582447993" Name="Play_avox_player_death" DurationType="OneShot" DurationMin="2.769229" DurationMax="2.769229">
+					<MediaRefs>
+						<MediaRef Id="958427426"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="2530412616" Name="Play_avox_single_jump" DurationType="OneShot" DurationMin="0.7230444" DurationMax="0.7230444">
 					<MediaRefs>
 						<MediaRef Id="345644811"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="1203503195" Name="Play_axov_click" DurationType="OneShot" DurationMin="0.46154195" DurationMax="0.46154195">
+					<MediaRefs>
+						<MediaRef Id="720187916"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2558383195" Name="Play_axox_button_press" DurationType="OneShot" DurationMin="1.8461678" DurationMax="1.8461678">
+					<MediaRefs>
+						<MediaRef Id="414730103"/>
+					</MediaRefs>
+				</Event>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{547CC436-86B6-ED42-9936-17550482F55C}</FileHash>
+	<FileHash>{9894F9DD-4E3B-909F-7AC2-183E453A580D}</FileHash>
 </SoundBanksInfo>
