@@ -46,6 +46,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 21a38ad2a85ef4c49b717a7c08c0175c, type: 3}
   - {fileID: 21300000, guid: a31fbef28b854469bb12f2b0d51f4dd5, type: 3}
   - {fileID: 21300000, guid: 06889593de0bf489e91bfff0483c329d, type: 3}
+  - {fileID: 21300000, guid: 8c2eaab4d5ff245228556de714bbdcae, type: 3}
   - {fileID: 21300000, guid: 1f136b162c04b4fda8b6f225d12e36aa, type: 3}
   - {fileID: 21300000, guid: de86c4c683d9941de9d4bc4a8dbcbcc0, type: 3}
   - {fileID: 21300000, guid: 8ed8d3f698a174f9bbf4ad282b1b5ac6, type: 3}
@@ -65,6 +66,7 @@ SpriteAtlas:
   - r1_l_1
   - r1_l_0
   - r1_bg_0
+  - o_bw_0
   - r1_fg_4
   - r1_l_2
   - r1_bmg_3

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3053949301346508819}
   - component: {fileID: 3053949301346508816}
   - component: {fileID: 1316334234}
+  - component: {fileID: 6296626063447574696}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -154,7 +155,9 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  _crossfade: {fileID: 0}
   currentManualInteractable: {fileID: 0}
+  pauseMenu: {fileID: 0}
 --- !u!114 &3053949301346508819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +301,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6296626063447574696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3053949301346508817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28b7bd17c04df541b3383907b2d1e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  singleJump:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 36a7a465e6835f8478fba50f64175925, type: 2}
+  doubleJump:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 9e59e67a966c04c45a6aeb8feb977520, type: 2}
+  grassFootStep:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: baed08c27ef694248bc4024f95c13fe7, type: 2}
+  attack:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: acacb13f01d21c44ba20618af3bece88, type: 2}
 --- !u!1 &3053949301367829944
 GameObject:
   m_ObjectHideFlags: 0

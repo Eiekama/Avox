@@ -216,7 +216,7 @@ namespace Player
 
         public bool CanDash()
         {
-            return !_isDashing && player.data.currentMP > 1;
+            return player.data.hasDash && !_isDashing && player.data.currentMP > 1;
         }
 
         public void Dash()

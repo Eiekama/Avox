@@ -9,20 +9,22 @@ public class DIdleState : IState
 
     public float speed = 50f;
     public float nextWaypointDistance = 1f;
-    public Vector2 targetPosition;
 
-    float _time = 3f;
-    private float _timer;
-
-    float _moveTime = 1;
-    private float _moveTimer;
-    float _limit = 10f;
-
-    Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
 
+    Path path;
     Seeker seeker;
+
+    // determines when random target is updated
+    float _time = 3f;
+    private float _timer;
+    float _limit = 10f;
+    public Vector2 targetPosition;
+
+    // determines when enemy can change state
+    float _dashTime = 1;
+    private float _dashTimer;
 
     public void OnEntry()
     {
@@ -31,7 +33,7 @@ public class DIdleState : IState
         targetPosition = new Vector2(Random.Range(-_limit, _limit), manager.transform.position.y);
         seeker = manager.seeker;
         _timer = 0.0f;
-        _moveTimer = 0.0f;
+        _dashTimer = 0.0f;
         UpdatePath();
     }
 
@@ -62,7 +64,7 @@ public class DIdleState : IState
         Debug.Log("Idle State");
 
         _timer += Time.deltaTime;
-        _moveTimer += Time.deltaTime;
+        _dashTimer += Time.deltaTime;
 
         if (_timer > _time)
         {
@@ -76,7 +78,7 @@ public class DIdleState : IState
             return;
         }
 
-        else if (currentWaypoint >= path.vectorPath.Count)
+        if (currentWaypoint >= path.vectorPath.Count)
         {
             reachedEndOfPath = true;
             return;
@@ -86,14 +88,11 @@ public class DIdleState : IState
             reachedEndOfPath = false;
         }
 
-        Vector2 position = new Vector2(manager.transform.position.x, manager.transform.position.y);
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - position).normalized;
-
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)manager.transform.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
-
         manager.RB.AddForce(force);
         
-
+        // determines whether to go to next waypoint
         float distance = Vector2.Distance(manager.RB.position, path.vectorPath[currentWaypoint]);
 
         if (distance < nextWaypointDistance)
@@ -101,7 +100,8 @@ public class DIdleState : IState
             currentWaypoint++;
         }
 
-        if (_moveTimer >= _moveTime)
+        // determines whether state should be changed to dash state
+        if (_dashTimer >= _dashTime)
         {
             float dist = manager.RB.position.x - manager.target.position.x;
             float targetDist = manager.RB.position.x - targetPosition.x;
@@ -110,7 +110,7 @@ public class DIdleState : IState
             {
                 manager.ChangeState(manager.dashState);
             }
-            _moveTimer = 0;
+            _dashTimer = 0;
         }
 
         

@@ -7,10 +7,10 @@ public class JumpState : IState
 {
     public BigSlimeManager manager;
 
-    public float speed = 50f;
+    public float speed = 7f;
     public float nextWaypointDistance = 1f;
 
-    float _time = 3f;
+    float _time = 0.5f;
     private float _timer;
 
     Path path;
@@ -19,12 +19,31 @@ public class JumpState : IState
 
     Seeker seeker;
 
+    float direction = 1;
+
     public void OnEntry()
     {
-        path = manager.path;
-        seeker = manager.seeker;
+        Debug.Log("Jump State");
+
+        // path = manager.path;
         _timer = 0.0f;
-        UpdatePath();
+        manager.RB.velocity = Vector2.zero;
+        seeker = manager.seeker;
+        seeker.StartPath(manager.RB.position, manager.target.position, OnPathComplete);
+
+        float dist = manager.RB.position.x - manager.target.position.x;
+
+        if (dist > 0)
+        {
+            direction = -1;
+        }
+        else
+        {
+            direction = 1;
+        }
+
+        manager.RB.AddForce(Vector2.up * Mathf.Abs(dist) * speed * 20);
+        _time = _time * dist;
     }
 
     public void OnExit()
@@ -76,17 +95,17 @@ public class JumpState : IState
             reachedEndOfPath = false;
         }
 
-        Vector2 position = new Vector2(manager.transform.position.x, manager.transform.position.y);
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - position).normalized;
+        // Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)manager.transform.position).normalized;
 
-        Vector2 force = direction * speed; //* Time.deltaTime;
+        Vector2 force = Vector2.right * direction * speed;
 
         manager.RB.AddForce(force);
 
-        if (Mathf.Abs(manager.RB.position.y - manager.target.position.y) < 0.1f)
+        /*if (Mathf.Abs(manager.RB.position.y - manager.target.position.y) < 0.1f)
         {
-            manager.RB.AddForce(Vector2.up * 800, ForceMode2D.Impulse);
-        }
+            manager.RB.AddForce(Vector2.up * speed * 30);
+        }*/
+        
 
         float distance = Vector2.Distance(manager.RB.position, path.vectorPath[currentWaypoint]);
 
@@ -94,6 +113,7 @@ public class JumpState : IState
         {
             currentWaypoint++;
         }
+
     }
 }
 

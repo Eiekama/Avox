@@ -25,6 +25,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_avox_footstep_grass" ID="{842BCBC2-DC00-4A8A-99CD-34ADF06474D2}">
+					<ChildrenList>
+						<Action Name="" ID="{C9AC4B5D-EFB7-409F-ACCA-BDCE065D252C}" ShortID="570538871">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="avox_footstep_grass" ID="{A458C062-2053-4E36-AD27-E2DD30ABFB85}" WorkUnitID="{AAF905A0-A37D-41E9-9282-F4E805C7D82B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_avox_attack" ID="{B19663B1-B142-49AC-8AC2-A7DA4B06B3ED}">
+					<ChildrenList>
+						<Action Name="" ID="{948A8353-9583-444B-95A6-870B68AAFBAE}" ShortID="756843859">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="avox_attack" ID="{7E0910B5-745F-4708-9E02-F8D667E6A6F3}" WorkUnitID="{AAF905A0-A37D-41E9-9282-F4E805C7D82B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

@@ -7,7 +7,7 @@ public class JIdleState : IState
 {
     public BigSlimeManager manager;
 
-    public float speed = 50f;
+    public float speed = 300f;
     public float nextWaypointDistance = 1f;
     public Vector2 targetPosition;
 
@@ -76,7 +76,7 @@ public class JIdleState : IState
             return;
         }
 
-        else if (currentWaypoint >= path.vectorPath.Count)
+        if (currentWaypoint >= path.vectorPath.Count)
         {
             reachedEndOfPath = true;
             return;
@@ -93,8 +93,12 @@ public class JIdleState : IState
 
         manager.RB.AddForce(force);
 
+        if (manager.RB.position.y - manager.target.position.y > 0.1f && Mathf.Abs(manager.RB.position.x - manager.target.position.x) > 1f)
+        {
+            manager.RB.AddForce(Vector2.down * 10);
+        }
 
-        float distance = Vector2.Distance(manager.RB.position, path.vectorPath[currentWaypoint]);
+        float distance = Mathf.Abs(manager.RB.position.x - path.vectorPath[currentWaypoint].x);
 
         if (distance < nextWaypointDistance)
         {
@@ -106,11 +110,11 @@ public class JIdleState : IState
             float dist = manager.RB.position.x - manager.target.position.x;
             float targetDist = manager.RB.position.x - targetPosition.x;
 
-            if (Mathf.Abs(dist) < manager.dist && dist * targetDist > 0)
+            if (Mathf.Abs(dist) < manager.dist && dist * targetDist >= 0)
             {
                 manager.ChangeState(manager.jumpState);
+                _moveTimer = 0;
             }
-            _moveTimer = 0;
         }
 
 

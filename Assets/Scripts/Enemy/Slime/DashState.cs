@@ -78,14 +78,9 @@ public class DashState : IState
             reachedEndOfPath = false;
         }
 
-        
-        Vector2 position = new Vector2(manager.transform.position.x, manager.transform.position.y);
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - position).normalized;
-
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)manager.transform.position).normalized;
         Vector2 force = direction * speed;
-
         manager.RB.AddForce(force);
-       
 
         float distance = Vector2.Distance(manager.RB.position, path.vectorPath[currentWaypoint]);
 

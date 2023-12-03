@@ -13,9 +13,9 @@ public class PlayerData : ScriptableObject, IPlayerData
     [Space(5)]
     [SerializeField] int _atk;
     
-    public bool weapon;
+    public bool hasWeapon;
 
-    public bool dash;
+    public bool hasDash;
 
     public int atk
     {

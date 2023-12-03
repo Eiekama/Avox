@@ -5,14 +5,14 @@ using Pathfinding;
 
 public class BigSlimeManager : AStateManager
 {
-    public readonly JumpState jumpState = new JumpState();
+    public readonly JumpStateKinematics jumpState = new JumpStateKinematics();
     public readonly JIdleState idleState = new JIdleState();
 
     public Rigidbody2D RB { get; private set; }
     public Transform target;
     public Seeker seeker;
     public Path path;
-    public float dist = 3f;
+    public float dist = 10f;
 
     private void Awake()
     {

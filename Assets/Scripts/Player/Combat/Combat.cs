@@ -53,16 +53,16 @@ namespace Player
 
             player.StartCoroutine(RunIFrames(invincibilityTime));
 
-            var direction = source.ClosestPoint(player.transform.position) - (Vector2)player.transform.position;
-            Knockback(direction.x);
+            Knockback(source);
             player.animator.SetTrigger("damage");
             // action map will be toggled as animation event
         }
 
-        private void Knockback(float fromDir)
+        public void Knockback(Collider2D source)
         {
+            var direction = source.ClosestPoint(player.transform.position) - (Vector2)player.transform.position;
             Vector2 force;
-            if (fromDir < 0)
+            if (direction.x < 0)
             {
                 force = Vector2.right * 10 + 0.5f * player.data.jumpForce * Vector2.up;
             }
@@ -100,7 +100,7 @@ namespace Player
 
         public bool CanAttack()
         {
-            return lastAttackTime > -0.2f;
+            return player.data.hasWeapon && lastAttackTime > -0.2f;
         }
 
         public void Attack()

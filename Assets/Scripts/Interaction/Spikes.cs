@@ -28,7 +28,6 @@ public class Spikes : MonoBehaviour, IContactDamage
             DealSpikeDamage(player, damage, respawns);
             if (respawns)
             {
-                Debug.Log("Respawning @ Most Recent Platforming Checkpoint");
                 WaitAndRespawn(player);
             }
         }
@@ -38,7 +37,11 @@ public class Spikes : MonoBehaviour, IContactDamage
     {
         player.status.ChangeCurrentHP(-dmg);
         if (respawns) { player.animator.SetTrigger("respawnDamage"); }
-        else { player.animator.SetTrigger("damage"); }
+        else
+        {
+            player.combat.Knockback(_collider);
+            player.animator.SetTrigger("damage");
+        }
 
     }
 
