@@ -84,6 +84,11 @@ public class DialogueUI : MonoBehaviour
         _textLabel.text = string.Empty;
         }
 
+        if (dialogueObject._StopPlayer)
+        {
+            PlayerInstance _player = FindObjectOfType<PlayerInstance>();
+            _player.controller.ToggleActionMap(_player.controller.inputActions.Player);
+        }
     }
 
 }
