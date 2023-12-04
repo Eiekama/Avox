@@ -35,6 +35,7 @@ public class ButtonInstance : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnClick()
     {
+        AudioManager.Instance.playButtonPress();
         _backgroundIcon.SetActive(true);
         Sequence.Create()
             .Group(Tween.Alpha(_backgroundRenderer, startValue: 0, endValue: 0.5f, duration: 0.25f * _duration, useUnscaledTime: true))
@@ -59,6 +60,7 @@ public class ButtonInstance : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnSelect(BaseEventData eventData)
     {
+        AudioManager.Instance.playClick();
         _selectIcon.SetActive(true);
         Sequence.Create()
             .Group(Tween.Alpha(_selectRenderer, startValue: 0, endValue: 1, duration: _duration, useUnscaledTime: true))

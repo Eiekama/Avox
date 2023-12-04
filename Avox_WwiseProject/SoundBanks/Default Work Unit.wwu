@@ -5,9 +5,12 @@
 			<ChildrenList>
 				<SoundBank Name="Main" ID="{A1EC9713-1853-4EF1-BD4A-E71E86144DD8}">
 					<ObjectInclusionList>
+						<ObjectRef Name="Play_axox_button_press" ID="{17FEB09F-303B-402E-A294-1ABCBEBC0BDF}" WorkUnitID="{62EF1E54-8526-422A-BB12-C0EA88F1A252}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="avox_attack" ID="{7E0910B5-745F-4708-9E02-F8D667E6A6F3}" WorkUnitID="{AAF905A0-A37D-41E9-9282-F4E805C7D82B}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_avox_player_death" ID="{144D0F07-02DE-4A44-A903-DAA9F8ED2D60}" WorkUnitID="{62EF1E54-8526-422A-BB12-C0EA88F1A252}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_avox_footstep_grass" ID="{842BCBC2-DC00-4A8A-99CD-34ADF06474D2}" WorkUnitID="{62EF1E54-8526-422A-BB12-C0EA88F1A252}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_avox_double_jump" ID="{0815BBA3-55C0-4B78-BAA0-BEA55F844F38}" WorkUnitID="{62EF1E54-8526-422A-BB12-C0EA88F1A252}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_axov_click" ID="{DFB89227-7FCC-4BC0-AB7F-9FBF9CCDE88E}" WorkUnitID="{62EF1E54-8526-422A-BB12-C0EA88F1A252}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Play_avox_single_jump" ID="{09789269-75B6-4E20-B445-EA9A0AD2404F}" WorkUnitID="{62EF1E54-8526-422A-BB12-C0EA88F1A252}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>

@@ -175,6 +175,72 @@
 						<ActiveSource Name="avox_attack" ID="{6E013D73-FBD7-4EDC-B295-6EDF86813A25}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Sound Name="axov_click" ID="{A30ED68E-2904-4DE8-B7F8-9D1A69E2214F}" ShortID="738971895">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{66BC3C4E-513A-40D8-9885-2FAC5E0C36A2}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5DD95D86-1ECB-4E9F-BC79-A173452CDFF1}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="axov_click" ID="{8EAFE6A4-ADFE-4790-9359-4D2D46AACE1F}">
+							<Language>SFX</Language>
+							<AudioFile>axov_click.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="720187916"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="axov_click" ID="{8EAFE6A4-ADFE-4790-9359-4D2D46AACE1F}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="axox_button_press" ID="{86CC6DAE-2F79-4A15-9F36-7680C3471549}" ShortID="853323395">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{66BC3C4E-513A-40D8-9885-2FAC5E0C36A2}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5DD95D86-1ECB-4E9F-BC79-A173452CDFF1}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="axox_button_press" ID="{80B0487D-3E0C-4E87-92F7-D0D822EA394F}">
+							<Language>SFX</Language>
+							<AudioFile>axox_button_press.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="414730103"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="axox_button_press" ID="{80B0487D-3E0C-4E87-92F7-D0D822EA394F}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="avox_player_death" ID="{95604E47-EBED-4050-B83E-7D7C7550FB5F}" ShortID="611317697">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{66BC3C4E-513A-40D8-9885-2FAC5E0C36A2}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5DD95D86-1ECB-4E9F-BC79-A173452CDFF1}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="avox_player_death" ID="{8D750024-8732-4545-B787-F0E3894E9A18}">
+							<Language>SFX</Language>
+							<AudioFile>avox_player_death.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="958427426"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="avox_player_death" ID="{8D750024-8732-4545-B787-F0E3894E9A18}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>
