@@ -43,6 +43,7 @@ namespace Player
         public void Damage(Collider2D source, int dmg)
         {
             if(!isInvincible){
+                player.movement.StopDash();
                 player.status.ChangeCurrentHP(-dmg);
             }
             if (_player.data.currentHP == 0)

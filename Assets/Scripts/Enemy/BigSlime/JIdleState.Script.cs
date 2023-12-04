@@ -12,11 +12,11 @@ public class JIdleState : IState
     public Vector2 targetPosition;
 
     float _time = 3f;
-    private float _timer;
+    public float _timer;
 
-    float _moveTime = 1;
+    float _moveTime = 0;
     private float _moveTimer;
-    float _limit = 10f;
+    public float _limit = 10f;
 
     Path path;
     int currentWaypoint = 0;
@@ -40,7 +40,7 @@ public class JIdleState : IState
 
     }
 
-    void UpdatePath()
+    public void UpdatePath()
     {
         if (seeker.IsDone())
         {

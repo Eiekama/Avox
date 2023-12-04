@@ -828,9 +828,9 @@
             "id": "ceea4cdb-ae32-49e9-976a-70c0778e38ce",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Advance",
                     "type": "Button",
-                    "id": "9bed783b-17d2-4632-88fd-c840b643c308",
+                    "id": "f0bc70c1-bfca-4ffc-98f1-2449f8cbe2f6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -840,12 +840,12 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "038de4f0-2dae-41f8-a882-0a44c884231d",
-                    "path": "",
+                    "id": "d4c3dc35-b2cd-417b-ab87-ad689903bdd4",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Advance",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

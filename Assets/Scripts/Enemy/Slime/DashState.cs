@@ -13,6 +13,9 @@ public class DashState : IState
     float _time = 3f;
     private float _timer;
 
+    float _pauseTime = 0.5f;
+    private float _pauseTimer;
+
     Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
@@ -21,11 +24,11 @@ public class DashState : IState
 
     public void OnEntry()
     {
-        Debug.Log("Dash State");
-
         path = manager.path;
         seeker = manager.seeker;
         _timer = 0.0f;
+        _pauseTimer = 0.0f;
+        manager.RB.velocity = Vector2.zero;
         UpdatePath();
     }
 
@@ -53,41 +56,42 @@ public class DashState : IState
 
     public void OnUpdate()
     {
-        Debug.Log("Dash State");
-
         _timer += Time.deltaTime;
+        _pauseTimer += Time.deltaTime;
 
-        if (_timer > _time)
+        if (_pauseTimer > _pauseTime)
         {
-            manager.ChangeState(manager.idleState);
-            _timer = 0;
-        }
+            if (_timer > _time)
+            {
+                manager.ChangeState(manager.idleState);
+                _timer = 0;
+            }
 
-        if (path == null)
-        {
-            return;
-        }
+            if (path == null)
+            {
+                return;
+            }
 
-        else if (currentWaypoint >= path.vectorPath.Count)
-        {
-            reachedEndOfPath = true;
-            return;
-        }
-        else
-        {
-            reachedEndOfPath = false;
-        }
+            else if (currentWaypoint >= path.vectorPath.Count)
+            {
+                reachedEndOfPath = true;
+                return;
+            }
+            else
+            {
+                reachedEndOfPath = false;
+            }
 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)manager.transform.position).normalized;
-        Vector2 force = direction * speed;
-        manager.RB.AddForce(force);
+            Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)manager.transform.position).normalized;
+            Vector2 force = direction * speed;
+            manager.RB.AddForce(force);
 
-        float distance = Vector2.Distance(manager.RB.position, path.vectorPath[currentWaypoint]);
+            float distance = Vector2.Distance(manager.RB.position, path.vectorPath[currentWaypoint]);
 
-        if (distance < nextWaypointDistance)
-        {
-            currentWaypoint++;
-        }
-        
+            if (distance < nextWaypointDistance)
+            {
+                currentWaypoint++;
+            }
+        }  
     }
 }

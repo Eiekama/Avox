@@ -850,9 +850,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
             ""id"": ""ceea4cdb-ae32-49e9-976a-70c0778e38ce"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Advance"",
                     ""type"": ""Button"",
-                    ""id"": ""9bed783b-17d2-4632-88fd-c840b643c308"",
+                    ""id"": ""f0bc70c1-bfca-4ffc-98f1-2449f8cbe2f6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -862,12 +862,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""038de4f0-2dae-41f8-a882-0a44c884231d"",
-                    ""path"": """",
+                    ""id"": ""d4c3dc35-b2cd-417b-ab87-ad689903bdd4"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Advance"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -903,7 +903,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_CutScene_ShowPrompt = m_CutScene.FindAction("ShowPrompt", throwIfNotFound: true);
         // Dialogue
         m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
-        m_Dialogue_Newaction = m_Dialogue.FindAction("New action", throwIfNotFound: true);
+        m_Dialogue_Advance = m_Dialogue.FindAction("Advance", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1190,12 +1190,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     // Dialogue
     private readonly InputActionMap m_Dialogue;
     private IDialogueActions m_DialogueActionsCallbackInterface;
-    private readonly InputAction m_Dialogue_Newaction;
+    private readonly InputAction m_Dialogue_Advance;
     public struct DialogueActions
     {
         private @PlayerInputActions m_Wrapper;
         public DialogueActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Dialogue_Newaction;
+        public InputAction @Advance => m_Wrapper.m_Dialogue_Advance;
         public InputActionMap Get() { return m_Wrapper.m_Dialogue; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1205,16 +1205,16 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_DialogueActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnNewaction;
+                @Advance.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnAdvance;
+                @Advance.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnAdvance;
+                @Advance.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnAdvance;
             }
             m_Wrapper.m_DialogueActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @Advance.started += instance.OnAdvance;
+                @Advance.performed += instance.OnAdvance;
+                @Advance.canceled += instance.OnAdvance;
             }
         }
     }
@@ -1249,6 +1249,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     }
     public interface IDialogueActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnAdvance(InputAction.CallbackContext context);
     }
 }

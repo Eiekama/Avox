@@ -15,17 +15,25 @@ public class JumpStateKinematics : IState
     float _gravity;
     private float _timer;
 
+    float _pauseTime = 0.5f;
+    float _pauseTimer;
+    bool jumped;
+
     public void OnEntry()
     {
         Debug.Log("Jump State");
 
         _gravity = Mathf.Abs(Physics.gravity.y);
-        _xdist = manager.target.position.x - manager.RB.position.x;
+        _xdist = (manager.target.position.x - manager.RB.position.x) * 0.7f;
         _time = Mathf.Sqrt(2 * _ydist / _gravity);
         _xspeed = _xdist / _time;
         _yspeed = _gravity * _time;
 
-        manager.RB.velocity = new Vector2(_xspeed, _yspeed);
+        _timer = 0;
+        _pauseTimer = 0;
+
+        manager.RB.velocity = Vector2.zero;
+        jumped = false;
     }
 
     public void OnExit()
@@ -35,18 +43,28 @@ public class JumpStateKinematics : IState
 
     public void OnUpdate()
     {
-        Debug.Log("Jump State Kinematics");
+        _pauseTimer += Time.deltaTime;
 
-        _timer += Time.deltaTime;
-
-        if (_timer > 2 * _time)
+        if (_pauseTimer > _pauseTime)
         {
-            _timer = 0;
-            manager.RB.velocity = Vector2.zero;
-            manager.ChangeState(manager.idleState);
-        }
+            _timer += Time.deltaTime;
 
-        manager.RB.velocity = new Vector2(_xspeed, manager.RB.velocity.y);
+            if (jumped)
+            {
+                if (_timer > 2 * _time)
+                {
+                    manager.RB.velocity = Vector2.zero;
+                    manager.ChangeState(manager.idleState);
+                }
+
+                manager.RB.velocity = new Vector2(_xspeed, manager.RB.velocity.y);
+            }
+            else
+            {
+                manager.RB.velocity = new Vector2(_xspeed, _yspeed);
+                jumped = true;
+            }   
+        }
 
     }
 }
