@@ -219,11 +219,23 @@ namespace Player
             return player.data.hasDash && !_isDashing && player.data.currentMP > 1;
         }
 
+        private IEnumerator dashCoroutine;
         public void Dash()
         {
+            dashCoroutine = DashCoroutine();
+            _isJumpCut = false;
             player.animator.SetTrigger("dash");
             player.status.ChangeCurrentMP(-2);
-            player.StartCoroutine(DashCoroutine());
+            player.StartCoroutine(dashCoroutine);
+        }
+
+        public void StopDash()
+        {
+            if (_isDashing)
+            {
+                player.StopCoroutine(dashCoroutine);
+                _isDashing = false;
+            }
         }
 
         IEnumerator DashCoroutine()

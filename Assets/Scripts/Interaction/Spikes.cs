@@ -35,6 +35,7 @@ public class Spikes : MonoBehaviour, IContactDamage
 
     private void DealSpikeDamage(PlayerInstance player, int dmg, bool respawns)
     {
+        player.movement.StopDash();
         player.status.ChangeCurrentHP(-dmg);
         if (respawns) { player.animator.SetTrigger("respawnDamage"); }
         else

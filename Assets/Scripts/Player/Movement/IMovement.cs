@@ -29,6 +29,10 @@ public interface IMovement
     void JumpCut();
 
     void Dash();
+    /// <summary>
+    ///  Checks if we're dashing and if so, stops dash.
+    /// </summary>
+    void StopDash();
     void DoubleJump();
 
     bool CanJump();
