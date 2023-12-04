@@ -18,12 +18,12 @@ public class DIdleState : IState
 
     // determines when random target is updated
     float _time = 3f;
-    private float _timer;
-    float _limit = 10f;
+    public float _timer;
+    public float _limit = 10f;
     public Vector2 targetPosition;
 
     // determines when enemy can change state
-    float _dashTime = 1;
+    float _dashTime = 0;
     private float _dashTimer;
 
     public void OnEntry()
@@ -42,7 +42,7 @@ public class DIdleState : IState
 
     }
 
-    void UpdatePath()
+    public void UpdatePath()
     {
         if (seeker.IsDone())
         {
