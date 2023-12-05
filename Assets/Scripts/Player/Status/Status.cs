@@ -8,6 +8,8 @@ namespace Player
     {
         public void ChangeMaxHP(int amount) {
             _player.data.maxHP += amount;
+            if (StatusHUD.instance)
+                StatusHUD.instance.RefreshMaxima();
         }
 
         public void ChangeCurrentHP(int amount) {
@@ -18,6 +20,8 @@ namespace Player
 
         public void ChangeMaxMP(int amount) {
             _player.data.maxMP += amount;
+            if (StatusHUD.instance)
+                StatusHUD.instance.RefreshMaxima();
         }
 
         public void ChangeCurrentMP(int amount) {
