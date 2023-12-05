@@ -17,8 +17,8 @@ MonoBehaviour:
   hasDash: 1
   _maxHP: 3
   _currentHP: 2
-  _maxMP: 3
-  _currentMP: 3
+  _maxMP: 2
+  _currentMP: 2
   _MPRecovaryRate: 0.5
   _fallGravityMult: 1.3
   _maxFallSpeed: 20
