@@ -1,13 +1,19 @@
 Event	ID	Name			Wwise Object Path	Notes
 	1183777945	Play_avox_attack			\Default Work Unit\Play_avox_attack	
+	1203503195	Play_axov_click			\Default Work Unit\Play_axov_click	
 	1982289792	Play_avox_footstep_grass			\Default Work Unit\Play_avox_footstep_grass	
 	2530412616	Play_avox_single_jump			\Default Work Unit\Play_avox_single_jump	
+	2558383195	Play_axox_button_press			\Default Work Unit\Play_axox_button_press	
 	3196776101	Play_avox_double_jump			\Default Work Unit\Play_avox_double_jump	
+	3582447993	Play_avox_player_death			\Default Work Unit\Play_avox_player_death	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	345644811	avox_single_jump	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\avox_single_jump_D1A296AD.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_single_jump		127640
-	415417346	avox_footstep_grass2	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\avox_footstep_grass2_A752CF67.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_footstep_grass\avox_footstep_grass2		10336
-	501343304	avox_attack	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\avox_attack_467C1AE6.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_attack		82352
+	414730103	axox_button_press	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\axox_button_press_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\axox_button_press		325808
+	415417346	avox_footstep_grass2	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\avox_footstep_grass2_4D6EB624.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_footstep_grass\avox_footstep_grass2		10336
+	501343304	avox_attack	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\avox_attack_1AA7B700.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_attack		82352
+	720187916	axov_click	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\axov_click_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\axov_click		81560
 	800548019	avox_double_jump	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\avox_double_jump_AEBD293A.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_double_jump		165680
-	967387110	avox_footstep_grass1	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\avox_footstep_grass1_1AD82633.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_footstep_grass\avox_footstep_grass1		15846
+	958427426	avox_player_death	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\avox_player_death_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_player_death		488636
+	967387110	avox_footstep_grass1	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Mac\SFX\avox_footstep_grass1_CBC6D2E1.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_footstep_grass\avox_footstep_grass1		15846
 

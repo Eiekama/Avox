@@ -16,7 +16,10 @@ namespace AK
         static const AkUniqueID PLAY_AVOX_ATTACK = 1183777945U;
         static const AkUniqueID PLAY_AVOX_DOUBLE_JUMP = 3196776101U;
         static const AkUniqueID PLAY_AVOX_FOOTSTEP_GRASS = 1982289792U;
+        static const AkUniqueID PLAY_AVOX_PLAYER_DEATH = 3582447993U;
         static const AkUniqueID PLAY_AVOX_SINGLE_JUMP = 2530412616U;
+        static const AkUniqueID PLAY_AXOV_CLICK = 1203503195U;
+        static const AkUniqueID PLAY_AXOX_BUTTON_PRESS = 2558383195U;
     } // namespace EVENTS
 
     namespace BANKS

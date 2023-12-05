@@ -15474,7 +15474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7871654458558152457, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.23
+      value: 6.552512
       objectReference: {fileID: 0}
     - target: {fileID: 7871654458558152457, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15631,6 +15631,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6296626063447574696, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
+      propertyPath: playerDeath.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: b05c20c7551303645b531b08e8b9ab20, type: 2}
     - target: {fileID: 6849256430463167760, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
       propertyPath: m_Camera
       value: 
