@@ -15089,6 +15089,7 @@ MonoBehaviour:
   _isAuto: 0
   interactUI: {fileID: 659514795}
   _index: 0
+  collectPrompt: {fileID: 0}
 --- !u!61 &969727846
 BoxCollider2D:
   m_ObjectHideFlags: 0
