@@ -5,38 +5,34 @@ using UnityEngine.UI;
 
 public class StatusIcon : MonoBehaviour
 {
+    public Image _image;
+
     public Sprite baseSprite;
+    public Sprite depletedSprite;
     public bool state;
 
-    Image _image;
-    RectTransform _rt;
+    Animator _animator;
 
     void Awake()
     {
-        _image = GetComponent<Image>();
-        _rt = GetComponent<RectTransform>();
+        _animator = GetComponent<Animator>();
 
         state = true;
     }
 
     public void UpdateLook(bool active, bool playAnimation = true)
     {
-        if (state == active)
+        if (state == active && playAnimation)
             return;
         state = active;
 
-        // later, put animator calls here to make fancier effects
-        // this function will only get called when the player's health changes
-        if (active)
+        // this function will only get called when the player's health/mana changes
+        if (_animator)
         {
-            _image.color = new Color(1, 1, 1, 1);
-            _rt.localScale = Vector3.one;
-            
+            _animator.SetBool("Animate", playAnimation);
+            _animator.SetBool("Active", active);
         }
         else
-        {
-            _image.color = new Color(0.7f, 0.5f, 0.5f, 0.7f);
-            _rt.localScale = Vector3.one * 0.8f;
-        }
+            _image.sprite = active ? baseSprite : depletedSprite;
     }
 }
