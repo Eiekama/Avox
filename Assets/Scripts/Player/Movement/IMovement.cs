@@ -14,7 +14,7 @@ public interface IMovement
     /// <summary>
     /// If positive, then player is grounded.
     /// </summary>
-    float lastOnGroundTime { get; }
+    float lastOnGroundTime { get; set; }
 
     void UpdateTimers();
     void UpdateGravity();
@@ -29,6 +29,10 @@ public interface IMovement
     void JumpCut();
 
     void Dash();
+    /// <summary>
+    ///  Checks if we're dashing and if so, stops dash.
+    /// </summary>
+    void StopDash();
     void DoubleJump();
 
     bool CanJump();

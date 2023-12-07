@@ -64,8 +64,8 @@ namespace Player
         public void UpdateChecks()
         {
             #region COLLISION CHECKS    
-            Vector2 terrainCheckPoint = (Vector2)player.transform.position + playerBoxCollider.offset - new Vector2(0.0f, 0.1f);
-            Vector2 groundCheckSize = playerBoxCollider.size + new Vector2(-0.1f, 0.0f);
+            Vector2 terrainCheckPoint = (Vector2)player.transform.position + playerBoxCollider.offset - new Vector2(0.0f, playerBoxCollider.size.y * 0.1f);
+            Vector2 groundCheckSize = playerBoxCollider.size + new Vector2(-playerBoxCollider.size.x * 0.1f, 0.0f);
             if (Physics2D.OverlapBox(terrainCheckPoint, groundCheckSize, 0, groundLayer))
             {
                 lastOnGroundTime = 0.1f;
@@ -165,7 +165,7 @@ namespace Player
 
         public void JumpCut()
         {
-            _isJumpCut = true;
+            if (!_isDashing) _isJumpCut = true;
         }
 
         public bool CanDoubleJump()
@@ -219,11 +219,23 @@ namespace Player
             return player.data.hasDash && !_isDashing && player.data.currentMP > 1;
         }
 
+        private IEnumerator dashCoroutine;
         public void Dash()
         {
+            dashCoroutine = DashCoroutine();
+            _isJumpCut = false;
             player.animator.SetTrigger("dash");
             player.status.ChangeCurrentMP(-2);
-            player.StartCoroutine(DashCoroutine());
+            player.StartCoroutine(dashCoroutine);
+        }
+
+        public void StopDash()
+        {
+            if (_isDashing)
+            {
+                player.StopCoroutine(dashCoroutine);
+                _isDashing = false;
+            }
         }
 
         IEnumerator DashCoroutine()

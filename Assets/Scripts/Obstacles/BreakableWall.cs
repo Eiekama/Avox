@@ -48,6 +48,25 @@ public class BreakableWall : MonoBehaviour, IDamageable
         } else
         {
             _spriteRenderer.sprite = sprites[_state];
+            StartCoroutine(Shake());
+        }
+    }
+
+    IEnumerator Shake()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            (Vector3, Vector3) positions = (_spriteRenderer.transform.localPosition, new Vector3(Random.Range(-0.15f, 0.15f), Random.Range(-0.15f, 0.15f)));
+            if (i == 5)
+                positions.Item2 = Vector3.zero;
+
+            for (float t = 0; t < 0.04f; t += Time.deltaTime)
+            {
+                _spriteRenderer.transform.localPosition = Vector3.Lerp(positions.Item1, positions.Item2, t * (1 / 0.04f));
+                yield return new WaitForEndOfFrame();
+            }
+
+            _spriteRenderer.transform.localPosition = positions.Item2;
         }
     }
 }

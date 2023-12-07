@@ -43,6 +43,7 @@ namespace Player
         public void Damage(Collider2D source, int dmg)
         {
             if(!isInvincible){
+                player.movement.StopDash();
                 player.status.ChangeCurrentHP(-dmg);
             }
             if (_player.data.currentHP == 0)
@@ -53,9 +54,10 @@ namespace Player
 
             player.StartCoroutine(RunIFrames(invincibilityTime));
 
+            player.controller.DisableActionMap(player.controller.inputActions.Player);
             Knockback(source);
             player.animator.SetTrigger("damage");
-            // action map will be toggled as animation event
+            // action map will be re-enabled in animation event
         }
 
         public void Knockback(Collider2D source)

@@ -5,7 +5,7 @@ using PrimeTween;
 
 public class InitialiseData : MonoBehaviour
 {
-    private static bool initialised = false;
+    public static bool initialised = false;
 
     [SerializeField] PlayerData playerData;
     [SerializeField] CollectibleData collectibleData;
@@ -35,18 +35,21 @@ public class InitialiseData : MonoBehaviour
     {
         if (!initialised)
         {
-            _controller = FindObjectOfType<PlayerController>();
-            _controller.ToggleActionMap(_controller.inputActions.Player);
-
             initialised = true;
-        }
 
-        //hardcoded enabling of action map when respawning after death
-        //will probably find time after this semester to write a respawn manager script instead
-        _controller = FindObjectOfType<PlayerController>();
-        Sequence.Create()
-            .ChainDelay(1.0f)
-            .ChainCallback(target: this, target => target._controller.ToggleActionMap(target._controller.inputActions.Player));
-        //not the best but works for now
+            _controller = FindObjectOfType<PlayerController>();
+            if (!_controller.inputActions.Dialogue.enabled)
+                _controller.ToggleActionMap(_controller.inputActions.Player);
+        }
+        else
+        {
+            //hardcoded enabling of action map when respawning after death
+            //will probably find time after this semester to write a respawn manager script instead
+            _controller = FindObjectOfType<PlayerController>();
+            Sequence.Create()
+                .ChainDelay(1.0f)
+                .ChainCallback(target: this, target => target._controller.ToggleActionMap(target._controller.inputActions.Player));
+            //not the best but works for now
+        }
     }
 }

@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 451078884435110692}
   - component: {fileID: 3219291436942001259}
   - component: {fileID: 5610629757341520541}
+  - component: {fileID: 506519321210828211}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -273,6 +274,47 @@ MonoBehaviour:
   _duration: 0.1
   _selectIcon: {fileID: 3939096029015162277}
   _backgroundIcon: {fileID: 6565967117908496115}
+--- !u!114 &506519321210828211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7440403348093816106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28b7bd17c04df541b3383907b2d1e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DontDestroy: 0
+  singleJump:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 36a7a465e6835f8478fba50f64175925, type: 2}
+  doubleJump:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 9e59e67a966c04c45a6aeb8feb977520, type: 2}
+  grassFootStep:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: baed08c27ef694248bc4024f95c13fe7, type: 2}
+  attack:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: acacb13f01d21c44ba20618af3bece88, type: 2}
+  playerDeath:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b05c20c7551303645b531b08e8b9ab20, type: 2}
+  click:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1f5f400465b66e14fa397e36d8bd0d7f, type: 2}
+  buttonPress:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 0855b05fd35204d4cbeb790026b16869, type: 2}
 --- !u!1 &8160414490164530734
 GameObject:
   m_ObjectHideFlags: 0

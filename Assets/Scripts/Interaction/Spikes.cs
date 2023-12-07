@@ -35,12 +35,15 @@ public class Spikes : MonoBehaviour, IContactDamage
 
     private void DealSpikeDamage(PlayerInstance player, int dmg, bool respawns)
     {
+        player.movement.StopDash();
         player.status.ChangeCurrentHP(-dmg);
         if (respawns) { player.animator.SetTrigger("respawnDamage"); }
         else
         {
+            player.controller.DisableActionMap(player.controller.inputActions.Player);
             player.combat.Knockback(_collider);
             player.animator.SetTrigger("damage");
+            // action map will be re-enabled in animation event
         }
 
     }

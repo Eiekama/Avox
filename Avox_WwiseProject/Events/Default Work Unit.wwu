@@ -47,6 +47,39 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_axov_click" ID="{DFB89227-7FCC-4BC0-AB7F-9FBF9CCDE88E}">
+					<ChildrenList>
+						<Action Name="" ID="{D19E40FC-ADF8-44CD-83DD-028DE2DB7EA4}" ShortID="175737225">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="axov_click" ID="{A30ED68E-2904-4DE8-B7F8-9D1A69E2214F}" WorkUnitID="{AAF905A0-A37D-41E9-9282-F4E805C7D82B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_axox_button_press" ID="{17FEB09F-303B-402E-A294-1ABCBEBC0BDF}">
+					<ChildrenList>
+						<Action Name="" ID="{7B04DB37-2A7E-4F83-90BB-A2A17515DE73}" ShortID="281307541">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="axox_button_press" ID="{86CC6DAE-2F79-4A15-9F36-7680C3471549}" WorkUnitID="{AAF905A0-A37D-41E9-9282-F4E805C7D82B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_avox_player_death" ID="{144D0F07-02DE-4A44-A903-DAA9F8ED2D60}">
+					<ChildrenList>
+						<Action Name="" ID="{B1D4E1FA-C2FE-481E-82DE-1C9995DFA6D5}" ShortID="767232204">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="avox_player_death" ID="{95604E47-EBED-4050-B83E-7D7C7550FB5F}" WorkUnitID="{AAF905A0-A37D-41E9-9282-F4E805C7D82B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

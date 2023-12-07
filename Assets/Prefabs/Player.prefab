@@ -313,6 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28b7bd17c04df541b3383907b2d1e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontDestroy: 0
   singleJump:
     idInternal: 0
     valueGuidInternal: 
@@ -329,6 +330,14 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: acacb13f01d21c44ba20618af3bece88, type: 2}
+  click:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1f5f400465b66e14fa397e36d8bd0d7f, type: 2}
+  buttonPress:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 0855b05fd35204d4cbeb790026b16869, type: 2}
 --- !u!1 &3053949301367829944
 GameObject:
   m_ObjectHideFlags: 0

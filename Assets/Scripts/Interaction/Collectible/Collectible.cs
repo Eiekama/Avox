@@ -9,6 +9,7 @@ public class Collectible : AInteractable
     public int index { get { return _index; } }
 
     (CollectibleData data, int i) _dataAndIndex;
+    public PromptTrigger collectPrompt;
     public (CollectibleData data, int i) dataAndIndex
     {
         get { return _dataAndIndex; }
@@ -25,5 +26,7 @@ public class Collectible : AInteractable
     {
         _dataAndIndex.data.info[_dataAndIndex.i].collected = true;
         Collect(player);
+        if (collectPrompt != null)
+            collectPrompt.Interact(player);
     }
 }

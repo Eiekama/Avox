@@ -64,7 +64,7 @@ public class TransitionManager : MonoBehaviour
                             0,
                             -(st.transform.localScale.y / 2) - _playerHeightOffset - _epsilon,
                             0 );
-                        _player.controller.ToggleActionMap(_player.controller.inputActions.Player);
+                        StartCoroutine(PlayDownTransition());
                     }
                     else
                     {
@@ -98,9 +98,10 @@ public class TransitionManager : MonoBehaviour
             else { input = -1.0f; }
 
             _player.controller.DisableActionMap(_player.controller.inputActions.Player);
-
+            _player.movement.lastOnGroundTime = 0.1f; // random code but i had to do this to fix an animation bug
+            yield return null;
             _player.movement.Jump();
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
             while (_player.movement.lastOnGroundTime < 0)
             {
                 _player.movement.Run(input);
@@ -123,6 +124,18 @@ public class TransitionManager : MonoBehaviour
                 yield return new WaitForFixedUpdate();
             }
 
+            _player.controller.ToggleActionMap(_player.controller.inputActions.Player);
+        }
+        IEnumerator PlayDownTransition()
+        {
+            _player.controller.DisableActionMap(_player.controller.inputActions.Player);
+            yield return new WaitForSeconds(0.1f);
+            float _time = 0.1f;
+            while (_player.movement.lastOnGroundTime < 0 && _time < 2.0f)
+            {
+                _time += Time.deltaTime;
+                yield return null;
+            }
             _player.controller.ToggleActionMap(_player.controller.inputActions.Player);
         }
     }
