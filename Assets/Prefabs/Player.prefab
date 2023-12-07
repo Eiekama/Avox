@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 640709735544631374, guid: 0a719554bc8ff4238bff909e712fb1e5, type: 3}
+  m_Sprite: {fileID: 261689519, guid: 3ea0ff52ac33caf409de5ddf5eb3d1f2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,7 +109,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5605884, y: 2.56}
+    oldSize: {x: 2.56, y: 2.56}
     newSize: {x: 2.5605884, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -158,6 +158,7 @@ MonoBehaviour:
   _crossfade: {fileID: 0}
   currentManualInteractable: {fileID: 0}
   pauseMenu: {fileID: 0}
+  VirtualCamera: {fileID: 0}
 --- !u!114 &3053949301346508819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,6 +331,10 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: acacb13f01d21c44ba20618af3bece88, type: 2}
+  playerDeath:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
   click:
     idInternal: 0
     valueGuidInternal: 
