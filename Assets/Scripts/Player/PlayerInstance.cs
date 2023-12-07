@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Player;
+// next line needed for camera to move
+using Cinemachine; 
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerController))]
 [RequireComponent(typeof(Animator))]
 public class PlayerInstance : MonoBehaviour
-{
+{    
+    
     [SerializeField] PlayerData _data;
     public PlayerData data { get { return _data; } }
 
@@ -32,6 +35,9 @@ public class PlayerInstance : MonoBehaviour
     [HideInInspector] public AInteractable currentManualInteractable;
 
     public PauseMenuController pauseMenu;
+    //also need this
+    public CinemachineVirtualCamera VirtualCamera;
+
 
     private void Awake()
     {
