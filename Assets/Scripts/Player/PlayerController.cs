@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine; 
+
 
 [RequireComponent(typeof(PlayerInstance))]
 [RequireComponent(typeof(PlayerInput))]
@@ -136,4 +138,19 @@ public class PlayerController : MonoBehaviour
         if (!actionMap.enabled) { return; }
         actionMap.Disable();
     }
+//Should be these next 3
+     public void LookUp(InputAction.CallbackContext context)
+     {
+        _player.VirtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.y = 5;
+     }
+    public void LookDown(InputAction.CallbackContext context)
+     {
+        _player.VirtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.y = -5;
+     }
+
+    public void Lookcenter(InputAction.CallbackContext context)
+     {
+        _player.VirtualCamera.GetCinemachineComponent<CinemachineComposer>().m_TrackedObjectOffset.y = 0;
+     }
+     
 }
