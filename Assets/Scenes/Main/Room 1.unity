@@ -3090,11 +3090,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7871654458558152457, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5639696
+      value: -10.11
       objectReference: {fileID: 0}
     - target: {fileID: 7871654458558152457, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: 7871654459791140880, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
@@ -7059,6 +7059,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3053949301346508823, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 261689519, guid: 3ea0ff52ac33caf409de5ddf5eb3d1f2, type: 3}
     - target: {fileID: 6296626063447574696, guid: 5db9dac4a8ef24998a2ba8c98daa7201, type: 3}
       propertyPath: playerDeath.WwiseObjectReference
       value: 
