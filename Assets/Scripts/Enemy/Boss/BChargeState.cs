@@ -7,23 +7,47 @@ public class BChargeState : IState
 {
     public BossManager manager;
 
-    public float speed = 50f;
+    public float speed = 5f;
     public float nextWaypointDistance = 1f;
-
-    float _time = 1.5f;
-    private float _timer;
 
     Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
 
+    float _initialPlayerPos;
+    float _fixedDist = 2;
+    bool right;
+
+    float _time = 3f;
+    private float _timer;
+
+    float _pauseTime = 1f;
+    private float _pauseTimer;
+
     Seeker seeker;
 
     public void OnEntry()
     {
+        manager.RB.velocity = Vector2.zero;
+
         path = manager.path;
         seeker = manager.seeker;
+
+        _pauseTimer = 0.0f;
         _timer = 0.0f;
+
+        _initialPlayerPos = manager.target.position.x;
+        float dist = manager.target.position.x - manager.RB.position.x;
+
+        if (dist < 0)
+        {
+            right = false;
+        }
+        else
+        {
+            right = true;
+        }
+
         UpdatePath();
     }
 
@@ -51,38 +75,50 @@ public class BChargeState : IState
 
     public void OnUpdate()
     {
-        _timer += Time.deltaTime;
+        _pauseTimer += Time.deltaTime;
 
-        if (_timer > _time)
+        if (_pauseTimer > _pauseTime)
         {
-            manager.ChangeState(manager.idleState);
-            _timer = 0;
-        }
+            _timer += Time.deltaTime;
 
-        if (path == null)
-        {
-            return;
-        }
+            if ((right && manager.RB.position.x > _initialPlayerPos + _fixedDist)
+             || (!right && manager.RB.position.x < _initialPlayerPos - _fixedDist)
+             || _timer > _time)
+            {
+                manager.RB.velocity = Vector2.zero;
+                manager.ChangeState(manager.idleState);
+            }
 
-        else if (currentWaypoint >= path.vectorPath.Count)
-        {
-            reachedEndOfPath = true;
-            return;
-        }
-        else
-        {
-            reachedEndOfPath = false;
-        }
+            if (path == null)
+            {
+                return;
+            }
 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)manager.transform.position).normalized;
-        Vector2 force = direction * speed;
-        manager.RB.AddForce(new Vector2(force.x, 0));
+            else if (currentWaypoint >= path.vectorPath.Count)
+            {
+                reachedEndOfPath = true;
+                return;
+            }
+            else
+            {
+                reachedEndOfPath = false;
+            }
 
-        float distance = Vector2.Distance(manager.RB.position, path.vectorPath[currentWaypoint]);
+            Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)manager.transform.position).normalized;
+            Vector2 force = (new Vector2(direction.x, 0)).normalized * speed;
 
-        if (distance < nextWaypointDistance)
-        {
-            currentWaypoint++;
+            if ((right && manager.RB.position.x < _initialPlayerPos)
+             || (!right && manager.RB.position.x > _initialPlayerPos))
+            {
+                manager.RB.AddForce(force);
+            }
+
+            float distance = Vector2.Distance(manager.RB.position, path.vectorPath[currentWaypoint]);
+
+            if (distance < nextWaypointDistance)
+            {
+                currentWaypoint++;
+            }
         }
 
     }
