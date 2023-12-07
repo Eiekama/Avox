@@ -14,7 +14,7 @@ public interface IMovement
     /// <summary>
     /// If positive, then player is grounded.
     /// </summary>
-    float lastOnGroundTime { get; }
+    float lastOnGroundTime { get; set; }
 
     void UpdateTimers();
     void UpdateGravity();
