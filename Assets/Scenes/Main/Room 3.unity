@@ -214,14 +214,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1986339309}
     m_Modifications:
-    - target: {fileID: 571761812447611931, guid: eaec829781288b64e99c3120db23132b, type: 3}
-      propertyPath: m_Name
-      value: PhysicsCollider
-      objectReference: {fileID: 0}
-    - target: {fileID: 571761812447611931, guid: eaec829781288b64e99c3120db23132b, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 2115497084577554968, guid: eaec829781288b64e99c3120db23132b, type: 3}
       propertyPath: m_Name
       value: BigBlob

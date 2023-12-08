@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4693885545967996486}
   - component: {fileID: 1919431837882012749}
-  m_Layer: 0
-  m_Name: DamageCollider
+  m_Layer: 8
+  m_Name: PhysicsCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

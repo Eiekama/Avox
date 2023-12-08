@@ -35,6 +35,8 @@ public class MainMenuController : MonoBehaviour
 
     private void Awake()
     {
+        InitialiseData.initialised = false;
+
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.actions["Navigate"].performed += NavigatePerformed;
 
