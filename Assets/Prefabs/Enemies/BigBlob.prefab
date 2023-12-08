@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 2115497084577554972}
   - component: {fileID: 2115497084577554970}
   - component: {fileID: 9111141287424511504}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: BigBlob
   m_TagString: Manager
   m_Icon: {fileID: 0}

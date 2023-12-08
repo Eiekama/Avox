@@ -24170,6 +24170,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigBlob
       objectReference: {fileID: 0}
+    - target: {fileID: 2115497084577554968, guid: eaec829781288b64e99c3120db23132b, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2115497084577554970, guid: eaec829781288b64e99c3120db23132b, type: 3}
       propertyPath: target
       value: 
