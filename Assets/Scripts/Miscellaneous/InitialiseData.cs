@@ -23,11 +23,14 @@ public class InitialiseData : MonoBehaviour
 
             playerData.hasWeapon = false;
             playerData.hasDash = false;
-            playerData.maxHP = 3;
+            playerData.maxHP = 5;
             playerData.currentHP = playerData.maxHP;
             playerData.maxMP = 0;
             playerData.currentMP = playerData.maxMP;
             playerData.isFacingRight = true;
+
+            BreakableWall.brokenWalls = new HashSet<int>();
+            CrumblingPlatform._activated = false;
         }
     }
 

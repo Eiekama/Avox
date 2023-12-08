@@ -6,7 +6,7 @@ using UnityEngine;
 public class CrumblingPlatform : AInteractable
 {    
     [SerializeField] OnBreak _mask;
-    private static bool _activated;
+    public static bool _activated;
 
     private void Start()
     {

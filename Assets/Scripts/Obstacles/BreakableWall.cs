@@ -5,7 +5,7 @@ using UnityEngine;
 public class BreakableWall : MonoBehaviour, IDamageable
 {
     public enum HitDirections { All = 0x0, LeftOnly = 0x1, RightOnly = 0x3 }
-    static HashSet<int> brokenWalls = new HashSet<int>();
+    public static HashSet<int> brokenWalls = new HashSet<int>();
 
     public int id;
     public HitDirections hitDirections;
