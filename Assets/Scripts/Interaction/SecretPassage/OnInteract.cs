@@ -4,31 +4,25 @@ using UnityEngine;
 
 public class OnInteract : AInteractable
 {
-    public float fadeSpeed = 3;
-    private bool fade = false;
+    [SerializeField] float fadeSpeed = 3;
+
     public override void Interact(PlayerInstance player)
     {
-        fade = true;
+        StartCoroutine(FadeCoroutine());
     }
-    
-    private void Update()
-    {
 
-        
-        if (fade)
+    IEnumerator FadeCoroutine()
+    {
+        Renderer _renderer = gameObject.GetComponent<Renderer>();
+        Color _objectColor = _renderer.material.color;
+        while (_objectColor.a > 0)
         {
-            Color _objectColor = gameObject.GetComponent<Renderer>().material.color;
             float _fadeAmount = _objectColor.a - (fadeSpeed * Time.deltaTime);
 
             _objectColor = new Color(_objectColor.r, _objectColor.g, _objectColor.b, _fadeAmount);
-            gameObject.GetComponent<Renderer>().material.color = _objectColor;
-
-            if (_objectColor.a <= 0)
-            {
-                Destroy(gameObject);
-            }
-            
+            _renderer.material.color = _objectColor;
+            yield return null;
         }
-    }
-    
+        Destroy(gameObject);
+    }    
 }
