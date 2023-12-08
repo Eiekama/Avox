@@ -224,11 +224,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2115497084577554968, guid: eaec829781288b64e99c3120db23132b, type: 3}
       propertyPath: m_Name
-      value: BigSlime
+      value: BigBlob
       objectReference: {fileID: 0}
     - target: {fileID: 2115497084577554968, guid: eaec829781288b64e99c3120db23132b, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115497084577554968, guid: eaec829781288b64e99c3120db23132b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2115497084577554970, guid: eaec829781288b64e99c3120db23132b, type: 3}
       propertyPath: target
@@ -244,7 +248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2115497084577554971, guid: eaec829781288b64e99c3120db23132b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.67
+      value: -5.31
       objectReference: {fileID: 0}
     - target: {fileID: 2115497084577554971, guid: eaec829781288b64e99c3120db23132b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5913,7 +5917,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7229085483654905972, guid: 7254576efc5a28d4db0eefa99fbce4ff, type: 3}
       propertyPath: m_Name
-      value: Slime
+      value: SmallBlob
+      objectReference: {fileID: 0}
+    - target: {fileID: 7229085483654905972, guid: 7254576efc5a28d4db0eefa99fbce4ff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7229085483654905979, guid: 7254576efc5a28d4db0eefa99fbce4ff, type: 3}
       propertyPath: m_RootOrder
@@ -9618,11 +9626,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7229085483654905972, guid: 7254576efc5a28d4db0eefa99fbce4ff, type: 3}
       propertyPath: m_Name
-      value: Slime
+      value: SmallBlob
       objectReference: {fileID: 0}
     - target: {fileID: 7229085483654905972, guid: 7254576efc5a28d4db0eefa99fbce4ff, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7229085483654905972, guid: 7254576efc5a28d4db0eefa99fbce4ff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7229085483654905972, guid: 7254576efc5a28d4db0eefa99fbce4ff, type: 3}
       propertyPath: m_TagString

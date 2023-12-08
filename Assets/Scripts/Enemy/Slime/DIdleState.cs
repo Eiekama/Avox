@@ -27,11 +27,9 @@ public class DIdleState : IState
 
     public void OnEntry()
     {
-        targetPosition = new Vector2(manager.transform.position.x + Random.Range(-_limit, _limit), manager.transform.position.y);
         seeker = manager.seeker;
         _timer = Random.Range(0f, _time);
         _dashTimer = 0.0f;
-        UpdatePath();
     }
 
     public void OnExit()
@@ -58,6 +56,16 @@ public class DIdleState : IState
 
     public void OnUpdate()
     {
+        manager.anim.SetFloat("xSpeed", Mathf.Abs(manager.RB.velocity.x));
+        manager.anim.SetFloat("yVelocity", manager.RB.velocity.y);
+
+        if (Mathf.Sign(manager.transform.localScale.x) != Mathf.Sign(targetPosition.x - manager.RB.position.x))
+        {
+            Vector3 scale = manager.transform.localScale;
+            scale.x = Mathf.Sign(targetPosition.x - manager.RB.position.x);
+            manager.transform.localScale = scale;
+        }
+
         _timer += Time.deltaTime;
         _dashTimer += Time.deltaTime;
 
@@ -68,12 +76,11 @@ public class DIdleState : IState
             _timer = 0;
         }
 
-        if (path == null)
+        if (path == null || path.vectorPath == null)
         {
             return;
         }
-
-        if (currentWaypoint >= path.vectorPath.Count)
+        else if (currentWaypoint >= path.vectorPath.Count)
         {
             reachedEndOfPath = true;
             return;
@@ -95,9 +102,10 @@ public class DIdleState : IState
         if (_dashTimer >= _dashTime)
         {
             float dist = manager.RB.position.x - manager.target.position.x;
+            float ydist = manager.RB.position.y - manager.target.position.y;
             float targetDist = manager.RB.position.x - targetPosition.x;
 
-            if (Mathf.Abs(dist) < manager.dist && dist * targetDist > 0)
+            if (Mathf.Abs(dist) < manager.dist && Mathf.Abs(ydist) < 2f && dist * targetDist > 0)
             {
                 manager.ChangeState(manager.dashState);
             }

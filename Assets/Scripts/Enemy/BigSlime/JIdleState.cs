@@ -7,7 +7,7 @@ public class JIdleState : IState
 {
     public BigSlimeManager manager;
 
-    public float speed = 300f;
+    public float speed = 100f;
     public float nextWaypointDistance = 1f;
     public Vector2 targetPosition;
 
@@ -26,13 +26,9 @@ public class JIdleState : IState
 
     public void OnEntry()
     {
-        Debug.Log("Idle State");
-
-        targetPosition = new Vector2(Random.Range(-_limit, _limit), manager.transform.position.y);
         seeker = manager.seeker;
-        _timer = 0.0f;
+        _timer = Random.Range(0f, _time);
         _moveTimer = 0.0f;
-        UpdatePath();
     }
 
     public void OnExit()
@@ -59,7 +55,15 @@ public class JIdleState : IState
 
     public void OnUpdate()
     {
-        Debug.Log("Idle State");
+        manager.anim.SetFloat("xSpeed", Mathf.Abs(manager.RB.velocity.x));
+        manager.anim.SetFloat("yVelocity", manager.RB.velocity.y);
+
+        if (Mathf.Abs(manager.RB.velocity.x) > 0.1f && Mathf.Sign(manager.transform.localScale.x) != Mathf.Sign(manager.RB.velocity.x))
+        {
+            Vector3 scale = manager.transform.localScale;
+            scale.x = 1.3182f * Mathf.Sign(manager.RB.velocity.x);
+            manager.transform.localScale = scale;
+        }
 
         _timer += Time.deltaTime;
         _moveTimer += Time.deltaTime;
@@ -108,9 +112,10 @@ public class JIdleState : IState
         if (_moveTimer >= _moveTime)
         {
             float dist = manager.RB.position.x - manager.target.position.x;
+            float ydist = manager.RB.position.y - manager.target.position.y;
             float targetDist = manager.RB.position.x - targetPosition.x;
 
-            if (Mathf.Abs(dist) < manager.dist && dist * targetDist >= 0)
+            if (Mathf.Abs(dist) < manager.dist && Mathf.Abs(ydist) < 2f && dist * targetDist >= 0)
             {
                 manager.ChangeState(manager.jumpState);
                 _moveTimer = 0;

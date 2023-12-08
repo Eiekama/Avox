@@ -402,7 +402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parallaxBackgroundElements:
   - element: {fileID: 75362296}
-    effectScale: {x: 0.15, y: 0}
+    effectScale: {x: -0.15, y: 0}
     origin: {x: 0, y: 0, z: 0}
   - element: {fileID: 1847879294}
     effectScale: {x: 0.6, y: 0}

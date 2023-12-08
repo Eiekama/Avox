@@ -15,7 +15,7 @@ public class JumpStateKinematics : IState
     float _gravity;
     private float _timer;
 
-    float _pauseTime = 0.5f;
+    float _pauseTime = 0.67f;
     float _pauseTimer;
     bool jumped;
 
@@ -34,6 +34,8 @@ public class JumpStateKinematics : IState
 
         manager.RB.velocity = Vector2.zero;
         jumped = false;
+
+        manager.anim.SetTrigger("attack");
     }
 
     public void OnExit()
@@ -43,6 +45,16 @@ public class JumpStateKinematics : IState
 
     public void OnUpdate()
     {
+        manager.anim.SetFloat("xSpeed", Mathf.Abs(manager.RB.velocity.x));
+        manager.anim.SetFloat("yVelocity", manager.RB.velocity.y);
+
+        if (Mathf.Abs(manager.RB.velocity.x) > 0.1f && Mathf.Sign(manager.transform.localScale.x) != Mathf.Sign(manager.RB.velocity.x))
+        {
+            Vector3 scale = manager.transform.localScale;
+            scale.x = 1.3182f * Mathf.Sign(manager.RB.velocity.x);
+            manager.transform.localScale = scale;
+        }
+
         _pauseTimer += Time.deltaTime;
 
         if (_pauseTimer > _pauseTime)

@@ -554,7 +554,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 261400698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3637,7 +3637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parallaxBackgroundElements:
   - element: {fileID: 430245530}
-    effectScale: {x: 0.15, y: 0}
+    effectScale: {x: -0.15, y: 0}
     origin: {x: 0, y: 0, z: 0}
   - element: {fileID: 1434472648}
     effectScale: {x: 0.6, y: 0}
@@ -3935,7 +3935,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7456927744916346556, guid: cf8c676def0a64faf8a7fd1bdb2e8cc9, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7456927744916346556, guid: cf8c676def0a64faf8a7fd1bdb2e8cc9, type: 3}
       propertyPath: m_LocalPosition.x
