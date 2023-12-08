@@ -80,6 +80,61 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_avox_damage" ID="{41FAF44C-175D-4122-B048-574AE1776B43}">
+					<ChildrenList>
+						<Action Name="" ID="{4DEC3FF1-7733-4277-BD3A-CF53584EA6CC}" ShortID="519937053">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="avox_damage" ID="{10BFBF2E-04DD-4689-90FE-A710FC456057}" WorkUnitID="{AAF905A0-A37D-41E9-9282-F4E805C7D82B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_avox_music" ID="{BFAC8FB9-247C-4505-A640-4A5C9844DC78}">
+					<ChildrenList>
+						<Action Name="" ID="{D5A3E4C4-6DAF-4775-A237-260ECA6564C6}" ShortID="850988455">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="avox_music" ID="{FA7EED15-4EDB-41D3-A9AA-B7D58048FE40}" WorkUnitID="{AAF905A0-A37D-41E9-9282-F4E805C7D82B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_avox_music_01" ID="{F760586F-80AD-40E8-AAC6-649101DF03F9}">
+					<ChildrenList>
+						<Action Name="" ID="{E1D6A480-CC7A-4F8A-8841-3708C74B7FC8}" ShortID="953241428">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="avox_music" ID="{FA7EED15-4EDB-41D3-A9AA-B7D58048FE40}" WorkUnitID="{AAF905A0-A37D-41E9-9282-F4E805C7D82B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Cave_Ambience" ID="{73BFE5DF-3E6C-404F-8885-478376B92971}">
+					<ChildrenList>
+						<Action Name="" ID="{1405DCE9-DF96-4128-BB46-B4DF8B192838}" ShortID="122362604">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Cave Ambience" ID="{DF63333E-CAD3-4DB9-A124-E7268AA26B9C}" WorkUnitID="{AAF905A0-A37D-41E9-9282-F4E805C7D82B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Forest_Ambience" ID="{1954B42F-EC56-426B-9259-C0D77E07D5BB}">
+					<ChildrenList>
+						<Action Name="" ID="{5C12CDE6-7CE7-4A9A-B228-C6758195B0DD}" ShortID="551184749">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Forest Ambience" ID="{85D9F8DD-97C8-412F-8249-83600F95ABB0}" WorkUnitID="{AAF905A0-A37D-41E9-9282-F4E805C7D82B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

@@ -69,6 +69,32 @@
 					<ChildrenList>
 						<Sound Name="avox_footstep_grass1" ID="{88A8E9E2-5749-4271-8C94-0F5E2622D78C}" ShortID="13351878">
 							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{505FC229-5BFA-478C-9B66-926F619B99D9}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="100"/>
+													<Property Name="Min" Type="Real64" Value="-100"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{7CB562AE-C213-484D-A569-9879AA48EE8E}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="200"/>
+													<Property Name="Min" Type="Real64" Value="-200"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
 										<Value>-12</Value>
@@ -239,6 +265,118 @@
 					</ChildrenList>
 					<ActiveSourceList>
 						<ActiveSource Name="avox_player_death" ID="{8D750024-8732-4545-B787-F0E3894E9A18}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="avox_damage" ID="{10BFBF2E-04DD-4689-90FE-A710FC456057}" ShortID="1010398475">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-14</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{66BC3C4E-513A-40D8-9885-2FAC5E0C36A2}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5DD95D86-1ECB-4E9F-BC79-A173452CDFF1}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="avox_damage" ID="{C4EA7DB9-9B4E-43F0-9F77-D2BB82D19447}">
+							<Language>SFX</Language>
+							<AudioFile>avox_damage.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="1026003804"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="avox_damage" ID="{C4EA7DB9-9B4E-43F0-9F77-D2BB82D19447}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="avox_music" ID="{FA7EED15-4EDB-41D3-A9AA-B7D58048FE40}" ShortID="811972490">
+					<PropertyList>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-14</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{66BC3C4E-513A-40D8-9885-2FAC5E0C36A2}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5DD95D86-1ECB-4E9F-BC79-A173452CDFF1}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="avox_music" ID="{104FB30C-4D94-47D2-99C2-83C5CC85EDDF}">
+							<Language>SFX</Language>
+							<AudioFile>avox_music.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="18441328"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="avox_music" ID="{104FB30C-4D94-47D2-99C2-83C5CC85EDDF}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Cave Ambience" ID="{DF63333E-CAD3-4DB9-A124-E7268AA26B9C}" ShortID="423906892">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{66BC3C4E-513A-40D8-9885-2FAC5E0C36A2}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5DD95D86-1ECB-4E9F-BC79-A173452CDFF1}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Cave Ambience" ID="{52B6901F-314F-478A-AC7F-FD7ABC687D70}">
+							<Language>SFX</Language>
+							<AudioFile>Cave Ambience.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="816431895"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Cave Ambience" ID="{52B6901F-314F-478A-AC7F-FD7ABC687D70}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Forest Ambience" ID="{85D9F8DD-97C8-412F-8249-83600F95ABB0}" ShortID="94887034">
+					<PropertyList>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+						<Property Name="IsLoopingInfinite" Type="bool" Value="False"/>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-13</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{66BC3C4E-513A-40D8-9885-2FAC5E0C36A2}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5DD95D86-1ECB-4E9F-BC79-A173452CDFF1}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Forest Ambience" ID="{07FF15C5-57BC-478F-A43F-168C6ACF2380}">
+							<Language>SFX</Language>
+							<AudioFile>Forest Ambience.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="761706047"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Forest Ambience" ID="{07FF15C5-57BC-478F-A43F-168C6ACF2380}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
 			</ChildrenList>

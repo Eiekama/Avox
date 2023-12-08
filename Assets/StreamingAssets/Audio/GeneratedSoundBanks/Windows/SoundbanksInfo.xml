@@ -9,6 +9,41 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
+		<SoundBank Id="1229948536" Type="User" Language="SFX" Hash="{D20934F7-3098-9CFD-13C5-0B8D03F8B120}">
+			<ShortName>Environment</ShortName>
+			<Path>Environment.bnk</Path>
+			<Media>
+				<File Id="18441328" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>avox_music.wav</ShortName>
+					<CachePath>SFX/avox_music_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="761706047" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Forest Ambience.wav</ShortName>
+					<CachePath>SFX/Forest Ambience_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="816431895" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Cave Ambience.wav</ShortName>
+					<CachePath>SFX/Cave Ambience_10C4C929.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3116144330" Name="Play_avox_music" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="18441328"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1911082204" Name="Play_Cave_Ambience" DurationType="OneShot" DurationMin="19.824" DurationMax="19.824">
+					<MediaRefs>
+						<MediaRef Id="816431895"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="811708576" Name="Play_Forest_Ambience" DurationType="OneShot" DurationMin="180.3" DurationMax="180.3">
+					<MediaRefs>
+						<MediaRef Id="761706047"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
 		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{986487A9-2683-E47A-8688-3D0FE6FDB954}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -22,7 +57,7 @@
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{03BFE3EA-7593-94BF-1207-A47B72117D8F}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{993E40D8-5444-E31A-2109-C5B948A76042}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -58,6 +93,10 @@
 					<ShortName>avox_footstep_grass1.wav</ShortName>
 					<CachePath>SFX/avox_footstep_grass1_CBC6D2E1.wem</CachePath>
 				</File>
+				<File Id="1026003804" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>avox_damage.wav</ShortName>
+					<CachePath>SFX/avox_damage_10C4C929.wem</CachePath>
+				</File>
 			</Media>
 			<Events>
 				<Event Id="1183777945" Name="Play_avox_attack" DurationType="OneShot" DurationMin="0.46629852" DurationMax="0.46629852">
@@ -65,12 +104,17 @@
 						<MediaRef Id="501343304"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="1492256678" Name="Play_avox_damage" DurationType="OneShot" DurationMin="0.9142857" DurationMax="0.9142857">
+					<MediaRefs>
+						<MediaRef Id="1026003804"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="3196776101" Name="Play_avox_double_jump" DurationType="OneShot" DurationMin="0.93868923" DurationMax="0.93868923">
 					<MediaRefs>
 						<MediaRef Id="800548019"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="1982289792" Name="Play_avox_footstep_grass" DurationType="OneShot" DurationMin="0.106682934" DurationMax="0.16406599">
+				<Event Id="1982289792" Name="Play_avox_footstep_grass" DurationType="OneShot" DurationMin="0.106682934" DurationMax="0.18415785">
 					<MediaRefs>
 						<MediaRef Id="415417346"/>
 						<MediaRef Id="967387110"/>
@@ -99,5 +143,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{1CB71206-F60D-AFBD-D2E4-0F13BA0593B2}</FileHash>
+	<FileHash>{942AE2F6-0036-9894-828F-D08465CA9215}</FileHash>
 </SoundBanksInfo>

@@ -1,0 +1,10 @@
+Event	ID	Name			Wwise Object Path	Notes
+	811708576	Play_Forest_Ambience			\Default Work Unit\Play_Forest_Ambience	
+	1911082204	Play_Cave_Ambience			\Default Work Unit\Play_Cave_Ambience	
+	3116144330	Play_avox_music			\Default Work Unit\Play_avox_music	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	18441328	avox_music	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Windows\SFX\avox_music_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_music		23049312
+	761706047	Forest Ambience	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Windows\SFX\Forest Ambience_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Forest Ambience		17308896
+	816431895	Cave Ambience	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Windows\SFX\Cave Ambience_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Cave Ambience		3806304
+
