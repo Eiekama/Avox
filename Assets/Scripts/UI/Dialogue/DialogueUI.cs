@@ -3,7 +3,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(CanvasScaler))]
 public class DialogueUI : MonoBehaviour
 {
     //change this so that you only need one canvas per type of text.
@@ -15,13 +14,8 @@ public class DialogueUI : MonoBehaviour
     private TypewriterEffect _typewriterEffect;
     private FadeEffect _FadeEffect;
 
-    private Camera _cam;
-    private Vector2 _uiResolution;
-
     private void Awake()
     {
-        _cam = Camera.main;
-        _uiResolution = GetComponent<CanvasScaler>().referenceResolution;
         _dialogueBox.SetActive(false);
         _textLabel.text = string.Empty;
     }
@@ -33,9 +27,10 @@ public class DialogueUI : MonoBehaviour
             // add implementation to switch action maps from player to dialogue
         }
         _dialogueBox.SetActive(true);
-        _textLabel.GetComponent<RectTransform>().anchoredPosition = Vector2.Scale(_cam.WorldToViewportPoint(pos + offset), _uiResolution);
+        _textLabel.GetComponent<RectTransform>().anchoredPosition = pos + offset;
         StartCoroutine(Stepthrough(dialogueObject));
     }
+
     private IEnumerator Stepthrough(DialogueObject dialogueObject)
     {
         _textLabel.text = string.Empty;
