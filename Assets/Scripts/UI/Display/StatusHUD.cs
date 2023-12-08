@@ -31,9 +31,9 @@ public class StatusHUD : MonoBehaviour
         for (int i = 0; i < _healthIcons.Count; i++)
         {
             if (i < _playerInstance.data.maxHP)
-                _manaIcons[i].gameObject.SetActive(true);
+                _healthIcons[i].gameObject.SetActive(true);
             else
-                _manaIcons[i].gameObject.SetActive(false);
+                _healthIcons[i].gameObject.SetActive(false);
         }
 
         for (int i = 0; i < _manaIcons.Count; i++)
