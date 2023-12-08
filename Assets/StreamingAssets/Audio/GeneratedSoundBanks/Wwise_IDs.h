@@ -14,17 +14,22 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID PLAY_AVOX_ATTACK = 1183777945U;
+        static const AkUniqueID PLAY_AVOX_DAMAGE = 1492256678U;
         static const AkUniqueID PLAY_AVOX_DOUBLE_JUMP = 3196776101U;
         static const AkUniqueID PLAY_AVOX_FOOTSTEP_GRASS = 1982289792U;
+        static const AkUniqueID PLAY_AVOX_MUSIC = 3116144330U;
         static const AkUniqueID PLAY_AVOX_PLAYER_DEATH = 3582447993U;
         static const AkUniqueID PLAY_AVOX_SINGLE_JUMP = 2530412616U;
         static const AkUniqueID PLAY_AXOV_CLICK = 1203503195U;
         static const AkUniqueID PLAY_AXOX_BUTTON_PRESS = 2558383195U;
+        static const AkUniqueID PLAY_CAVE_AMBIENCE = 1911082204U;
+        static const AkUniqueID PLAY_FOREST_AMBIENCE = 811708576U;
     } // namespace EVENTS
 
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
+        static const AkUniqueID ENVIRONMENT = 1229948536U;
         static const AkUniqueID MAIN = 3161908922U;
     } // namespace BANKS
 

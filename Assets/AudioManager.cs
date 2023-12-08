@@ -10,12 +10,13 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] public AK.Wwise.Event grassFootStep;
     [SerializeField] public AK.Wwise.Event attack;
     [SerializeField] public AK.Wwise.Event playerDeath;
+    [SerializeField] public AK.Wwise.Event playerDamage;
 
     [Header("UI Sounds")]
     [SerializeField] public AK.Wwise.Event click;
     [SerializeField] public AK.Wwise.Event buttonPress;
 
-
+    // Player Sounds
     void playSingleJump()
     {
         singleJump.Post(gameObject);
@@ -41,6 +42,12 @@ public class AudioManager : Singleton<AudioManager>
         playerDeath.Post(gameObject);
     }
 
+    void playPlayerDamage()
+    {
+        playerDamage.Post(gameObject);
+    }
+
+    //UI Sounds
     public void playClick()
     {
         click.Post(gameObject);

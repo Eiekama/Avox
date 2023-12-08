@@ -334,7 +334,11 @@ MonoBehaviour:
   playerDeath:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: b05c20c7551303645b531b08e8b9ab20, type: 2}
+  playerDamage:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 286900b5b4692fa42af6ca7e441cd6d6, type: 2}
   click:
     idInternal: 0
     valueGuidInternal: 
