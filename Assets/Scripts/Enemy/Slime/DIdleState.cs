@@ -7,7 +7,6 @@ public class DIdleState : IState
 {
     public SlimeManager manager;
 
-    public float speed = 50f;
     public float nextWaypointDistance = 1f;
 
     int currentWaypoint = 0;
@@ -19,7 +18,7 @@ public class DIdleState : IState
     // determines when random target is updated
     float _time = 3f;
     public float _timer;
-    public float _limit = 10f;
+    public float _limit = 5f;
     public Vector2 targetPosition;
 
     // determines when enemy can change state
@@ -28,11 +27,9 @@ public class DIdleState : IState
 
     public void OnEntry()
     {
-        Debug.Log("Idle State");
-
-        targetPosition = new Vector2(Random.Range(-_limit, _limit), manager.transform.position.y);
+        targetPosition = new Vector2(manager.transform.position.x + Random.Range(-_limit, _limit), manager.transform.position.y);
         seeker = manager.seeker;
-        _timer = 0.0f;
+        _timer = Random.Range(0f, _time);
         _dashTimer = 0.0f;
         UpdatePath();
     }
@@ -61,14 +58,12 @@ public class DIdleState : IState
 
     public void OnUpdate()
     {
-        Debug.Log("Idle State");
-
         _timer += Time.deltaTime;
         _dashTimer += Time.deltaTime;
 
         if (_timer > _time)
         {
-            targetPosition = new Vector2(Random.Range(-_limit, _limit), manager.transform.position.y);
+            targetPosition = new Vector2(manager.transform.position.x + Random.Range(-_limit, _limit), manager.transform.position.y);
             UpdatePath();
             _timer = 0;
         }
@@ -87,10 +82,6 @@ public class DIdleState : IState
         {
             reachedEndOfPath = false;
         }
-
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)manager.transform.position).normalized;
-        Vector2 force = direction * speed * Time.deltaTime;
-        manager.RB.AddForce(force);
         
         // determines whether to go to next waypoint
         float distance = Vector2.Distance(manager.RB.position, path.vectorPath[currentWaypoint]);
