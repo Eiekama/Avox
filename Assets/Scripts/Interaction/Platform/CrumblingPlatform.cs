@@ -3,27 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrumblingPlatform : MonoBehaviour
+public class CrumblingPlatform : AInteractable
 {    
-    public Animator anim;
-    [SerializeField] int _index;
-    public int index { get { return _index; } }
-    (PlatformData data, int i) _dataAndIndex;
-    public (PlatformData data, int i) dataAndIndex
+    [SerializeField] OnBreak _mask;
+    private static bool _activated;
+
+    private void Start()
     {
-        get { return _dataAndIndex; }
-        set { if (_dataAndIndex.data == null) _dataAndIndex = value; }
-    }
-    private void Start() {
-        anim = GetComponent<Animator>();
+        if (_activated) { Destroy(gameObject); }
     }
 
-    private void OnCollisionStay2D(Collision2D other) 
+    public override void Interact(PlayerInstance player)
     {
-        if(other.gameObject.CompareTag("Player"))
-        {
-            anim.SetTrigger("OnStep");
-            _dataAndIndex.data.info[_dataAndIndex.i].collapsed = true;
-        }
+        GetComponent<Animator>().SetTrigger("OnStep");
+        _activated = true;
+    }
+
+    public void RemoveMask()
+    {
+        _mask.Fade();
     }
 }
