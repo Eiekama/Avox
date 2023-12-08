@@ -114,7 +114,7 @@ public class MainMenuController : MonoBehaviour
     {
         HideMenu();
         yield return FadeOut(1.3f);
-        SceneManager.LoadScene(sceneName: "IntroCutScene");
+        SceneManager.LoadScene(sceneName: "Room 1");
     }
 
     private void QuitGame()

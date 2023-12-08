@@ -3095,7 +3095,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7871654458558152457, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5525112
+      value: -2.5517988
       objectReference: {fileID: 0}
     - target: {fileID: 7871654458558152457, guid: e72eab76edd004157929849cce7f218e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4262,19 +4262,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4558948184978809485, guid: fafdd143098cf6a4c9ececb8e4466f9e, type: 3}
       propertyPath: _dialogueObject.dialogue.Array.size
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4558948184978809485, guid: fafdd143098cf6a4c9ececb8e4466f9e, type: 3}
       propertyPath: _dialogueObject.dialogue.Array.data[0]
-      value: According to all known laws of aviation,
+      value: Darkness approaches
       objectReference: {fileID: 0}
     - target: {fileID: 4558948184978809485, guid: fafdd143098cf6a4c9ececb8e4466f9e, type: 3}
       propertyPath: _dialogueObject.dialogue.Array.data[1]
-      value: there is no way a bee should be able to fly.
+      value: Venture forth and destroy the source of corruption
       objectReference: {fileID: 0}
     - target: {fileID: 4558948184978809485, guid: fafdd143098cf6a4c9ececb8e4466f9e, type: 3}
       propertyPath: _dialogueObject.dialogue.Array.data[2]
-      value: Its wings are too small to get its fat little body off the ground.
+      value: I am counting on you.
       objectReference: {fileID: 0}
     - target: {fileID: 4558948184978809485, guid: fafdd143098cf6a4c9ececb8e4466f9e, type: 3}
       propertyPath: _dialogueObject.dialogue.Array.data[3]
