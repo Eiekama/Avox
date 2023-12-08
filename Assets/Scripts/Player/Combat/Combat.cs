@@ -31,7 +31,7 @@ namespace Player
 
         public static float respawnTime = 1f; //Respawn time for platforming checkpoints
         public static int deathRespawnScene = 1;
-        public static float invincibilityTime = 10f;
+        public static float invincibilityTime = 2f;
 
 
         public void UpdateTimers()
@@ -45,19 +45,19 @@ namespace Player
             if(!isInvincible){
                 player.movement.StopDash();
                 player.status.ChangeCurrentHP(-dmg);
-            }
-            if (_player.data.currentHP == 0)
-            {
-                Die();
-                return;
-            }
+                if (_player.data.currentHP == 0)
+                {
+                    Die();
+                    return;
+                }
 
-            player.StartCoroutine(RunIFrames(invincibilityTime));
+                player.StartCoroutine(RunIFrames(invincibilityTime));
 
-            player.controller.DisableActionMap(player.controller.inputActions.Player);
-            Knockback(source);
-            player.animator.SetTrigger("damage");
-            // action map will be re-enabled in animation event
+                player.controller.DisableActionMap(player.controller.inputActions.Player);
+                Knockback(source);
+                player.animator.SetTrigger("damage");
+                // action map will be re-enabled in animation event
+            }
         }
 
         public void Knockback(Collider2D source)
@@ -78,8 +78,12 @@ namespace Player
 
         IEnumerator RunIFrames(float duration){
             isInvincible = true;
-            yield return new WaitForSeconds(duration);
+            
+            yield return Tween.Alpha(player.GetComponent<SpriteRenderer>(), startValue: 1, endValue: 0.2f, duration: 0.1f, cycleMode: CycleMode.Yoyo, cycles: Mathf.RoundToInt(duration / 0.1f)).ToYieldInstruction();
             isInvincible = false;
+            player.movement.playerBoxCollider.enabled = false;
+            player.movement.playerBoxCollider.enabled = true;
+            // janky way to get OnTriggerEnter to call again, so we can't hide inside the hitbox of the enemy and not take damage
         }
 
         private void Die(){
