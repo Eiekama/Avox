@@ -30,6 +30,8 @@ public class DashState : IState
         _pauseTimer = 0.0f;
         manager.RB.velocity = Vector2.zero;
         UpdatePath();
+
+        manager.anim.SetTrigger("attack");
     }
 
     public void OnExit()
@@ -58,6 +60,13 @@ public class DashState : IState
     {
         _timer += Time.deltaTime;
         _pauseTimer += Time.deltaTime;
+
+        if (Mathf.Abs(manager.RB.velocity.x) > 0.1f && Mathf.Sign(manager.transform.localScale.x) != Mathf.Sign(manager.RB.velocity.x))
+        {
+            Vector3 scale = manager.transform.localScale;
+            scale.x = Mathf.Sign(manager.RB.velocity.x);
+            manager.transform.localScale = scale;
+        }
 
         if (_pauseTimer > _pauseTime)
         {
