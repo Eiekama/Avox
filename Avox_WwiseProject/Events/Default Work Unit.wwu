@@ -135,6 +135,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Play_Avox_Interactive_Ambience" ID="{79019293-E769-4FA2-84DF-323999C3CBD1}">
+					<ChildrenList>
+						<Action Name="" ID="{40511CEB-43CB-4C98-88B0-5D5B06F2215E}" ShortID="333145285">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Avox_Interactive_Ambience" ID="{22A8FD1F-635C-431D-ACFD-6DC563D8F88E}" WorkUnitID="{88F6F76D-E772-4B61-82DF-801C834A464A}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Avox_Interactive_Music" ID="{5D89A20F-6144-4891-992E-13D15ACDED17}">
+					<ChildrenList>
+						<Action Name="" ID="{4FD770FA-7945-49DD-ABDA-C71F51C2ECDE}" ShortID="595418968">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Avox_Interactive_Music" ID="{37381D93-B88B-4B06-BCC9-2EF748DC483E}" WorkUnitID="{88F6F76D-E772-4B61-82DF-801C834A464A}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

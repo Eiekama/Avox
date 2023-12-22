@@ -17,14 +17,42 @@ namespace AK
         static const AkUniqueID PLAY_AVOX_DAMAGE = 1492256678U;
         static const AkUniqueID PLAY_AVOX_DOUBLE_JUMP = 3196776101U;
         static const AkUniqueID PLAY_AVOX_FOOTSTEP_GRASS = 1982289792U;
-        static const AkUniqueID PLAY_AVOX_MUSIC = 3116144330U;
+        static const AkUniqueID PLAY_AVOX_INTERACTIVE_AMBIENCE = 2025622534U;
+        static const AkUniqueID PLAY_AVOX_INTERACTIVE_MUSIC = 2458054759U;
         static const AkUniqueID PLAY_AVOX_PLAYER_DEATH = 3582447993U;
         static const AkUniqueID PLAY_AVOX_SINGLE_JUMP = 2530412616U;
         static const AkUniqueID PLAY_AXOV_CLICK = 1203503195U;
         static const AkUniqueID PLAY_AXOX_BUTTON_PRESS = 2558383195U;
-        static const AkUniqueID PLAY_CAVE_AMBIENCE = 1911082204U;
-        static const AkUniqueID PLAY_FOREST_AMBIENCE = 811708576U;
     } // namespace EVENTS
+
+    namespace STATES
+    {
+        namespace AMBIENCE_STATE
+        {
+            static const AkUniqueID GROUP = 3875263435U;
+
+            namespace STATE
+            {
+                static const AkUniqueID CAVE = 4122393694U;
+                static const AkUniqueID FOREST = 491961918U;
+                static const AkUniqueID NONE = 748895195U;
+            } // namespace STATE
+        } // namespace AMBIENCE_STATE
+
+        namespace MUSIC_STATE
+        {
+            static const AkUniqueID GROUP = 3826569560U;
+
+            namespace STATE
+            {
+                static const AkUniqueID BATTLE_STATE = 2739846761U;
+                static const AkUniqueID CALM_STATE = 3646659550U;
+                static const AkUniqueID MENU_STATE = 3941853002U;
+                static const AkUniqueID NONE = 748895195U;
+            } // namespace STATE
+        } // namespace MUSIC_STATE
+
+    } // namespace STATES
 
     namespace BANKS
     {

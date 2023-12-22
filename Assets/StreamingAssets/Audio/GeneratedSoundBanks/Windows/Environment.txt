@@ -1,10 +1,24 @@
 Event	ID	Name			Wwise Object Path	Notes
-	811708576	Play_Forest_Ambience			\Default Work Unit\Play_Forest_Ambience	
-	1911082204	Play_Cave_Ambience			\Default Work Unit\Play_Cave_Ambience	
-	3116144330	Play_avox_music			\Default Work Unit\Play_avox_music	
+	2025622534	Play_Avox_Interactive_Ambience			\Default Work Unit\Play_Avox_Interactive_Ambience	
+	2458054759	Play_Avox_Interactive_Music			\Default Work Unit\Play_Avox_Interactive_Music	
+
+State Group	ID	Name			Wwise Object Path	Notes
+	3826569560	Music_State			\Default Work Unit\Music_State	
+	3875263435	Ambience_State			\Default Work Unit\Ambience_State	
+
+State	ID	Name	State Group			Notes
+	748895195	None	Music_State			
+	2739846761	Battle_State	Music_State			
+	3646659550	Calm_State	Music_State			
+	3941853002	Menu_State	Music_State			
+	491961918	Forest	Ambience_State			
+	748895195	None	Ambience_State			
+	4122393694	Cave	Ambience_State			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	18441328	avox_music	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Windows\SFX\avox_music_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\avox_music		23049312
-	761706047	Forest Ambience	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Windows\SFX\Forest Ambience_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Forest Ambience		17308896
-	816431895	Cave Ambience	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Windows\SFX\Cave Ambience_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Cave Ambience		3806304
+	461161528	Avox_Boss_Music	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Windows\SFX\Avox_music\Avox_Boss_Music_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Avox_Interactive_Music\Boss_Music\Avox_Boss_Music\Avox_Boss_Music		16906848
+	481217978	Avox_Calm_Music	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Windows\SFX\Avox_music\Avox_Calm_Music_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Avox_Interactive_Music\Calm_Music\Avox_Calm_Music\Avox_Calm_Music		23049312
+	656038012	Forest_Ambience	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Windows\SFX\Avox_Ambience\Forest_Ambience_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Avox_Interactive_Ambience\Forest\Forest_Ambience\Forest_Ambience		17308896
+	768115902	Cave_Ambience	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Windows\SFX\Avox_Ambience\Cave_Ambience_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Avox_Interactive_Ambience\Cave\Cave_Ambience\Cave_Ambience		3806304
+	830661610	Avox_Menu_Music	C:\Users\shang\OneDrive\Documents\GitHub\Avox\Avox_WwiseProject\.cache\Windows\SFX\Avox_music\Avox_Menu_Music_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Avox_Interactive_Music\Menu_Music\Avox_Menu_Music\Avox_Menu_Music		7408896
 
