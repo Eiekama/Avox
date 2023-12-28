@@ -58,6 +58,36 @@ public class AudioManager : Singleton<AudioManager>
         buttonPress.Post(gameObject);
     }
 
+    // Music
+    public void setMenuState()
+    {
+        AkSoundEngine.SetState("Music_State", "Menu_State");
+    }
+
+    public void setCalmState()
+    {
+        AkSoundEngine.SetState("Music_State", "Calm_State");
+    }
+
+    public void setBattleState()
+    {
+        AkSoundEngine.SetState("Music_State", "Battle_State");
+    }
+
+    public void setMusicNoneState()
+    {
+        AkSoundEngine.SetState("Music_State", "None");
+    }
+    // Ambience
+    public void setForestState()
+    {
+        AkSoundEngine.SetState("Ambience_State", "Forest");
+    }
+
+    public void setCaveState()
+    {
+        AkSoundEngine.SetState("Ambience_State", "Cave");
+    }
 
 
 }

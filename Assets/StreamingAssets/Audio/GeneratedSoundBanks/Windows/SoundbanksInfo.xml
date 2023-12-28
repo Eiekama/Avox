@@ -9,42 +9,90 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1229948536" Type="User" Language="SFX" Hash="{D20934F7-3098-9CFD-13C5-0B8D03F8B120}">
+		<SoundBank Id="1229948536" Type="User" Language="SFX" Hash="{9C15DC72-AA92-A250-0546-496771561B49}">
 			<ShortName>Environment</ShortName>
 			<Path>Environment.bnk</Path>
 			<Media>
-				<File Id="18441328" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>avox_music.wav</ShortName>
-					<CachePath>SFX/avox_music_D79FB2B7.wem</CachePath>
+				<File Id="461161528" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Avox_music\Avox_Boss_Music.wav</ShortName>
+					<CachePath>SFX/Avox_music/Avox_Boss_Music_D79FB2B7.wem</CachePath>
 				</File>
-				<File Id="761706047" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Forest Ambience.wav</ShortName>
-					<CachePath>SFX/Forest Ambience_D79FB2B7.wem</CachePath>
+				<File Id="481217978" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Avox_music\Avox_Calm_Music.wav</ShortName>
+					<CachePath>SFX/Avox_music/Avox_Calm_Music_D79FB2B7.wem</CachePath>
 				</File>
-				<File Id="816431895" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Cave Ambience.wav</ShortName>
-					<CachePath>SFX/Cave Ambience_10C4C929.wem</CachePath>
+				<File Id="656038012" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Avox_Ambience\Forest_Ambience.wav</ShortName>
+					<CachePath>SFX/Avox_Ambience/Forest_Ambience_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="768115902" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Avox_Ambience\Cave_Ambience.wav</ShortName>
+					<CachePath>SFX/Avox_Ambience/Cave_Ambience_D79FB2B7.wem</CachePath>
+				</File>
+				<File Id="830661610" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Avox_music\Avox_Menu_Music.wav</ShortName>
+					<CachePath>SFX/Avox_music/Avox_Menu_Music_D79FB2B7.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
-				<Event Id="3116144330" Name="Play_avox_music" DurationType="Infinite">
-					<MediaRefs>
-						<MediaRef Id="18441328"/>
-					</MediaRefs>
+				<Event Id="2025622534" Name="Play_Avox_Interactive_Ambience" DurationType="Infinite">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="3875263435" Id="4122393694"/>
+							<MediaRefs>
+								<MediaRef Id="768115902"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="3875263435" Id="491961918"/>
+							<MediaRefs>
+								<MediaRef Id="656038012"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
 				</Event>
-				<Event Id="1911082204" Name="Play_Cave_Ambience" DurationType="OneShot" DurationMin="19.824" DurationMax="19.824">
-					<MediaRefs>
-						<MediaRef Id="816431895"/>
-					</MediaRefs>
-				</Event>
-				<Event Id="811708576" Name="Play_Forest_Ambience" DurationType="OneShot" DurationMin="180.3" DurationMax="180.3">
-					<MediaRefs>
-						<MediaRef Id="761706047"/>
-					</MediaRefs>
+				<Event Id="2458054759" Name="Play_Avox_Interactive_Music" DurationType="Infinite">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="3826569560" Id="2739846761"/>
+							<MediaRefs>
+								<MediaRef Id="461161528"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="3826569560" Id="3646659550"/>
+							<MediaRefs>
+								<MediaRef Id="481217978"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="3826569560" Id="3941853002"/>
+							<MediaRefs>
+								<MediaRef Id="830661610"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
 				</Event>
 			</Events>
+			<StateGroups>
+				<StateGroup Id="3826569560" Name="Music_State">
+					<States>
+						<State Id="748895195" Name="None"/>
+						<State Id="2739846761" Name="Battle_State"/>
+						<State Id="3646659550" Name="Calm_State"/>
+						<State Id="3941853002" Name="Menu_State"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="3875263435" Name="Ambience_State">
+					<States>
+						<State Id="491961918" Name="Forest"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="4122393694" Name="Cave"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{986487A9-2683-E47A-8688-3D0FE6FDB954}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{2B3680CA-4177-2C25-75F4-E5890281D6E0}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -56,6 +104,23 @@
 			<Busses>
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
+			<StateGroups>
+				<StateGroup Id="3826569560" Name="Music_State">
+					<States>
+						<State Id="748895195" Name="None"/>
+						<State Id="2739846761" Name="Battle_State"/>
+						<State Id="3646659550" Name="Calm_State"/>
+						<State Id="3941853002" Name="Menu_State"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="3875263435" Name="Ambience_State">
+					<States>
+						<State Id="491961918" Name="Forest"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="4122393694" Name="Cave"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
 		</SoundBank>
 		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{993E40D8-5444-E31A-2109-C5B948A76042}">
 			<ShortName>Main</ShortName>
@@ -143,5 +208,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{942AE2F6-0036-9894-828F-D08465CA9215}</FileHash>
+	<FileHash>{C8BE532F-37B7-B3EB-2FF2-F70CAFBCDC77}</FileHash>
 </SoundBanksInfo>

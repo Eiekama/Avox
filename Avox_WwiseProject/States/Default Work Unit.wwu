@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{B8A9C761-CC0F-42C4-AEF7-88D6759F2CFD}" SchemaVersion="110">
 	<States>
-		<WorkUnit Name="Default Work Unit" ID="{B8A9C761-CC0F-42C4-AEF7-88D6759F2CFD}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{B8A9C761-CC0F-42C4-AEF7-88D6759F2CFD}" PersistMode="Standalone">
+			<ChildrenList>
+				<StateGroup Name="Music_State" ID="{DC21254B-4261-42B9-BE3A-FE04E1031C5E}">
+					<ChildrenList>
+						<State Name="None" ID="{FC6017B6-9887-4911-92F8-95E7FE0D6AB2}"/>
+						<State Name="Calm_State" ID="{E7F959C6-D8C1-4A3C-B8DD-FDB8A327B785}"/>
+						<State Name="Battle_State" ID="{B64F060E-37CF-4FD9-B250-3AF8B608BA6A}"/>
+						<State Name="Menu_State" ID="{FE1F4EFE-FC02-454D-9973-452DB6B2FBA4}"/>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="Ambience_State" ID="{CEE8D8EF-3E2C-4962-B062-E3BBA9201BBE}">
+					<ChildrenList>
+						<State Name="None" ID="{36A485B1-601E-40F8-82C1-2314729D24BB}"/>
+						<State Name="Forest" ID="{B915A9CD-4F68-4EF4-8B9E-4F7B87C4C3E8}"/>
+						<State Name="Cave" ID="{015D06F5-BB02-4750-9E27-2324C0A9F6E8}"/>
+					</ChildrenList>
+				</StateGroup>
+			</ChildrenList>
+		</WorkUnit>
 	</States>
 </WwiseDocument>

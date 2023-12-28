@@ -19,9 +19,8 @@
 				</SoundBank>
 				<SoundBank Name="Environment" ID="{10B5C922-533A-4381-936B-643DCE005F3E}">
 					<ObjectInclusionList>
-						<ObjectRef Name="Play_Cave_Ambience" ID="{73BFE5DF-3E6C-404F-8885-478376B92971}" WorkUnitID="{62EF1E54-8526-422A-BB12-C0EA88F1A252}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Play_Forest_Ambience" ID="{1954B42F-EC56-426B-9259-C0D77E07D5BB}" WorkUnitID="{62EF1E54-8526-422A-BB12-C0EA88F1A252}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Play_avox_music" ID="{BFAC8FB9-247C-4505-A640-4A5C9844DC78}" WorkUnitID="{62EF1E54-8526-422A-BB12-C0EA88F1A252}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Avox_Interactive_Music" ID="{5D89A20F-6144-4891-992E-13D15ACDED17}" WorkUnitID="{62EF1E54-8526-422A-BB12-C0EA88F1A252}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_Avox_Interactive_Ambience" ID="{79019293-E769-4FA2-84DF-323999C3CBD1}" WorkUnitID="{62EF1E54-8526-422A-BB12-C0EA88F1A252}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

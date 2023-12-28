@@ -1,3 +1,16 @@
+State Group	ID	Name			Wwise Object Path	Notes
+	3826569560	Music_State			\Default Work Unit\Music_State	
+	3875263435	Ambience_State			\Default Work Unit\Ambience_State	
+
+State	ID	Name	State Group			Notes
+	748895195	None	Music_State			
+	2739846761	Battle_State	Music_State			
+	3646659550	Calm_State	Music_State			
+	3941853002	Menu_State	Music_State			
+	491961918	Forest	Ambience_State			
+	748895195	None	Ambience_State			
+	4122393694	Cave	Ambience_State			
+
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
 
