@@ -13,11 +13,12 @@ public class AmbienceStates : MonoBehaviour
         currScene = SceneManager.GetActiveScene();
         if (currScene.name == "Menu")
         {
+            AudioManager.Instance.setNoneState();
             AudioManager.Instance.setMenuState();
         }
         else if(currScene.name == "Room 1")
         {
-            AudioManager.Instance.setMusicNoneState();
+            AudioManager.Instance.setNoneState();
             AudioManager.Instance.setForestState();
         }
         else if (currScene.name == "Room 2")
@@ -41,11 +42,5 @@ public class AmbienceStates : MonoBehaviour
             AudioManager.Instance.setBattleState();
             AudioManager.Instance.setForestState();
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -57,7 +57,6 @@ public class DIdleState : IState
     public void OnUpdate()
     {
         manager.anim.SetFloat("xSpeed", Mathf.Abs(manager.RB.velocity.x));
-        manager.anim.SetFloat("yVelocity", manager.RB.velocity.y);
 
         if (Mathf.Sign(manager.transform.localScale.x) != Mathf.Sign(targetPosition.x - manager.RB.position.x))
         {

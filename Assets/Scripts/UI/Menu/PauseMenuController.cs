@@ -180,7 +180,7 @@ public class PauseMenuController : MonoBehaviour
 
 
             .Group(Tween.Custom(this, 0f, 1f, duration: 0.3f, startDelay: 0.1f, onValueChange: (target, newVal) => target.SetAlpha(target._continueTMP, newVal), useUnscaledTime: true))
-            .Group(Tween.UIAnchoredPositionY(_continueTransform, startValue: _continueYPos - 20, endValue: _continueYPos, duration: 0.2f, startDelay: 0.2f, useUnscaledTime: true))
+            .Group(Tween.UIAnchoredPositionY(_continueTransform, startValue: _continueYPos - 20, endValue: _continueYPos, duration: 0.3f, startDelay: 0.2f, useUnscaledTime: true))
 
             .Group(Tween.Custom(this, 0f, 1f, duration: 0.3f, startDelay: 0.1f, onValueChange: (target, newVal) => target.SetAlpha(target._quitTMP, newVal), useUnscaledTime: true))
             .Group(Tween.UIAnchoredPositionY(_quitTransform, startValue: _quitYPos - 20, endValue: _quitYPos, duration: 0.3f, startDelay: 0.2f, useUnscaledTime: true))
@@ -263,10 +263,10 @@ public class PauseMenuController : MonoBehaviour
             .Group(Tween.Custom(this, 1f, 0f, duration: 0.3f, startDelay: 0.1f, onValueChange: (target, newVal) => target.SetFillAmount(target._bottomBorder_right_img, newVal), useUnscaledTime: true))
 
             .Group(Tween.Custom(this, 1f, 0f, duration: 0.3f, startDelay: 0.1f, onValueChange: (target, newVal) => target.SetAlpha(target._continueTMP, newVal), useUnscaledTime: true))
-            .Group(Tween.UIAnchoredPositionY(_continueTransform, startValue: _continueYPos, endValue: _continueYPos - 20, duration: 0.7f, startDelay: 0.9f, useUnscaledTime: true))
+            .Group(Tween.UIAnchoredPositionY(_continueTransform, startValue: _continueYPos, endValue: _continueYPos - 20, duration: 0.3f, startDelay: 0.1f, useUnscaledTime: true))
 
             .Group(Tween.Custom(this, 1f, 0f, duration: 0.3f, startDelay: 0.1f, onValueChange: (target, newVal) => target.SetAlpha(target._quitTMP, newVal), useUnscaledTime: true))
-            .Group(Tween.UIAnchoredPositionY(_quitTransform, startValue: _quitYPos, endValue: _quitYPos - 20, duration: 0.7f, startDelay: 0.9f, useUnscaledTime: true))
+            .Group(Tween.UIAnchoredPositionY(_quitTransform, startValue: _quitYPos, endValue: _quitYPos - 20, duration: 0.3f, startDelay: 0.1f, useUnscaledTime: true))
             .ToYieldInstruction();
     }
 

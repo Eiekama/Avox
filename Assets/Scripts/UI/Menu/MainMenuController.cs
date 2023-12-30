@@ -57,6 +57,11 @@ public class MainMenuController : MonoBehaviour
         _quitYPos = _quitTransform.anchoredPosition.y;
     }
 
+    private void OnDisable()
+    {
+        _playerInput.actions["Navigate"].performed -= NavigatePerformed;
+    }
+
     private void Start()
     {
         SetAlpha(_titleTMP, 0);

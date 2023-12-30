@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TransitionManager : MonoBehaviour
 {
-    
-
     public static int currentTransition = -1;
     
     public static float _playerVertical;

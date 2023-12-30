@@ -74,9 +74,10 @@ public class AudioManager : Singleton<AudioManager>
         AkSoundEngine.SetState("Music_State", "Battle_State");
     }
 
-    public void setMusicNoneState()
+    public void setNoneState()
     {
         AkSoundEngine.SetState("Music_State", "None");
+        AkSoundEngine.SetState("Ambience_State", "None");
     }
     // Ambience
     public void setForestState()

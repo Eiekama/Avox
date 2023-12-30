@@ -21,6 +21,8 @@ public class InitialiseData : MonoBehaviour
                 collectibleData.info[i].collected = false;
             }
 
+            TransitionManager.currentTransition = -1;
+
             playerData.hasWeapon = false;
             playerData.hasDash = false;
             playerData.maxHP = 5;
