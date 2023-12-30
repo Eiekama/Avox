@@ -1,16 +1,16 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class DialogueUI : MonoBehaviour
 {
+    [SerializeField] PlayerController _player;
+
     //change this so that you only need one canvas per type of text.
     [SerializeField] private GameObject _dialogueBox;
     [SerializeField] private TMP_Text _textLabel;
 
     
-
     private TypewriterEffect _typewriterEffect;
     private FadeEffect _FadeEffect;
 
@@ -22,10 +22,6 @@ public class DialogueUI : MonoBehaviour
 
     public void ShowDialogue(DialogueObject dialogueObject, Vector3 pos, Vector3 offset)
     {
-        if (dialogueObject._StopPlayer)
-        {
-            // add implementation to switch action maps from player to dialogue
-        }
         _dialogueBox.SetActive(true);
         _textLabel.GetComponent<RectTransform>().anchoredPosition = pos + offset;
         StartCoroutine(Stepthrough(dialogueObject));
@@ -37,7 +33,6 @@ public class DialogueUI : MonoBehaviour
 
         foreach (string dialogue in dialogueObject.Dialogue)
         {
-
             if (dialogueObject.Effect.ToString() == "fade")
             {
                 _FadeEffect = GetComponent<FadeEffect>();
@@ -55,7 +50,8 @@ public class DialogueUI : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
 
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+            yield return null;
+            yield return new WaitUntil(() => _player.inputActions.Dialogue.Advance.WasPerformedThisFrame());
         }
 
         CloseDialogue(dialogueObject);

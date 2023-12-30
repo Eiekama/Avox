@@ -32,17 +32,22 @@ public class ParallaxBackgroundController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    private Vector3 prevCamPos;
+    private Vector3 camPos;
     void FixedUpdate()
     {
-        Vector3 camPos = Camera.main.transform.position;
+        prevCamPos = camPos;
+        camPos = Camera.main.transform.position;
 
-        foreach (ParallaxBackgroundElement e in parallaxBackgroundElements)
+        if ((prevCamPos-camPos).sqrMagnitude > 0.001f)
         {
-            Vector3 posOffset = camPos - e.origin;
+            foreach (ParallaxBackgroundElement e in parallaxBackgroundElements)
+            {
+                Vector3 posOffset = camPos - e.origin;
 
-            e.element.transform.position = e.origin + new Vector3(
-                posOffset.x * e.effectScale.x, posOffset.y * e.effectScale.y);
+                e.element.transform.position = e.origin + new Vector3(
+                    posOffset.x * e.effectScale.x, posOffset.y * e.effectScale.y);
+            }
         }
     }
 }
